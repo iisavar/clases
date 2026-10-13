@@ -1,0 +1,992 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mediciones en Química</title>
+<meta name="description" content="Mediciones en química desde cero: qué es medir, potencias de 10, Sistema Internacional, prefijos, masa y peso, volumen, densidad y temperatura. Con laboratorios interactivos, ejercicios y test.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Diseño: clase para estudiantes. Claro por defecto (verde de acción, dorado para lo clave), con botón para modo oscuro. Una columna, lecciones apiladas. */
+:root{
+  --bg:#F3F7F5; --panel:#FFFFFF; --panel2:#EDF4F1; --line:#D3E1DB; --deep:#F6FAF8;
+  --text:#14232A; --muted:#5A6B72; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#177A42;
+  --gold:#FFC800; --gold-t:#9A6700; --red:#D64545; --blue:#1F7FB8; --ink:#0E1A1F;
+  --sel-bg:#E2F0FA; --ok-bg:#E3F5EA; --bad-bg:#FBE7E7; --sombra:0 6px 24px rgba(20,35,42,.07);
+  --hero:linear-gradient(135deg,#E6F6EE 0%,#FFF7D6 100%);
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:ui-monospace,Consolas,"Courier New",monospace;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green-t:#3BC97A;
+  --gold-t:#FFC800; --red:#FF6B6B; --blue:#4FB3E8;
+  --sel-bg:#1B3A4A; --ok-bg:#173A2A; --bad-bg:#3A1F22; --sombra:none;
+  --hero:linear-gradient(135deg,#17342A 0%,#2A2A17 100%);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.6}
+a{color:var(--blue)}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px}
+header{padding-block:18px 10px}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;gap:8px;background:var(--hero);border:1px solid var(--line);border-radius:24px;padding:22px 22px 18px;overflow:hidden;position:relative}
+.hero>*{min-width:0}
+.hero h1{font-size:clamp(32px,6vw,54px);margin:4px 0 10px}
+.hero h1 span{color:var(--green-t)}
+.hero .sub{font-size:clamp(17px,2.4vw,20px);font-weight:700;color:var(--muted);margin:0 0 14px;max-width:34ch}
+.hero img{width:100%;display:block;border-radius:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-weight:800;font-size:14px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.tema-btn{position:absolute;top:14px;right:14px;z-index:2;display:inline-flex;align-items:center;gap:6px;font:inherit;font-weight:800;font-size:14px;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;box-shadow:var(--sombra)}
+.tema-btn svg{width:18px;height:18px}
+@media (max-width:720px){.hero{grid-template-columns:1fr;padding-top:56px}.hero .sub{max-width:none}.hero img{max-height:230px;object-fit:cover;object-position:center 30%}}
+.kicker{color:var(--gold-t);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+h1{font-weight:900;font-size:clamp(28px,5vw,44px);line-height:1.1;margin:6px 0 8px;text-wrap:balance}
+h2{font-weight:900;font-size:clamp(22px,3.6vw,30px);margin:0 0 10px;text-wrap:balance}
+h3{font-weight:800;font-size:20px;margin:18px 0 6px}
+p{margin:0 0 10px}
+.lead{color:var(--muted);max-width:68ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line);padding-block:10px}
+nav.tabs .wrap{display:flex;gap:8px;overflow-x:auto}
+nav.tabs button{flex:0 0 auto;font:inherit;font-weight:800;font-size:15px;color:var(--muted);background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:8px 14px;cursor:pointer}
+nav.tabs button.on{color:var(--ink);background:var(--green);border-color:var(--green)}
+section.tab{display:none;padding-block:24px 60px}
+section.tab.on{display:block}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;margin:0 0 18px;box-shadow:var(--sombra)}
+.clave{border-left:5px solid var(--gold);background:var(--panel2);border-radius:12px;padding:12px 16px;margin:12px 0}
+.clave b{color:var(--gold-t)}
+.nota{border-left:5px solid var(--red);background:var(--panel2);border-radius:12px;padding:10px 14px;margin:10px 0;font-size:15px}
+.ejemplo{background:var(--deep);border:1px dashed var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:16px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--gold-t);font-weight:800}
+.tablewrap{overflow-x:auto}
+.formula{font-family:var(--f-mono);font-size:18px;background:var(--deep);border:1px solid var(--line);border-radius:12px;padding:8px 14px;display:inline-block;margin:4px 0}
+.btn{font:inherit;font-weight:900;font-size:16px;border:0;border-radius:16px;padding:11px 18px;cursor:pointer;background:var(--green);color:var(--ink);box-shadow:0 4px 0 var(--green-d)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-d)}
+.btn.sec{background:var(--panel);color:var(--text);box-shadow:0 4px 0 var(--line);border:1px solid var(--line)}
+.btn.small{font-size:14px;padding:7px 12px;border-radius:12px}
+.btn:disabled{opacity:.45;cursor:default}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+video{width:100%;border-radius:16px;background:#000;display:block}
+.lesson-head{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.num{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:var(--green);color:var(--ink);font-weight:900;display:grid;place-items:center;font-size:18px}
+.lesson-head h2{margin:0}
+.ilus{margin:12px 0}
+.ilus img{width:100%;border-radius:14px;display:block;background:#fff;cursor:zoom-in}
+.ilus .row{margin-top:8px;justify-content:flex-end}
+.lab{background:var(--deep);border:1px solid var(--green);border-radius:14px;padding:14px 16px;margin:14px 0}
+.lab .tit{color:var(--green-t);font-weight:900;text-transform:uppercase;letter-spacing:.05em;font-size:13px;margin-bottom:6px}
+.lab label{font-weight:700;font-size:15px}
+.lab input[type=range]{width:100%;accent-color:var(--green)}
+.campo,.lab select,.lab input[type=number]{font:inherit;padding:9px 12px;border-radius:12px;border:2px solid var(--line);background:var(--panel);color:var(--text);min-width:0;max-width:100%}
+.campo{width:100%}
+.big{font-size:22px;font-weight:900;color:var(--gold-t);font-variant-numeric:tabular-nums}
+.check{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+.check .q{font-weight:800;margin-bottom:6px}
+.opcion{display:block;width:100%;text-align:left;font:inherit;font-weight:700;color:var(--text);background:var(--panel2);border:2px solid var(--line);border-radius:14px;padding:11px 14px;margin:8px 0;cursor:pointer}
+.opcion.sel{border-color:var(--blue);background:var(--sel-bg)}
+.opcion.bien{border-color:var(--green);background:var(--ok-bg)}
+.opcion.malo{border-color:var(--red);background:var(--bad-bg)}
+.fb{font-weight:700;margin-top:6px}
+.fb.ok{color:var(--green-t)} .fb.no{color:var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid2>*{min-width:0}
+@media (max-width:720px){.grid2{grid-template-columns:1fr}}
+.paso{display:none;margin:10px 0;padding:12px 14px;border-radius:12px;background:var(--panel2);border:1px solid var(--line)}
+.paso.vis{display:block;animation:in .25s ease}
+.paso .t{color:var(--gold-t);font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.paso.res{border-color:var(--green);background:var(--ok-bg)}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.progreso{height:8px;background:var(--panel2);border-radius:999px;overflow:hidden;margin:6px 0 14px}
+.progreso i{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+.ej-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.badge{display:inline-block;font-weight:900;font-size:13px;padding:4px 10px;border-radius:999px;background:var(--panel2);color:var(--gold-t);border:1px solid var(--line)}
+.contador{color:var(--muted);font-weight:800;font-variant-numeric:tabular-nums}
+.enunciado{font-size:19px;font-weight:700}
+.preg{font-size:19px;font-weight:800;margin:4px 0 14px}
+.rev{border-radius:12px;padding:12px 14px;margin:10px 0;background:var(--panel2);border:1px solid var(--line)}
+.rev.ok{border-left:5px solid var(--green)}
+.rev.mal{border-left:5px solid var(--red)}
+.rev small{color:var(--muted)}
+.nota-final{font-size:44px;font-weight:900;color:var(--gold-t);line-height:1}
+/* Mapa mental */
+.mapa ul{list-style:none;margin:0;padding-left:22px;border-left:2px solid var(--line)}
+.mapa>ul{padding-left:0;border-left:0}
+.mapa li{margin:8px 0;position:relative}
+.mapa ul ul li::before{content:"";position:absolute;left:-22px;top:20px;width:18px;border-top:2px solid var(--line)}
+.nodo{display:inline-flex;align-items:center;gap:8px;font:inherit;font-weight:800;color:var(--text);background:var(--panel2);border:2px solid var(--line);border-radius:12px;padding:8px 12px;text-align:left;cursor:default;max-width:100%}
+.nodo.raiz{background:var(--green);color:var(--ink);border-color:var(--green);font-size:19px}
+.nodo.n1{border-color:var(--blue)}
+.nodo.n3{font-weight:700;background:var(--deep)}
+button.nodo{cursor:pointer}
+.flecha{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:12px;font-weight:900;transition:transform .2s;flex:0 0 auto}
+li.abierto>.nodo .flecha{transform:rotate(90deg)}
+.mapa li>ul{display:none}
+.mapa li.abierto>ul{display:block;animation:in .2s ease}
+/* Láminas */
+.visor img{width:100%;border-radius:14px;display:block;border:1px solid var(--line);cursor:zoom-in}
+.visor .ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:10px;gap:8px;flex-wrap:wrap}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;cursor:zoom-out}
+.lightbox.on{display:flex}
+.lightbox img{max-width:100%;max-height:100%;border-radius:10px;background:#fff}
+svg text{font-family:var(--f-body)}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="hero">
+    <button class="tema-btn" id="temaBtn" aria-label="Cambiar entre modo claro y oscuro"></button>
+    <div>
+      <h1>Mediciones en <span>Química</span></h1>
+      <p class="sub">Aprende a medir como un químico: unidades, prefijos, densidad y temperatura.</p>
+      <div class="chips"><span class="chip">Video</span><span class="chip">8 lecciones</span><span class="chip">Laboratorios</span><span class="chip">17 ejercicios</span><span class="chip">Test</span></div>
+    </div>
+    <img src="img/portada/portada-web.jpg" alt="Probeta, balanza, termómetro y un astronauta flotando entre átomos">
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Secciones">
+  <div class="wrap">
+    <button data-tab="video" class="on">1. Video</button>
+    <button data-tab="teoria">2. Teoría</button>
+    <button data-tab="mapa">3. Mapa mental</button>
+    <button data-tab="laminas">4. Láminas</button>
+    <button data-tab="ejercicios">5. Ejercicios</button>
+    <button data-tab="test">6. Test</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- 1. VIDEO -->
+<section class="tab on" id="video">
+  <h2>El lenguaje de la química</h2>
+  <video controls preload="metadata" src="video-lenguaje-quimica.mp4"></video>
+  <div class="row" style="margin-top:16px"><button class="btn" data-go="teoria">Seguir con la teoría</button></div>
+</section>
+
+<!-- 2. TEORÍA -->
+<section class="tab" id="teoria">
+
+  <article class="card" id="l1">
+    <div class="lesson-head"><span class="num">1</span><h2>¿Qué es medir?</h2></div>
+    <div class="ilus" data-img="img/teoria/01-que-medimos.jpg" data-alt="Instrumentos de laboratorio y una lupa que muestra átomos"></div>
+    <p><b>Medir es comparar</b> algo con una cantidad que todos aceptamos como referencia, llamada <b>unidad</b>. Cuando dices que una mesa mide 2 metros, estás diciendo que en ella caben 2 veces la longitud de 1 metro.</p>
+    <p>Por eso toda medida tiene dos partes: <b>un número</b> y <b>una unidad</b>.</p>
+    <div class="ejemplo">Si te digo «compra 2 de arroz», no sabes si son 2 libras, 2 kilos o 2 quintales. El número solo no sirve. «2 kg» sí dice algo.</div>
+    <p>En química medimos dos tipos de cosas:</p>
+    <div class="grid2">
+      <div class="ejemplo"><b>Lo que vemos (macroscópico).</b> Se mide directamente en el laboratorio: la longitud con una cinta métrica, la masa con una balanza, el volumen con una probeta, pipeta o bureta, la temperatura con un termómetro.</div>
+      <div class="ejemplo"><b>Lo que no vemos (microscópico).</b> Los átomos y moléculas son tan pequeños que no se pueden medir con una regla. Sus propiedades se calculan de forma indirecta, a partir de lo que sí medimos.</div>
+    </div>
+    <div class="clave"><b>Clave:</b> un número sin unidad no tiene sentido. Siempre escribe la unidad.</div>
+    <div class="check" data-check="0"></div>
+  </article>
+
+  <article class="card" id="l2">
+    <div class="lesson-head"><span class="num">2</span><h2>Potencias de 10: el truco de mover el punto decimal</h2></div>
+    <p>En química aparecen números muy grandes y muy pequeños. Para no escribir tantos ceros usamos <b>potencias de 10</b>.</p>
+    <p style="color:var(--muted)">En esta clase los decimales se escriben con punto (2.5), como en la calculadora. Si en el colegio usabas coma (2,5), es lo mismo.</p>
+    <div class="grid2">
+      <div class="ejemplo"><b>Exponente positivo:</b> cuántos ceros tiene el número.<br>10³ = 10 × 10 × 10 = <b>1000</b> (tres ceros)</div>
+      <div class="ejemplo"><b>Exponente negativo:</b> cuántos lugares se mueve el punto decimal hacia la izquierda.<br>10⁻³ = 1 ÷ 1000 = <b>0.001</b></div>
+    </div>
+    <p>Multiplicar por 10³ es mover el punto decimal <b>3 lugares a la derecha</b>: 2.5 × 10³ = 2500. Multiplicar por 10⁻³ es moverlo <b>3 lugares a la izquierda</b>: 350 × 10⁻³ = 0.350.</p>
+    <div class="lab">
+      <div class="tit">Mini laboratorio: mueve el exponente</div>
+      <div class="row" style="margin-bottom:6px"><label for="potB">Número:</label><input type="number" id="potB" value="2.5" step="any" style="width:100px"><span>× 10 elevado al exponente</span></div>
+      <label for="potN">Exponente: <span id="potNv">3</span></label>
+      <input type="range" id="potN" min="-9" max="9" value="3">
+      <p class="big" id="potRes" style="margin:8px 0 2px;overflow-wrap:anywhere"></p>
+      <p id="potTxt" style="color:var(--muted);margin:0"></p>
+    </div>
+    <div class="check" data-check="1"></div>
+  </article>
+
+  <article class="card" id="l3">
+    <div class="lesson-head"><span class="num">3</span><h2>El Sistema Internacional (SI)</h2></div>
+    <div class="ilus" data-img="img/teoria/02-sistema-internacional.jpg" data-alt="Objetos que representan las siete unidades básicas"></div>
+    <p>Antes, cada país medía a su manera (pies, varas, libras, onzas) y era un caos para la ciencia. En <b>1960</b> se acordó un solo sistema para todo el mundo: el <b>Sistema Internacional de Unidades</b>, o SI. Hoy tiene <b>7 unidades básicas</b> (el mol se agregó en 1971); todas las demás se forman combinándolas.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Qué mide (magnitud)</th><th>Unidad</th><th>Símbolo</th></tr>
+      <tr><td>Longitud</td><td>metro</td><td>m</td></tr>
+      <tr><td>Masa</td><td>kilogramo</td><td>kg</td></tr>
+      <tr><td>Tiempo</td><td>segundo</td><td>s</td></tr>
+      <tr><td>Temperatura</td><td>kelvin</td><td>K</td></tr>
+      <tr><td>Cantidad de sustancia (cuántas partículas hay; lo verás en otra clase)</td><td>mol</td><td>mol</td></tr>
+      <tr><td>Corriente eléctrica (la electricidad que pasa por un cable)</td><td>amperio</td><td>A</td></tr>
+      <tr><td>Intensidad de la luz (qué tan fuerte brilla una fuente)</td><td>candela</td><td>cd</td></tr>
+    </table></div>
+    <div class="clave"><b>Clave:</b> en química las que más usarás son metro, kilogramo, kelvin y mol. Ojo: la unidad de masa del SI es el <b>kilogramo</b>, no el gramo.</div>
+    <div class="check" data-check="2"></div>
+  </article>
+
+  <article class="card" id="l4">
+    <div class="lesson-head"><span class="num">4</span><h2>Prefijos: la escalera de unidades</h2></div>
+    <div class="ilus" data-img="img/teoria/03-prefijos.jpg" data-alt="Zoom de una montaña a una molécula"></div>
+    <p>Medir la distancia entre ciudades en metros da números enormes, y medir una pastilla en gramos da números muy pequeños. Por eso se pegan <b>prefijos</b> delante de la unidad: <b>kilo</b>metro, <b>mili</b>gramo, <b>mili</b>litro. Cada prefijo es una potencia de 10.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Prefijo</th><th>Símbolo</th><th>Vale</th><th>En número</th></tr>
+      <tr><td>tera</td><td>T</td><td>10¹²</td><td>1 000 000 000 000</td></tr>
+      <tr><td>giga</td><td>G</td><td>10⁹</td><td>1 000 000 000</td></tr>
+      <tr><td>mega</td><td>M</td><td>10⁶</td><td>1 000 000</td></tr>
+      <tr><td>kilo</td><td>k</td><td>10³</td><td>1000</td></tr>
+      <tr><td>hecto</td><td>h</td><td>10²</td><td>100</td></tr>
+      <tr><td>deca</td><td>da</td><td>10¹</td><td>10</td></tr>
+      <tr><td><b>sin prefijo</b> (metro, gramo, litro)</td><td>—</td><td>10⁰</td><td>1</td></tr>
+      <tr><td>deci</td><td>d</td><td>10⁻¹</td><td>0.1</td></tr>
+      <tr><td>centi</td><td>c</td><td>10⁻²</td><td>0.01</td></tr>
+      <tr><td>mili</td><td>m</td><td>10⁻³</td><td>0.001</td></tr>
+      <tr><td>micro</td><td>µ</td><td>10⁻⁶</td><td>0.000 001</td></tr>
+      <tr><td>nano</td><td>n</td><td>10⁻⁹</td><td>0.000 000 001</td></tr>
+      <tr><td>pico</td><td>p</td><td>10⁻¹²</td><td>0.000 000 000 001</td></tr>
+    </table></div>
+    <h3>Cómo convertir sin equivocarte</h3>
+    <p>Usa un <b>factor de conversión</b>: una fracción que vale 1 porque arriba y abajo hay lo mismo (1 km y 1000 m son la misma distancia). La unidad que quieres eliminar va abajo para que se cancele.</p>
+    <p class="formula">3.5 <s>km</s> × (1000 m / 1 <s>km</s>) = 3500 m</p>
+    <p>«Cancelar» es como simplificar una fracción: km arriba y km abajo se tachan, y solo queda la unidad que buscas (m).</p>
+    <div class="clave"><b>Clave:</b> de una unidad grande a una pequeña, el número crece (multiplicas). De una pequeña a una grande, el número se achica (divides).</div>
+    <div class="lab">
+      <div class="tit">Mini laboratorio: convertidor</div>
+      <div class="row">
+        <input type="number" id="cvVal" value="2.5" step="any" aria-label="Cantidad" style="width:110px">
+        <select id="cvDe" aria-label="Prefijo de origen"></select>
+        <span>a</span>
+        <select id="cvA" aria-label="Prefijo de destino"></select>
+        <select id="cvU" aria-label="Unidad"><option value="m">metro (m)</option><option value="g">gramo (g)</option><option value="L">litro (L)</option></select>
+      </div>
+      <p class="big" id="cvRes" style="margin:10px 0 2px"></p>
+      <p id="cvTxt" style="color:var(--muted);margin:0"></p>
+    </div>
+    <div class="check" data-check="3"></div>
+  </article>
+
+  <article class="card" id="l5">
+    <div class="lesson-head"><span class="num">5</span><h2>Masa y peso no son lo mismo</h2></div>
+    <div class="ilus" data-img="img/teoria/04-masa-peso.jpg" data-alt="Astronauta sobre una báscula en la Tierra y en la Luna"></div>
+    <div class="grid2">
+      <div class="ejemplo"><b>Masa (m):</b> cuánta materia tiene un objeto. <b>No cambia</b> aunque lo lleves a otro planeta. Se mide con la <b>balanza</b>. Unidad SI: kilogramo (kg); en el laboratorio se usa el gramo (g). 1 kg = 1000 g.</div>
+      <div class="ejemplo"><b>Peso (W):</b> la fuerza con la que un planeta jala a ese objeto hacia abajo. <b>Sí cambia</b> según la gravedad del lugar. Es una fuerza, por eso se mide en newtons (N).</div>
+    </div>
+    <p class="formula">Peso = masa × gravedad &nbsp; (W = m × g)</p>
+    <p>La <b>g</b> es la fuerza de gravedad del lugar: en la Tierra vale 9.8 y en la Luna 1.6. Para que te hagas una idea, <b>1 N</b> es más o menos lo que pesa una manzana pequeña (100 g) en la Tierra.</p>
+    <p>En la vida diaria decimos «peso 60 kilos», pero en ciencia eso es tu <b>masa</b>. En la Luna tu masa seguiría siendo 60 kg, pero pesarías unas 6 veces menos, porque su gravedad es más débil.</p>
+    <div class="lab">
+      <div class="tit">Mini laboratorio: viaja con tu masa</div>
+      <div class="row">
+        <label for="mpM">Masa (kg)</label><input type="number" id="mpM" value="60" min="1" max="500" style="width:90px">
+        <select id="mpP" aria-label="Lugar">
+          <option value="9.8">Tierra (g = 9.8)</option>
+          <option value="1.6">Luna (g = 1.6)</option>
+          <option value="3.7">Marte (g = 3.7)</option>
+          <option value="24.8">Júpiter (g = 24.8)</option>
+        </select>
+      </div>
+      <p class="big" id="mpRes" style="margin:10px 0 2px"></p>
+      <p id="mpTxt" style="color:var(--muted);margin:0"></p>
+    </div>
+    <div class="check" data-check="4"></div>
+  </article>
+
+  <article class="card" id="l6">
+    <div class="lesson-head"><span class="num">6</span><h2>Volumen: el espacio que ocupa algo</h2></div>
+    <div class="ilus" data-img="img/teoria/05-volumen.jpg" data-alt="Cubo de un litro junto a una botella y un cubito pequeño"></div>
+    <p>El volumen es cuánto espacio ocupa un cuerpo. No es una magnitud básica: sale de multiplicar longitudes (largo × ancho × alto). Por eso sus unidades llevan un <b>³</b> (cúbico).</p>
+    <p>La unidad SI es el metro cúbico (m³), pero es enorme, así que en el laboratorio usamos el <b>litro (L)</b> y el <b>mililitro (mL)</b>.</p>
+    <div class="row"><p class="formula">1 L = 1000 mL = 1000 cm³ = 1 dm³</p><p style="color:var(--muted);margin:4px 0">dm = decímetro = 10 cm. Un dm³ es un cubo de 10 cm de lado.</p><p class="formula">1 mL = 1 cm³</p><p class="formula">1 m³ = 1000 L</p></div>
+    <div class="ejemplo">Imagina un cubo de 10 cm de lado. Le caben 10 × 10 × 10 = 1000 cubitos de 1 cm. Cada cubito es 1 mL, así que el cubo grande es exactamente <b>1 litro</b>.</div>
+    <p>Instrumentos: la <b>probeta</b> (mide rápido), la <b>pipeta</b> y la <b>bureta</b> (miden con mucha precisión) y el <b>matraz volumétrico</b> (prepara un volumen exacto).</p>
+    <div class="lab">
+      <div class="tit">Mini laboratorio: arma un cubo</div>
+      <label for="voL">Lado del cubo: <span id="voLv">10</span> cm</label>
+      <input type="range" id="voL" min="1" max="20" value="10">
+      <div class="row">
+        <svg id="voSvg" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true"></svg>
+        <div style="min-width:0;flex:1"><p class="big" id="voRes" style="margin:0"></p><p id="voTxt" style="color:var(--muted);margin:0"></p></div>
+      </div>
+    </div>
+    <div class="check" data-check="5"></div>
+  </article>
+
+  <article class="card" id="l7">
+    <div class="lesson-head"><span class="num">7</span><h2>Densidad: ¿por qué unas cosas flotan y otras se hunden?</h2></div>
+    <div class="ilus" data-img="img/teoria/06-densidad.jpg" data-alt="Vaso con agua: la madera flota y el hierro se hunde"></div>
+    <p>Un kilo de algodón y un kilo de hierro tienen la misma masa, pero el algodón ocupa muchísimo más espacio. La diferencia es la <b>densidad</b>: cuánta masa hay en cada unidad de volumen. Es qué tan «apretada» está la materia.</p>
+    <p class="formula">densidad = masa ÷ volumen &nbsp; (d = m / V)</p>
+    <p>Para despejar, tapa con el dedo lo que buscas en este triángulo: arriba la masa, abajo la densidad por el volumen.</p>
+    <div class="row" style="gap:18px">
+      <svg width="170" height="130" viewBox="0 0 170 130" role="img" aria-label="Triángulo: m arriba, d por V abajo">
+        <polygon points="85,6 164,124 6,124" fill="none" stroke="#2BAE66" stroke-width="4"/>
+        <line x1="45" y1="70" x2="125" y2="70" stroke="#2BAE66" stroke-width="3"/>
+        <line x1="85" y1="70" x2="85" y2="124" stroke="#2BAE66" stroke-width="3"/>
+        <text x="85" y="58" text-anchor="middle" font-size="28" font-weight="900" style="fill:var(--gold-t)">m</text>
+        <text x="58" y="110" text-anchor="middle" font-size="26" font-weight="900" style="fill:var(--text)">d</text>
+        <text x="112" y="110" text-anchor="middle" font-size="26" font-weight="900" style="fill:var(--text)">V</text>
+      </svg>
+      <div style="min-width:0;display:flex;flex-direction:column;align-items:flex-start">
+        <p class="formula">Buscas d: d = m / V</p>
+        <p class="formula">Buscas m: m = d × V</p>
+        <p class="formula">Buscas V: V = m / d</p>
+      </div>
+    </div>
+    <p>Unidades: para sólidos y líquidos <b>g/cm³</b> o <b>g/mL</b> (son lo mismo, porque 1 cm³ = 1 mL). Para gases, que son muy livianos, <b>g/L</b>.</p>
+    <p>La densidad es una propiedad <b>intensiva</b>: no depende de cuánto material tengas. Un clavo y una viga de hierro tienen la misma densidad (7.9 g/cm³). Por eso sirve como «huella digital» para saber de qué está hecho algo.</p>
+    <div class="tablewrap"><table>
+      <tr><th>Sustancia (25 °C)</th><th>Densidad (g/cm³)</th><th>En agua</th></tr>
+      <tr><td>Aire</td><td>0.0012</td><td>sube</td></tr>
+      <tr><td>Etanol (alcohol)</td><td>0.79</td><td>queda encima</td></tr>
+      <tr><td>Agua</td><td>1.00</td><td>referencia</td></tr>
+      <tr><td>Aluminio</td><td>2.70</td><td>se hunde</td></tr>
+      <tr><td>Hierro</td><td>7.9</td><td>se hunde</td></tr>
+      <tr><td>Mercurio</td><td>13.6</td><td>se hunde</td></tr>
+      <tr><td>Oro</td><td>19.3</td><td>se hunde</td></tr>
+      <tr><td>Osmio (el elemento natural más denso)</td><td>22.6</td><td>se hunde</td></tr>
+    </table></div>
+    <div class="clave"><b>Clave:</b> si un objeto macizo tiene densidad menor que la del agua (1.00 g/mL), flota. Si es mayor, se hunde. El tamaño no importa. (Un barco de hierro flota porque es hueco: lleva mucho aire adentro.)</div>
+    <p><b>Truco del laboratorio:</b> si un objeto tiene forma rara y no puedes medirle largo, ancho y alto, mételo en una probeta con agua. Lo que sube el agua es el volumen del objeto. Esto se llama <b>desplazamiento de agua</b>.</p>
+    <div class="lab">
+      <div class="tit">Mini laboratorio: lánzalo al agua</div>
+      <div class="row">
+        <select id="deMat" aria-label="Material">
+          <option value="0.24">Corcho (0.24 g/cm³)</option>
+          <option value="0.60" selected>Madera (0.60 g/cm³)</option>
+          <option value="0.92">Hielo (0.92 g/cm³)</option>
+          <option value="2.70">Aluminio (2.70 g/cm³)</option>
+          <option value="7.9">Hierro (7.9 g/cm³)</option>
+          <option value="19.3">Oro (19.3 g/cm³)</option>
+        </select>
+        <label for="deM">Masa: <span id="deMv">50</span> g</label>
+      </div>
+      <input type="range" id="deM" min="5" max="150" value="50">
+      <div class="row" style="align-items:flex-start">
+        <svg id="deSvg" width="215" height="220" viewBox="0 0 215 220" role="img" aria-label="Vaso con agua y el objeto"></svg>
+        <div style="flex:1;min-width:200px"><p class="big" id="deRes" style="margin:0 0 6px"></p><p id="deTxt" style="margin:0"></p></div>
+      </div>
+    </div>
+    <div class="check" data-check="6"></div>
+  </article>
+
+  <article class="card" id="l8">
+    <div class="lesson-head"><span class="num">8</span><h2>Temperatura: tres escalas</h2></div>
+    <div class="ilus" data-img="img/teoria/07-temperatura.jpg" data-alt="Tres termómetros entre hielo y agua hirviendo"></div>
+    <p>La temperatura indica qué tan caliente o frío está algo. Hay tres escalas, y cada una pone su «cero» en un lugar distinto:</p>
+    <div class="tablewrap"><table>
+      <tr><th></th><th>Celsius (°C)</th><th>Fahrenheit (°F)</th><th>Kelvin (K)</th></tr>
+      <tr><td>Agua hierve</td><td>100 °C</td><td>212 °F</td><td>373.15 K</td></tr>
+      <tr><td>Agua se congela</td><td>0 °C</td><td>32 °F</td><td>273.15 K</td></tr>
+      <tr><td>Cero absoluto</td><td>−273.15 °C</td><td>−459.67 °F</td><td>0 K</td></tr>
+      <tr><td>Quién la usa</td><td>Ecuador y casi todo el mundo</td><td>EE. UU.</td><td>la ciencia (unidad SI)</td></tr>
+    </table></div>
+    <p>El <b>cero absoluto</b> es lo más frío que puede existir. La escala Kelvin empieza ahí, por eso <b>nunca tiene números negativos</b> y no lleva el símbolo de grado: se escribe 300 K, no 300 °K.</p>
+    <p>Entre el hielo y el agua hirviendo, Celsius y Kelvin tienen 100 divisiones y Fahrenheit tiene 180. Por eso un grado Celsius es igual de grande que un kelvin, pero más grande que un grado Fahrenheit (1 °F = 5/9 de 1 °C).</p>
+    <div class="row"><p class="formula">K = °C + 273.15</p><p class="formula">°F = (9/5 × °C) + 32</p><p class="formula">°C = (°F − 32) × 5/9</p></div>
+    <div class="clave"><b>Clave:</b> de Celsius a Fahrenheit: primero multiplicas por 9/5, después sumas 32. De vuelta: primero restas 32, después multiplicas por 5/9. El orden importa. En muchos exámenes de ingreso se usa el atajo K = °C + 273.</div>
+    <div class="lab">
+      <div class="tit">Mini laboratorio: mueve el termómetro</div>
+      <label for="teC">Temperatura en Celsius</label>
+      <input type="range" id="teC" min="-273" max="300" value="25">
+      <div class="row">
+        <svg id="teSvg" width="70" height="200" viewBox="0 0 70 200" aria-hidden="true"></svg>
+        <div class="tablewrap" style="flex:1;min-width:0"><table>
+          <tr><th>Celsius</th><th>Fahrenheit</th><th>Kelvin</th></tr>
+          <tr><td class="big" id="teCv"></td><td class="big" id="teFv"></td><td class="big" id="teKv"></td></tr>
+        </table><p id="teTxt" style="color:var(--muted);margin:6px 0 0"></p></div>
+      </div>
+    </div>
+    <div class="check" data-check="7"></div>
+  </article>
+
+  <div class="row"><button class="btn" data-go="mapa">Ver el mapa mental</button><button class="btn sec" data-go="ejercicios">Ir a los ejercicios</button></div>
+</section>
+
+<!-- 3. MAPA MENTAL -->
+<section class="tab" id="mapa">
+  <h2>Mapa mental</h2>
+  <p class="lead">Toca cada flecha amarilla para abrir la rama.</p>
+  <div class="row" style="margin-bottom:12px"><button class="btn small" id="mapaAbrir">Abrir todo</button><button class="btn small sec" id="mapaCerrar">Cerrar todo</button></div>
+  <div class="card mapa" id="mapaRaiz"></div>
+</section>
+
+<!-- 4. LÁMINAS -->
+<section class="tab" id="laminas">
+  <h2>Láminas de la clase</h2>
+  <p class="lead">Toca la imagen para verla en grande.</p>
+  <div class="card visor">
+    <img id="lamImg" src="img/lamina-01.jpg" alt="Lámina 1">
+    <div id="lamNota"></div>
+    <div class="ctrl">
+      <button class="btn sec" id="lamPrev">Anterior</button>
+      <span class="contador" id="lamCont">1 / 14</span>
+      <button class="btn" id="lamNext">Siguiente</button>
+    </div>
+    <div class="row" style="justify-content:flex-end;margin-top:10px"><button class="btn small sec" id="lamDesc">Descargar esta lámina</button></div>
+  </div>
+</section>
+
+<!-- 5. EJERCICIOS -->
+<section class="tab" id="ejercicios">
+  <h2>Ejercicios guiados</h2>
+  <p class="lead">Resuélvelo en tu cuaderno y escribe tu respuesta. Si te trabas, pide una pista.</p>
+  <div class="progreso"><i id="ejBar"></i></div>
+  <div class="card" id="ejCard"></div>
+  <div class="row">
+    <button class="btn sec" id="ejPrev">Anterior</button>
+    <button class="btn" id="ejNext">Siguiente ejercicio</button>
+  </div>
+</section>
+
+<!-- 6. TEST -->
+<section class="tab" id="test">
+  <h2>Test: Mediciones en Química</h2>
+  <div id="testInicio" class="card">
+    <p>25 preguntas de opción múltiple. Trabaja solo, con cuaderno y calculadora. No verás si acertaste hasta el final; ahí verás tu nota y la corrección de cada pregunta.</p>
+    <label for="nombre"><b>Tu nombre y apellido</b></label>
+    <input id="nombre" class="campo" autocomplete="name" placeholder="Ej.: María Pérez" style="margin:8px 0 14px">
+    <button class="btn" id="testEmpezar">Empezar el test</button>
+  </div>
+  <div id="testPreg" class="card" hidden>
+    <div class="ej-head"><span class="badge" id="tNum"></span><span class="contador" id="tResp"></span></div>
+    <div class="progreso"><i id="tBar"></i></div>
+    <div class="preg" id="tTexto"></div>
+    <div id="tOpc"></div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn sec" id="tAnt">Anterior</button>
+      <button class="btn" id="tSig">Siguiente</button>
+    </div>
+    <p class="contador" id="tAviso" style="color:var(--gold-t)"></p>
+  </div>
+  <div id="testFin" hidden></div>
+</section>
+
+</main>
+
+<div class="lightbox" id="lb"><img alt=""></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" crossorigin="anonymous"></script>
+<script>
+const $=id=>document.getElementById(id);
+/* ---------- Modo claro / oscuro ---------- */
+const ICON_SOL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+const ICON_LUNA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+function ponerTema(t){
+  document.documentElement.setAttribute('data-theme',t);
+  $('temaBtn').innerHTML=t==='dark'?ICON_SOL+'<span>Modo claro</span>':ICON_LUNA+'<span>Modo oscuro</span>';
+  try{localStorage.setItem('tema-mediciones',t)}catch(e){}
+}
+let temaIni='light'; try{temaIni=localStorage.getItem('tema-mediciones')||'light'}catch(e){}
+ponerTema(temaIni);
+$('temaBtn').onclick=()=>ponerTema(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function sup(n){return String(n).split('').map(c=>({'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'}[c])).join('')}
+function fmt(x,dec){ // número legible, sin ruido de coma flotante
+  if(!isFinite(x))return '—';
+  if(x!==0 && (Math.abs(x)>=1e9 || Math.abs(x)<1e-4)){
+    let e=Math.floor(Math.log10(Math.abs(x))); let m=+(x/10**e).toPrecision(4); if(Math.abs(m)>=10){m=+(m/10).toPrecision(4);e++}
+    return m+' × 10'+sup(e);
+  }
+  const v=dec==null?+x.toPrecision(10):+x.toFixed(dec);
+  return v.toLocaleString('en-US',{maximumFractionDigits:9}).replace(/,/g,' ');
+}
+function barajar(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+/* ---------- Pestañas ---------- */
+const tabs=[...document.querySelectorAll('nav.tabs button')];
+function ir(id){
+  tabs.forEach(b=>b.classList.toggle('on',b.dataset.tab===id));
+  document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id===id));
+  window.scrollTo({top:0});
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+}
+tabs.forEach(b=>b.onclick=()=>ir(b.dataset.tab));
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>ir(b.dataset.go));
+if(location.hash && document.getElementById(location.hash.slice(1))) ir(location.hash.slice(1));
+
+/* ---------- Imágenes: ver en grande y descargar ---------- */
+const lb=$('lb');
+function abrir(src){lb.querySelector('img').src=src;lb.classList.add('on')}
+lb.onclick=()=>lb.classList.remove('on');
+let dlCap; // capacidad de descargas del visor, si la página corre dentro de él
+async function descargar(url,nombre){
+  try{
+    if(window.claude && window.claude.use){
+      if(dlCap===undefined) dlCap=await window.claude.use('downloads');
+      if(dlCap){
+        const blob=await (await fetch(url)).blob();
+        await dlCap.save({filename:nombre,data:blob});
+        return;
+      }
+    }
+  }catch(e){ if(e && (e.code==='declined'||e.code==='rate_limited')) return; }
+  const a=document.createElement('a');a.href=url;a.download=nombre;document.body.appendChild(a);a.click();a.remove();
+}
+// Guarda un archivo creado en la página (PDF). Devuelve false si la persona no aceptó la descarga.
+async function guardarBlob(blob,nombre){
+  try{
+    if(window.claude && window.claude.use){
+      if(dlCap===undefined) dlCap=await window.claude.use('downloads');
+      if(dlCap){await dlCap.save({filename:nombre,data:blob});return true}
+    }
+  }catch(e){ if(e && (e.code==='declined'||e.code==='rate_limited')) return false; }
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=nombre;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),5000);
+  return true;
+}
+document.querySelectorAll('.ilus').forEach(d=>{
+  const src=d.dataset.img, nombre=src.split('/').pop();
+  d.innerHTML='<img src="'+src+'" alt="'+esc(d.dataset.alt)+'" loading="lazy"><div class="row"><button class="btn small sec">Descargar imagen</button></div>';
+  d.querySelector('img').onclick=()=>abrir(src);
+  d.querySelector('button').onclick=()=>descargar(src,nombre);
+});
+
+/* ---------- Pregunta rápida de cada lección (respuesta inmediata) ---------- */
+const CHECKS=[
+ ['¿Cuál de estas es una medida completa?',['15 kg','15','kg','mucho'],'Una medida necesita número y unidad: 15 kg.','Busca la opción que tenga las dos partes: un número y una unidad.'],
+ ['¿Cuánto es 4.2 × 10³?',['4200','42 000','420','0.0042'],'Exponente 3 positivo: mueves el punto decimal 3 lugares a la derecha. 4.2 pasa a 4200.','Exponente positivo: el punto decimal se mueve a la derecha, tantos lugares como dice el exponente.'],
+ ['¿Cuál es la unidad de masa del Sistema Internacional?',['kilogramo (kg)','gramo (g)','libra (lb)','newton (N)'],'La unidad básica de masa del SI es el kilogramo. El gramo se usa mucho en el laboratorio, pero no es la unidad básica.','Mira la fila «Masa» de la tabla del SI.'],
+ ['¿Cuántos mililitros hay en 2 L?',['2000 mL','200 mL','0.002 mL','20 mL'],'De grande (L) a pequeña (mL) el número crece: 2 × 1000 = 2000 mL.','1 L = 1000 mL. Pasas de una unidad grande a una pequeña, así que el número debe crecer.'],
+ ['Un astronauta de 80 kg viaja a la Luna. ¿Cuál es su masa allá?',['80 kg','Unos 13 kg','0 kg','480 kg'],'La masa no cambia con el lugar. Lo que cambia es el peso.','La masa es la cantidad de materia. ¿El astronauta pierde materia por viajar?'],
+ ['¿Cuántos cm³ son 50 mL?',['50 cm³','500 cm³','5 cm³','0.05 cm³'],'1 mL = 1 cm³, así que 50 mL = 50 cm³.','Recuerda: 1 mL y 1 cm³ son exactamente lo mismo.'],
+ ['Un objeto de 30 g ocupa 10 cm³. ¿Cuál es su densidad y qué hace en agua?',['3 g/cm³ y se hunde','0.33 g/cm³ y flota','300 g/cm³ y se hunde','3 g/cm³ y flota'],'d = 30 ÷ 10 = 3 g/cm³. Es mayor que 1.00 (agua), así que se hunde.','Primero calcula d = m ÷ V. Luego compáralo con 1.00, la densidad del agua.'],
+ ['¿Cuántos kelvin son 0 °C?',['273.15 K','0 K','−273.15 K','32 K'],'K = °C + 273.15 = 0 + 273.15 = 273.15 K.','Usa K = °C + 273.15. Y recuerda que el kelvin nunca es negativo.']
+];
+document.querySelectorAll('[data-check]').forEach(box=>{
+  const [q,ops,exp,pista]=CHECKS[+box.dataset.check];
+  box.innerHTML='<div style="color:var(--gold-t);font-weight:900;font-size:13px;text-transform:uppercase;letter-spacing:.05em">¿Lo entendiste?</div><div class="q">'+esc(q)+'</div>';
+  const fb=document.createElement('div');fb.className='fb';
+  barajar(ops).forEach(o=>{
+    const b=document.createElement('button');b.className='opcion';b.textContent=o;
+    b.onclick=()=>{
+      box.querySelectorAll('.opcion').forEach(x=>x.classList.remove('bien','malo'));
+      const ok=o===ops[0]; b.classList.add(ok?'bien':'malo');
+      fb.className='fb '+(ok?'ok':'no');
+      fb.textContent=ok?'¡Correcto! '+exp:'Todavía no. Pista: '+pista;
+    };
+    box.appendChild(b);
+  });
+  box.appendChild(fb);
+});
+
+/* ---------- L2: potencias de 10 ---------- */
+const PALABRAS={9:'mil millones',6:'un millón',3:'mil',2:'cien',1:'diez',0:'uno','-1':'un décimo','-2':'un centésimo','-3':'un milésimo','-6':'un millonésimo','-9':'un milmillonésimo'};
+function verPot(){
+  const n=+$('potN').value; $('potNv').textContent=n;
+  const num=n>=0?('1'+'0'.repeat(n)).replace(/\B(?=(\d{3})+(?!\d))/g,' '):'0.'+'0'.repeat(-n-1)+'1';
+  const b=parseFloat($('potB').value);
+  $('potRes').textContent='10'+sup(n)+' = '+num+(isNaN(b)?'':'   y   '+fmt(b)+' × 10'+sup(n)+' = '+fmt(b*10**n));
+  $('potTxt').textContent=(n>0?'Exponente positivo: el punto decimal se mueve '+n+' lugares a la derecha.':n<0?'Exponente negativo: el punto decimal se mueve '+(-n)+' lugares a la izquierda.':'Todo número elevado a 0 es 1: el número no cambia.')+(PALABRAS[n]?' 10'+sup(n)+' se lee «'+PALABRAS[n]+'».':'');
+}
+$('potN').oninput=verPot;$('potB').oninput=verPot;verPot();
+
+/* ---------- L4: convertidor de prefijos ---------- */
+const PREF=[['kilo','k',3],['hecto','h',2],['deca','da',1],['(sin prefijo)','',0],['deci','d',-1],['centi','c',-2],['mili','m',-3],['micro','µ',-6],['nano','n',-9]];
+['cvDe','cvA'].forEach((id,k)=>{$(id).innerHTML=PREF.map((p,i)=>'<option value="'+i+'"'+((k===0&&i===0)||(k===1&&i===3)?' selected':'')+'>'+p[0]+'</option>').join('')});
+function verCv(){
+  const v=parseFloat($('cvVal').value), de=PREF[$('cvDe').value], a=PREF[$('cvA').value], u=$('cvU').value;
+  if(isNaN(v)){$('cvRes').textContent='Escribe una cantidad';$('cvTxt').textContent='';return}
+  const d=de[2]-a[2], r=v*10**d;
+  $('cvRes').textContent=fmt(v)+' '+de[1]+u+' = '+fmt(r)+' '+a[1]+u;
+  if(d===0){$('cvTxt').textContent='Es la misma unidad.';return}
+  const grande=d>0?de:a, chica=d>0?a:de;
+  $('cvTxt').textContent='Equivalencia: 1 '+grande[1]+u+' = '+fmt(10**Math.abs(d))+' '+chica[1]+u+'. '+
+    (d>0?'Vas de una unidad grande a una pequeña: el número crece, multiplicas por '+fmt(10**d)+'.':'Vas de una unidad pequeña a una grande: el número se achica, divides entre '+fmt(10**-d)+'.');
+}
+['cvVal','cvDe','cvA','cvU'].forEach(id=>$(id).oninput=verCv);verCv();
+
+/* ---------- L5: masa y peso ---------- */
+function verMp(){
+  const m=parseFloat($('mpM').value)||0, g=+$('mpP').value, lugar=$('mpP').selectedOptions[0].text.split(' (')[0];
+  const W=m*g, Wt=m*9.8;
+  $('mpRes').textContent='Masa: '+fmt(m)+' kg   Peso: '+fmt(W,1)+' N';
+  $('mpTxt').textContent= g===9.8?'En la Tierra: W = '+fmt(m)+' × 9.8 = '+fmt(W,1)+' N.':
+    'En '+(lugar==='Luna'?'la Luna':lugar)+' tu masa sigue siendo '+fmt(m)+' kg, pero tu peso es '+fmt(m)+' × '+g+' = '+fmt(W,1)+' N ('+(g<9.8?fmt(Wt/W,1)+' veces menos':fmt(W/Wt,1)+' veces más')+' que en la Tierra).';
+}
+['mpM','mpP'].forEach(id=>$(id).oninput=verMp);verMp();
+
+/* ---------- L6: volumen ---------- */
+function verVo(){
+  const l=+$('voL').value; $('voLv').textContent=l;
+  const V=l**3;
+  $('voRes').textContent=fmt(V)+' cm³ = '+fmt(V)+' mL';
+  $('voTxt').textContent=l+' × '+l+' × '+l+' = '+fmt(V)+' cm³, que son '+fmt(V/1000)+' L.'+(l===10?' ¡Exactamente un litro!':'');
+  const s=8+l*3.6, o=s*0.45, x0=(120-s-o)/2, y0=(120-s-o)/2+o;
+  $('voSvg').innerHTML=
+    '<polygon points="'+[x0,y0, x0+o,y0-o, x0+o+s,y0-o, x0+s,y0].join(' ')+'" fill="#4FB3E8" opacity=".55"/>'+
+    '<polygon points="'+[x0+s,y0, x0+o+s,y0-o, x0+o+s,y0-o+s, x0+s,y0+s].join(' ')+'" fill="#2E7FA8"/>'+
+    '<rect x="'+x0+'" y="'+y0+'" width="'+s+'" height="'+s+'" fill="#4FB3E8" opacity=".85"/>';
+}
+$('voL').oninput=verVo;verVo();
+
+/* ---------- L7: densidad ---------- */
+function verDe(){
+  const d=+$('deMat').value, m=+$('deM').value, nom=$('deMat').selectedOptions[0].text.split(' (')[0];
+  $('deMv').textContent=m;
+  const V=m/d, flota=d<1, Vsum=flota?m/1.00:V, nivel0=150, nivel=nivel0+Vsum;
+  const H=180, top=20, base=top+H, px=v=>base-v/600*H; // vaso de 600 mL
+  const lado=Math.max(10,Math.min(70,Math.cbrt(V)*9));
+  const yAgua=px(nivel);
+  const yObj=flota? yAgua-lado*(1-d) : base-lado-2;
+  const colores={'Corcho':'#C8A26B','Madera':'#A86F3C','Hielo':'#D8F1FF','Aluminio':'#C9D2D6','Hierro':'#6B7378','Oro':'#FFC800'};
+  $('deSvg').innerHTML=
+    '<rect x="30" y="'+yAgua+'" width="110" height="'+(base-yAgua)+'" fill="#4FB3E8" opacity=".45"/>'+
+    '<line x1="30" y1="'+px(nivel0)+'" x2="140" y2="'+px(nivel0)+'" style="stroke:var(--text)" stroke-dasharray="4 4" opacity=".6"/>'+
+    '<rect x="'+(85-lado/2)+'" y="'+yObj+'" width="'+lado+'" height="'+lado+'" rx="3" fill="'+(colores[nom]||'#ccc')+'" stroke="#0E171B" stroke-width="2"/>'+
+    '<path d="M30 '+top+' V'+base+' H140 V'+top+'" fill="none" style="stroke:var(--text)" stroke-width="3"/>'+
+    '<text x="146" y="'+(px(nivel0)+12)+'" font-size="11" style="fill:var(--muted)">antes 150 mL</text>'+
+    '<text x="146" y="'+(yAgua+2)+'" font-size="11" style="fill:var(--gold-t)">ahora '+fmt(nivel,0)+' mL</text>';
+  $('deRes').textContent=(flota?'Flota':'Se hunde')+' ('+fmt(d)+(flota?' < ':' > ')+'1.00 g/mL)';
+  $('deTxt').innerHTML='Volumen del objeto: V = m / d = '+fmt(m)+' ÷ '+fmt(d)+' = <b>'+fmt(V,1)+' cm³</b>.<br>'+
+    (flota?'Como flota, solo una parte queda bajo el agua y el nivel sube '+fmt(Vsum,1)+' mL.':'Como se hunde entero, el agua sube exactamente su volumen: '+fmt(V,1)+' mL. Así se mide el volumen de objetos con forma rara.')+
+    '<br><span style="color:var(--muted)">Cambia la masa: el tamaño cambia, pero si flota o se hunde no. La densidad no depende del tamaño.</span>';
+}
+['deMat','deM'].forEach(id=>$(id).oninput=verDe);verDe();
+
+/* ---------- L8: temperatura ---------- */
+function verTe(){
+  const c=+$('teC').value, f=c*9/5+32, k=c+273.15;
+  $('teCv').textContent=fmt(c,1)+' °C';$('teFv').textContent=fmt(f,1)+' °F';$('teKv').textContent=fmt(k,2)+' K';
+  const ref=c<=-273?'Casi en el cero absoluto: lo más frío posible.':c<0?'Bajo cero: el agua está congelada.':c===0?'El agua se congela.':(c>=36&&c<=37)?'Temperatura del cuerpo humano.':c<20?'Fresco.':c<30?'Temperatura ambiente.':c<100?'Caliente.':c===100?'El agua hierve.':'Más caliente que el agua hirviendo.';
+  $('teTxt').textContent=ref+' °F = 9/5 × '+fmt(c,1)+' + 32 = '+fmt(f,1)+'. K = '+fmt(c,1)+' + 273.15 = '+fmt(k,2)+'.';
+  const h=150*(c+273)/573, col=c<0?'#4FB3E8':c<60?'#2BAE66':'#FF6B6B';
+  $('teSvg').innerHTML='<rect x="25" y="10" width="20" height="160" rx="10" style="fill:var(--panel2);stroke:var(--text)" stroke-width="2"/>'+
+    '<rect x="29" y="'+(165-h)+'" width="12" height="'+h+'" rx="6" fill="'+col+'"/>'+
+    '<circle cx="35" cy="178" r="16" fill="'+col+'" style="stroke:var(--text)" stroke-width="2"/>';
+}
+$('teC').oninput=verTe;verTe();
+
+/* ---------- Mapa mental desplegable ---------- */
+const MAPA=['Mediciones en Química',[
+ ['Instrumentos de medición',[
+   ['Volumen: bureta, pipeta, probeta, matraz'],['Masa: balanza'],['Temperatura: termómetro'],['Longitud: cinta métrica']]],
+ ['Propiedades de la materia',[
+   ['Macroscópicas: se miden directamente',[['En el laboratorio: longitud, masa, volumen, temperatura']]],
+   ['Microscópicas: se calculan (no se ven)',[['Átomos y moléculas: se calculan a partir de lo que sí medimos']]]]],
+ ['Sistema Internacional (SI)',[
+   ['Unidades básicas',[['Longitud: metro (m)'],['Masa: kilogramo (kg)'],['Tiempo: segundo (s)'],['Temperatura: kelvin (K)'],['Cantidad de sustancia: mol'],['Corriente eléctrica: amperio (A)'],['Intensidad luminosa: candela (cd)']]],
+   ['Prefijos decimales',[['Múltiplos',[['tera (T) = 10¹²'],['giga (G) = 10⁹'],['mega (M) = 10⁶'],['kilo (k) = 10³']]],['Submúltiplos',[['deci (d) = 10⁻¹'],['centi (c) = 10⁻²'],['mili (m) = 10⁻³'],['micro (µ) = 10⁻⁶'],['nano (n) = 10⁻⁹'],['pico (p) = 10⁻¹²']]]]]]],
+ ['Masa y peso',[
+   ['Masa: cantidad de materia constante'],['Peso: fuerza de gravedad variable',[['W = m × g'],['En la Luna pesas unas 6 veces menos']]],['Unidad SI: kilogramo (kg)'],['Unidad de laboratorio: gramo (g)']]],
+ ['Volumen',[
+   ['Unidad SI: metro cúbico (m³)'],['Otras unidades: litro (L), mililitro (mL)'],['Equivalencia: 1 mL = 1 cm³'],['Equivalencia: 1 L = 1000 mL = 1 dm³']]],
+ ['Densidad',[
+   ['Ecuación: d = m / V',[['m = d × V'],['V = m / d']]],['Propiedad intensiva',[['No depende de la cantidad de material']]],['Unidades',[['Sólidos y líquidos: g/cm³ o g/mL (son lo mismo)'],['Gases: g/L']]],['Flota si d < 1.00 g/mL (agua)']]],
+ ['Escalas de temperatura',[
+   ['Fahrenheit (°F): uso común en EE. UU.',[['°F = (9/5 × °C) + 32']]],
+   ['Celsius (°C): basada en el agua (0 °C a 100 °C)',[['°C = (°F − 32) × 5/9']]],
+   ['Kelvin (K)',[['Escala absoluta, unidad del SI'],['K = °C + 273.15'],['0 K = cero absoluto = −273.15 °C'],['Nunca es negativa ni lleva el símbolo °']]]]]
+]];
+function nodo(n,nivel){
+  const li=document.createElement('li'), hijos=n[1];
+  const cls='nodo'+(nivel===0?' raiz':nivel===1?' n1':nivel>=3?' n3':'');
+  if(hijos){
+    const b=document.createElement('button');b.className=cls;b.setAttribute('aria-expanded','false');
+    b.innerHTML='<span>'+esc(n[0])+'</span><span class="flecha">▶</span>';
+    b.onclick=()=>{const ab=li.classList.toggle('abierto');b.setAttribute('aria-expanded',ab)};
+    li.appendChild(b);
+    const ul=document.createElement('ul');hijos.forEach(h=>ul.appendChild(nodo(h,nivel+1)));li.appendChild(ul);
+  }else{
+    const s=document.createElement('span');s.className=cls;s.textContent=n[0];li.appendChild(s);
+  }
+  return li;
+}
+const raizUl=document.createElement('ul'), raizLi=nodo(MAPA,0);raizUl.appendChild(raizLi);$('mapaRaiz').appendChild(raizUl);
+raizLi.classList.add('abierto');raizLi.querySelector('button').setAttribute('aria-expanded','true');
+function todo(ab){
+  document.querySelectorAll('#mapaRaiz li').forEach(li=>{const b=li.querySelector(':scope>button');if(b){li.classList.toggle('abierto',ab);b.setAttribute('aria-expanded',ab)}});
+  if(!ab){raizLi.classList.add('abierto');raizLi.querySelector('button').setAttribute('aria-expanded','true')}
+}
+$('mapaAbrir').onclick=()=>todo(true);$('mapaCerrar').onclick=()=>todo(false);
+
+/* ---------- Láminas ---------- */
+const NOTAS={
+  3:'Corrección: el prototipo del kilogramo perdió unos 50 microgramos (µg), no 50 mg. Desde 2019 el kilogramo ya no se define con ese cilindro sino con una constante de la física (la constante de Planck).',
+  12:'Corrección: en el caso 2, (−452 − 32) × 5/9 = −268.9 °C (redondeado a un decimal).'
+};
+let lam=1;const N_LAM=14;
+const lamImg=$('lamImg'), lamSrc=()=>'img/lamina-'+String(lam).padStart(2,'0')+'.jpg';
+function verLam(){
+  lamImg.src=lamSrc();lamImg.alt='Lámina '+lam;
+  $('lamCont').textContent=lam+' / '+N_LAM;
+  $('lamNota').innerHTML=NOTAS[lam]?'<div class="nota">'+NOTAS[lam]+'</div>':'';
+  $('lamPrev').disabled=lam===1;$('lamNext').disabled=lam===N_LAM;
+}
+$('lamPrev').onclick=()=>{if(lam>1){lam--;verLam()}};
+$('lamNext').onclick=()=>{if(lam<N_LAM){lam++;verLam()}};
+$('lamDesc').onclick=()=>descargar(lamSrc(),'lamina-'+String(lam).padStart(2,'0')+'.jpg');
+lamImg.onclick=()=>abrir(lamImg.src);
+document.addEventListener('keydown',e=>{
+  if(!$('laminas').classList.contains('on'))return;
+  if(e.key==='ArrowRight'&&lam<N_LAM){lam++;verLam()}
+  if(e.key==='ArrowLeft'&&lam>1){lam--;verLam()}
+});
+verLam();
+
+/* ---------- Ejercicios guiados ---------- */
+// r: respuesta numérica; u: unidad junto a la casilla; tol: tolerancia relativa; ops: opción múltiple (la primera es la correcta)
+const EJ=[
+ {tema:'Prefijos',e:'Convierte 2.5 km a metros.',r:2500,u:'m',p:[
+  ['Paso 1: qué significa el prefijo','Kilo (k) significa 10³ = 1000. Entonces 1 km = 1000 m.'],
+  ['Paso 2: arma el factor','Pon abajo lo que quieres eliminar (km): 2.5 km × (1000 m / 1 km). Los km se cancelan.'],
+  ['Resultado','2.5 × 1000 = <b>2500 m</b>. Tiene sentido: el metro es más pequeño, así que necesitas más metros.']]},
+ {tema:'Prefijos',e:'Una pastilla contiene 350 mg de paracetamol. ¿Cuántos gramos son?',r:0.35,u:'g',p:[
+  ['Paso 1: qué significa el prefijo','Mili (m) significa 10⁻³. Entonces 1 g = 1000 mg.'],
+  ['Paso 2: arma el factor','350 mg × (1 g / 1000 mg). Los mg se cancelan.'],
+  ['Resultado','350 ÷ 1000 = <b>0.350 g</b>. Tiene sentido: el gramo es más grande, así que el número se achica.']]},
+ {tema:'Prefijos',e:'Un cabello mide 0.08 mm de grosor. ¿Cuántos micrómetros (µm) son?',r:80,u:'µm',p:[
+  ['Paso 1: ubica los prefijos','mili = 10⁻³ y micro = 10⁻⁶. De mili a micro hay 3 escalones: 10³ = 1000.'],
+  ['Paso 2: arma el factor','1 mm = 1000 µm. Entonces 0.08 mm × (1000 µm / 1 mm).'],
+  ['Resultado','0.08 × 1000 = <b>80 µm</b>']]},
+ {tema:'Volumen',e:'Una botella tiene 0.75 L de agua. ¿Cuántos mL son?',r:750,u:'mL',p:[
+  ['Paso 1: la equivalencia','1 L = 1000 mL.'],
+  ['Paso 2: arma el factor','0.75 L × (1000 mL / 1 L).'],
+  ['Resultado','<b>750 mL</b>, que también son 750 cm³ porque 1 mL = 1 cm³.']]},
+ {tema:'Volumen',e:'Un tanque tiene 2.5 m³. ¿Cuántos litros le caben?',r:2500,u:'L',p:[
+  ['Paso 1: piensa en cubos','1 m = 10 dm, así que 1 m³ = 10 × 10 × 10 dm³ = 1000 dm³. Y 1 dm³ = 1 L.'],
+  ['Paso 2: arma el factor','2.5 m³ × (1000 L / 1 m³).'],
+  ['Resultado','<b>2500 L</b>'],
+  ['Ojo','En unidades cúbicas el factor también va al cubo: no es 10, es 10 × 10 × 10 = 1000.']]},
+ {tema:'Volumen',e:'Una caja mide 20 cm de largo, 10 cm de ancho y 5 cm de alto. ¿Cuántos litros le caben?',r:1,u:'L',p:[
+  ['Paso 1: calcula el volumen','V = largo × ancho × alto = 20 × 10 × 5 = 1000 cm³.'],
+  ['Paso 2: pasa a litros','1000 cm³ = 1000 mL, y 1000 mL = 1 L.'],
+  ['Resultado','<b>1 L</b>']]},
+ {tema:'Masa y peso',e:'Un astronauta tiene una masa de 70 kg en la Tierra. ¿Cuál es su masa en la Luna?',r:70,u:'kg',p:[
+  ['Paso 1: qué es la masa','La masa es la cantidad de materia. No depende del lugar.'],
+  ['Paso 2: qué cambia','Lo que cambia es el peso: W = m × g, donde g es la gravedad del lugar (9.8 en la Tierra y 1.6 en la Luna).'],
+  ['Resultado','Su masa sigue siendo <b>70 kg</b>. Su peso sí baja: 70 × 9.8 = 686 N en la Tierra y 70 × 1.6 = 112 N en la Luna.']]},
+ {tema:'Densidad',e:'Un lingote de metal amarillo tiene una masa de 301 g y un volumen de 15.6 cm³. Calcula su densidad. ¿Será oro?',r:19.3,u:'g/cm³',p:[
+  ['Paso 1: anota los datos','m = 301 g; V = 15.6 cm³; d = ?'],
+  ['Paso 2: elige la fórmula','Buscas d. En el triángulo, al tapar d queda m sobre V: d = m / V.'],
+  ['Paso 3: reemplaza','d = 301 g ÷ 15.6 cm³'],
+  ['Resultado','<b>d = 19.3 g/cm³</b>, justo la densidad del oro (míralo en la tabla). Es oro de verdad.']]},
+ {tema:'Densidad',e:'¿Qué masa tienen 5.50 mL de mercurio? (densidad: 13.6 g/mL)',r:74.8,u:'g',p:[
+  ['Paso 1: anota los datos','d = 13.6 g/mL; V = 5.50 mL; m = ?'],
+  ['Paso 2: despeja','Tapa la m en el triángulo: queda d × V. Entonces m = d × V.'],
+  ['Paso 3: reemplaza','m = 13.6 g/mL × 5.50 mL. Los mL se cancelan y queda g.'],
+  ['Resultado','<b>m = 74.8 g</b>']]},
+ {tema:'Densidad',e:'Necesitas 500 g de etanol (d = 0.79 g/mL). ¿Qué volumen debes medir con la probeta?',r:633,u:'mL',tol:0.01,p:[
+  ['Paso 1: anota los datos','m = 500 g; d = 0.79 g/mL; V = ?'],
+  ['Paso 2: despeja','Tapa la V en el triángulo: queda m sobre d. Entonces V = m / d.'],
+  ['Paso 3: reemplaza','V = 500 g ÷ 0.79 g/mL'],
+  ['Resultado','<b>V ≈ 633 mL</b>']]},
+ {tema:'Densidad',e:'Un cubo metálico mide 3.00 cm de lado y tiene una masa de 72.9 g. Calcula su densidad.',r:2.7,u:'g/cm³',p:[
+  ['Paso 1: primero el volumen','V = lado × lado × lado = 3.00 × 3.00 × 3.00 = 27.0 cm³'],
+  ['Paso 2: ahora la densidad','d = 72.9 g ÷ 27.0 cm³'],
+  ['Resultado','<b>d = 2.70 g/cm³</b>. Según la tabla, es <b>aluminio</b>.']]},
+ {tema:'Densidad',e:'Una probeta tiene 25.0 mL de agua. Al meter una pieza metálica de 51.4 g, el nivel sube a 31.5 mL. ¿Cuál es la densidad del metal?',r:7.9,u:'g/mL',tol:0.02,p:[
+  ['Paso 1: volumen por desplazamiento','La pieza empuja el agua hacia arriba. Lo que sube el agua es el volumen de la pieza: 31.5 − 25.0 = 6.5 mL.'],
+  ['Paso 2: densidad','d = 51.4 g ÷ 6.5 mL'],
+  ['Resultado','<b>d ≈ 7.9 g/mL</b>: es hierro.'],
+  ['Ojo','Este método sirve para objetos de forma rara, a los que no se les puede medir largo, ancho y alto.']]},
+ {tema:'Densidad',e:'Un trozo de hielo tiene densidad 0.92 g/cm³. Si lo pones en agua, ¿flota o se hunde?',ops:['Flota','Se hunde','Depende de su tamaño'],p:[
+  ['Paso 1: compara con el agua','El agua tiene 1.00 g/cm³.'],
+  ['Paso 2: decide','0.92 es menor que 1.00, así que el hielo es menos denso que el agua.'],
+  ['Resultado','<b>Flota</b>, sin importar su tamaño. Por eso los cubos de hielo flotan en tu vaso y los icebergs flotan en el mar.']]},
+ {tema:'Temperatura',e:'La temperatura normal del cuerpo es 37 °C. ¿Cuánto es en °F?',r:98.6,u:'°F',p:[
+  ['Paso 1: la fórmula','°F = (9/5 × °C) + 32. Primero multiplicas, después sumas.'],
+  ['Paso 2: multiplica por 9/5','9/5 × 37 = 66.6 (9/5 es lo mismo que 1.8)'],
+  ['Resultado','66.6 + 32 = <b>98.6 °F</b>']]},
+ {tema:'Temperatura',e:'En un día de calor, un termómetro de EE. UU. marca 77 °F. ¿Cuánto es en °C?',r:25,u:'°C',p:[
+  ['Paso 1: la fórmula','°C = (°F − 32) × 5/9. Primero restas, después multiplicas.'],
+  ['Paso 2: resta 32','77 − 32 = 45'],
+  ['Resultado','45 × 5/9 = <b>25 °C</b>. Y en kelvin: 25 + 273.15 = 298.15 K.']]},
+ {tema:'Temperatura',e:'El mercurio se congela a −38.9 °C. ¿Cuánto es en kelvin?',r:234.25,u:'K',tol:0.002,p:[
+  ['Paso 1: la fórmula','K = °C + 273.15'],
+  ['Paso 2: reemplaza','K = −38.9 + 273.15'],
+  ['Resultado','−38.9 + 273.15 = 234.25, que se redondea a <b>234.3 K</b> (el dato tenía un decimal). En kelvin el valor es positivo aunque en °C sea negativo.']]},
+ {tema:'Gases',e:'La densidad del aire a 0 °C es 1.29 g/L. ¿Cuánto es en g/mL? (escríbelo como número decimal: 0.00…)',r:0.00129,u:'g/mL',p:[
+  ['Paso 1: la equivalencia','1 L = 1000 mL.'],
+  ['Paso 2: arma el factor','1.29 g/L × (1 L / 1000 mL). Los L se cancelan.'],
+  ['Resultado','<b>0.00129 g/mL</b>. Por eso para gases se usa g/L: los números quedan más cómodos.']]}
+];
+// Lee lo que escribe un estudiante: 2500, 2.500, 2,500, 0,35, 1.29x10^-3, 1.29×10⁻³, 1.29e-3
+function leerNumero(txt, esperado){
+  let t=String(txt).trim().replace(/\s/g,'').replace(/[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]/g,c=>({'⁻':'-','⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9'}[c])).replace(/−/g,'-');
+  let exp=0; const m=t.match(/^(.*?)(?:[x×*·]10\^?(-?\d+))$/i);
+  if(m){t=m[1];exp=+m[2]}
+  if(/^-?\d{1,3}([.,]\d{3})+$/.test(t) && Math.abs(esperado)>=1000) t=t.replace(/[.,]/g,'');
+  else t=t.replace(',','.');
+  const v=parseFloat(t); return isNaN(v)?NaN:v*10**exp;
+}
+let ej=0, paso=0, resuelto=false;
+function verEj(msg){
+  const x=EJ[ej];
+  let html='<div class="ej-head"><span class="badge">'+x.tema+'</span><span class="contador">Ejercicio '+(ej+1)+' de '+EJ.length+'</span></div>'+
+    '<p class="enunciado">'+x.e+'</p>';
+  if(x.ops){ if(!x.orden) x.orden=barajar(x.ops.map((o,i)=>i)); html+='<div id="ejOps">'+x.orden.map(i=>'<button class="opcion" data-i="'+i+'">'+esc(x.ops[i])+'</button>').join('')+'</div>'; }
+  else html+='<div class="row"><input type="text" inputmode="decimal" id="ejResp" class="campo" style="width:170px" placeholder="Tu respuesta" aria-label="Tu respuesta"><b>'+x.u+'</b><button class="btn" id="ejComp">Comprobar</button></div>';
+  html+='<div class="fb" id="ejFb"></div>'+
+    x.p.map((s,i)=>'<div class="paso'+(s[0]==='Resultado'?' res':'')+(i<paso?' vis':'')+'"><div class="t">'+s[0]+'</div>'+s[1]+'</div>').join('')+
+    '<div class="row" style="margin-top:10px"><button class="btn small sec" id="ejPista">'+(paso===0?'Dame una pista':'Otra pista')+'</button><button class="btn small sec" id="ejSol">Ver la solución completa</button></div>';
+  $('ejCard').innerHTML=html;
+  if(msg){$('ejFb').className='fb ok';$('ejFb').textContent=msg}
+  $('ejBar').style.width=((ej+(resuelto||paso>=x.p.length?1:0))/EJ.length*100)+'%';
+  $('ejPrev').disabled=ej===0;
+  $('ejNext').textContent=ej<EJ.length-1?'Siguiente ejercicio':'Ir al test';
+  $('ejPista').disabled=paso>=x.p.length-1;
+  $('ejSol').disabled=paso>=x.p.length;
+  $('ejPista').onclick=()=>{if(paso<x.p.length-1){paso++;verEj()}};
+  $('ejSol').onclick=()=>{paso=x.p.length;verEj()};
+  const fb=$('ejFb');
+  if(x.ops){
+    document.querySelectorAll('#ejOps .opcion').forEach(b=>b.onclick=()=>{
+      if(b.dataset.i==='0'){resuelto=true;paso=x.p.length;verEj('¡Correcto! Mira abajo la explicación.');return}
+      document.querySelectorAll('#ejOps .opcion').forEach(o=>o.classList.remove('malo'));
+      b.classList.add('malo');fb.className='fb no';fb.textContent='Todavía no. Pide una pista.';
+    });
+  }else{
+    const comp=()=>{
+      const v=leerNumero($('ejResp').value, x.r);
+      if(isNaN(v)){fb.className='fb no';fb.textContent='Escribe un número.';return}
+      const ok=Math.abs(v-x.r)<=Math.abs(x.r)*(x.tol||0.015);
+      if(ok){const val=$('ejResp').value;resuelto=true;paso=x.p.length;verEj('¡Correcto! Revisa abajo el procedimiento completo.');$('ejResp').value=val;return}
+      fb.className='fb no';fb.textContent='Todavía no. Revisa tu cálculo o pide una pista.';
+    };
+    $('ejComp').onclick=comp;
+    $('ejResp').onkeydown=e=>{if(e.key==='Enter')comp()};
+  }
+}
+$('ejNext').onclick=()=>{if(ej<EJ.length-1){ej++;paso=0;resuelto=false;verEj();window.scrollTo({top:0})}else ir('test')};
+$('ejPrev').onclick=()=>{if(ej>0){ej--;paso=0;resuelto=false;verEj()}};
+verEj();
+
+/* ---------- Test ---------- */
+// La primera opción de cada pregunta es la correcta; se barajan al empezar.
+const BANCO=[
+ ['¿Cuál es la unidad del SI para la masa?',['kilogramo (kg)','gramo (g)','newton (N)','libra (lb)'],'La unidad básica de masa en el SI es el kilogramo. El gramo es la unidad que más se usa en el laboratorio.'],
+ ['¿Cuál es la unidad del SI para la temperatura?',['kelvin (K)','grado Celsius (°C)','grado Fahrenheit (°F)','caloría (cal)'],'El kelvin es la unidad básica de temperatura del SI.'],
+ ['El prefijo «mili» equivale a:',['10⁻³','10³','10⁻²','10⁻⁶'],'Mili = 10⁻³ = 0.001. Por ejemplo, 1 mL = 0.001 L.'],
+ ['¿Cuántos metros hay en 4.2 km?',['4200 m','420 m','42 000 m','0.0042 m'],'4.2 km × 1000 m/km = 4200 m.'],
+ ['¿Cuántos gramos son 2500 mg?',['2.5 g','25 g','0.25 g','250 g'],'2500 mg × (1 g / 1000 mg) = 2.5 g.'],
+ ['¿Cuántos mililitros hay en 1.5 L?',['1500 mL','150 mL','15 mL','0.0015 mL'],'1.5 L × 1000 mL/L = 1500 mL.'],
+ ['250 cm³ equivalen a:',['250 mL','2.5 L','25 mL','2500 mL'],'1 cm³ = 1 mL, así que 250 cm³ = 250 mL.'],
+ ['3 dm³ equivalen a:',['3 L','30 L','300 mL','3000 L'],'1 dm³ = 1 L, así que 3 dm³ = 3 L.'],
+ ['Un astronauta viaja a la Luna. ¿Qué pasa con su masa y su peso?',['Su masa no cambia y su peso disminuye','Su masa disminuye y su peso no cambia','Ambos disminuyen','Ninguno cambia'],'La masa (cantidad de materia) es constante. El peso depende de la gravedad, que en la Luna es unas 6 veces menor.'],
+ ['¿Qué instrumento se usa para medir la masa?',['Balanza','Probeta','Termómetro','Bureta'],'La masa se mide con la balanza.'],
+ ['¿Cuál de estos instrumentos NO sirve para medir volumen?',['Balanza','Bureta','Pipeta','Matraz volumétrico'],'Bureta, pipeta y matraz volumétrico miden volumen; la balanza mide masa.'],
+ ['Que la densidad sea una propiedad intensiva significa que:',['No depende de la cantidad de material','Depende del tamaño del objeto','Solo se puede medir en sólidos','Cambia si partimos el objeto a la mitad'],'Una propiedad intensiva no depende de la cantidad: un clavo y una viga de hierro tienen la misma densidad.'],
+ ['Una pieza de 54.0 g ocupa 20.0 cm³. ¿Cuál es su densidad?',['2.70 g/cm³','1080 g/cm³','0.37 g/cm³','74.0 g/cm³'],'d = m / V = 54.0 g / 20.0 cm³ = 2.70 g/cm³.'],
+ ['¿Qué masa tienen 10.0 mL de mercurio? (d = 13.6 g/mL)',['136 g','1.36 g','0.735 g','23.6 g'],'m = d × V = 13.6 g/mL × 10.0 mL = 136 g.'],
+ ['¿Qué volumen ocupan 39.5 g de etanol? (d = 0.790 g/mL)',['50.0 mL','31.2 mL','40.3 mL','0.0200 mL'],'V = m / d = 39.5 g / 0.790 g/mL = 50.0 mL.'],
+ ['Una probeta pasa de 20.0 mL a 30.0 mL al sumergir una pieza de 193 g. ¿De qué metal es?',['Oro (19.3 g/mL)','Hierro (7.9 g/mL)','Aluminio (2.70 g/mL)','Osmio (22.6 g/mL)'],'V = 30.0 − 20.0 = 10.0 mL; d = 193 g / 10.0 mL = 19.3 g/mL: oro.'],
+ ['Un bloque de 2.00 cm × 3.00 cm × 5.00 cm tiene una masa de 237 g. ¿Cuál es su densidad?',['7.90 g/cm³','23.7 g/cm³','0.127 g/cm³','47.4 g/cm³'],'V = 2.00 × 3.00 × 5.00 = 30.0 cm³; d = 237 g / 30.0 cm³ = 7.90 g/cm³.'],
+ ['Un trozo de madera tiene una densidad de 0.60 g/cm³. Si lo pones en agua:',['Flota, porque es menos denso que el agua','Se hunde, porque es más denso que el agua','Se hunde, porque todo sólido se hunde','Flota solo si es pequeño'],'El agua tiene 1.00 g/cm³. Lo menos denso que el agua flota, sin importar el tamaño (la densidad es intensiva).'],
+ ['¿Cuál es el orden correcto de menor a mayor densidad?',['Etanol, agua, aluminio, oro','Agua, etanol, oro, aluminio','Aluminio, agua, etanol, oro','Oro, aluminio, agua, etanol'],'Etanol 0.79; agua 1.00; aluminio 2.70; oro 19.3 g/cm³.'],
+ ['Convierte 25 °C a kelvin.',['298.15 K','248.15 K','77 K','25 K'],'K = °C + 273.15 = 25 + 273.15 = 298.15 K.'],
+ ['Convierte 100 °F a °C.',['37.8 °C','212 °C','55.6 °C','68.0 °C'],'°C = (100 − 32) × 5/9 = 68 × 5/9 = 37.8 °C.'],
+ ['Convierte −40 °C a °F.',['−40 °F','−72 °F','8 °F','−4 °F'],'°F = 9/5 × (−40) + 32 = −72 + 32 = −40 °F. Es la única temperatura en que ambas escalas coinciden.'],
+ ['0 K (cero absoluto) equivale a:',['−273.15 °C','0 °C','273.15 °C','−32 °C'],'°C = K − 273.15 = 0 − 273.15 = −273.15 °C.'],
+ ['¿Cuál de estas escalas nunca tiene valores negativos?',['Kelvin','Celsius','Fahrenheit','Ninguna'],'El kelvin es una escala absoluta: empieza en el cero absoluto, así que no tiene negativos.'],
+ ['La densidad del oxígeno a 0 °C es 1.43 g/L. ¿Cuánto es en g/mL?',['0.00143 g/mL','1430 g/mL','0.143 g/mL','14.3 g/mL'],'1.43 g/L × (1 L / 1000 mL) = 0.00143 g/mL.']
+];
+let T=[], tI=0, nombre='', avisado=false;
+$('testEmpezar').onclick=()=>{
+  nombre=$('nombre').value.trim();
+  if(nombre.length<3){$('nombre').focus();$('nombre').placeholder='Escribe tu nombre para empezar';return}
+  T=barajar(BANCO).map(q=>({q:q[0],ok:q[1][0],ops:barajar(q[1]),exp:q[2],resp:null}));
+  tI=0;avisado=false;$('tAviso').textContent='';$('testInicio').hidden=true;$('testFin').hidden=true;$('testPreg').hidden=false;verPreg();
+};
+function verPreg(){
+  const x=T[tI];
+  $('tNum').textContent='Pregunta '+(tI+1)+' de '+T.length;
+  const r=T.filter(t=>t.resp!==null).length;
+  $('tResp').textContent=r+' respondidas';
+  $('tBar').style.width=(r/T.length*100)+'%';
+  $('tTexto').textContent=x.q;
+  $('tOpc').innerHTML='';
+  x.ops.forEach(o=>{
+    const b=document.createElement('button');b.className='opcion'+(x.resp===o?' sel':'');b.textContent=o;
+    b.onclick=()=>{x.resp=o;verPreg()};$('tOpc').appendChild(b);
+  });
+  $('tAnt').disabled=tI===0;
+  $('tSig').textContent=tI<T.length-1?'Siguiente':'Terminar y ver mi nota';
+}
+$('tAnt').onclick=()=>{if(tI>0){tI--;verPreg()}};
+$('tSig').onclick=()=>{
+  if(tI<T.length-1){tI++;verPreg();return}
+  const faltan=T.filter(t=>t.resp===null).length;
+  if(faltan>0 && !avisado){avisado=true;$('tAviso').textContent='Te faltan '+faltan+' preguntas por responder. Vuelve con «Anterior» o presiona otra vez para terminar así.';return}
+  terminar();
+};
+function terminar(){
+  const bien=T.filter(t=>t.resp===t.ok).length;
+  const nota=(bien/T.length*10).toFixed(1);
+  const fecha=new Date().toLocaleString('es-EC',{dateStyle:'short',timeStyle:'short'});
+  const texto='Test Mediciones en Química\nEstudiante: '+nombre+'\nAciertos: '+bien+' de '+T.length+'\nNota: '+nota+' / 10\nFecha: '+fecha;
+  $('testPreg').hidden=true;
+  const f=$('testFin');f.hidden=false;
+  f.innerHTML='<div class="card"><p style="margin:0 0 6px">'+esc(nombre)+', tu resultado:</p>'+
+    '<div class="nota-final">'+nota+' / 10</div><p>'+bien+' aciertos de '+T.length+' preguntas.</p>'+
+    '<p>Descarga el PDF con tus respuestas y envíaselo a tu profesor por mensaje interno.</p>'+
+    '<div class="row"><button class="btn" id="pdfRes">Descargar mi PDF de respuestas</button><button class="btn sec" id="copiar">Copiar mi nota</button><button class="btn sec" id="otraVez">Volver a intentar</button></div>'+
+    '<p id="copiado" class="contador"></p></div>'+
+    '<h3>Corrección</h3>'+
+    T.map((t,i)=>'<div class="rev '+(t.resp===t.ok?'ok':'mal')+'"><b>'+(i+1)+'. '+esc(t.q)+'</b><br>'+
+      (t.resp===t.ok?'Correcto: '+esc(t.ok):'Tu respuesta: '+esc(t.resp||'sin responder')+'<br>Respuesta correcta: <b>'+esc(t.ok)+'</b>')+
+      '<br><small>'+esc(t.exp)+'</small></div>').join('');
+  $('copiar').onclick=async()=>{
+    try{await navigator.clipboard.writeText(texto);$('copiado').textContent='Copiado. Pégalo en el chat de WhatsApp.'}
+    catch(e){$('copiado').textContent='No se pudo copiar automáticamente. Toma una captura de pantalla de tu nota.'}
+  };
+  $('otraVez').onclick=()=>{f.hidden=true;$('testInicio').hidden=false;window.scrollTo({top:0})};
+  $('pdfRes').onclick=async()=>{
+    const msg=$('copiado');
+    try{
+      const ok=await guardarBlob(pdfResultados(bien,nota,fecha),'Test Mediciones - '+nombreArchivo(nombre)+' - respuestas.pdf');
+      msg.textContent=ok?'Listo. Ahora envía ese PDF a tu profesor por mensaje interno.':'No se descargó. Vuelve a presionar el botón.';
+    }catch(e){msg.textContent='No se pudo crear el PDF. Toma una captura de pantalla de tu nota y de la corrección.'}
+  };
+  window.scrollTo({top:0});
+}
+
+/* ---------- PDF: preguntas para resolver a mano y respuestas del test digital ---------- */
+const SUPN={'⁻':'-','⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9'};
+function pdfTxt(s){ // la fuente del PDF no tiene superíndices negativos: 10⁻³ pasa a 10^-3; cm³ se queda igual
+  return String(s).replace(/[⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+/g,(run,off,str)=>
+      (run.length===1&&(run==='³'||run==='²')&&/[A-Za-zµ]/.test(str[off-1]||''))?run:'^'+run.split('').map(c=>SUPN[c]).join(''))
+    .replace(/−/g,'-').replace(/≈/g,'~').replace(/[«»]/g,'"');
+}
+function nombreArchivo(n){return (n||'estudiante').replace(/[\\/:*?"<>|]+/g,'').trim().slice(0,60)||'estudiante'}
+function hojaPDF(){
+  const doc=new window.jspdf.jsPDF({unit:'mm',format:'a4'});
+  const H={doc,y:18};
+  H.w=(text,o={})=>{
+    const size=o.size||11, lh=size*0.45, ind=o.indent||0;
+    doc.setFont('helvetica',o.bold?'bold':'normal');doc.setFontSize(size);doc.setTextColor(...(o.color||[20,30,36]));
+    doc.splitTextToSize(pdfTxt(text),180-ind).forEach(l=>{if(H.y+lh>284){doc.addPage();H.y=18}doc.text(l,15+ind,H.y);H.y+=lh});
+    H.y+=(o.gap==null?1.5:o.gap);
+  };
+  H.espacio=mm=>{if(H.y+mm>284){doc.addPage();H.y=18}else H.y+=mm};
+  H.linea=()=>{doc.setDrawColor(200,208,212);doc.line(15,H.y,195,H.y);H.y+=5};
+  return H;
+}
+function pdfResultados(bien,nota,fecha){
+  const H=hojaPDF();
+  H.w('Test: Mediciones en Química',{size:18,bold:true,gap:2});
+  H.w('Respuestas del test digital',{size:12,color:[90,100,106],gap:4});
+  H.w('Estudiante: '+nombre,{bold:true,gap:0.5});
+  H.w('Fecha: '+fecha,{gap:0.5});
+  H.w('Aciertos: '+bien+' de '+T.length+'      Nota: '+nota+' / 10',{size:13,bold:true,gap:4});
+  H.linea();
+  T.forEach((t,i)=>{
+    const ok=t.resp===t.ok;
+    if(H.y>262){H.doc.addPage();H.y=18}
+    H.w((i+1)+'. '+t.q,{bold:true,gap:0.5});
+    H.w('Respondió: '+(t.resp||'sin responder')+(ok?'   (correcta)':'   (incorrecta)'),{indent:5,gap:0.5,color:ok?[31,138,79]:[200,40,40]});
+    if(!ok) H.w('Respuesta correcta: '+t.ok,{indent:5,gap:0.5});
+    H.espacio(2.5);
+  });
+  return H.doc.output('blob');
+}
+
+</script>
+</body>
+</html>

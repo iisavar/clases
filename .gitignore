@@ -1,0 +1,62 @@
+# .gitignore estándar del método de Ignacio (C:\segundo-cerebro\metodo\)
+# Se copia al crear el proyecto, ANTES del primer commit.
+
+# Claves y secretos (nunca al repo; tampoco se abren)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+credentials*
+token*
+secrets*
+id_rsa*
+.credentials.json
+
+# Entornos y dependencias regenerables
+node_modules/
+.venv*/
+venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+.pytest_cache/
+.cache/
+dist/
+build/
+
+# Datos (pueden tener datos personales: teléfonos, nombres, cédulas, alumnos)
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# Salidas pesadas o regenerables
+salidas/
+outputs/
+logs/
+*.log
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.m4a
+*.zip
+
+# Office y sistema
+~$*
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Archivos de más de 5 MB: no van a git. Si alguno hace falta en el repo,
+# anotarlo aquí con su motivo, por ejemplo:
+# !assets/fuente-unica.ttf   # 6 MB, fuente que no se puede descargar
+
+# Propio de este repo (público, se sirve en GitHub Pages)
+# Notas internas y salidas no se publican
+CLAUDE.md
+salidas/
+# El video de la clase (medicion-quimica/video-lenguaje-quimica.mp4, 6.7 MB) SÍ va al repo: la página lo necesita.
