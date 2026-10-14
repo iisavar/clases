@@ -236,9 +236,9 @@ p{margin:0 0 12px}
 </section>
 
 <!-- 5. Se puede / no se puede -->
-<section class="slide" data-titulo="5. ¿Se puede o no se puede?">
+<section class="slide" data-titulo="5. ¿Está bien o está mal?">
   <div class="inner">
-    <h2>¿Se puede o no se puede?</h2>
+    <h2>¿Está bien o está mal?</h2>
     <p class="lead">Antes de tocar cada tarjeta, decidan si lo que está escrito es correcto.</p>
     <div class="casos" id="casos"></div>
   </div>
@@ -290,7 +290,7 @@ const CASOS=[
   {e:"\\frac{6}{8}=\\frac{3}{4}",ok:true,w:"Se divide arriba y abajo para el mismo número (2)."}
 ];
 $('casos').innerHTML=CASOS.map((c,i)=>`<div class="caso" data-i="${i}"><div class="expr">$\\displaystyle ${c.e}$</div>
-  <button type="button">¿Se puede?</button><div class="ver"><b>${c.ok?'Sí se puede.':'No se puede.'}</b> ${c.w}</div></div>`).join('');
+  <button type="button">Ver respuesta</button><div class="ver"><b>${c.ok?'Está bien.':'Está mal.'}</b> ${c.w}</div></div>`).join('');
 $('casos').addEventListener('click',e=>{
   const b=e.target.closest('button'); if(!b)return;
   const card=b.closest('.caso'); const c=CASOS[card.dataset.i];
