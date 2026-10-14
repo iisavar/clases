@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fracciones combinadas</title>
+<meta name="description" content="Operaciones combinadas con fracciones: láminas, casos que se pueden y no se pueden, ejercicios con pizarra y tarea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<style>
+/* Diseño: láminas a pantalla completa en tema oscuro (fondo petróleo, verde de acción, dorado para lo clave) y pizarra de tiza para resolver en vivo. */
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --red:#FF6B6B; --blue:#4FB3E8; --ink:#0E1A1F; --tiza:#16302A;
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:clamp(17px,1.6vw,22px);line-height:1.55;overflow:hidden}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.deck{position:fixed;inset:0 0 64px 0}
+.slide{position:absolute;inset:0;display:none;overflow-y:auto;padding:clamp(16px,3vw,40px) clamp(16px,4vw,56px)}
+.slide.on{display:block}
+.inner{max-width:1180px;margin:0 auto}
+.kicker{color:var(--gold);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.7em}
+h1{font-weight:900;font-size:clamp(34px,6vw,72px);line-height:1.05;margin:8px 0 14px;text-wrap:balance}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:clamp(26px,3.6vw,46px);line-height:1.1;margin:4px 0 16px;text-wrap:balance}
+p{margin:0 0 12px}
+.lead{color:var(--muted);max-width:60ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:820px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 22px}
+.card h3{margin:0 0 8px;font-size:1.05em;font-weight:900;color:var(--green-t)}
+.clave{border-left:6px solid var(--gold);background:var(--panel2);border-radius:12px;padding:12px 18px;margin:16px 0}
+.clave b{color:var(--gold)}
+.ejemplo{background:var(--deep);border:1px dashed var(--line);border-radius:14px;padding:12px 18px;margin:10px 0;font-size:1.08em}
+.paso{color:var(--muted);font-size:.85em;margin-left:6px}
+.step{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;visibility:hidden}
+.step.vis{opacity:1;transform:none;visibility:visible}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{font-weight:800;font-size:.8em;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.chip.g{background:var(--green);color:var(--ink);border-color:var(--green)}
+.chip.y{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.orden{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:900;font-size:1.05em;margin:8px 0}
+.orden .chip{font-size:.9em}
+.portada{min-height:100%;display:grid;place-items:center;text-align:center}
+.portada .frac-deco{font-size:clamp(60px,12vw,150px);color:var(--gold);line-height:1;margin-bottom:10px}
+
+/* Casos: se puede / no se puede */
+.casos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.caso{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.caso .expr{font-size:1.15em;text-align:center;padding:6px 0}
+.caso button{align-self:center;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:6px 14px;font-weight:800;font-size:.8em}
+.caso .ver{display:none;font-size:.85em;border-radius:10px;padding:8px 12px}
+.caso.si{border-color:var(--green)} .caso.si .ver{display:block;background:#173A2A}
+.caso.no{border-color:var(--red)} .caso.no .ver{display:block;background:#3A1F22}
+.ver b{font-weight:900}
+.caso.si .ver b{color:var(--green-t)} .caso.no .ver b{color:var(--red)}
+
+/* Ejercicios con pizarra */
+.ej{display:grid;grid-template-columns:minmax(300px,36%) 1fr;gap:18px;height:100%}
+.ej .enun{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ej .expr-big{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 10px;text-align:center;font-size:clamp(20px,2.3vw,32px);overflow-x:auto}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{display:flex;align-items:center;gap:10px;background:var(--panel);color:var(--text);border:2px solid var(--line);border-radius:16px;padding:8px 12px;font-size:1.1em;text-align:left;min-height:64px}
+.op .l{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900;font-size:.8em}
+.op.marcada{border-color:var(--gold)}
+.op.marcada .l{background:var(--gold);color:var(--ink)}
+.ayuda{color:var(--muted);font-size:.75em}
+.pz{display:flex;flex-direction:column;min-height:420px;background:var(--tiza);border:6px solid #5B4636;border-radius:18px;overflow:hidden}
+.pz-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;background:#0F2420;border-bottom:1px solid #24453C}
+.pz-bar button{background:#1C3A33;color:var(--text);border:2px solid transparent;border-radius:12px;padding:5px 10px;font-weight:800;font-size:14px;min-height:36px}
+.pz-bar button.on{border-color:var(--gold)}
+.pz-bar .col{width:34px;height:34px;padding:0;border-radius:50%}
+.pz-bar .sep{width:1px;height:26px;background:#2E5249;margin:0 4px}
+.pz-bar .der{margin-left:auto;display:flex;gap:6px}
+.pz canvas{flex:1;width:100%;display:block;touch-action:none;cursor:crosshair}
+.ej.grande{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+.ej.grande .enun{flex-direction:row;align-items:center;flex-wrap:wrap}
+.ej.grande .expr-big{flex:1 1 380px;padding:10px}
+.ej.grande .ops{flex:1 1 420px;grid-template-columns:repeat(4,1fr)}
+.ej.grande .op{min-height:52px;font-size:1em}
+.ej.grande .ayuda,.ej.grande h2{display:none}
+@media (max-width:900px){.ej{grid-template-columns:1fr;height:auto}.pz{height:70vh}}
+
+/* Tarea */
+.tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
+.tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.tarea .n{font-weight:900;color:var(--gold);margin-right:6px}
+.tarea .q{display:flex;align-items:center;gap:4px;font-size:1.05em;margin:0 0 8px;overflow-x:auto;overflow-y:hidden;padding:4px 0}
+.tarea .o{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:.92em}
+.tarea .o span b{color:var(--muted);margin-right:4px}
+.btn{display:inline-block;font-weight:900;border:0;border-radius:16px;padding:12px 20px;background:var(--green);color:var(--ink);box-shadow:0 4px 0 var(--green-d);text-decoration:none}
+
+/* Barra inferior */
+.nav{position:fixed;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--deep);border-top:1px solid var(--line)}
+.nav button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;height:44px;padding:0 16px;font-weight:900}
+.nav .av{background:var(--green);color:var(--ink);border-color:var(--green);box-shadow:0 3px 0 var(--green-d)}
+.nav .cnt{font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums;min-width:70px;text-align:center}
+.nav .prog{flex:1;height:8px;background:var(--panel);border-radius:99px;overflow:hidden}
+.nav .prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s}
+.indice{position:fixed;bottom:72px;left:14px;z-index:30;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px;display:none;max-height:70vh;overflow:auto;min-width:280px}
+.indice.on{display:block}
+.indice button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;font-size:16px}
+.indice button:hover,.indice button.act{background:var(--panel2)}
+.libre{position:fixed;inset:0 0 64px 0;z-index:20;background:var(--bg);padding:12px;display:none}
+.libre.on{display:flex}
+.libre .pz{flex:1}
+@media (max-width:600px){.nav .prog{display:none}.nav button{padding:0 10px}}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- 0. Portada -->
+<section class="slide" data-titulo="Portada">
+  <div class="portada"><div>
+    <div class="frac-deco" aria-hidden="true">$\tfrac{a}{b}$</div>
+    <div class="kicker">Matemática</div>
+    <h1>Operaciones <span>combinadas</span> con fracciones</h1>
+    <p class="lead" style="margin:0 auto">Sumar, restar, multiplicar y dividir fracciones en un mismo ejercicio, con paréntesis y corchetes.</p>
+    <div class="chips" style="justify-content:center">
+      <span class="chip">5 láminas</span><span class="chip">6 ejercicios en pizarra</span><span class="chip">Tarea de 10 ejercicios</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- 1. Sumar y restar -->
+<section class="slide" data-titulo="1. Sumar y restar">
+  <div class="inner">
+    <div class="kicker">Lámina 1 de 5</div>
+    <h2>Sumar y restar: el denominador manda</h2>
+    <p>El denominador dice <b>en cuántas partes</b> se cortó el entero; el numerador dice <b>cuántas partes</b> tomamos. Solo se pueden sumar o restar partes que tengan el mismo tamaño.</p>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Caso 1: mismo denominador</h3>
+        <p>Se suman o se restan los numeradores. El denominador <b>se queda igual</b>.</p>
+        <div class="ejemplo">$\dfrac{2}{7}+\dfrac{3}{7}=\dfrac{5}{7}$ <span class="paso">sétimos con sétimos</span></div>
+        <div class="ejemplo">$\dfrac{9}{10}-\dfrac{3}{10}=\dfrac{6}{10}=\dfrac{3}{5}$ <span class="paso">y se simplifica</span></div>
+      </div>
+      <div class="card step">
+        <h3>Caso 2: distinto denominador</h3>
+        <p>Primero se cambian las fracciones por otras equivalentes que tengan el <b>mismo denominador</b> (el mcm). Recién ahí se suma.</p>
+        <div class="ejemplo">$\dfrac{1}{4}+\dfrac{3}{8}=\dfrac{2}{8}+\dfrac{3}{8}=\dfrac{5}{8}$</div>
+        <p class="paso" style="margin:0">$\tfrac14$ y $\tfrac28$ son la misma cantidad: se multiplicó arriba y abajo por 2.</p>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> los denominadores <b>nunca</b> se suman entre sí. Una pizza en 4 partes y otra en 8 no dan una pizza en 12 partes.</div>
+  </div>
+</section>
+
+<!-- 2. mcm -->
+<section class="slide" data-titulo="2. El mcm sin perderse">
+  <div class="inner">
+    <div class="kicker">Lámina 2 de 5</div>
+    <h2>Cómo hallar el mcm sin perderse</h2>
+    <p>El mínimo común múltiplo (mcm) es el número más pequeño que se puede dividir exacto para todos los denominadores. Es el denominador común más cómodo.</p>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Método rápido: múltiplos del mayor</h3>
+        <p>Para 6 y 8, se cuentan los múltiplos de 8 hasta encontrar uno que también sea de 6.</p>
+        <div class="ejemplo">8, 16, <b style="color:var(--gold)">24</b> <span class="paso">24 ÷ 6 = 4, sí entra</span></div>
+        <p>Sirve cuando los números son pequeños.</p>
+      </div>
+      <div class="card step">
+        <h3>Método seguro: descomponer en primos</h3>
+        <p>Se descompone cada número y se toman <b>todos</b> los primos con su mayor exponente.</p>
+        <div class="ejemplo">$12=2^2\cdot 3 \qquad 18=2\cdot 3^2$</div>
+        <div class="ejemplo">$\text{mcm}=2^2\cdot 3^2=36$</div>
+      </div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Y luego, ¿qué numerador va?</h3>
+      <p>Se divide el mcm para el denominador de la fracción y ese resultado se multiplica por el numerador.</p>
+      <div class="ejemplo">$\dfrac{5}{6}=\dfrac{?}{24}$ <span class="paso">24 ÷ 6 = 4, y 4 × 5 = 20</span> $\;\Rightarrow\;\dfrac{20}{24}$</div>
+    </div>
+    <div class="clave step"><b>Clave:</b> multiplicar los denominadores también da un denominador común, pero sale grande y hay que simplificar al final. Con el mcm el número es el más pequeño posible.</div>
+  </div>
+</section>
+
+<!-- 3. Multiplicar y dividir -->
+<section class="slide" data-titulo="3. Multiplicar y dividir">
+  <div class="inner">
+    <div class="kicker">Lámina 3 de 5</div>
+    <h2>Multiplicar y dividir: aquí no hace falta el mcm</h2>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Multiplicar: recto</h3>
+        <p>Numerador por numerador y denominador por denominador.</p>
+        <div class="ejemplo">$\dfrac{2}{3}\cdot\dfrac{4}{5}=\dfrac{8}{15}$</div>
+        <p><b>Antes de multiplicar, simplifica en cruz:</b> un número de arriba con uno de abajo, si tienen divisor común.</p>
+        <div class="ejemplo">$\dfrac{6}{5}\cdot\dfrac{10}{9}$ <span class="paso">6 y 9 entre 3; 10 y 5 entre 5</span> $=\dfrac{2}{1}\cdot\dfrac{2}{3}=\dfrac{4}{3}$</div>
+      </div>
+      <div class="card step">
+        <h3>Dividir: se invierte la segunda</h3>
+        <p>La primera fracción se copia igual, la segunda se da la vuelta y se multiplica.</p>
+        <div class="ejemplo">$\dfrac{3}{4}\div\dfrac{9}{2}=\dfrac{3}{4}\cdot\dfrac{2}{9}=\dfrac{6}{36}=\dfrac{1}{6}$</div>
+        <p><b>Si hay un entero</b>, se le pone denominador 1.</p>
+        <div class="ejemplo">$\dfrac{2}{3}\div 4=\dfrac{2}{3}\cdot\dfrac{1}{4}=\dfrac{2}{12}=\dfrac{1}{6}$</div>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> el mcm es solo para <b>sumar y restar</b>. Para multiplicar y dividir se trabaja directo.</div>
+  </div>
+</section>
+
+<!-- 4. Orden, simplificar y signos -->
+<section class="slide" data-titulo="4. Orden, simplificar y signos">
+  <div class="inner">
+    <div class="kicker">Lámina 4 de 5</div>
+    <h2>El orden de las operaciones, simplificar y los signos</h2>
+    <div class="card step">
+      <h3>El orden no se negocia</h3>
+      <div class="orden"><span class="chip g">( ) primero</span>→<span class="chip g">[ ] después</span>→<span class="chip y">× y ÷ de izquierda a derecha</span>→<span class="chip">+ y − al final</span></div>
+      <p style="margin:0">Igual que con números enteros: las fracciones respetan la misma jerarquía.</p>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card step">
+        <h3>Simplificar siempre al final</h3>
+        <p>Se divide arriba y abajo para el mismo número, hasta que ya no se pueda más.</p>
+        <div class="ejemplo">$\dfrac{18}{24}=\dfrac{9}{12}=\dfrac{3}{4}$ <span class="paso">entre 2 y luego entre 3</span></div>
+        <p class="paso" style="margin:0">Si el numerador es mayor que el denominador, se deja así: $\dfrac{19}{12}$ es una respuesta correcta.</p>
+      </div>
+      <div class="card step">
+        <h3>Signo menos delante del paréntesis</h3>
+        <p>Cambia el signo de <b>todo</b> lo que está adentro.</p>
+        <div class="ejemplo">$1-\left(\dfrac{1}{2}-\dfrac{1}{3}\right)=1-\dfrac{1}{2}+\dfrac{1}{3}$</div>
+        <p class="paso" style="margin:0">O se resuelve primero el paréntesis y luego se resta.</p>
+      </div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Fracción de fracción</h3>
+      <p>La raya más larga es la principal. Se resuelve todo lo de arriba, todo lo de abajo, y al final se divide.</p>
+      <div class="ejemplo">$\dfrac{\;\frac{a}{b}\;}{\;\frac{c}{d}\;}=\dfrac{a}{b}\div\dfrac{c}{d}$ <span class="paso">y en una raya chiquita como $\dfrac{1}{\frac{4}{3}}$, el resultado es la fracción invertida: $\dfrac{3}{4}$</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Se puede / no se puede -->
+<section class="slide" data-titulo="5. ¿Se puede o no se puede?">
+  <div class="inner">
+    <div class="kicker">Lámina 5 de 5</div>
+    <h2>¿Se puede o no se puede?</h2>
+    <p class="lead">Antes de tocar cada tarjeta, decidan si lo que está escrito es correcto.</p>
+    <div class="casos" id="casos"></div>
+  </div>
+</section>
+
+<!-- 6 a 11: ejercicios (se arman con datos.js) -->
+<div id="ejercicios-ancla" hidden></div>
+
+<!-- 12. Tarea -->
+<section class="slide" data-titulo="Tarea">
+  <div class="inner">
+    <div class="kicker">Tarea</div>
+    <h2>10 ejercicios para hoy</h2>
+    <p>Resuelve en tu cuaderno con todo el procedimiento, marca la opción correcta y envía la foto hoy. Simplifica siempre el resultado.</p>
+    <p><a class="btn" href="tarea/tarea-fracciones.pdf" download>Descargar la tarea en PDF</a></p>
+    <div class="tarea" id="tarea"></div>
+  </div>
+</section>
+
+</div>
+
+<div class="libre" id="libre"></div>
+
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ---------- Casos de la lámina 5 ---------- */
+const CASOS=[
+  {e:"\\frac{1}{2}+\\frac{1}{3}=\\frac{2}{5}",ok:false,w:"No se suman los denominadores. Se usa el mcm, que es 6, y se convierte cada fracción a sextos."},
+  {e:"\\frac{\\cancel{3}}{4}\\cdot\\frac{5}{\\cancel{3}}=\\frac{5}{4}",ok:true,w:"En una multiplicación sí se tacha un factor de arriba con uno de abajo."},
+  {e:"\\frac{3+5}{3}=5",ok:false,w:"En una suma no se tacha. Primero se suma: $\\frac{8}{3}$."},
+  {e:"2+\\frac{3}{4}=\\frac{5}{4}",ok:false,w:"El 2 es $\\frac{8}{4}$. Entonces $\\frac84+\\frac34=\\frac{11}{4}$."},
+  {e:"\\frac{0}{5}=0",ok:true,w:"Cero partes de cinco es cero."},
+  {e:"\\frac{5}{0}",ok:false,w:"No existe: no se puede dividir para cero."},
+  {e:"\\frac{1}{2}\\div 3=\\frac{3}{2}",ok:false,w:"El 3 es $\\frac31$, se invierte: $\\frac12\\cdot\\frac13=\\frac16$."},
+  {e:"-\\left(\\frac{1}{2}-\\frac{1}{3}\\right)=-\\frac{1}{2}-\\frac{1}{3}",ok:false,w:"El menos cambia todos los signos: $-\\frac12+\\frac13$."},
+  {e:"\\frac{6}{8}=\\frac{3}{4}",ok:true,w:"Se divide arriba y abajo para el mismo número (2)."}
+];
+$('casos').innerHTML=CASOS.map((c,i)=>`<div class="caso" data-i="${i}"><div class="expr">$\\displaystyle ${c.e}$</div>
+  <button type="button">¿Se puede?</button><div class="ver"><b>${c.ok?'Sí se puede.':'No se puede.'}</b> ${c.w}</div></div>`).join('');
+$('casos').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  const card=b.closest('.caso'); const c=CASOS[card.dataset.i];
+  card.classList.add(c.ok?'si':'no'); b.remove();
+});
+
+/* ---------- Ejercicios con pizarra ---------- */
+const ancla=$('ejercicios-ancla');
+CLASE.forEach((ej,i)=>{
+  const s=document.createElement('section');
+  s.className='slide'; s.dataset.titulo=`Ejercicio ${i+1}: ${ej.car}`;
+  s.innerHTML=`<div class="ej">
+    <div class="enun">
+      <div><div class="kicker">Ejercicio ${i+1} de ${CLASE.length}</div>
+      <span class="chip y" style="display:inline-block;margin-top:6px">${esc(ej.car)}</span></div>
+      <div class="expr-big">$$${ej.tex}$$</div>
+      <div class="ops">${ej.ops.map((o,k)=>`<button class="op" type="button"><span class="l">${'ABCD'[k]}</span><span>$\\displaystyle ${o}$</span></button>`).join('')}</div>
+      <p class="ayuda">Toca la opción que vota la clase para marcarla.</p>
+    </div>
+    <div class="pzhost"></div>
+  </div>`;
+  ancla.before(s);
+  s.querySelector('.ops').addEventListener('click',e=>{
+    const b=e.target.closest('.op'); if(!b)return;
+    const ya=b.classList.contains('marcada');
+    s.querySelectorAll('.op').forEach(x=>x.classList.remove('marcada'));
+    if(!ya)b.classList.add('marcada');
+  });
+  const pz=crearPizarra(s.querySelector('.pzhost'),true);
+  pz.onGrande=on=>{s.querySelector('.ej').classList.toggle('grande',on);pz.ajustar();};
+});
+document.querySelectorAll('.pzhost').forEach(h=>{h.style.display='contents'});
+
+/* ---------- Tarea ---------- */
+$('tarea').innerHTML=TAREA.map((t,i)=>`<div class="t">
+  <div class="q"><span class="n">${i+1}.</span>${t.tex?`$\\displaystyle ${t.tex}$`:t.txt}</div>
+  <div class="o">${t.ops.map((o,k)=>`<span><b>${'abcd'[k]})</b>$\\displaystyle ${o}$</span>`).join('')}</div></div>`).join('');
+
+/* ---------- Pizarra ---------- */
+function crearPizarra(host,conGrande){
+  const COLORES=['#F4F1E8','#FFC800','#3BC97A','#4FB3E8','#FF6B6B'];
+  const box=document.createElement('div'); box.className='pz';
+  box.innerHTML=`<div class="pz-bar">
+    ${COLORES.map((c,i)=>`<button class="col${i?'':' on'}" data-c="${c}" style="background:${c}" aria-label="Color ${i+1}"></button>`).join('')}
+    <span class="sep"></span>
+    <button data-g="3">Fino</button><button data-g="5" class="on">Medio</button><button data-g="9">Grueso</button>
+    <span class="sep"></span>
+    <button data-borr>Borrador</button>
+    <span class="der"><button data-undo>Deshacer</button><button data-clear>Limpiar</button>${conGrande?'<button data-big>Pizarra grande</button>':''}</span>
+  </div><canvas></canvas>`;
+  host.appendChild(box);
+  const cv=box.querySelector('canvas'), ctx=cv.getContext('2d');
+  const st={color:COLORES[0],g:5,borr:false,trazos:[],actual:null,grande:false};
+  const api={ajustar,onGrande:null};
+
+  function ajustar(){
+    const r=cv.getBoundingClientRect(); if(!r.width)return;
+    const dpr=window.devicePixelRatio||1;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0); dibujar();
+  }
+  // Los puntos se guardan relativos al ancho para que el dibujo sobreviva a cambios de tamaño.
+  function trazo(t,w){
+    ctx.globalCompositeOperation=t.borr?'destination-out':'source-over';
+    ctx.strokeStyle=t.color; ctx.lineWidth=t.borr?t.g*5:t.g; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath();
+    t.p.forEach(([x,y],k)=>k?ctx.lineTo(x*w,y*w):ctx.moveTo(x*w,y*w));
+    if(t.p.length===1)ctx.lineTo(t.p[0][0]*w+.1,t.p[0][1]*w);
+    ctx.stroke();
+  }
+  function dibujar(){
+    const w=cv.getBoundingClientRect().width;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    st.trazos.forEach(t=>trazo(t,w));
+    ctx.globalCompositeOperation='source-over';
+  }
+  function pos(e){const r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.width];}
+  cv.addEventListener('pointerdown',e=>{
+    if(e.button>0)return;
+    cv.setPointerCapture(e.pointerId);
+    st.actual={color:st.color,g:st.g,borr:st.borr,p:[pos(e)]};
+    st.trazos.push(st.actual); dibujar();
+  });
+  cv.addEventListener('pointermove',e=>{
+    if(!st.actual)return;
+    (e.getCoalescedEvents?e.getCoalescedEvents():[e]).forEach(ev=>st.actual.p.push(pos(ev)));
+    dibujar();
+  });
+  const fin=()=>{st.actual=null};
+  cv.addEventListener('pointerup',fin); cv.addEventListener('pointercancel',fin);
+
+  box.querySelector('.pz-bar').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    if(b.dataset.c){st.color=b.dataset.c;st.borr=false;
+      box.querySelectorAll('[data-c],[data-borr]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if(b.dataset.g){st.g=+b.dataset.g;box.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('borr' in b.dataset){st.borr=true;box.querySelectorAll('[data-c]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('undo' in b.dataset){st.trazos.pop();dibujar();}
+    else if('clear' in b.dataset){if(st.trazos.length&&confirm('¿Borrar toda la pizarra?')){st.trazos=[];dibujar();}}
+    else if('big' in b.dataset){st.grande=!st.grande;b.classList.toggle('on',st.grande);
+      b.textContent=st.grande?'Ver opciones al lado':'Pizarra grande';api.onGrande&&api.onGrande(st.grande);}
+  });
+  new ResizeObserver(ajustar).observe(cv);
+  return api;
+}
+
+/* ---------- Pizarra libre ---------- */
+let libre=null;
+function toggleLibre(){
+  const L=$('libre');
+  if(!libre)libre=crearPizarra(L,false);
+  L.classList.toggle('on');
+  $('bLibre').textContent=L.classList.contains('on')?'Cerrar pizarra':'Pizarra';
+  libre.ajustar();
+}
+$('bLibre').onclick=toggleLibre;
+
+/* ---------- Navegación ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+let cur=0;
+function ir(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle('on',i===cur));
+  slides[cur].scrollTop=0;
+  $('cnt').textContent=`${cur+1} / ${slides.length}`;
+  $('prog').style.width=(cur/(slides.length-1)*100)+'%';
+  $('bAnt').disabled=cur===0;
+  $('bSig').disabled=cur===slides.length-1 && !slides[cur].querySelector('.step:not(.vis)');
+  [...$('indice').children].forEach((b,i)=>b.classList.toggle('act',i===cur));
+  try{history.replaceState(null,'','#'+(cur+1))}catch(e){}
+}
+function avanzar(){
+  const oculto=slides[cur].querySelector('.step:not(.vis)');
+  if(oculto){oculto.classList.add('vis');oculto.scrollIntoView({block:'nearest',behavior:'smooth'});return;}
+  ir(cur+1);
+}
+function retroceder(){
+  const vistos=slides[cur].querySelectorAll('.step.vis');
+  if(vistos.length){vistos[vistos.length-1].classList.remove('vis');return;}
+  ir(cur-1);
+}
+$('bSig').onclick=avanzar; $('bAnt').onclick=retroceder;
+$('indice').innerHTML=slides.map((s,i)=>`<button type="button" data-i="${i}">${i+1}. ${esc(s.dataset.titulo||'')}</button>`).join('');
+$('indice').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ir(+b.dataset.i);$('indice').classList.remove('on');});
+$('bInd').onclick=()=>$('indice').classList.toggle('on');
+document.addEventListener('keydown',e=>{
+  if(e.target.closest('input,textarea'))return;
+  if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();avanzar();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();retroceder();}
+  else if(e.key==='p'||e.key==='P')toggleLibre();
+  else if(e.key==='Escape'){$('indice').classList.remove('on');if($('libre').classList.contains('on'))toggleLibre();}
+});
+const h=parseInt(location.hash.slice(1));
+ir(h>0?h-1:0);
+
+/* ---------- Fórmulas ---------- */
+window.addEventListener('load',()=>{
+  if(!window.renderMathInElement)return;
+  renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});
+  document.querySelectorAll('.pz canvas').forEach(c=>c.dispatchEvent(new Event('resize')));
+});
+</script>
+</body>
+</html>
