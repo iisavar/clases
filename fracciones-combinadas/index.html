@@ -114,7 +114,7 @@ p{margin:0 0 12px}
 .libre{position:fixed;inset:0 0 64px 0;z-index:20;background:var(--bg);padding:12px;display:none}
 .libre.on{display:flex}
 .libre .pz{flex:1}
-@media (max-width:600px){.nav .prog{display:none}.nav button{padding:0 10px}}
+@media (max-width:600px){#bFull{display:none}.nav .prog{display:none}.nav button{padding:0 10px}}
 </style>
 </head>
 <body>
@@ -269,6 +269,7 @@ p{margin:0 0 12px}
   <button class="av" id="bSig">Avanzar ▶</button>
   <div class="prog"><i id="prog"></i></div>
   <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
 </nav>
 
 <script src="datos.js"></script>
@@ -406,6 +407,12 @@ function toggleLibre(){
   libre.ajustar();
 }
 $('bLibre').onclick=toggleLibre;
+function toggleFull(){
+  if(document.fullscreenElement)document.exitFullscreen();
+  else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+}
+$('bFull').onclick=toggleFull;
+document.addEventListener('fullscreenchange',()=>{$('bFull').textContent=document.fullscreenElement?'Salir de pantalla completa':'Pantalla completa';});
 
 /* ---------- Navegación ---------- */
 const slides=[...document.querySelectorAll('.slide')];
@@ -440,6 +447,7 @@ document.addEventListener('keydown',e=>{
   if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();avanzar();}
   else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();retroceder();}
   else if(e.key==='p'||e.key==='P')toggleLibre();
+  else if(e.key==='f'||e.key==='F')toggleFull();
   else if(e.key==='Escape'){$('indice').classList.remove('on');if($('libre').classList.contains('on'))toggleLibre();}
 });
 const h=parseInt(location.hash.slice(1));
