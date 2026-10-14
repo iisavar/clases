@@ -124,20 +124,14 @@ p{margin:0 0 12px}
 <!-- 0. Portada -->
 <section class="slide" data-titulo="Portada">
   <div class="portada"><div>
-    <div class="frac-deco" aria-hidden="true">$\tfrac{a}{b}$</div>
-    <div class="kicker">Matemática</div>
     <h1>Operaciones <span>combinadas</span> con fracciones</h1>
     <p class="lead" style="margin:0 auto">Sumar, restar, multiplicar y dividir fracciones en un mismo ejercicio, con paréntesis y corchetes.</p>
-    <div class="chips" style="justify-content:center">
-      <span class="chip">5 láminas</span><span class="chip">6 ejercicios en pizarra</span><span class="chip">Tarea de 10 ejercicios</span>
-    </div>
   </div></div>
 </section>
 
 <!-- 1. Sumar y restar -->
 <section class="slide" data-titulo="1. Sumar y restar">
   <div class="inner">
-    <div class="kicker">Lámina 1 de 5</div>
     <h2>Sumar y restar: el denominador manda</h2>
     <p>El denominador dice <b>en cuántas partes</b> se cortó el entero; el numerador dice <b>cuántas partes</b> tomamos. Solo se pueden sumar o restar partes que tengan el mismo tamaño.</p>
     <div class="grid2">
@@ -161,7 +155,6 @@ p{margin:0 0 12px}
 <!-- 2. mcm -->
 <section class="slide" data-titulo="2. El mcm sin perderse">
   <div class="inner">
-    <div class="kicker">Lámina 2 de 5</div>
     <h2>Cómo hallar el mcm sin perderse</h2>
     <p>El mínimo común múltiplo (mcm) es el número más pequeño que se puede dividir exacto para todos los denominadores. Es el denominador común más cómodo.</p>
     <div class="grid2">
@@ -190,7 +183,6 @@ p{margin:0 0 12px}
 <!-- 3. Multiplicar y dividir -->
 <section class="slide" data-titulo="3. Multiplicar y dividir">
   <div class="inner">
-    <div class="kicker">Lámina 3 de 5</div>
     <h2>Multiplicar y dividir: aquí no hace falta el mcm</h2>
     <div class="grid2">
       <div class="card step">
@@ -215,7 +207,6 @@ p{margin:0 0 12px}
 <!-- 4. Orden, simplificar y signos -->
 <section class="slide" data-titulo="4. Orden, simplificar y signos">
   <div class="inner">
-    <div class="kicker">Lámina 4 de 5</div>
     <h2>El orden de las operaciones, simplificar y los signos</h2>
     <div class="card step">
       <h3>El orden no se negocia</h3>
@@ -247,7 +238,6 @@ p{margin:0 0 12px}
 <!-- 5. Se puede / no se puede -->
 <section class="slide" data-titulo="5. ¿Se puede o no se puede?">
   <div class="inner">
-    <div class="kicker">Lámina 5 de 5</div>
     <h2>¿Se puede o no se puede?</h2>
     <p class="lead">Antes de tocar cada tarjeta, decidan si lo que está escrito es correcto.</p>
     <div class="casos" id="casos"></div>
@@ -260,7 +250,6 @@ p{margin:0 0 12px}
 <!-- 12. Tarea -->
 <section class="slide" data-titulo="Tarea">
   <div class="inner">
-    <div class="kicker">Tarea</div>
     <h2>10 ejercicios para hoy</h2>
     <p>Resuelve en tu cuaderno con todo el procedimiento, marca la opción correcta y envía la foto hoy. Simplifica siempre el resultado.</p>
     <p><a class="btn" href="tarea/tarea-fracciones.pdf" download>Descargar la tarea en PDF</a></p>
@@ -314,7 +303,7 @@ CLASE.forEach((ej,i)=>{
   s.className='slide'; s.dataset.titulo=`Ejercicio ${i+1}: ${ej.car}`;
   s.innerHTML=`<div class="ej">
     <div class="enun">
-      <div><div class="kicker">Ejercicio ${i+1} de ${CLASE.length}</div>
+      <div><div class="kicker">Ejercicio ${i+1}</div>
       <span class="chip y" style="display:inline-block;margin-top:6px">${esc(ej.car)}</span></div>
       <div class="expr-big">$$${ej.tex}$$</div>
       <div class="ops">${ej.ops.map((o,k)=>`<button class="op" type="button"><span class="l">${'ABCD'[k]}</span><span>$\\displaystyle ${o}$</span></button>`).join('')}</div>
