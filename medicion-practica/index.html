@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mediciones en práctica</title><meta name="description" content="Seis ejercicios de mediciones en química, con opciones, apoyo paso a paso y pizarra.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{--bg:#131F24;--panel:#1B2B32;--line:#2E4652;--text:#F1F5F7;--muted:#A9BCC4;--green:#3BC97A;--gold:#FFC800;--deep:#0E171B;--tiza:#16302A;color-scheme:dark;font-family:Nunito,system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-size:18px}button,input{font:inherit}button,a{touch-action:manipulation}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}button:disabled{opacity:.4;cursor:default}button{color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:12px;font-weight:800;padding:10px 14px}a{color:var(--green)}.slide{display:none;position:absolute;inset:0 0 70px;overflow:auto;padding:22px 28px}.slide.on{display:block}h1,h2,p{margin-top:0}h1{font-size:clamp(42px,5vw,72px);line-height:1.1;letter-spacing:-1.5px;margin-bottom:22px}h1 span{color:var(--green)}h2{font-size:29px;line-height:1.15;margin-bottom:20px}.portada{min-height:100%;display:flex;align-items:center;justify-content:center}.cover{max-width:1000px;width:100%;display:grid;grid-template-columns:1.25fr 1fr;gap:65px;align-items:center}.cover p{color:var(--muted);font-size:23px;line-height:1.6}.cover .visual{border-left:2px solid var(--line);padding-left:40px;display:grid;gap:25px}.visual div{font-size:28px;font-weight:800}.visual small{display:block;color:var(--muted);font-size:16px;font-weight:600;margin-top:5px}.start,.download{display:inline-block;background:var(--green);color:var(--deep);border:0;padding:14px 22px;border-radius:14px;font-weight:900;text-decoration:none}.exercise-head{display:flex;align-items:baseline;gap:16px;margin-bottom:16px}.exercise-head h2{margin:0;font-size:25px}.exercise-head span{color:var(--muted);font-size:16px}.layout{display:grid;grid-template-columns:minmax(270px,28%) minmax(300px,1fr) 220px;gap:16px;height:calc(100% - 48px);min-height:510px}.question{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:21px;font-size:21px;line-height:1.55;margin-bottom:16px}.options{display:grid;grid-template-columns:1fr 1fr;gap:9px}.op{text-align:left;display:flex;align-items:center;gap:9px;padding:13px 10px;min-height:64px;font-size:17px;line-height:1.3}.op .letter{font-weight:900;color:var(--muted)}.op.selected{border:2px solid var(--gold);background:#303324}.op.selected .letter{color:var(--gold)}.vote{font-size:14px;color:var(--muted);line-height:1.5;margin:12px 0}.workspace{display:flex;flex-direction:column;min-width:0;min-height:0;gap:10px}.pzhost{flex:1;display:flex;min-height:320px}.pz{display:flex;flex-direction:column;width:100%;min-height:0;background:var(--tiza);border:5px solid #5B4636;border-radius:16px;overflow:hidden}.pz-bar{display:flex;flex-wrap:wrap;gap:5px;align-items:center;padding:7px;background:#0F2420;border-bottom:1px solid #24453C}.pz-bar button{background:#1C3A33;color:var(--text);border:2px solid transparent;border-radius:9px;padding:6px 8px;font-size:12px;min-height:32px}.pz-bar button.on{border-color:var(--gold)}.pz-bar .col{width:29px;height:29px;padding:0;border-radius:50%;min-height:29px}.pz-bar .sep{width:1px;height:22px;background:#2E5249}.pz-bar .der{display:flex;gap:5px;margin-left:auto}.pz canvas{flex:1;min-height:0;width:100%;display:block;touch-action:none;cursor:crosshair}.typed{background:var(--panel);padding:10px 12px;border:1px solid var(--line);border-radius:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.typed label{font-size:14px;color:var(--muted)}.typed input{min-width:100px;flex:1;width:100px;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--gold);font-weight:800;font-size:22px;padding:4px}.typed small{color:var(--muted)}.support{padding:18px 15px;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--green);border-radius:14px;align-self:start;font-size:16px;line-height:1.5}.support h3{font-size:18px;margin:0 0 14px}.formula{font-weight:900;color:var(--gold);font-size:18px;line-height:1.8;padding-bottom:13px;border-bottom:1px solid var(--line)}.hints{padding-left:20px;margin:14px 0}.hints li{margin-bottom:13px}.hints li[hidden]{display:none}.support button{font-size:14px;padding:8px 10px;width:100%}.hint-controls{display:flex;gap:6px}.support .check{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;margin:16px 0 0}.layout.large{grid-template-columns:minmax(0,1fr) 220px}.layout.large .enun{grid-column:1/-1;display:flex;gap:16px;align-items:center}.layout.large .question{flex:1;margin:0;font-size:17px;padding:12px}.layout.large .options{flex:1;grid-template-columns:repeat(4,1fr)}.layout.large .vote{display:none}.layout.large{height:auto;min-height:calc(100% - 48px)}.layout.large .workspace{height:60vh}.practice{max-width:1000px;margin:35px auto}.practice h1{font-size:44px}.practice p{font-size:22px;line-height:1.6;color:var(--muted)}.practice .instructions{background:var(--panel);padding:24px 30px;border-radius:18px;margin:22px 0;font-size:22px;line-height:1.8}.practice .delivery{color:var(--gold);font-weight:800}.nav{position:fixed;bottom:0;left:0;right:0;height:70px;display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--deep);border-top:1px solid var(--line);z-index:30}.nav .next{background:var(--green);color:var(--deep);border:0}.nav .count{font-size:15px;color:var(--muted);min-width:55px;text-align:center}.progress{flex:1;height:5px;background:var(--panel);border-radius:9px;overflow:hidden}.progress i{display:block;height:100%;background:var(--gold)}.index{display:none;position:fixed;bottom:80px;left:20px;background:var(--panel);padding:10px;border:1px solid var(--line);border-radius:14px;z-index:40;max-height:70vh;overflow:auto}.index.on{display:block}.index button{display:block;width:100%;text-align:left;border:0;font-size:16px}.index button.active{background:#2E4652}.free{display:none;position:fixed;inset:0 0 70px;background:var(--bg);padding:16px;z-index:25}.free.on{display:flex}.free .pz{flex:1}.notice{color:var(--muted);font-size:14px}
+@media(max-width:1150px){.slide{padding:18px}.layout{grid-template-columns:280px minmax(0,1fr);height:auto}.support{grid-column:1;grid-row:2}.workspace{grid-column:2;grid-row:1/3;min-height:550px}.layout.large{grid-template-columns:1fr 220px}.layout.large .workspace{grid-column:1;grid-row:2}.layout.large .support{grid-column:2;grid-row:2}.question{font-size:19px}.op{font-size:15px}}
+@media(max-width:720px){.slide{padding:18px 14px}.cover{grid-template-columns:1fr;gap:25px}.cover .visual{display:none}.cover p{font-size:20px}.layout,.layout.large{display:flex;flex-direction:column;height:auto}.workspace,.layout.large .workspace{min-height:430px;height:55vh}.support{order:1}.workspace{order:2}.layout.large .enun{display:block}.exercise-head{display:block}.exercise-head h2{margin-bottom:5px}.question{font-size:19px}.nav{padding:8px;gap:6px}.nav button{font-size:13px;padding:10px}.nav .progress{display:none}#full{display:none}.practice{margin:15px auto}.practice h1{font-size:34px}.practice .instructions,.practice p{font-size:18px}.layout.large .options{grid-template-columns:1fr 1fr}.pz-bar .der{margin-left:0}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body>
+<main id="deck"><section class="slide on" data-title="Inicio"><div class="portada"><div class="cover"><div><h1>Mediciones<br><span>en práctica</span></h1><p>Convertir unidades.<br>Calcular densidades.<br>Interpretar temperaturas.</p><button class="start" id="start">Comenzar</button></div><div class="visual" aria-hidden="true"><div>mg → g<small>La misma cantidad, otra unidad.</small></div><div>d = m / V<small>Relaciona masa y volumen.</small></div><div>°F → °C → K<small>Una temperatura, tres escalas.</small></div></div></div></div></section>
+<section class="slide" id="practice" data-title="Práctica independiente"><div class="practice"><h1>Ahora te toca resolver</h1><p>Seis ejercicios nuevos sobre lo que acabamos de practicar.</p><div class="instructions">1. Anota los datos y qué necesitas encontrar.<br>2. Escribe la equivalencia o fórmula.<br>3. Muestra el procedimiento con sus unidades.<br>4. Marca la opción correcta y destaca el resultado.</div><p class="delivery">Entrega por interno antes de finalizar la clase.</p><p>Resuelve en el cuaderno con letra legible o en Word. Reúne tus procedimientos en un solo PDF.</p><a class="download" href="tarea/practica-mediciones.pdf" download>Descargar los 6 ejercicios</a></div></section></main>
+<div class="free" id="free"></div><div class="index" id="index" aria-label="Índice de ejercicios"></div>
+<nav class="nav" aria-label="Navegación"><button id="menu" aria-label="Abrir índice" aria-expanded="false">☰</button><button id="prev">Anterior</button><span class="count" id="count"></span><button class="next" id="next">Siguiente →</button><div class="progress"><i id="progress"></i></div><button id="freeBtn">Pizarra libre</button><button id="full">Pantalla completa</button></nav>
+<script>
+const EX=[{"title": "De miligramos a gramos", "q": "Una muestra tiene una masa de <b>4500 mg</b>. ¿Cuál es su masa en gramos?", "options": ["45 g", "0.45 g", "4.5 g", "450 g"], "formula": "1 g = 1000 mg", "hints": ["Busca gramos; elimina miligramos.", "Coloca mg abajo y g arriba.", "4500 mg × (1 g / 1000 mg) = ___ g"], "check": "Al pasar a una unidad mayor, el número debe disminuir.", "result": "Masa =", "unit": "g"}, {"title": "De milímetros a micrómetros", "q": "El grosor de una lámina es <b>0.075 mm</b>. Exprésalo en micrómetros (µm).", "options": ["0.000075 µm", "75 µm", "750 µm", "0.75 µm"], "formula": "1 mm = 1000 µm", "hints": ["Mili = 10⁻³; micro = 10⁻⁶.", "El micrómetro es más pequeño: el número aumenta.", "0.075 mm × (1000 µm / 1 mm) = ___ µm"], "check": "La medida física es la misma; cambian el número y la unidad.", "result": "Grosor =", "unit": "µm"}, {"title": "Un volumen, dos unidades", "q": "Un recipiente contiene <b>1800 cm³</b> de agua. Expresa ese volumen en <b>mL y L</b>, en ese orden.", "options": ["180 mL; 0.18 L", "1800 mL; 18 L", "18 mL; 1.8 L", "1800 mL; 1.8 L"], "formula": "1 cm³ = 1 mL<br>1000 mL = 1 L", "hints": ["Primero usa la equivalencia entre cm³ y mL.", "Después convierte de mL a L.", "1800 mL × (1 L / 1000 mL) = ___ L"], "check": "El número en litros debe ser menor que el número en mililitros.", "result": "Volumen =", "unit": "mL / L"}, {"title": "Primero convierte; después calcula", "q": "Una pieza tiene una masa de <b>0.27 kg</b> y ocupa <b>100 cm³</b>. Calcula su densidad en <b>g/cm³</b>.", "options": ["0.0027 g/cm³", "2.7 g/cm³", "27 g/cm³", "270 g/cm³"], "formula": "d = m / V<br>1 kg = 1000 g", "hints": ["La respuesta pide gramos, así que convierte la masa.", "m = 0.27 × 1000 = ___ g", "d = masa en g ÷ 100 cm³ = ___ g/cm³"], "check": "La masa debe estar en g y el volumen en cm³ antes de dividir.", "result": "Densidad =", "unit": "g/cm³"}, {"title": "El agua nos dice el volumen", "q": "Una probeta contiene <b>40 mL</b> de agua. Al sumergir por completo una pieza de <b>117 g</b>, el nivel llega a <b>55 mL</b>. La pieza no se disuelve. ¿Cuál es su <b>volumen y densidad</b>?", "options": ["55 mL; 2.13 g/mL", "15 mL; 0.128 g/mL", "15 mL; 7.8 g/mL", "95 mL; 1.23 g/mL"], "formula": "V = Vfinal − Vinicial<br>d = m / V", "hints": ["Usa cuánto subió el agua, no el volumen final.", "V = 55 − 40 = ___ mL", "d = 117 g ÷ volumen de la pieza = ___ g/mL"], "check": "1 mL = 1 cm³. Conserva la unidad en cada paso.", "result": "V y densidad =", "unit": "mL / g/mL"}, {"title": "De Fahrenheit a Celsius y kelvin", "q": "Un termómetro marca <b>68 °F</b>. Convierte esta temperatura primero a <b>°C</b> y después a <b>K</b>.", "options": ["20 °C; 293.15 K", "36 °C; 309.15 K", "20 °C; 253.15 K", "104 °C; 377.15 K"], "formula": "°C = (°F − 32) × 5/9<br>K = °C + 273.15", "hints": ["Primero resta 32 a la lectura en °F.", "°C = (68 − 32) × 5/9 = ___ °C", "K = tu resultado en °C + 273.15"], "check": "Usa 273.15 y escribe K, sin el símbolo de grado.", "result": "Temperatura =", "unit": "°C / K"}];
+const $=id=>document.getElementById(id);
+EX.forEach((ex,i)=>{
+ const slide=document.createElement('section');slide.className='slide';slide.dataset.title=`Ejercicio ${i+1}`;
+ slide.innerHTML=`<header class="exercise-head"><h2>Ejercicio ${i+1}</h2><span>${ex.title}</span></header><div class="layout"><div class="enun"><div class="question">${ex.q}</div><div class="options">${ex.options.map((o,k)=>`<button class="op" aria-pressed="false"><span class="letter">${'ABCD'[k]}</span><span>${o}</span></button>`).join('')}</div><p class="vote">Elige una opción y explica cómo llegaste a ella.</p></div><div class="workspace"><div class="pzhost"></div><div class="typed"><label for="result${i}">${ex.result}</label><input id="result${i}" aria-label="Resultado del ejercicio ${i+1}" autocomplete="off" placeholder="Escribe aquí"><small>${ex.unit}</small></div></div><aside class="support"><h3>Apoyo</h3><div class="formula">${ex.formula}</div><ol class="hints">${ex.hints.map(h=>`<li hidden>${h}</li>`).join('')}</ol><div class="hint-controls"><button class="hint">Ver una pista</button><button class="hide" hidden>Ocultar</button></div><p class="check">${ex.check}</p></aside></div>`;
+ $('practice').before(slide);
+ slide.querySelector('.options').addEventListener('click',e=>{const b=e.target.closest('.op');if(!b)return;const yes=!b.classList.contains('selected');slide.querySelectorAll('.op').forEach(x=>{x.classList.remove('selected');x.setAttribute('aria-pressed','false')});b.classList.toggle('selected',yes);b.setAttribute('aria-pressed',String(yes));});
+ const hints=[...slide.querySelectorAll('.hints li')], hint=slide.querySelector('.hint'),hide=slide.querySelector('.hide');let n=0;
+ hint.onclick=()=>{if(n<hints.length)hints[n++].hidden=false;hide.hidden=false;hint.textContent=n===hints.length?'Pistas completas':'Siguiente pista';hint.disabled=n===hints.length};
+ hide.onclick=()=>{hints.forEach(h=>h.hidden=true);n=0;hint.disabled=false;hint.textContent='Ver una pista';hide.hidden=true};
+ const p=crearPizarra(slide.querySelector('.pzhost'),true);p.onGrande=on=>{slide.querySelector('.layout').classList.toggle('large',on);p.ajustar()};
+});
+function crearPizarra(host,conGrande){
+  const COLORES=['#F4F1E8','#FFC800','#3BC97A','#4FB3E8','#FF6B6B'];
+  const box=document.createElement('div'); box.className='pz';
+  box.innerHTML=`<div class="pz-bar">
+    ${COLORES.map((c,i)=>`<button class="col${i?'':' on'}" data-c="${c}" style="background:${c}" aria-label="Color ${i+1}"></button>`).join('')}
+    <span class="sep"></span>
+    <button data-g="3">Fino</button><button data-g="5" class="on">Medio</button><button data-g="9">Grueso</button>
+    <span class="sep"></span>
+    <button data-borr>Borrador</button>
+    <span class="der"><button data-undo>Deshacer</button><button data-clear>Limpiar</button>${conGrande?'<button data-big>Pizarra grande</button>':''}</span>
+  </div><canvas></canvas>`;
+  host.appendChild(box);
+  const cv=box.querySelector('canvas'), ctx=cv.getContext('2d');
+  const st={color:COLORES[0],g:5,borr:false,trazos:[],actual:null,grande:false};
+  const api={ajustar,onGrande:null};
+
+  function ajustar(){
+    const r=cv.getBoundingClientRect(); if(!r.width)return;
+    const dpr=window.devicePixelRatio||1;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0); dibujar();
+  }
+  // Los puntos se guardan relativos al ancho para que el dibujo sobreviva a cambios de tamaño.
+  function trazo(t,w){
+    ctx.globalCompositeOperation=t.borr?'destination-out':'source-over';
+    ctx.strokeStyle=t.color; ctx.lineWidth=t.borr?t.g*5:t.g; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath();
+    t.p.forEach(([x,y],k)=>k?ctx.lineTo(x*w,y*w):ctx.moveTo(x*w,y*w));
+    if(t.p.length===1)ctx.lineTo(t.p[0][0]*w+.1,t.p[0][1]*w);
+    ctx.stroke();
+  }
+  function dibujar(){
+    const w=cv.getBoundingClientRect().width;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    st.trazos.forEach(t=>trazo(t,w));
+    ctx.globalCompositeOperation='source-over';
+  }
+  function pos(e){const r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.width];}
+  cv.addEventListener('pointerdown',e=>{
+    if(e.button>0)return;
+    cv.setPointerCapture(e.pointerId);
+    st.actual={color:st.color,g:st.g,borr:st.borr,p:[pos(e)]};
+    st.trazos.push(st.actual); dibujar();
+  });
+  cv.addEventListener('pointermove',e=>{
+    if(!st.actual)return;
+    (e.getCoalescedEvents?e.getCoalescedEvents():[e]).forEach(ev=>st.actual.p.push(pos(ev)));
+    dibujar();
+  });
+  const fin=()=>{st.actual=null};
+  cv.addEventListener('pointerup',fin); cv.addEventListener('pointercancel',fin);
+
+  box.querySelector('.pz-bar').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    if(b.dataset.c){st.color=b.dataset.c;st.borr=false;
+      box.querySelectorAll('[data-c],[data-borr]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if(b.dataset.g){st.g=+b.dataset.g;box.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('borr' in b.dataset){st.borr=true;box.querySelectorAll('[data-c]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('undo' in b.dataset){st.trazos.pop();dibujar();}
+    else if('clear' in b.dataset){if(st.trazos.length&&confirm('¿Borrar toda la pizarra?')){st.trazos=[];dibujar();}}
+    else if('big' in b.dataset){st.grande=!st.grande;b.classList.toggle('on',st.grande);
+      b.textContent=st.grande?'Ver opciones al lado':'Pizarra grande';api.onGrande&&api.onGrande(st.grande);}
+  });
+  new ResizeObserver(ajustar).observe(cv);
+  return api;
+}
+
+
+const slides=[...document.querySelectorAll('.slide')];let current=0,free=null;
+function go(n){current=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,i)=>s.classList.toggle('on',i===current));slides[current].scrollTop=0;$('count').textContent=`${current+1} / ${slides.length}`;$('prev').disabled=current===0;$('next').disabled=current===slides.length-1;$('progress').style.width=`${current/(slides.length-1)*100}%`;document.querySelectorAll('#index button').forEach((b,i)=>b.classList.toggle('active',i===current));try{history.replaceState(null,'','#'+(current+1))}catch(e){}}
+function closeMenu(){$('index').classList.remove('on');$('menu').setAttribute('aria-expanded','false')}
+$('index').innerHTML=slides.map((s,i)=>`<button data-slide="${i}">${s.dataset.title}</button>`).join('');
+$('index').onclick=e=>{const b=e.target.closest('button');if(b){go(+b.dataset.slide);closeMenu()}};
+$('menu').onclick=()=>{$('index').classList.toggle('on');$('menu').setAttribute('aria-expanded',String($('index').classList.contains('on')))};
+$('prev').onclick=()=>go(current-1);$('next').onclick=()=>go(current+1);$('start').onclick=()=>go(1);
+function toggleFree(){if(!free)free=crearPizarra($('free'),false);$('free').classList.toggle('on');$('freeBtn').textContent=$('free').classList.contains('on')?'Cerrar pizarra':'Pizarra libre';free.ajustar()}
+$('freeBtn').onclick=toggleFree;
+async function full(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen()}catch(e){$('full').textContent='Usa F11 para ampliar'}}
+$('full').onclick=full;document.addEventListener('fullscreenchange',()=>{$('full').textContent=document.fullscreenElement?'Salir de pantalla completa':'Pantalla completa'});
+document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select'))return;if(e.key==='Escape'){closeMenu();if($('free').classList.contains('on'))toggleFree()}else if(e.key.toLowerCase()==='p')toggleFree();else if(e.key.toLowerCase()==='f')full();else if(!$('free').classList.contains('on')&&['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();go(current+1)}else if(!$('free').classList.contains('on')&&['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current-1)}});
+go((parseInt(location.hash.slice(1))||1)-1);
+</script></body></html>
