@@ -1,0 +1,198 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage[margin=2cm]{geometry}
+\usepackage{enumitem}
+\DeclareUnicodeCharacter{2190}{\ensuremath{\leftarrow}}
+\pagestyle{plain}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\begin{document}
+{\Large\bfseries Tarea de pseudocódigo}
+\vspace{12pt}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=*,itemsep=11pt,topsep=0pt]
+\item \begin{minipage}[t]{\linewidth}
+Según el aula, el pseudocódigo es
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~la descripción de un algoritmo en lenguaje natural estructurado, mezclando español con palabras clave de programación & b)~un programa ya compilado \\
+c)~un lenguaje de programación que se ejecuta en la computadora & d)~un dibujo con símbolos conectados por flechas \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+En un diagrama de flujo, ¿qué símbolo corresponde a la instrucción area $\leftarrow$ b * h?
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~Óvalo de inicio o fin & b)~Rectángulo de proceso \\
+c)~Paralelogramo de entrada o salida & d)~Rombo de decisión \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+En un diagrama de flujo, ¿qué forma tiene el símbolo que marca el INICIO y el FIN?
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~Paralelogramo & b)~Rombo \\
+c)~Rectángulo & d)~Óvalo \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+¿Qué escribe este algoritmo?
+
+\vspace{2pt}{\small
+\begin{verbatim}
+INICIO
+   ENTERO a, b, aux
+   a ← 4
+   b ← 6
+   aux ← a
+   a ← b
+   b ← aux
+   ESCRIBIR a, b
+FIN
+\end{verbatim}}
+
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~6, 4 & b)~4, 4 \\
+c)~6, 6 & d)~4, 6 \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+Si el usuario ingresa 15, ¿qué escribe este algoritmo?
+
+\vspace{2pt}{\small
+\begin{verbatim}
+LEER edad
+SI edad >= 18 ENTONCES
+   ESCRIBIR "Eres mayor de edad"
+FIN_SI
+\end{verbatim}}
+
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~No escribe nada & b)~Eres mayor de edad \\
+c)~Un mensaje de error & d)~Eres menor de edad \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+Si el usuario ingresa 89, ¿qué escribe este algoritmo?
+
+\vspace{2pt}{\small
+\begin{verbatim}
+LEER nota
+SI nota >= 90 ENTONCES
+   ESCRIBIR "Excelente"
+SINO
+   SI nota >= 70 ENTONCES
+      ESCRIBIR "Aprobado"
+   SINO
+      ESCRIBIR "Reprobado"
+   FIN_SI
+FIN_SI
+\end{verbatim}}
+
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~Reprobado & b)~Excelente, Aprobado \\
+c)~Aprobado & d)~Excelente \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+¿Qué escribe este algoritmo?
+
+\vspace{2pt}{\small
+\begin{verbatim}
+PARA i ← 1 HASTA 3 HACER
+   ESCRIBIR i * 2
+FIN_PARA
+\end{verbatim}}
+
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~1, 2, 3 & b)~2, 4, 6 \\
+c)~2, 4, 6, 8 & d)~1, 4, 9 \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+¿Qué escribe este algoritmo?
+
+\vspace{2pt}{\small
+\begin{verbatim}
+INICIO
+   ENTERO i, suma
+   suma ← 0
+   PARA i ← 2 HASTA 6 HACER
+      suma ← suma + i
+   FIN_PARA
+   ESCRIBIR suma
+FIN
+\end{verbatim}}
+
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~6 & b)~20 \\
+c)~21 & d)~18 \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+¿Cuántas veces se ejecuta el cuerpo de este bucle?
+
+\vspace{2pt}{\small
+\begin{verbatim}
+i ← 0
+MIENTRAS i < 10 HACER
+   i ← i + 3
+FIN_MIENTRAS
+\end{verbatim}}
+
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~10 & b)~5 \\
+c)~3 & d)~4 \\
+\end{tabular}
+\end{minipage}
+
+\item \begin{minipage}[t]{\linewidth}
+¿Qué escribe este algoritmo?
+
+\vspace{2pt}{\small
+\begin{verbatim}
+INICIO
+   ENTERO n
+   n ← 1
+   MIENTRAS n < 20 HACER
+      n ← n * 3
+   FIN_MIENTRAS
+   ESCRIBIR n
+FIN
+\end{verbatim}}
+
+
+\vspace{4pt}
+\begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+a)~27 & b)~9 \\
+c)~3 & d)~20 \\
+\end{tabular}
+\end{minipage}
+
+\end{enumerate}
+\end{document}

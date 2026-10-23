@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lenguaje algorítmico</title>
+<meta name="description" content="Tipos de datos, variables, constantes, expresiones, operadores aritméticos, relacionales y lógicos y jerarquía de operadores, con ejercicios con pizarra y tarea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Diseño: láminas a pantalla completa en tema oscuro (fondo petróleo, verde de acción, dorado para lo clave) y pizarra de tiza para resolver en vivo. */
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --red:#FF6B6B; --blue:#4FB3E8; --ink:#0E1A1F; --tiza:#16302A;
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:clamp(17px,1.6vw,22px);line-height:1.55;overflow:hidden}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+sub{font-size:.7em;line-height:0}
+.deck{position:fixed;inset:0 0 64px 0}
+.slide{position:absolute;inset:0;display:none;overflow-y:auto;padding:clamp(16px,3vw,40px) clamp(16px,4vw,56px)}
+.slide.on{display:block}
+.inner{max-width:1180px;margin:0 auto}
+.kicker{color:var(--gold);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.7em}
+h1{font-weight:900;font-size:clamp(34px,6vw,72px);line-height:1.05;margin:8px 0 14px;text-wrap:balance}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:clamp(26px,3.6vw,46px);line-height:1.1;margin:4px 0 16px;text-wrap:balance}
+p{margin:0 0 12px}
+.lead{color:var(--muted);max-width:60ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 22px}
+.card h3{margin:0 0 8px;font-size:1.05em;font-weight:900;color:var(--green-t)}
+.clave{border-left:6px solid var(--gold);background:var(--panel2);border-radius:12px;padding:12px 18px;margin:16px 0}
+.clave b{color:var(--gold)}
+.ejemplo{background:var(--deep);border:1px dashed var(--line);border-radius:14px;padding:12px 18px;margin:10px 0;font-size:1.08em}
+.paso{color:var(--muted);font-size:.85em;margin-left:6px}
+.step{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;visibility:hidden}
+.step.vis{opacity:1;transform:none;visibility:visible}
+.chip{font-weight:800;font-size:.8em;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.chip.g{background:var(--green);color:var(--ink);border-color:var(--green)}
+.chip.y{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.orden{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:900;font-size:1.05em;margin:8px 0}
+.orden .chip{font-size:.9em}
+.portada{min-height:100%;display:grid;place-items:center;text-align:center}
+.f{font-weight:900;color:var(--gold)}
+.code{font-family:Consolas,"Cascadia Mono","Courier New",monospace;background:var(--deep);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:10px 0;white-space:pre;text-align:left;overflow-x:auto;font-size:.88em;line-height:1.45}
+table.t{width:100%;border-collapse:collapse;font-size:.92em}
+table.t th{text-align:left;color:var(--green-t);font-weight:900;border-bottom:2px solid var(--line);padding:6px 10px}
+table.t td{border-bottom:1px solid var(--line);padding:6px 10px}
+table.t td:first-child{font-weight:900}
+
+/* Casos: ¿está bien o está mal? */
+.casos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.caso{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.caso .expr{font-size:1.1em;text-align:center;padding:6px 0;font-weight:700}
+.caso button{align-self:center;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:6px 14px;font-weight:800;font-size:.8em}
+.caso .ver{display:none;font-size:.85em;border-radius:10px;padding:8px 12px}
+.caso.si{border-color:var(--green)} .caso.si .ver{display:block;background:#173A2A}
+.caso.no{border-color:var(--red)} .caso.no .ver{display:block;background:#3A1F22}
+.ver b{font-weight:900}
+.caso.si .ver b{color:var(--green-t)} .caso.no .ver b{color:var(--red)}
+
+/* Ejercicios con pizarra */
+.ej{display:grid;grid-template-columns:minmax(300px,36%) 1fr;gap:18px;height:100%}
+.ej .enun{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ej .expr-big.izq{text-align:left;font-size:clamp(17px,1.6vw,23px);padding:12px 14px}
+.ej .expr-big .code{font-size:.74em;font-weight:600;line-height:1.3;padding:8px 12px;margin:8px 0 0}
+.tarea .code{font-size:.8em;padding:8px 12px;margin:0 0 8px}
+.ej .expr-big{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 16px;text-align:center;font-size:clamp(20px,2.1vw,30px);font-weight:800;line-height:1.3}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{display:flex;align-items:center;gap:10px;background:var(--panel);color:var(--text);border:2px solid var(--line);border-radius:16px;padding:8px 12px;font-size:1em;text-align:left;min-height:64px}
+.op .l{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900;font-size:.8em}
+.op.marcada{border-color:var(--gold)}
+.op.marcada .l{background:var(--gold);color:var(--ink)}
+.ayuda{color:var(--muted);font-size:.75em}
+.pz{display:flex;flex-direction:column;min-height:420px;background:var(--tiza);border:6px solid #5B4636;border-radius:18px;overflow:hidden}
+.pz-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;background:#0F2420;border-bottom:1px solid #24453C}
+.pz-bar button{background:#1C3A33;color:var(--text);border:2px solid transparent;border-radius:12px;padding:5px 10px;font-weight:800;font-size:14px;min-height:36px}
+.pz-bar button.on{border-color:var(--gold)}
+.pz-bar .col{width:34px;height:34px;padding:0;border-radius:50%}
+.pz-bar .sep{width:1px;height:26px;background:#2E5249;margin:0 4px}
+.pz-bar .der{margin-left:auto;display:flex;gap:6px}
+.pz canvas{flex:1;width:100%;display:block;touch-action:none;cursor:crosshair}
+.ej.grande{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+.ej.grande .enun{flex-direction:row;align-items:center;flex-wrap:wrap}
+.ej.grande .expr-big{flex:1 1 380px;padding:10px}
+.ej.grande .ops{flex:1 1 420px;grid-template-columns:repeat(4,1fr)}
+.ej.grande .op{min-height:52px;font-size:.9em}
+.ej.grande .ayuda,.ej.grande h2{display:none}
+@media (max-width:900px){.ej{grid-template-columns:1fr;height:auto}.pz{height:70vh}}
+
+/* Tarea */
+.tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
+.tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.tarea .n{font-weight:900;color:var(--gold);margin-right:6px}
+.tarea .q{font-size:1em;margin:0 0 8px;font-weight:700}
+.tarea .o{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:.88em}
+.tarea .o span b{color:var(--muted);margin-right:4px}
+.btn{display:inline-block;font-weight:900;border:0;border-radius:16px;padding:12px 20px;background:var(--green);color:var(--ink);box-shadow:0 4px 0 var(--green-d);text-decoration:none}
+
+/* Barra inferior */
+.nav{position:fixed;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--deep);border-top:1px solid var(--line)}
+.nav button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;height:44px;padding:0 16px;font-weight:900}
+.nav .av{background:var(--green);color:var(--ink);border-color:var(--green);box-shadow:0 3px 0 var(--green-d)}
+.nav .cnt{font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums;min-width:70px;text-align:center}
+.nav .prog{flex:1;height:8px;background:var(--panel);border-radius:99px;overflow:hidden}
+.nav .prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s}
+.indice{position:fixed;bottom:72px;left:14px;z-index:30;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px;display:none;max-height:70vh;overflow:auto;min-width:280px}
+.indice.on{display:block}
+.indice button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;font-size:16px}
+.indice button:hover,.indice button.act{background:var(--panel2)}
+.libre{position:fixed;inset:0 0 64px 0;z-index:20;background:var(--bg);padding:12px;display:none}
+.libre.on{display:flex}
+.libre .pz{flex:1}
+@media (max-width:600px){#bFull{display:none}.nav .prog{display:none}.nav button{padding:0 10px}}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- 0. Portada -->
+<section class="slide" data-titulo="Portada">
+  <div class="portada"><div>
+    <h1>Lenguaje <span>algorítmico</span></h1>
+    <p class="lead" style="margin:0 auto">Tipos de datos, variables, constantes y operadores, y el orden para resolver cualquier expresión paso a paso.</p>
+  </div></div>
+</section>
+
+<!-- 1. Tipos de datos -->
+<section class="slide" data-titulo="1. Tipos de datos">
+  <div class="inner">
+    <h2>El tipo de dato dice qué se guarda y qué se puede hacer con eso</h2>
+    <p>Un <b>tipo de dato</b> es la clasificación que indica qué clase de información puede almacenar una variable y qué operaciones se pueden realizar sobre ella.</p>
+    <div class="card step">
+      <table class="t">
+        <tr><th>Tipo</th><th>Qué guarda</th><th>Ejemplo</th><th>Uso típico</th></tr>
+        <tr><td>Entero</td><td>Números sin decimales</td><td>42, −7, 0</td><td>Contadores, edades, códigos</td></tr>
+        <tr><td>Real</td><td>Números con decimales</td><td>3.14, −0.5</td><td>Promedios, precios, mediciones</td></tr>
+        <tr><td>Cadena</td><td>Texto, caracteres y palabras</td><td>"A", "Hola mundo"</td><td>Nombres, mensajes</td></tr>
+        <tr><td>Booleano</td><td>Verdadero o falso</td><td>verdadero, falso</td><td>Decisiones</td></tr>
+      </table>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>¿Qué tipo usarías?</h3>
+      <div class="orden"><span class="chip">cantidad de estudiantes: entero</span><span class="chip">promedio de notas: real</span><span class="chip">nombre de usuario: cadena</span><span class="chip">correo verificado: booleano</span></div>
+    </div>
+    <div class="clave step"><b>Clave:</b> la palabra "hola" y el número 5 no se pueden sumar, porque son de tipos distintos.</div>
+  </div>
+</section>
+
+<!-- 2. Variables y constantes -->
+<section class="slide" data-titulo="2. Variables y constantes">
+  <div class="inner">
+    <h2>La variable cambia, la constante no</h2>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Variable</h3>
+        <p>Espacio en memoria identificado por un nombre, cuyo contenido puede cambiar durante la ejecución. Tiene nombre, tipo y valor.</p>
+<div class="code">ENTERO edad ← 20
+edad ← 21</div>
+        <p class="paso" style="margin:0">La flecha ← asigna. Se lee «edad recibe 21». El 20 se pierde.</p>
+      </div>
+      <div class="card step">
+        <h3>Constante</h3>
+        <p>Valor que se asigna una sola vez y no puede modificarse durante la ejecución. Por convención va en MAYÚSCULAS.</p>
+<div class="code">CONSTANTE REAL IVA ← 0.15
+CONSTANTE REAL PI ← 3.1416</div>
+        <p class="paso" style="margin:0">IVA es el Impuesto al Valor Agregado.</p>
+      </div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Reglas para nombrar variables</h3>
+      <p class="paso" style="margin:0 0 8px">Empieza con letra o guion bajo. Sin espacios ni símbolos como @, $ o %. Edad y edad son distintas. No puede ser una palabra reservada como if, while o for.</p>
+      <div class="orden"><span class="chip g">edad</span><span class="chip g">notaParcial1</span><span class="chip g">promedio_final</span><span class="chip">1nota</span><span class="chip">mi variable</span><span class="chip">class</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Expresiones y operadores aritméticos -->
+<section class="slide" data-titulo="3. Expresiones y operadores aritméticos">
+  <div class="inner">
+    <h2>Toda expresión, al evaluarse, produce un valor</h2>
+    <p>Una <b>expresión</b> combina valores, variables, constantes y operadores.</p>
+    <div class="grid3">
+      <div class="card step"><h3>Aritmética: da un número</h3><div class="code">total ← (precio * cantidad) + envio</div></div>
+      <div class="card step"><h3>Relacional: da verdadero o falso</h3><div class="code">puedeVotar ← edad >= 18</div></div>
+      <div class="card step"><h3>Lógica: combina condiciones</h3><div class="code">acceso ← esSocio Y pagoAlDia</div></div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <table class="t">
+        <tr><th>Operador</th><th>Operación</th><th>Ejemplo</th><th>Resultado</th></tr>
+        <tr><td>+ &nbsp; −</td><td>Suma y resta</td><td>5 + 3 &nbsp; 10 - 4</td><td>8 &nbsp; 6</td></tr>
+        <tr><td>*</td><td>Multiplicación</td><td>7 * 2</td><td>14</td></tr>
+        <tr><td>/</td><td>División, con decimales</td><td>15 / 4</td><td>3.75</td></tr>
+        <tr><td>%</td><td>Módulo, el resto de la división entera</td><td>10 % 3</td><td>1</td></tr>
+        <tr><td>^</td><td>Potencia</td><td>2 ^ 3</td><td>8</td></tr>
+      </table>
+    </div>
+    <div class="clave step"><b>Clave:</b> % no da el cociente, da lo que sobra. Si n % 2 == 0, el número es par.</div>
+  </div>
+</section>
+
+<!-- 4. Jerarquía -->
+<section class="slide" data-titulo="4. Jerarquía de operadores">
+  <div class="inner">
+    <h2>¿Quién va primero?</h2>
+    <div class="orden"><span class="chip y">1. Paréntesis ( )</span>→<span class="chip y">2. Potencia ^</span>→<span class="chip y">3. * &nbsp; / &nbsp; %</span>→<span class="chip y">4. + &nbsp; −</span></div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="card step">
+        <h3>Ejemplo del aula</h3>
+        <div class="ejemplo">2 + 3 * 4 ^ 2</div>
+        <div class="ejemplo">2 + 3 * 16 <span class="paso">potencia</span></div>
+        <div class="ejemplo">2 + 48 <span class="paso">multiplicación</span></div>
+        <div class="ejemplo"><span class="f">50</span> <span class="paso">suma</span></div>
+      </div>
+      <div class="card step">
+        <h3>Igual prioridad: de izquierda a derecha</h3>
+        <div class="ejemplo">8 / 2 * 4</div>
+        <div class="ejemplo">4 * 4 <span class="paso">la división está a la izquierda</span></div>
+        <div class="ejemplo"><span class="f">16</span></div>
+        <p class="paso" style="margin:0">Quien multiplica primero obtiene 8 / 8 = 1 y se equivoca.</p>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> multiplicación, división y módulo tienen la misma prioridad. Ninguna va antes que otra, manda la que esté más a la izquierda.</div>
+  </div>
+</section>
+
+<!-- 5. Relacionales y lógicos -->
+<section class="slide" data-titulo="5. Operadores relacionales y lógicos">
+  <div class="inner">
+    <h2>Comparar da verdadero o falso</h2>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Relacionales</h3>
+        <table class="t">
+          <tr><th>Operador</th><th>Significa</th><th>Ejemplo</th></tr>
+          <tr><td>==</td><td>igual a</td><td>5 == 5 es verdadero</td></tr>
+          <tr><td>!= &nbsp;o&nbsp; &lt;&gt;</td><td>distinto de</td><td>5 != 3 es verdadero</td></tr>
+          <tr><td>&gt; &nbsp; &lt;</td><td>mayor, menor</td><td>7 &gt; 10 es falso</td></tr>
+          <tr><td>&gt;= &nbsp; &lt;=</td><td>mayor o igual, menor o igual</td><td>5 &gt;= 5 es verdadero</td></tr>
+        </table>
+      </div>
+      <div class="card step">
+        <h3>Lógicos</h3>
+        <p class="paso" style="margin:0 0 6px"><b>Y</b>: verdadero solo si las dos lo son. <b>O</b>: verdadero si al menos una lo es. <b>NO</b>: invierte el valor.</p>
+        <table class="t">
+          <tr><th>A</th><th>B</th><th>A Y B</th><th>A O B</th><th>NO A</th></tr>
+          <tr><td>V</td><td>V</td><td>V</td><td>V</td><td>F</td></tr>
+          <tr><td>V</td><td>F</td><td>F</td><td>V</td><td>F</td></tr>
+          <tr><td>F</td><td>V</td><td>F</td><td>V</td><td>V</td></tr>
+          <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>V</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> ← asigna y == compara. Confundirlos es el error más repetido.</div>
+  </div>
+</section>
+
+<!-- 6. Expresiones combinadas -->
+<section class="slide" data-titulo="6. Expresiones combinadas">
+  <div class="inner">
+    <h2>Se resuelve en tres pasos: aritmético, relacional y lógico</h2>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Descuento, con edad = 45 y compras = 600</h3>
+<div class="code">aplicaDescuento ← (edad >= 60) O (compras * 1.0 > 500)</div>
+        <div class="ejemplo">compras * 1.0 = 600.0 <span class="paso">aritmético</span></div>
+        <div class="ejemplo">(falso) O (verdadero) <span class="paso">relacional</span></div>
+        <div class="ejemplo"><span class="f">verdadero</span> <span class="paso">lógico</span></div>
+      </div>
+      <div class="card step">
+        <h3>Inicio de sesión</h3>
+<div class="code">acceso ← (usuarioCorrecto Y claveCorrecta) Y NO cuentaBloqueada</div>
+        <p class="paso" style="margin:0">Con usuario y clave correctos, pero con la cuenta bloqueada:</p>
+        <div class="ejemplo">(verdadero) Y NO verdadero</div>
+        <div class="ejemplo">verdadero Y falso = <span class="f">falso</span></div>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> los paréntesis separan cada condición. Primero se resuelve cada paréntesis y al final se aplican Y, O y NO.</div>
+  </div>
+</section>
+
+<!-- 7. ¿Está bien o está mal? -->
+<section class="slide" data-titulo="7. ¿Está bien o está mal?">
+  <div class="inner">
+    <h2>¿Está bien o está mal?</h2>
+    <p class="lead">Antes de tocar cada tarjeta, decidan si lo que está escrito es correcto.</p>
+    <div class="casos" id="casos"></div>
+  </div>
+</section>
+
+<!-- 8 a 16: ejercicios (se arman con datos.js) -->
+<div id="ejercicios-ancla" hidden></div>
+
+<!-- Tarea -->
+<section class="slide" data-titulo="Tarea">
+  <div class="inner">
+    <h2>Tarea: 10 ejercicios</h2>
+    <p>Resuelve en tu cuaderno, escribe en cada uno cómo llegaste a la respuesta, marca la opción correcta y envía la foto hoy.</p>
+    <p><a class="btn" href="tarea/tarea-lenguaje-algoritmico.pdf" download>Descargar la tarea en PDF</a></p>
+    <div class="tarea" id="tarea"></div>
+  </div>
+</section>
+
+</div>
+
+<div class="libre" id="libre"></div>
+
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ---------- Casos de la lámina 7 ---------- */
+const CASOS=[
+  {e:"10 % 3 da 3",ok:false,w:"% da el resto. 10 entre 3 cabe 3 veces y sobra 1. 10 % 3 es 1."},
+  {e:"15 / 4 da 3.75",ok:true,w:"La división con / da el resultado con decimales."},
+  {e:"5 + 4 * 2 da 18",ok:false,w:"Primero la multiplicación. 4 * 2 es 8 y 5 + 8 es 13."},
+  {e:"18 / 3 * 2 da 3",ok:false,w:"Igual prioridad, de izquierda a derecha. 18 / 3 es 6 y 6 * 2 es 12."},
+  {e:"2 ^ 3 * 2 da 16",ok:true,w:"Primero la potencia. 2 ^ 3 es 8 y 8 * 2 es 16."},
+  {e:"1nota es un nombre de variable válido",ok:false,w:"Un nombre no puede empezar con número. notaParcial1 sí es válido."},
+  {e:"Edad y edad son la misma variable",ok:false,w:"Se distinguen mayúsculas de minúsculas. Son dos variables distintas."},
+  {e:"El IVA de una tienda se guarda como constante",ok:true,w:"Es un valor fijo del problema. Por convención se escribe en MAYÚSCULAS."},
+  {e:"edad &gt;= 18 da un número",ok:false,w:"Una expresión relacional siempre da verdadero o falso."},
+  {e:"verdadero Y falso da verdadero",ok:false,w:"Y exige que las dos sean verdaderas. Da falso."},
+  {e:"NO falso da verdadero",ok:true,w:"NO invierte el valor."},
+  {e:"El signo == asigna un valor",ok:false,w:"== compara. Para asignar se usa la flecha ←."}
+];
+$('casos').innerHTML=CASOS.map((c,i)=>`<div class="caso" data-i="${i}"><div class="expr">${c.e}</div>
+  <button type="button">Ver respuesta</button><div class="ver"><b>${c.ok?'Está bien.':'Está mal.'}</b> ${c.w}</div></div>`).join('');
+$('casos').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  const card=b.closest('.caso'); const c=CASOS[card.dataset.i];
+  card.classList.add(c.ok?'si':'no'); b.remove();
+});
+
+/* ---------- Ejercicios con pizarra ---------- */
+const ancla=$('ejercicios-ancla');
+CLASE.forEach((ej,i)=>{
+  const s=document.createElement('section');
+  s.className='slide'; s.dataset.titulo=`Ejercicio ${i+1}: ${ej.car}`;
+  s.innerHTML=`<div class="ej">
+    <div class="enun">
+      <div><div class="kicker">Ejercicio ${i+1}</div>
+      <span class="chip y" style="display:inline-block;margin-top:6px">${esc(ej.car)}</span></div>
+      <div class="expr-big${ej.code?' izq':''}">${ej.enun}${ej.code?`<div class="code">${ej.code}</div>`:''}</div>
+      <div class="ops">${ej.ops.map((o,k)=>`<button class="op" type="button"><span class="l">${'ABCD'[k]}</span><span>${o}</span></button>`).join('')}</div>
+      <p class="ayuda">Toca la opción que vota la clase para marcarla.</p>
+    </div>
+    <div class="pzhost"></div>
+  </div>`;
+  ancla.before(s);
+  s.querySelector('.ops').addEventListener('click',e=>{
+    const b=e.target.closest('.op'); if(!b)return;
+    const ya=b.classList.contains('marcada');
+    s.querySelectorAll('.op').forEach(x=>x.classList.remove('marcada'));
+    if(!ya)b.classList.add('marcada');
+  });
+  const pz=crearPizarra(s.querySelector('.pzhost'),true);
+  pz.onGrande=on=>{s.querySelector('.ej').classList.toggle('grande',on);pz.ajustar();};
+});
+document.querySelectorAll('.pzhost').forEach(h=>{h.style.display='contents'});
+
+/* ---------- Tarea ---------- */
+$('tarea').innerHTML=TAREA.map((t,i)=>`<div class="t">
+  <div class="q"><span class="n">${i+1}.</span>${t.enun}</div>${t.code?`<div class="code">${t.code}</div>`:''}
+  <div class="o">${t.ops.map((o,k)=>`<span><b>${'abcd'[k]})</b>${o}</span>`).join('')}</div></div>`).join('');
+
+/* ---------- Pizarra ---------- */
+function crearPizarra(host,conGrande){
+  const COLORES=['#F4F1E8','#FFC800','#3BC97A','#4FB3E8','#FF6B6B'];
+  const box=document.createElement('div'); box.className='pz';
+  box.innerHTML=`<div class="pz-bar">
+    ${COLORES.map((c,i)=>`<button class="col${i?'':' on'}" data-c="${c}" style="background:${c}" aria-label="Color ${i+1}"></button>`).join('')}
+    <span class="sep"></span>
+    <button data-g="3">Fino</button><button data-g="5" class="on">Medio</button><button data-g="9">Grueso</button>
+    <span class="sep"></span>
+    <button data-borr>Borrador</button>
+    <span class="der"><button data-undo>Deshacer</button><button data-clear>Limpiar</button>${conGrande?'<button data-big>Pizarra grande</button>':''}</span>
+  </div><canvas></canvas>`;
+  host.appendChild(box);
+  const cv=box.querySelector('canvas'), ctx=cv.getContext('2d');
+  const st={color:COLORES[0],g:5,borr:false,trazos:[],actual:null,grande:false};
+  const api={ajustar,onGrande:null};
+
+  function ajustar(){
+    const r=cv.getBoundingClientRect(); if(!r.width)return;
+    const dpr=window.devicePixelRatio||1;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0); dibujar();
+  }
+  // Los puntos se guardan relativos al ancho para que el dibujo sobreviva a cambios de tamaño.
+  function trazo(t,w){
+    ctx.globalCompositeOperation=t.borr?'destination-out':'source-over';
+    ctx.strokeStyle=t.color; ctx.lineWidth=t.borr?t.g*5:t.g; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath();
+    t.p.forEach(([x,y],k)=>k?ctx.lineTo(x*w,y*w):ctx.moveTo(x*w,y*w));
+    if(t.p.length===1)ctx.lineTo(t.p[0][0]*w+.1,t.p[0][1]*w);
+    ctx.stroke();
+  }
+  function dibujar(){
+    const w=cv.getBoundingClientRect().width;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    st.trazos.forEach(t=>trazo(t,w));
+    ctx.globalCompositeOperation='source-over';
+  }
+  function pos(e){const r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.width];}
+  cv.addEventListener('pointerdown',e=>{
+    if(e.button>0)return;
+    cv.setPointerCapture(e.pointerId);
+    st.actual={color:st.color,g:st.g,borr:st.borr,p:[pos(e)]};
+    st.trazos.push(st.actual); dibujar();
+  });
+  cv.addEventListener('pointermove',e=>{
+    if(!st.actual)return;
+    (e.getCoalescedEvents?e.getCoalescedEvents():[e]).forEach(ev=>st.actual.p.push(pos(ev)));
+    dibujar();
+  });
+  const fin=()=>{st.actual=null};
+  cv.addEventListener('pointerup',fin); cv.addEventListener('pointercancel',fin);
+
+  box.querySelector('.pz-bar').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    if(b.dataset.c){st.color=b.dataset.c;st.borr=false;
+      box.querySelectorAll('[data-c],[data-borr]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if(b.dataset.g){st.g=+b.dataset.g;box.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('borr' in b.dataset){st.borr=true;box.querySelectorAll('[data-c]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('undo' in b.dataset){st.trazos.pop();dibujar();}
+    else if('clear' in b.dataset){if(st.trazos.length&&confirm('¿Borrar toda la pizarra?')){st.trazos=[];dibujar();}}
+    else if('big' in b.dataset){st.grande=!st.grande;b.classList.toggle('on',st.grande);
+      b.textContent=st.grande?'Ver opciones al lado':'Pizarra grande';api.onGrande&&api.onGrande(st.grande);}
+  });
+  new ResizeObserver(ajustar).observe(cv);
+  return api;
+}
+
+/* ---------- Pizarra libre ---------- */
+let libre=null;
+function toggleLibre(){
+  const L=$('libre');
+  if(!libre)libre=crearPizarra(L,false);
+  L.classList.toggle('on');
+  $('bLibre').textContent=L.classList.contains('on')?'Cerrar pizarra':'Pizarra';
+  libre.ajustar();
+}
+$('bLibre').onclick=toggleLibre;
+function toggleFull(){
+  if(document.fullscreenElement)document.exitFullscreen();
+  else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+}
+$('bFull').onclick=toggleFull;
+document.addEventListener('fullscreenchange',()=>{$('bFull').textContent=document.fullscreenElement?'Salir de pantalla completa':'Pantalla completa';});
+
+/* ---------- Navegación ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+let cur=0;
+function ir(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle('on',i===cur));
+  slides[cur].scrollTop=0;
+  $('cnt').textContent=`${cur+1} / ${slides.length}`;
+  $('prog').style.width=(cur/(slides.length-1)*100)+'%';
+  $('bAnt').disabled=cur===0;
+  $('bSig').disabled=cur===slides.length-1 && !slides[cur].querySelector('.step:not(.vis)');
+  [...$('indice').children].forEach((b,i)=>b.classList.toggle('act',i===cur));
+  try{history.replaceState(null,'','#'+(cur+1))}catch(e){}
+}
+function avanzar(){
+  const oculto=slides[cur].querySelector('.step:not(.vis)');
+  if(oculto){oculto.classList.add('vis');oculto.scrollIntoView({block:'nearest',behavior:'smooth'});return;}
+  ir(cur+1);
+}
+function retroceder(){
+  const vistos=slides[cur].querySelectorAll('.step.vis');
+  if(vistos.length){vistos[vistos.length-1].classList.remove('vis');return;}
+  ir(cur-1);
+}
+$('bSig').onclick=avanzar; $('bAnt').onclick=retroceder;
+$('indice').innerHTML=slides.map((s,i)=>`<button type="button" data-i="${i}">${i+1}. ${esc(s.dataset.titulo||'')}</button>`).join('');
+$('indice').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ir(+b.dataset.i);$('indice').classList.remove('on');});
+$('bInd').onclick=()=>$('indice').classList.toggle('on');
+document.addEventListener('keydown',e=>{
+  if(e.target.closest('input,textarea'))return;
+  if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();avanzar();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();retroceder();}
+  else if(e.key==='p'||e.key==='P')toggleLibre();
+  else if(e.key==='f'||e.key==='F')toggleFull();
+  else if(e.key==='Escape'){$('indice').classList.remove('on');if($('libre').classList.contains('on'))toggleLibre();}
+});
+const h=parseInt(location.hash.slice(1));
+ir(h>0?h-1:0);
+</script>
+</body>
+</html>
