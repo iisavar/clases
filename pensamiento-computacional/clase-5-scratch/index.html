@@ -256,32 +256,116 @@ por siempre
   </div>
 </section>
 
-<!-- 5. Variables y proyecto -->
-<section class="slide" data-titulo="5. Variables y el proyecto de la unidad">
+<!-- 5. Prácticas guiadas -->
+<section class="slide" data-titulo="5. Prácticas guiadas">
   <div class="inner">
-    <h2>Dar a reemplaza. Sumar a añade</h2>
-    <p>Una <b>variable</b> es un espacio en memoria con un nombre, cuyo contenido puede cambiar mientras corre el programa. Guarda un número o un texto. Se crea en la categoría Variables con <b>Crear variable</b>. Si es <b>global</b>, todos los objetos la pueden usar.</p>
-    <div class="grid2">
+    <h2>Los guiones de las prácticas</h2>
+    <div class="grid3">
       <div class="card step">
-        <h3>Cuenta regresiva</h3>
+        <h3>Práctica 1: mensajes</h3>
         <div class="code">al presionar bandera verde
-dar a (cuenta) el valor (3)
-repetir (3)
-   decir (cuenta) durante (1) segundos
-   sumar a (cuenta) (-1)</div>
-        <p class="paso" style="margin:0">Dice 3, 2 y 1. Al final cuenta vale 0. Sumar a con −1 resta uno en cada vuelta.</p>
+decir (¡Hola!) durante (2) segundos
+decir (Tenga un buen día) durante (4) segundos</div>
+        <p class="paso" style="margin:0">Primero dice una frase durante 2 segundos y después la otra durante 4. Decir es de Apariencia.</p>
       </div>
       <div class="card step">
-        <h3>Juego de atrapar objetos</h3>
-        <p class="paso" style="margin:0">Un personaje se mueve con las flechas y atrapa objetos que caen.<br>Empieza con puntos en 0 y vidas en 3.<br>Cada objeto atrapado suma 10 puntos.<br>Cada objeto que llega al borde de abajo resta una vida.<br>Con 100 puntos se difunde victoria. Con 0 vidas, fin_juego.</p>
+        <h3>Práctica 4: sigue el ratón</h3>
+        <div class="code">al presionar bandera verde
+por siempre
+   apuntar hacia (puntero del ratón)</div>
+        <p class="paso" style="margin:0">El objeto gira y siempre mira hacia el puntero, porque por siempre repite el bloque una y otra vez.</p>
+      </div>
+      <div class="card step">
+        <h3>Práctica 5: rebote en diagonal</h3>
+        <div class="code">al presionar bandera verde
+apuntar en dirección (45)
+por siempre
+   mover (10) pasos
+   si toca un borde, rebotar</div>
+        <p class="paso" style="margin:0">Apuntar en dirección 45 va antes de por siempre. El objeto sale en diagonal y rebota en los bordes.</p>
+      </div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Panel de información del objeto</h3>
+      <p class="paso" style="margin:0">Muestra el nombre del objeto, su posición x e y, si se muestra o no, su tamaño y su dirección. Al hacer clic en la dirección aparece el <b>modo de giro</b>, con tres estilos: <b>360°</b>, <b>izquierda y derecha</b>, y <b>no girar</b>.</p>
+    </div>
+    <div class="clave step"><b>Clave:</b> para mover un objeto se necesitan dos datos, cuánta distancia y en qué dirección. Scratch mide la distancia en pasos.</div>
+  </div>
+</section>
+
+<!-- 5. Variables y proyecto -->
+<section class="slide" data-titulo="6. Variables">
+  <div class="inner">
+    <h2>Dar a reemplaza. Sumar a añade</h2>
+    <p>Una <b>variable</b> es un espacio de memoria en el que se puede almacenar un valor, como un número o un texto. El aula la compara con un cajón con etiqueta: la etiqueta es el nombre y lo de adentro son los datos. Se crea en la categoría Variables con <b>Crear variable</b>. Si es <b>global</b> («para todos los objetos»), todos los objetos la pueden usar.</p>
+    <div class="grid3">
+      <div class="card step">
+        <h3>Los bloques de una variable</h3>
+        <p class="paso" style="margin:0">La casilla marcada muestra la variable en el escenario.<br>El bloque redondo con el nombre se usa dentro de otros bloques para usar su valor.<br><b>dar a (prueba) el valor (0)</b> la pone en 0.<br><b>sumar a (prueba) (1)</b> la incrementa en 1.</p>
+      </div>
+      <div class="card step">
+        <h3>Práctica 1: cuenta regresiva</h3>
+        <div class="code">al presionar bandera verde
+dar a (Cuenta) el valor (10)
+dar a (mensaje) el valor (se contar hacia atras)
+repetir (10)
+   decir (Cuenta) durante (1) segundos
+   sumar a (Cuenta) (-1)
+decir (mensaje)</div>
+        <p class="paso" style="margin:0">Dice 10, 9, 8 y así hasta 1. Sumar a con −1 resta uno en cada vuelta. Al final dice el mensaje.</p>
+      </div>
+      <div class="card step">
+        <h3>Práctica 2: giro en espiral</h3>
+        <div class="code">al presionar bandera verde
+dar a (tamaño) el valor (10)
+dar a (mensaje) el valor (¡Giré en espiral!)
+repetir (50)
+   mover (tamaño) pasos
+   girar ↻ (15) grados
+   sumar a (tamaño) (2)
+decir (mensaje)</div>
+        <p class="paso" style="margin:0">Cada vuelta avanza un poco más que la anterior, por eso dibuja una espiral.</p>
       </div>
     </div>
     <div class="clave step"><b>Clave:</b> si puntos vale 7, dar a puntos el valor 5 lo deja en 5. Sumar a puntos 5 lo deja en 12.</div>
   </div>
 </section>
 
+<!-- 7. Proyecto -->
+<section class="slide" data-titulo="7. Del ejercicio al proyecto">
+  <div class="inner">
+    <h2>Un proyecto se construye en cinco fases</h2>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Ejercicio</h3>
+        <p class="paso" style="margin:0">Resuelve un problema aislado y acotado, como calcular una suma, mover un objeto o detectar un choque.</p>
+      </div>
+      <div class="card step">
+        <h3>Proyecto</h3>
+        <p class="paso" style="margin:0">Integra muchas soluciones en un sistema coherente, con un propósito que reconoce un usuario externo. Exige planificar, descomponer, coordinar y probar.</p>
+      </div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Metodología de proyectos en Scratch</h3>
+      <table class="t">
+        <tr><td>1. Definición del proyecto</td><td>qué hace, quién lo usará y cuál es el resultado esperado</td></tr>
+        <tr><td>2. Diseño en papel</td><td>antes de abrir Scratch, esbozar el escenario, los objetos, las variables y el flujo de eventos</td></tr>
+        <tr><td>3. Implementación</td><td>programar y probar componente por componente, sin construir todo antes de probar</td></tr>
+        <tr><td>4. Integración y prueba</td><td>unir los componentes, verificar que funcionan juntos y corregir errores (debugging)</td></tr>
+        <tr><td>5. Refinamiento</td><td>mejorar la interfaz, añadir sonidos, ajustar la dificultad y, si se quiere, compartir en la comunidad</td></tr>
+      </table>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Proyecto de la unidad: juego de atrapar objetos</h3>
+      <p class="paso" style="margin:0">Un personaje se mueve con las flechas izquierda y derecha, entre x −200 y x 200, y atrapa objetos que caen. Variables globales: puntos en 0, vidas en 3, velocidad del objeto en 3. Cada objeto atrapado suma 10 puntos. Cada objeto que llega al borde de abajo resta una vida. Con 100 puntos se difunde victoria. Con 0 vidas, fin_juego. Cada 30 puntos la velocidad sube en 1.</p>
+      <p class="paso" style="margin:6px 0 0">Reúne cuatro componentes: movimiento con teclado, colisiones, sistema de puntos y control de tiempo.</p>
+    </div>
+    <div class="clave step"><b>Clave:</b> el diseño en papel va antes de abrir Scratch. Corregir errores es parte de integración y prueba. Añadir sonidos es refinamiento.</div>
+  </div>
+</section>
+
 <!-- 6. Repaso general -->
-<section class="slide" data-titulo="6. Repaso de las diez semanas">
+<section class="slide" data-titulo="8. Repaso de las diez semanas">
   <div class="inner">
     <h2>Repaso del curso, respondan en coro</h2>
     <div class="grid2">
@@ -313,7 +397,7 @@ repetir (3)
 </section>
 
 <!-- 7. ¿Está bien o está mal? -->
-<section class="slide" data-titulo="7. ¿Está bien o está mal?">
+<section class="slide" data-titulo="9. ¿Está bien o está mal?">
   <div class="inner">
     <h2>¿Está bien o está mal?</h2>
     <p class="lead">Antes de tocar cada tarjeta, decidan si lo que está escrito es correcto.</p>
@@ -358,11 +442,11 @@ const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const CASOS=[
   {e:"Scratch fue creado por Seymour Papert",ok:false,w:"Scratch es del MIT Media Lab. Papert creó LOGO."},
   {e:"Para programar en Scratch hay que instalarlo",ok:false,w:"Se puede usar en el navegador, en scratch.mit.edu. Scratch Desktop es para trabajar sin conexión."},
-  {e:"El punto (0, 0) está en el centro del escenario",ok:true,w:"El eje x va de −240 a 240 y el eje y de −180 a 180."},
+  {e:"En la metodología de proyectos, el diseño en papel va después de la implementación",ok:false,w:"Va antes. El orden es definición del proyecto, diseño en papel, implementación, integración y prueba, y refinamiento."},
   {e:"Un objeto con dirección 180 apunta hacia arriba",ok:false,w:"180 es abajo. Arriba es 0."},
   {e:"Un guion puede ejecutarse sin un bloque de evento",ok:false,w:"Ningún guion se ejecuta solo. Siempre empieza con un evento, por ejemplo al presionar bandera verde."},
   {e:"ir a x: 0 y: 0 es un movimiento relativo",ok:false,w:"Es absoluto. Lleva al objeto al centro sin importar dónde esté."},
-  {e:"mover 10 pasos avanza hacia donde apunta el objeto",ok:true,w:"Es movimiento relativo. Depende de la dirección del objeto."},
+  {e:"Con apuntar hacia puntero del ratón dentro de por siempre, el objeto mira siempre al puntero",ok:true,w:"Por siempre repite el bloque una y otra vez, así que la dirección se actualiza todo el tiempo."},
   {e:"Si puntos vale 7, dar a puntos el valor 5 lo deja en 12",ok:false,w:"Dar a reemplaza el valor, así que queda en 5. Sumar a puntos 5 lo dejaría en 12."},
   {e:"repetir (100) se detiene después de 100 vueltas",ok:true,w:"Por siempre, en cambio, no se detiene."},
   {e:"El bloque y pertenece a la categoría Control",ok:false,w:"Los bloques y, o, no son de Operadores."},
