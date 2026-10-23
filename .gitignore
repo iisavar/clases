@@ -58,7 +58,6 @@ desktop.ini
 # Propio de este repo (público, se sirve en GitHub Pages)
 # Notas internas y salidas no se publican
 CLAUDE.md
-salidas/
 # El video de la clase (medicion-quimica/video-lenguaje-quimica.mp4, 6.7 MB) SÍ va al repo: la página lo necesita.
 !medicion-quimica/video-lenguaje-quimica.mp4
 
@@ -69,3 +68,5 @@ medicion-practica/scripts/
 potencias/scripts/
 quimica-ingenierias/*/scripts/
 quimica-ingenierias/simulacro/scripts/
+pensamiento-computacional/*/scripts/
+pensamiento-computacional/simulacro/scripts/

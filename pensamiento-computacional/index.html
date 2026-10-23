@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pensamiento computacional</title>
+<meta name="description" content="Repaso de pensamiento computacional en 5 clases, con simulacro del examen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --ink:#0E1A1F;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(16px,1.4vw,19px);line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:clamp(24px,5vw,56px) 16px 48px}
+h1{font-weight:900;font-size:clamp(36px,6vw,64px);line-height:1.05;margin:0 0 10px}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:clamp(22px,2.6vw,30px);margin:40px 0 14px}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+.lista{display:grid;gap:12px}
+a.item{display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:center;background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:14px 18px;color:var(--text);text-decoration:none}
+a.item:hover,a.item:focus-visible{border-color:var(--green);outline:none}
+.num{width:56px;height:56px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900;font-size:1.4em;color:var(--gold)}
+.item b{display:block;font-weight:900;font-size:1.12em}
+.item small{color:var(--muted);font-size:.88em}
+.ir{font-weight:900;color:var(--green-t);white-space:nowrap}
+.recursos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.recursos a.item{grid-template-columns:1fr auto}
+.tareas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tareas a{font-weight:800;font-size:.85em;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none}
+.tareas a:hover{border-color:var(--gold)}
+@media (max-width:560px){a.item{grid-template-columns:44px 1fr;padding:12px 14px}.num{width:44px;height:44px;font-size:1.15em}.ir{display:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Pensamiento <span>computacional</span></h1>
+  <p class="lead">Cinco clases que repasan las cuatro unidades, de los entornos digitales a Scratch, y un simulacro con el formato del examen.</p>
+
+  <h2>Clases</h2>
+  <div class="lista">
+    <a class="item" href="clase-1-entornos-digitales/"><span class="num">1</span><span><b>Entornos digitales</b><small>Internet, redes, búsqueda de información, la nube y las plataformas educativas</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-2-pensamiento-computacional/"><span class="num">2</span><span><b>Pensamiento computacional</b><small>Los cuatro pilares y el modelo entrada, proceso y salida</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-3-lenguaje-algoritmico/"><span class="num">3</span><span><b>Lenguaje algorítmico</b><small>Tipos de datos, variables, constantes y operadores</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-4-pseudocodigo-flujogramas/"><span class="num">4</span><span><b>Pseudocódigo y diagramas de flujo</b><small>Estructuras secuenciales, condicionales y repetitivas</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-5-scratch/"><span class="num">5</span><span><b>Scratch</b><small>Bloques, eventos, movimiento, variables y repaso general</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+
+  <h2>Recursos</h2>
+  <div class="recursos">
+    <a class="item" href="simulacro/"><span><b>Simulacro del examen</b><small>20 preguntas en una hora, con nota y corrección al final</small></span><span class="ir">Empezar ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="clase-1-entornos-digitales/tarea/tarea-entornos-digitales.pdf" download>Tarea 1 (PDF)</a>
+    <a href="clase-2-pensamiento-computacional/tarea/tarea-pensamiento-computacional.pdf" download>Tarea 2 (PDF)</a>
+    <a href="clase-3-lenguaje-algoritmico/tarea/tarea-lenguaje-algoritmico.pdf" download>Tarea 3 (PDF)</a>
+    <a href="clase-4-pseudocodigo-flujogramas/tarea/tarea-pseudocodigo.pdf" download>Tarea 4 (PDF)</a>
+    <a href="clase-5-scratch/tarea/tarea-scratch.pdf" download>Tarea 5 (PDF)</a>
+  </div></main>
+</body>
+</html>

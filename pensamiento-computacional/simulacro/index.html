@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulacro de Pensamiento Computacional</title>
+<meta name="description" content="Simulacro del examen de Pensamiento Computacional: 20 preguntas de opción múltiple en 60 minutos, con nota y corrección al final.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Mismo tema oscuro de las clases: fondo petróleo, verde de acción, dorado para lo clave. */
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --red:#FF6B6B; --ink:#0E1A1F;
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:clamp(16px,1.4vw,19px);line-height:1.55}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:clamp(16px,3vw,32px) 16px 48px}
+.oculto{display:none!important}
+.kicker{color:var(--gold);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.75em}
+h1{font-weight:900;font-size:clamp(30px,5vw,52px);line-height:1.08;margin:8px 0 14px;text-wrap:balance}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:clamp(22px,3vw,32px);line-height:1.15;margin:0 0 12px}
+p{margin:0 0 12px}
+.lead{color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.reglas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.reglas .card{text-align:center;padding:14px 10px}
+.reglas b{display:block;font-size:1.8em;font-weight:900;color:var(--gold);line-height:1.1}
+.reglas span{color:var(--muted);font-size:.85em}
+@media (max-width:520px){.reglas{grid-template-columns:1fr}}
+label{display:block;font-weight:800;margin:0 0 6px}
+input[type=text]{width:100%;background:var(--deep);color:var(--text);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+input[type=text]:focus{border-color:var(--green)}
+.btn{display:inline-block;font-weight:900;border:0;border-radius:16px;padding:12px 22px;background:var(--green);color:var(--ink);box-shadow:0 4px 0 var(--green-d)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-d)}
+.btn.sec{background:var(--panel2);color:var(--text);box-shadow:0 4px 0 var(--deep);border:1px solid var(--line)}
+.btn.oro{background:var(--gold);color:var(--ink);box-shadow:0 4px 0 #B38C00}
+.btn:disabled{opacity:.45;cursor:default}
+.aviso{color:var(--red);font-weight:700;font-size:.9em;min-height:1.4em;margin:6px 0 0}
+.fila{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+/* Barra del examen */
+.barra{position:sticky;top:0;z-index:10;background:var(--deep);border-bottom:1px solid var(--line)}
+.barra .in{max-width:860px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.barra .quien{font-weight:800;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra .cnt{color:var(--muted);font-weight:800;font-size:.85em;white-space:nowrap}
+.reloj{font-weight:900;font-variant-numeric:tabular-nums;background:var(--panel);border:2px solid var(--line);border-radius:999px;padding:4px 14px;white-space:nowrap}
+.reloj.poco{border-color:var(--gold);color:var(--gold)}
+.reloj.critico{border-color:var(--red);color:var(--red)}
+
+/* Pregunta */
+.num{color:var(--gold);font-weight:900;font-size:.85em;letter-spacing:.04em;text-transform:uppercase;margin:0 0 6px}
+.enun{font-weight:800;font-size:1.12em;margin:0 0 12px}
+.code{font-family:Consolas,"Cascadia Mono","Courier New",monospace;background:var(--deep);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:0 0 14px;white-space:pre;text-align:left;overflow-x:auto;font-size:.92em;line-height:1.45}
+.ops{display:grid;gap:10px}
+.op{display:flex;align-items:center;gap:12px;width:100%;background:var(--panel);color:var(--text);border:2px solid var(--line);border-radius:16px;padding:10px 14px;text-align:left;min-height:58px}
+.op .l{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900;font-size:.85em}
+.op:hover{border-color:var(--muted)}
+.op.marcada{border-color:var(--gold);background:var(--panel2)}
+.op.marcada .l{background:var(--gold);color:var(--ink)}
+.navq{display:flex;justify-content:space-between;gap:10px;margin:18px 0}
+.mapa{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin:6px 0 18px}
+@media (max-width:520px){.mapa{grid-template-columns:repeat(5,1fr)}}
+.mapa button{background:var(--panel);color:var(--muted);border:2px solid var(--line);border-radius:10px;height:40px;font-weight:900;font-size:.9em}
+.mapa button.resp{background:var(--panel2);color:var(--text);border-color:var(--green-d)}
+.mapa button.act{border-color:var(--gold);color:var(--gold)}
+.confirma{border-left:6px solid var(--gold);background:var(--panel2);border-radius:12px;padding:12px 16px;margin:0 0 14px}
+
+/* Resultado */
+.nota{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 22px}
+.nota .card{text-align:center}
+.nota b{display:block;font-size:clamp(34px,7vw,56px);font-weight:900;line-height:1.05;color:var(--gold)}
+.nota span{color:var(--muted);font-weight:700;font-size:.9em}
+.rev{display:grid;gap:14px;margin:0 0 24px}
+.rev .card{border-left:6px solid var(--line)}
+.rev .card.bien{border-left-color:var(--green)}
+.rev .card.mal{border-left-color:var(--red)}
+.tag{display:inline-block;font-weight:800;font-size:.75em;border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:middle;background:var(--panel2);color:var(--muted);text-transform:none;letter-spacing:0}
+.rop{display:flex;gap:10px;align-items:flex-start;padding:6px 10px;border-radius:10px;margin:4px 0;font-size:.95em}
+.rop .l{font-weight:900;color:var(--muted);flex:0 0 auto}
+.rop.ok{background:#173A2A}
+.rop.ok .l,.rop.ok em{color:var(--green-t)}
+.rop.err{background:#3A1F22}
+.rop.err .l,.rop.err em{color:var(--red)}
+.rop em{font-style:normal;font-weight:900;font-size:.85em;margin-left:auto;white-space:nowrap;padding-left:8px}
+.exp{color:var(--muted);font-size:.92em;margin:8px 0 0}
+.exp b{color:var(--gold)}
+.sinr{color:var(--red);font-weight:800;font-size:.9em;margin:6px 0 0}
+</style>
+</head>
+<body>
+
+<!-- Inicio -->
+<main id="inicio" class="wrap">
+  <div class="kicker">Pensamiento Computacional</div>
+  <h1>Simulacro de <span>examen</span></h1>
+  <p class="lead">Preguntas de las cinco clases, como en el examen real. Cada intento trae preguntas distintas y en otro orden.</p>
+  <div class="reglas">
+    <div class="card"><b>20</b><span>preguntas de opción múltiple</span></div>
+    <div class="card"><b>60</b><span>minutos con reloj visible</span></div>
+    <div class="card"><b>Al final</b><span>ves tu nota y la corrección</span></div>
+  </div>
+  <div class="card">
+    <label for="nombre">Tu nombre</label>
+    <input type="text" id="nombre" maxlength="60" autocomplete="name" placeholder="Nombre y apellido">
+    <p class="aviso" id="avisoNombre"></p>
+    <p class="lead" style="font-size:.88em">Mientras respondes no se dice si está bien o mal. Puedes cambiar tus respuestas hasta que termines. Si se acaba el tiempo, el simulacro se corrige con lo que hayas marcado.</p>
+    <button class="btn" id="bEmpezar">Empezar el simulacro</button>
+  </div>
+</main>
+
+<!-- Examen -->
+<div id="examen" class="oculto">
+  <div class="barra"><div class="in">
+    <div class="quien" id="quien"></div>
+    <div class="cnt" id="cnt"></div>
+    <div class="reloj" id="reloj" role="timer" aria-live="off">60:00</div>
+  </div></div>
+  <main class="wrap">
+    <div class="card">
+      <div class="num" id="qNum"></div>
+      <div class="enun" id="qEnun"></div>
+      <div class="code oculto" id="qCode"></div>
+      <div class="ops" id="qOps" role="radiogroup"></div>
+    </div>
+    <div class="navq">
+      <button class="btn sec" id="bAnt">Anterior</button>
+      <button class="btn" id="bSig">Siguiente</button>
+    </div>
+    <div class="kicker" style="margin-bottom:4px">Ir a la pregunta</div>
+    <div class="mapa" id="mapa"></div>
+    <div class="confirma oculto" id="confirma">
+      <p id="confirmaTxt" style="margin:0 0 10px;font-weight:700"></p>
+      <div class="fila">
+        <button class="btn oro" id="bSiTerminar">Sí, terminar</button>
+        <button class="btn sec" id="bSeguir">Seguir respondiendo</button>
+      </div>
+    </div>
+    <button class="btn oro" id="bTerminar">Terminar y ver mi nota</button>
+  </main>
+</div>
+
+<!-- Resultado -->
+<main id="resultado" class="wrap oculto">
+  <div class="kicker">Resultado del simulacro</div>
+  <h1 id="rNombre"></h1>
+  <p class="lead" id="rInfo"></p>
+  <div class="nota">
+    <div class="card"><b id="r20"></b><span>sobre 20</span></div>
+    <div class="card"><b id="r10"></b><span>sobre 10</span></div>
+  </div>
+  <div class="fila" style="margin-bottom:22px"><button class="btn" id="bOtro1">Hacer otro intento</button></div>
+  <h2>Corrección</h2>
+  <div class="rev" id="rev"></div>
+  <button class="btn" id="bOtro2">Hacer otro intento</button>
+</main>
+
+<script src="preguntas.js"></script>
+<script>
+"use strict";
+const TOTAL = 20, POR_CLASE = 4, MINUTOS = 60;
+const CLASES = {1:"Entornos digitales", 2:"Pensamiento computacional", 3:"Lenguaje algorítmico", 4:"Pseudocódigo y flujogramas", 5:"Scratch"};
+const LETRAS = "ABCD";
+const $ = id => document.getElementById(id);
+
+let intento = null, actual = 0, reloj = null;
+
+function barajar(a){
+  a = a.slice();
+  for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+function armarIntento(){
+  let elegidas = [];
+  for(let c = 1; c <= 5; c++) elegidas = elegidas.concat(barajar(PREGUNTAS.filter(p => p.c === c)).slice(0, POR_CLASE));
+  return barajar(elegidas).map(p => {
+    const orden = barajar([0,1,2,3]);
+    return {p, ops: orden.map(i => p.ops[i]), correcta: orden.indexOf(0), marcada: null};
+  });
+}
+
+function mostrar(id){
+  for(const s of ["inicio","examen","resultado"]) $(s).classList.toggle("oculto", s !== id);
+  window.scrollTo(0, 0);
+}
+
+/* ---------- Inicio ---------- */
+function empezar(){
+  const nombre = $("nombre").value.trim().replace(/\s+/g, " ");
+  if(!nombre){ $("avisoNombre").textContent = "Escribe tu nombre para empezar."; $("nombre").focus(); return; }
+  $("avisoNombre").textContent = "";
+  intento = {nombre, preguntas: armarIntento(), inicio: Date.now(), fin: Date.now() + MINUTOS * 60000, terminado: false};
+  actual = 0;
+  $("quien").textContent = nombre;
+  armarMapa();
+  pintar();
+  mostrar("examen");
+  clearInterval(reloj);
+  reloj = setInterval(tic, 250);
+  tic();
+}
+
+/* ---------- Examen ---------- */
+function tic(){
+  const resto = Math.max(0, intento.fin - Date.now());
+  const s = Math.ceil(resto / 1000);
+  const r = $("reloj");
+  r.textContent = String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+  r.classList.toggle("poco", s <= 600 && s > 120);
+  r.classList.toggle("critico", s <= 120);
+  if(resto <= 0) terminar(true);
+}
+
+function armarMapa(){
+  const m = $("mapa");
+  m.textContent = "";
+  intento.preguntas.forEach((_, i) => {
+    const b = document.createElement("button");
+    b.textContent = i + 1;
+    b.setAttribute("aria-label", "Pregunta " + (i + 1));
+    b.addEventListener("click", () => { actual = i; pintar(); });
+    m.appendChild(b);
+  });
+}
+
+function pintar(){
+  const q = intento.preguntas[actual];
+  $("qNum").textContent = "Pregunta " + (actual + 1) + " de " + TOTAL;
+  $("qEnun").textContent = q.p.enun;
+  const code = $("qCode");
+  code.textContent = q.p.code || "";
+  code.classList.toggle("oculto", !q.p.code);
+  const ops = $("qOps");
+  ops.textContent = "";
+  q.ops.forEach((texto, i) => {
+    const b = document.createElement("button");
+    b.className = "op" + (q.marcada === i ? " marcada" : "");
+    b.setAttribute("role", "radio");
+    b.setAttribute("aria-checked", q.marcada === i ? "true" : "false");
+    const l = document.createElement("span"); l.className = "l"; l.textContent = LETRAS[i];
+    const t = document.createElement("span"); t.textContent = texto;
+    b.append(l, t);
+    b.addEventListener("click", () => marcar(i));
+    ops.appendChild(b);
+  });
+  $("bAnt").disabled = actual === 0;
+  $("bSig").textContent = actual === TOTAL - 1 ? "Volver a la 1" : "Siguiente";
+  const resp = intento.preguntas.filter(x => x.marcada !== null).length;
+  $("cnt").textContent = resp + "/" + TOTAL + " respondidas";
+  [...$("mapa").children].forEach((b, i) => {
+    b.classList.toggle("resp", intento.preguntas[i].marcada !== null);
+    b.classList.toggle("act", i === actual);
+  });
+  $("confirma").classList.add("oculto");
+  $("bTerminar").classList.remove("oculto");
+}
+
+function marcar(i){
+  intento.preguntas[actual].marcada = i;
+  pintar();
+}
+
+function pedirTerminar(){
+  const faltan = intento.preguntas.filter(x => x.marcada === null).length;
+  $("confirmaTxt").textContent = faltan
+    ? "Te faltan " + faltan + (faltan === 1 ? " pregunta" : " preguntas") + " por responder. ¿Quieres terminar de todos modos?"
+    : "Respondiste las " + TOTAL + " preguntas. ¿Quieres terminar y ver tu nota?";
+  $("confirma").classList.remove("oculto");
+  $("bTerminar").classList.add("oculto");
+  $("bSiTerminar").focus();
+}
+
+/* ---------- Resultado ---------- */
+function terminar(porTiempo){
+  if(!intento || intento.terminado) return;
+  intento.terminado = true;
+  clearInterval(reloj);
+  const pr = intento.preguntas;
+  const bien = pr.filter(x => x.marcada === x.correcta).length;
+  const usados = Math.min(MINUTOS * 60, Math.round((Date.now() - intento.inicio) / 1000));
+  $("rNombre").textContent = intento.nombre;
+  $("rInfo").textContent = (porTiempo ? "Se acabó el tiempo. " : "") +
+    bien + " correctas de " + TOTAL + ". Tiempo usado: " + Math.floor(usados / 60) + " min " + (usados % 60) + " s.";
+  $("r20").textContent = bien;
+  $("r10").textContent = (bien / 2).toFixed(1);
+  const rev = $("rev");
+  rev.textContent = "";
+  pr.forEach((q, n) => {
+    const ok = q.marcada === q.correcta;
+    const c = document.createElement("div");
+    c.className = "card " + (ok ? "bien" : "mal");
+    const num = document.createElement("div"); num.className = "num";
+    num.textContent = "Pregunta " + (n + 1) + (ok ? ", correcta" : q.marcada === null ? ", sin responder" : ", incorrecta");
+    const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = "Clase " + q.p.c + ". " + CLASES[q.p.c];
+    num.appendChild(tag);
+    const en = document.createElement("div"); en.className = "enun"; en.textContent = q.p.enun;
+    c.append(num, en);
+    if(q.p.code){ const cd = document.createElement("div"); cd.className = "code"; cd.textContent = q.p.code; c.appendChild(cd); }
+    q.ops.forEach((texto, i) => {
+      const r = document.createElement("div");
+      r.className = "rop" + (i === q.correcta ? " ok" : i === q.marcada ? " err" : "");
+      const l = document.createElement("span"); l.className = "l"; l.textContent = LETRAS[i] + ")";
+      const t = document.createElement("span"); t.textContent = texto;
+      r.append(l, t);
+      if(i === q.correcta || i === q.marcada){
+        const e = document.createElement("em");
+        e.textContent = i === q.correcta ? (i === q.marcada ? "Tu respuesta, correcta" : "Correcta") : "Tu respuesta";
+        r.appendChild(e);
+      }
+      c.appendChild(r);
+    });
+    if(q.marcada === null){ const s = document.createElement("p"); s.className = "sinr"; s.textContent = "No marcaste ninguna opción."; c.appendChild(s); }
+    const ex = document.createElement("p"); ex.className = "exp";
+    const b = document.createElement("b"); b.textContent = "Por qué: ";
+    ex.append(b, document.createTextNode(q.p.exp));
+    c.appendChild(ex);
+    rev.appendChild(c);
+  });
+  mostrar("resultado");
+}
+
+function otroIntento(){
+  intento = null;
+  mostrar("inicio");
+  $("nombre").focus();
+}
+
+/* ---------- Eventos ---------- */
+$("bEmpezar").addEventListener("click", empezar);
+$("nombre").addEventListener("keydown", e => { if(e.key === "Enter") empezar(); });
+$("bAnt").addEventListener("click", () => { if(actual > 0){ actual--; pintar(); } });
+$("bSig").addEventListener("click", () => { actual = (actual + 1) % TOTAL; pintar(); });
+$("bTerminar").addEventListener("click", pedirTerminar);
+$("bSiTerminar").addEventListener("click", () => terminar(false));
+$("bSeguir").addEventListener("click", () => { $("confirma").classList.add("oculto"); $("bTerminar").classList.remove("oculto"); });
+$("bOtro1").addEventListener("click", otroIntento);
+$("bOtro2").addEventListener("click", otroIntento);
+document.addEventListener("keydown", e => {
+  if(!intento || intento.terminado || e.target.tagName === "INPUT") return;
+  const k = e.key.toUpperCase();
+  if("ABCD".includes(k) && k.length === 1) marcar("ABCD".indexOf(k));
+  else if("1234".includes(k) && k.length === 1) marcar(Number(k) - 1);
+  else if(e.key === "ArrowRight"){ actual = (actual + 1) % TOTAL; pintar(); }
+  else if(e.key === "ArrowLeft" && actual > 0){ actual--; pintar(); }
+});
+window.addEventListener("beforeunload", e => { if(intento && !intento.terminado){ e.preventDefault(); e.returnValue = ""; } });
+</script>
+</body>
+</html>
