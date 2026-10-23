@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tabla periódica</title>
+<meta name="description" content="Tabla periódica interactiva con las valencias que se usan en el curso de nomenclatura química inorgánica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --red:#FF6B6B; --blue:#4FB3E8; --lila:#B79CFF; --ink:#0E1A1F;
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.5}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+sub{font-size:.7em;line-height:0}
+.wrap{max-width:1280px;margin:0 auto;padding:18px 16px 40px}
+h1{font-weight:900;font-size:clamp(28px,4.4vw,46px);line-height:1.1;margin:0 0 6px}
+h1 span{color:var(--green-t)}
+.lead{color:var(--muted);margin:0 0 14px;max-width:70ch}
+
+/* Herramientas */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 12px}
+.buscar{flex:1 1 260px;min-width:0;background:var(--panel);color:var(--text);border:2px solid var(--line);border-radius:14px;padding:10px 14px;font-weight:700}
+.buscar::placeholder{color:var(--muted);font-weight:600}
+.toggle{display:inline-flex;align-items:center;gap:10px;background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:9px 14px;font-weight:800;color:var(--text)}
+.toggle .sw{width:40px;height:22px;border-radius:99px;background:var(--panel2);border:1px solid var(--line);position:relative;flex:0 0 auto}
+.toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--muted);transition:left .2s,background .2s}
+.toggle[aria-pressed="true"]{border-color:var(--green)}
+.toggle[aria-pressed="true"] .sw{background:var(--green-d)}
+.toggle[aria-pressed="true"] .sw::after{left:20px;background:var(--text)}
+.leyenda{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 12px;font-weight:700;font-size:.9em;color:var(--muted)}
+.leyenda span{display:inline-flex;align-items:center;gap:6px}
+.leyenda i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.leyenda .pt{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.aviso{color:var(--muted);font-size:.85em;margin:6px 0 0}
+
+/* Tabla */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.tabla{display:grid;grid-template-columns:repeat(18,minmax(40px,1fr));grid-template-rows:repeat(7,auto) 14px repeat(2,auto);gap:4px;min-width:760px}
+.el{position:relative;aspect-ratio:1/1.08;border-radius:9px;border:2px solid transparent;background:var(--panel);color:var(--text);padding:3px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05;transition:opacity .2s,transform .15s}
+.el:hover{transform:translateY(-2px)}
+.el .z{position:absolute;top:3px;left:5px;font-size:10px;font-weight:700;color:var(--muted)}
+.el .s{font-size:clamp(15px,1.7vw,22px);font-weight:900}
+.el .n{font-size:9px;font-weight:700;color:var(--muted);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.el.curso::after{content:"";position:absolute;top:4px;right:4px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.el.m{background:#16303F;border-color:#24506A}
+.el.m .s{color:var(--blue)}
+.el.nm{background:#163A2A;border-color:#22603F}
+.el.nm .s{color:var(--green-t)}
+.el.md{background:#3A3416;border-color:#6A5A1E}
+.el.md .s{color:var(--gold)}
+.el.gn{background:#2A2340;border-color:#4A3D78}
+.el.gn .s{color:var(--lila)}
+.el.apagado{opacity:.18}
+.el.encontrado{outline:3px solid var(--gold);outline-offset:1px}
+.el.sel{outline:3px solid var(--text);outline-offset:1px}
+.hueco{display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;font-weight:800;color:var(--muted);border:1px dashed var(--line);border-radius:9px;line-height:1.2;padding:2px}
+@media (max-width:700px){.el .n{display:none}}
+
+/* Panel del elemento */
+.velo{position:fixed;inset:0;background:rgba(5,10,12,.6);display:none;z-index:40}
+.velo.on{display:block}
+.panel{position:fixed;z-index:50;background:var(--panel);border:1px solid var(--line);display:none;flex-direction:column;overflow:hidden;
+  right:16px;top:16px;bottom:16px;width:min(440px,calc(100vw - 32px));border-radius:20px}
+.panel.on{display:flex}
+@media (max-width:700px){.panel{left:0;right:0;bottom:0;top:auto;width:auto;max-height:82vh;border-radius:20px 20px 0 0}}
+.panel .top{display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+.panel .cuadro{width:84px;height:84px;flex:0 0 auto;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid var(--line)}
+.panel .cuadro b{font-size:34px;font-weight:900;line-height:1}
+.panel .cuadro small{font-weight:800;color:var(--muted)}
+.panel h2{margin:0;font-size:1.5em;font-weight:900;line-height:1.1}
+.panel .meta{color:var(--muted);font-weight:700;font-size:.9em}
+.cerrar{margin-left:auto;align-self:flex-start;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;width:40px;height:40px;font-weight:900;font-size:20px;line-height:1;flex:0 0 auto}
+.panel .cuerpo{padding:14px 18px 20px;overflow-y:auto}
+.panel h3{margin:14px 0 8px;font-size:1em;font-weight:900;color:var(--green-t)}
+.panel h3:first-child{margin-top:0}
+.fila{display:flex;flex-wrap:wrap;gap:8px}
+.val{display:flex;flex-direction:column;align-items:center;background:var(--deep);border:1px solid var(--line);border-radius:12px;padding:6px 12px;min-width:64px}
+.val b{font-size:1.25em;font-weight:900;color:var(--gold)}
+.val span{font-size:.8em;color:var(--muted);font-weight:700}
+.val.esp span{color:var(--text)}
+.uso{color:var(--muted);font-size:.92em;margin:8px 0 0}
+.nota{border-left:5px solid var(--gold);background:var(--panel2);border-radius:10px;padding:10px 14px;margin:14px 0 0;font-size:.92em}
+.nouso{background:var(--deep);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;color:var(--muted);font-weight:700}
+.tag{display:inline-block;font-weight:800;font-size:.8em;border-radius:99px;padding:3px 10px;margin-top:4px}
+.tag.m{background:#24506A;color:#D7EEFA}.tag.nm{background:#22603F;color:#DDF6E8}.tag.md{background:#6A5A1E;color:#FFF3C2}.tag.gn{background:#4A3D78;color:#E9E1FF}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Tabla <span>periódica</span></h1>
+  <p class="lead">Toca un elemento para ver su número atómico, su tipo y las valencias que se usan en el curso. El punto dorado marca los elementos del curso.</p>
+
+  <div class="tools">
+    <input class="buscar" id="buscar" type="search" placeholder="Buscar por nombre o símbolo, por ejemplo hierro o Fe" autocomplete="off" aria-label="Buscar elemento">
+    <button class="toggle" id="soloCurso" type="button" aria-pressed="false"><span class="sw"></span>Solo los del curso</button>
+  </div>
+  <div class="leyenda" aria-label="Leyenda">
+    <span><i style="background:#24506A"></i>Metal</span>
+    <span><i style="background:#22603F"></i>No metal</span>
+    <span><i style="background:#6A5A1E"></i>Metaloide</span>
+    <span><i style="background:#4A3D78"></i>Gas noble</span>
+    <span><i class="pt"></i>Se usa en el curso</span>
+  </div>
+
+  <div class="scroll"><div class="tabla" id="tabla" role="grid" aria-label="Tabla periódica"></div></div>
+  <p class="aviso" id="avisoMovil"></p>
+</div>
+
+<div class="velo" id="velo"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="pNombre">
+  <div class="top">
+    <div class="cuadro" id="pCuadro"><small id="pZ"></small><b id="pSim"></b></div>
+    <div>
+      <h2 id="pNombre"></h2>
+      <div class="meta" id="pMeta"></div>
+      <span class="tag" id="pTipo"></span>
+    </div>
+    <button class="cerrar" id="cerrar" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <div class="cuerpo" id="pCuerpo"></div>
+</aside>
+
+<script src="elementos.js"></script>
+<script>
+const TIPOS = {m:"Metal", nm:"No metal", md:"Metaloide", gn:"Gas noble"};
+const COLOR = {m:"#16303F", nm:"#163A2A", md:"#3A3416", gn:"#2A2340"};
+const tabla = document.getElementById("tabla");
+const celdas = [];
+
+function sinTildes(t){ return t.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase(); }
+function signo(v){ return v > 0 ? "+" + v : "−" + Math.abs(v); }
+
+ELEMENTOS.forEach(e => {
+  const [z, sim, nombre, per, gr, tipo] = e;
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "el " + tipo + (CURSO[sim] ? " curso" : "");
+  let fila = per, col = gr;
+  if (gr === null) { fila = per === 6 ? 9 : 10; col = z - (per === 6 ? 57 : 89) + 4; }
+  b.style.gridRow = fila; b.style.gridColumn = col;
+  b.innerHTML = `<span class="z">${z}</span><span class="s">${sim}</span><span class="n">${nombre}</span>`;
+  b.setAttribute("aria-label", `${nombre}, ${sim}, número atómico ${z}`);
+  b.addEventListener("click", () => abrir(e, b));
+  tabla.appendChild(b);
+  celdas.push({e, b, clave: sinTildes([sim, nombre, e[6] || ""].join(" "))});
+});
+
+// Avisos de lantánidos y actínidos en el grupo 3
+[[6,"57–71"],[7,"89–103"]].forEach(([fila, txt]) => {
+  const h = document.createElement("div");
+  h.className = "hueco"; h.style.gridRow = fila; h.style.gridColumn = 3;
+  h.textContent = txt;
+  tabla.appendChild(h);
+});
+[[9,"Lantánidos"],[10,"Actínidos"]].forEach(([fila, txt]) => {
+  const h = document.createElement("div");
+  h.className = "hueco"; h.style.gridRow = fila; h.style.gridColumn = "1 / 4";
+  h.textContent = txt;
+  tabla.appendChild(h);
+});
+
+function terminaciones(n){
+  return [[], ["…ico"], ["…oso", "…ico"], ["hipo…oso", "…oso", "…ico"], ["hipo…oso", "…oso", "…ico", "per…ico"]][n];
+}
+
+function bloqueValencias(titulo, vals, raices, extra, excepcion){
+  const fin = terminaciones(vals.length);
+  let h = `<h3>${titulo}</h3><div class="fila">`;
+  vals.forEach((v, i) => {
+    const r = raices ? raices[i] : fin[i];
+    h += `<div class="val${raices ? " esp" : ""}"><b>${signo(v)}</b><span>${r}</span></div>`;
+  });
+  h += `</div>`;
+  if (excepcion) h += `<p class="uso">Excepción a la regla de las terminaciones.</p>`;
+  else if (raices) h += `<p class="uso">Raíz especial en la nomenclatura tradicional.</p>`;
+  else if (vals.length === 1) h += `<p class="uso">Valencia única. En tradicional termina en ico y en stock no lleva número romano.</p>`;
+  else h += `<p class="uso">Terminación en la nomenclatura tradicional${extra || ""}.</p>`;
+  return h;
+}
+
+function abrir(e, boton){
+  const [z, sim, nombre, per, gr, tipo] = e;
+  document.querySelectorAll(".el.sel").forEach(x => x.classList.remove("sel"));
+  boton.classList.add("sel");
+  ultimo = boton;
+  document.getElementById("pZ").textContent = z;
+  document.getElementById("pSim").textContent = sim;
+  document.getElementById("pCuadro").style.background = COLOR[tipo];
+  document.getElementById("pNombre").textContent = nombre;
+  const lugar = gr === null ? (per === 6 ? "lantánido" : "actínido") : "grupo " + gr;
+  document.getElementById("pMeta").textContent = `Número atómico ${z}, período ${per}, ${lugar}`;
+  const tag = document.getElementById("pTipo");
+  tag.className = "tag " + tipo; tag.textContent = TIPOS[tipo];
+
+  const c = CURSO[sim];
+  let h = "";
+  if (!c) {
+    h = `<div class="nouso">No se usa en el curso.</div>`;
+    if (z >= 104) h += `<p class="uso">Es un elemento sintético. Se conocen muy pocas de sus propiedades.</p>`;
+  } else {
+    if (c.m) h += bloqueValencias(c.nm ? "Como metal" : "Valencias como metal", c.m, c.rm);
+    if (sim === "H") {
+      h += `<h3>Valencias</h3><div class="fila"><div class="val"><b>+1</b></div><div class="val"><b>−1</b></div></div>`;
+      h += `<p class="uso"><b>+1</b> ${c.pos[1]}</p><p class="uso"><b>−1</b> ${c.neg[1]}</p>`;
+    } else {
+      if (c.nm) h += bloqueValencias(c.m ? "Como no metal" : "Con oxígeno (anhídridos, oxiácidos, oxisales)", c.nm, c.rnm,
+        c.nm.length === 4 ? ", de la menor a la mayor" : "", c.exc);
+      if (c.neg) {
+        h += `<h3>Valencia negativa</h3><div class="fila"><div class="val"><b>${signo(c.neg[0])}</b></div></div>`;
+        h += `<p class="uso">Se usa ${c.neg[1]}</p>`;
+      }
+    }
+    if (tipo === "md") h += `<p class="uso">Es un metaloide, pero en nomenclatura el curso lo trabaja como no metal.</p>`;
+    if (c.nota) h += `<div class="nota">${c.nota}</div>`;
+  }
+  document.getElementById("pCuerpo").innerHTML = h;
+  document.getElementById("panel").classList.add("on");
+  document.getElementById("velo").classList.add("on");
+  document.getElementById("cerrar").focus();
+}
+
+let ultimo = null;
+function cerrar(){
+  document.getElementById("panel").classList.remove("on");
+  document.getElementById("velo").classList.remove("on");
+  if (ultimo) ultimo.focus({preventScroll:true});
+}
+document.getElementById("cerrar").addEventListener("click", cerrar);
+document.getElementById("velo").addEventListener("click", cerrar);
+document.addEventListener("keydown", ev => { if (ev.key === "Escape") cerrar(); });
+
+// Buscador y filtro
+const buscar = document.getElementById("buscar");
+const solo = document.getElementById("soloCurso");
+function filtrar(){
+  const q = sinTildes(buscar.value.trim());
+  const soloCurso = solo.getAttribute("aria-pressed") === "true";
+  const hallados = [];
+  celdas.forEach(({e, b, clave}) => {
+    const sim = e[1];
+    let ok = true;
+    if (q) {
+      const porSimbolo = sinTildes(sim) === q;
+      ok = porSimbolo || clave.split(" ").some(p => p.startsWith(q)) || String(e[0]) === q;
+    }
+    if (soloCurso && !CURSO[sim]) ok = false;
+    b.classList.toggle("apagado", !ok);
+    b.classList.toggle("encontrado", ok && q !== "");
+    if (ok && q) hallados.push({e, b, exacto: sinTildes(sim) === q || sinTildes(e[2]) === q});
+  });
+  return hallados;
+}
+buscar.addEventListener("input", filtrar);
+buscar.addEventListener("keydown", ev => {
+  if (ev.key !== "Enter") return;
+  const h = filtrar();
+  const elegido = h.find(x => x.exacto) || (h.length === 1 ? h[0] : null);
+  if (elegido) { elegido.b.scrollIntoView({block:"nearest", inline:"center"}); abrir(elegido.e, elegido.b); }
+});
+solo.addEventListener("click", () => {
+  solo.setAttribute("aria-pressed", solo.getAttribute("aria-pressed") === "true" ? "false" : "true");
+  filtrar();
+});
+
+function avisoMovil(){
+  const s = document.querySelector(".scroll");
+  document.getElementById("avisoMovil").textContent =
+    s.scrollWidth > s.clientWidth + 2 ? "Desliza la tabla hacia los lados para ver todos los grupos." : "";
+}
+window.addEventListener("resize", avisoMovil);
+avisoMovil();
+</script>
+</body>
+</html>

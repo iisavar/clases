@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Química</title>
+<meta name="description" content="Repaso de nomenclatura química inorgánica en 5 clases, con simulacro del examen y tabla periódica interactiva.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --ink:#0E1A1F;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(16px,1.4vw,19px);line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:clamp(24px,5vw,56px) 16px 48px}
+h1{font-weight:900;font-size:clamp(36px,6vw,64px);line-height:1.05;margin:0 0 10px}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:clamp(22px,2.6vw,30px);margin:40px 0 14px}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+.lista{display:grid;gap:12px}
+a.item{display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:center;background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:14px 18px;color:var(--text);text-decoration:none}
+a.item:hover,a.item:focus-visible{border-color:var(--green);outline:none}
+.num{width:56px;height:56px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900;font-size:1.4em;color:var(--gold)}
+.item b{display:block;font-weight:900;font-size:1.12em}
+.item small{color:var(--muted);font-size:.88em}
+.ir{font-weight:900;color:var(--green-t);white-space:nowrap}
+.recursos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.recursos a.item{grid-template-columns:1fr auto}
+.tareas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tareas a{font-weight:800;font-size:.85em;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none}
+.tareas a:hover{border-color:var(--gold)}
+@media (max-width:560px){a.item{grid-template-columns:44px 1fr;padding:12px 14px}.num{width:44px;height:44px;font-size:1.15em}.ir{display:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Química: <span>nomenclatura inorgánica</span></h1>
+  <p class="lead">Cinco clases para escribir y nombrar compuestos inorgánicos en las tres nomenclaturas, un simulacro con el formato del examen y la tabla periódica con las valencias del curso.</p>
+
+  <h2>Clases</h2>
+  <div class="lista">
+    <a class="item" href="clase-1-hidruros/"><span class="num">1</span><span><b>Hidruros metálicos y volátiles</b><small>Clasificación de compuestos, cruce de valencias y las tres nomenclaturas</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-2-haluros-oxidos/"><span class="num">2</span><span><b>Haluros de hidrógeno y óxidos</b><small>Ácidos hidrácidos, óxidos básicos y anhídridos</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-3-peroxidos-hidroxidos/"><span class="num">3</span><span><b>Peróxidos, sales binarias e hidróxidos</b><small>Cómo distinguir un óxido de un peróxido</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-4-oxiacidos-oxisales/"><span class="num">4</span><span><b>Oxiácidos y oxisales</b><small>Del anhídrido al ácido y del ácido a la sal</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="clase-5-sales-acidas-basicas/"><span class="num">5</span><span><b>Sales ácidas y sales básicas</b><small>Y el mapa para reconocer cualquier compuesto por su fórmula</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+
+  <h2>Recursos</h2>
+  <div class="recursos">
+    <a class="item" href="simulacro/"><span><b>Simulacro del examen</b><small>20 preguntas en una hora, con nota y corrección al final</small></span><span class="ir">Empezar ▶</span></a>
+    <a class="item" href="tabla-periodica/"><span><b>Tabla periódica</b><small>Toca un elemento para ver sus valencias y sus nombres</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="clase-1-hidruros/tarea/tarea-hidruros.pdf" download>Tarea 1 (PDF)</a>
+    <a href="clase-2-haluros-oxidos/tarea/tarea-haluros-oxidos.pdf" download>Tarea 2 (PDF)</a>
+    <a href="clase-3-peroxidos-hidroxidos/tarea/tarea-peroxidos-hidroxidos.pdf" download>Tarea 3 (PDF)</a>
+    <a href="clase-4-oxiacidos-oxisales/tarea/tarea-oxiacidos-oxisales.pdf" download>Tarea 4 (PDF)</a>
+    <a href="clase-5-sales-acidas-basicas/tarea/tarea-sales-acidas-basicas.pdf" download>Tarea 5 (PDF)</a>
+  </div>
+</main>
+</body>
+</html>
