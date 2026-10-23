@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hidruros</title>
+<meta name="description" content="Clasificación de compuestos inorgánicos, cruce de valencias, las tres nomenclaturas, hidruros metálicos e hidruros volátiles, con ejercicios con pizarra y tarea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Diseño: láminas a pantalla completa en tema oscuro (fondo petróleo, verde de acción, dorado para lo clave) y pizarra de tiza para resolver en vivo. */
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --red:#FF6B6B; --blue:#4FB3E8; --ink:#0E1A1F; --tiza:#16302A;
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:clamp(17px,1.6vw,22px);line-height:1.55;overflow:hidden}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+sub{font-size:.7em;line-height:0}
+.deck{position:fixed;inset:0 0 64px 0}
+.slide{position:absolute;inset:0;display:none;overflow-y:auto;padding:clamp(16px,3vw,40px) clamp(16px,4vw,56px)}
+.slide.on{display:block}
+.inner{max-width:1180px;margin:0 auto}
+.kicker{color:var(--gold);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.7em}
+h1{font-weight:900;font-size:clamp(34px,6vw,72px);line-height:1.05;margin:8px 0 14px;text-wrap:balance}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:clamp(26px,3.6vw,46px);line-height:1.1;margin:4px 0 16px;text-wrap:balance}
+p{margin:0 0 12px}
+.lead{color:var(--muted);max-width:60ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 22px}
+.card h3{margin:0 0 8px;font-size:1.05em;font-weight:900;color:var(--green-t)}
+.clave{border-left:6px solid var(--gold);background:var(--panel2);border-radius:12px;padding:12px 18px;margin:16px 0}
+.clave b{color:var(--gold)}
+.ejemplo{background:var(--deep);border:1px dashed var(--line);border-radius:14px;padding:12px 18px;margin:10px 0;font-size:1.08em}
+.paso{color:var(--muted);font-size:.85em;margin-left:6px}
+.step{opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;visibility:hidden}
+.step.vis{opacity:1;transform:none;visibility:visible}
+.chip{font-weight:800;font-size:.8em;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.chip.g{background:var(--green);color:var(--ink);border-color:var(--green)}
+.chip.y{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.orden{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-weight:900;font-size:1.05em;margin:8px 0}
+.orden .chip{font-size:.9em}
+.portada{min-height:100%;display:grid;place-items:center;text-align:center}
+.f{font-weight:900;color:var(--gold)}
+table.t{width:100%;border-collapse:collapse;font-size:.92em}
+table.t th{text-align:left;color:var(--green-t);font-weight:900;border-bottom:2px solid var(--line);padding:6px 10px}
+table.t td{border-bottom:1px solid var(--line);padding:6px 10px}
+table.t td:first-child{font-weight:900}
+
+/* Casos: ¿está bien o está mal? */
+.casos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.caso{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.caso .expr{font-size:1.1em;text-align:center;padding:6px 0;font-weight:700}
+.caso button{align-self:center;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:6px 14px;font-weight:800;font-size:.8em}
+.caso .ver{display:none;font-size:.85em;border-radius:10px;padding:8px 12px}
+.caso.si{border-color:var(--green)} .caso.si .ver{display:block;background:#173A2A}
+.caso.no{border-color:var(--red)} .caso.no .ver{display:block;background:#3A1F22}
+.ver b{font-weight:900}
+.caso.si .ver b{color:var(--green-t)} .caso.no .ver b{color:var(--red)}
+
+/* Ejercicios con pizarra */
+.ej{display:grid;grid-template-columns:minmax(300px,36%) 1fr;gap:18px;height:100%}
+.ej .enun{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ej .expr-big{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 16px;text-align:center;font-size:clamp(20px,2.1vw,30px);font-weight:800;line-height:1.3}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{display:flex;align-items:center;gap:10px;background:var(--panel);color:var(--text);border:2px solid var(--line);border-radius:16px;padding:8px 12px;font-size:1em;text-align:left;min-height:64px}
+.op .l{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900;font-size:.8em}
+.op.marcada{border-color:var(--gold)}
+.op.marcada .l{background:var(--gold);color:var(--ink)}
+.ayuda{color:var(--muted);font-size:.75em}
+.pz{display:flex;flex-direction:column;min-height:420px;background:var(--tiza);border:6px solid #5B4636;border-radius:18px;overflow:hidden}
+.pz-bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;background:#0F2420;border-bottom:1px solid #24453C}
+.pz-bar button{background:#1C3A33;color:var(--text);border:2px solid transparent;border-radius:12px;padding:5px 10px;font-weight:800;font-size:14px;min-height:36px}
+.pz-bar button.on{border-color:var(--gold)}
+.pz-bar .col{width:34px;height:34px;padding:0;border-radius:50%}
+.pz-bar .sep{width:1px;height:26px;background:#2E5249;margin:0 4px}
+.pz-bar .der{margin-left:auto;display:flex;gap:6px}
+.pz canvas{flex:1;width:100%;display:block;touch-action:none;cursor:crosshair}
+.ej.grande{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+.ej.grande .enun{flex-direction:row;align-items:center;flex-wrap:wrap}
+.ej.grande .expr-big{flex:1 1 380px;padding:10px}
+.ej.grande .ops{flex:1 1 420px;grid-template-columns:repeat(4,1fr)}
+.ej.grande .op{min-height:52px;font-size:.9em}
+.ej.grande .ayuda,.ej.grande h2{display:none}
+@media (max-width:900px){.ej{grid-template-columns:1fr;height:auto}.pz{height:70vh}}
+
+/* Tarea */
+.tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
+.tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.tarea .n{font-weight:900;color:var(--gold);margin-right:6px}
+.tarea .q{font-size:1em;margin:0 0 8px;font-weight:700}
+.tarea .o{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font-size:.88em}
+.tarea .o span b{color:var(--muted);margin-right:4px}
+.btn{display:inline-block;font-weight:900;border:0;border-radius:16px;padding:12px 20px;background:var(--green);color:var(--ink);box-shadow:0 4px 0 var(--green-d);text-decoration:none}
+
+/* Barra inferior */
+.nav{position:fixed;left:0;right:0;bottom:0;height:64px;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--deep);border-top:1px solid var(--line)}
+.nav button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;height:44px;padding:0 16px;font-weight:900}
+.nav .av{background:var(--green);color:var(--ink);border-color:var(--green);box-shadow:0 3px 0 var(--green-d)}
+.nav .cnt{font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums;min-width:70px;text-align:center}
+.nav .prog{flex:1;height:8px;background:var(--panel);border-radius:99px;overflow:hidden}
+.nav .prog i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s}
+.indice{position:fixed;bottom:72px;left:14px;z-index:30;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:8px;display:none;max-height:70vh;overflow:auto;min-width:280px}
+.indice.on{display:block}
+.indice button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--text);padding:8px 12px;border-radius:10px;font-weight:700;font-size:16px}
+.indice button:hover,.indice button.act{background:var(--panel2)}
+.libre{position:fixed;inset:0 0 64px 0;z-index:20;background:var(--bg);padding:12px;display:none}
+.libre.on{display:flex}
+.libre .pz{flex:1}
+@media (max-width:600px){#bFull{display:none}.nav .prog{display:none}.nav button{padding:0 10px}}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- 0. Portada -->
+<section class="slide" data-titulo="Portada">
+  <div class="portada"><div>
+    <h1>Hidruros <span>metálicos y volátiles</span></h1>
+    <p class="lead" style="margin:0 auto">Cómo se clasifican los compuestos, el cruce de valencias y las tres nomenclaturas, aplicadas a los primeros compuestos del examen.</p>
+  </div></div>
+</section>
+
+<!-- 1. Clasificación -->
+<section class="slide" data-titulo="1. Cómo se clasifican los compuestos">
+  <div class="inner">
+    <h2>Los compuestos se ordenan por cuántos elementos distintos tienen</h2>
+    <p>La química inorgánica estudia las sustancias que no tienen carbono, y además algunos compuestos del carbono con oxígeno, como el CO<sub>2</sub>. Para clasificar un compuesto se cuentan los <b>elementos distintos</b>, no los átomos.</p>
+    <div class="grid3">
+      <div class="card step">
+        <h3>Binarios: 2 elementos</h3>
+        <p>Hidruros metálicos, hidruros volátiles, haluros de hidrógeno, óxidos, peróxidos y sales binarias.</p>
+        <div class="ejemplo">NaH <span class="paso">sodio e hidrógeno</span></div>
+      </div>
+      <div class="card step">
+        <h3>Ternarios: 3 elementos</h3>
+        <p>Hidróxidos, oxiácidos y oxisales.</p>
+        <div class="ejemplo">KOH <span class="paso">potasio, oxígeno e hidrógeno</span></div>
+      </div>
+      <div class="card step">
+        <h3>Cuaternarios: 4 elementos</h3>
+        <p>Sales ácidas y sales básicas.</p>
+        <div class="ejemplo">NaHCO<sub>3</sub> <span class="paso">sodio, hidrógeno, carbono y oxígeno</span></div>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> el Ca(OH)<sub>2</sub> tiene cinco átomos, pero solo tres elementos distintos. Es ternario.</div>
+  </div>
+</section>
+
+<!-- 2. Valencia y cruce -->
+<section class="slide" data-titulo="2. Valencia y cruce de valencias">
+  <div class="inner">
+    <h2>Las cargas de un compuesto siempre suman cero</h2>
+    <p>La <b>valencia</b> es el número, con su signo, con el que un elemento entra en un compuesto. Para armar la fórmula se cruzan: la valencia de uno baja como subíndice del otro, sin el signo.</p>
+    <div class="grid2">
+      <div class="card step">
+        <h3>El cruce, paso a paso</h3>
+        <div class="ejemplo">Co<sup>+2</sup> &nbsp; H<sup>−1</sup> <span class="paso">cada uno con su valencia</span></div>
+        <div class="ejemplo">Co<sub>1</sub>H<sub>2</sub> <span class="paso">se cruzan los números</span></div>
+        <div class="ejemplo"><span class="f">CoH<sub>2</sub></span> <span class="paso">el 1 no se escribe</span></div>
+        <p class="paso" style="margin:0">Comprobación: (+2) + 2·(−1) = 0</p>
+      </div>
+      <div class="card step">
+        <h3>Valencias de hoy</h3>
+        <table class="t">
+          <tr><th>Elemento</th><th>Valencia</th></tr>
+          <tr><td>Li, Na, K</td><td>+1</td></tr>
+          <tr><td>Mg, Ca, Ba</td><td>+2</td></tr>
+          <tr><td>Al</td><td>+3</td></tr>
+          <tr><td>Fe, Co, Ni</td><td>+2 y +3</td></tr>
+          <tr><td>Cu</td><td>+1 y +2</td></tr>
+          <tr><td>Au</td><td>+1 y +3</td></tr>
+          <tr><td>Sn, Pb</td><td>+2 y +4</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> si los dos subíndices se pueden dividir para el mismo número, se simplifican. El subíndice 1 nunca se escribe.</div>
+  </div>
+</section>
+
+<!-- 3. Las tres nomenclaturas -->
+<section class="slide" data-titulo="3. Las tres nomenclaturas">
+  <div class="inner">
+    <h2>Un mismo compuesto tiene tres nombres</h2>
+    <div class="grid3">
+      <div class="card step">
+        <h3>Tradicional</h3>
+        <p>Usa terminaciones según la valencia.</p>
+        <p class="paso" style="margin:0">Una valencia: <b>ico</b>.<br>Dos: la menor <b>oso</b>, la mayor <b>ico</b>.<br>Tres: <b>hipo…oso</b>, <b>oso</b>, <b>ico</b>.<br>Cuatro: <b>hipo…oso</b>, <b>oso</b>, <b>ico</b>, <b>per…ico</b>.</p>
+      </div>
+      <div class="card step">
+        <h3>Stock</h3>
+        <p>La valencia va en números romanos y entre paréntesis.</p>
+        <div class="ejemplo">hidruro de hierro (III)</div>
+        <p class="paso" style="margin:0">Si el metal tiene una sola valencia, no lleva romano: hidruro de calcio.</p>
+      </div>
+      <div class="card step">
+        <h3>Sistemática</h3>
+        <p>Cuenta los átomos con prefijos.</p>
+        <p class="paso" style="margin:0">mono 1, di 2, tri 3, tetra 4, penta 5, hexa 6, hepta 7</p>
+        <div class="ejemplo">trihidruro de níquel</div>
+      </div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Raíces que cambian en la tradicional</h3>
+      <div class="orden"><span class="chip">hierro: ferroso / férrico</span><span class="chip">cobre: cuproso / cúprico</span><span class="chip">oro: auroso / áurico</span><span class="chip">plomo: plumboso / plúmbico</span><span class="chip">estaño: estannoso / estánnico</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Hidruros metálicos -->
+<section class="slide" data-titulo="4. Hidruros metálicos">
+  <div class="inner">
+    <h2>Hidruro metálico: un metal con hidrógeno</h2>
+    <p>El metal trabaja con su valencia positiva y el hidrógeno con <b>−1</b>. Se escribe primero el metal. La fórmula es <span class="f">MH<sub>n</sub></span>: lleva tantos hidrógenos como la valencia del metal.</p>
+    <div class="card step">
+      <table class="t">
+        <tr><th>Fórmula</th><th>Tradicional</th><th>Stock</th><th>Sistemática</th></tr>
+        <tr><td>LiH</td><td>hidruro lítico</td><td>hidruro de litio</td><td>monohidruro de litio</td></tr>
+        <tr><td>CaH<sub>2</sub></td><td>hidruro cálcico</td><td>hidruro de calcio</td><td>dihidruro de calcio</td></tr>
+        <tr><td>FeH<sub>2</sub></td><td>hidruro ferroso</td><td>hidruro de hierro (II)</td><td>dihidruro de hierro</td></tr>
+        <tr><td>FeH<sub>3</sub></td><td>hidruro férrico</td><td>hidruro de hierro (III)</td><td>trihidruro de hierro</td></tr>
+        <tr><td>PbH<sub>4</sub></td><td>hidruro plúmbico</td><td>hidruro de plomo (IV)</td><td>tetrahidruro de plomo</td></tr>
+      </table>
+    </div>
+    <div class="grid2" style="margin-top:18px">
+      <div class="card step">
+        <h3>De fórmula a nombre</h3>
+        <div class="ejemplo">CuH <span class="paso">un H, el cobre trabaja con +1</span></div>
+        <p class="paso" style="margin:0">+1 es la menor de +1 y +2: hidruro <b>cuproso</b>, hidruro de cobre (I), monohidruro de cobre.</p>
+      </div>
+      <div class="card step">
+        <h3>De nombre a fórmula</h3>
+        <div class="ejemplo">hidruro áurico <span class="paso">ico es la mayor del oro, +3</span></div>
+        <p class="paso" style="margin:0">Au<sup>+3</sup> con H<sup>−1</sup> da <b>AuH<sub>3</sub></b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Hidruros volátiles -->
+<section class="slide" data-titulo="5. Hidruros volátiles">
+  <div class="inner">
+    <h2>Hidruro volátil: un no metal con hidrógeno</h2>
+    <p>Aquí cambia el signo: el hidrógeno trabaja con <b>+1</b> y el no metal con valencia negativa. N, P, As, Sb y B trabajan con 3. C y Si trabajan con 4. Se escribe primero el no metal: <span class="f">XH<sub>n</sub></span>.</p>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Nombres propios (tradicional)</h3>
+        <table class="t">
+          <tr><th>Fórmula</th><th>Tradicional</th><th>Sistemática</th></tr>
+          <tr><td>NH<sub>3</sub></td><td>amoniaco</td><td>trihidruro de nitrógeno</td></tr>
+          <tr><td>PH<sub>3</sub></td><td>fosfina</td><td>trihidruro de fósforo</td></tr>
+          <tr><td>AsH<sub>3</sub></td><td>arsina</td><td>trihidruro de arsénico</td></tr>
+          <tr><td>SbH<sub>3</sub></td><td>estibina</td><td>trihidruro de antimonio</td></tr>
+          <tr><td>BH<sub>3</sub></td><td>borano</td><td>trihidruro de boro</td></tr>
+          <tr><td>CH<sub>4</sub></td><td>metano</td><td>tetrahidruro de carbono</td></tr>
+          <tr><td>SiH<sub>4</sub></td><td>silano</td><td>tetrahidruro de silicio</td></tr>
+        </table>
+      </div>
+      <div class="card step">
+        <h3>Sin stock</h3>
+        <p>En los hidruros volátiles <b>no se usa</b> la nomenclatura stock. Solo tradicional, con nombre propio, y sistemática.</p>
+        <div class="ejemplo">NH<sub>3</sub> no es «hidruro de nitrógeno (III)»</div>
+        <h3 style="margin-top:14px">Para no confundirlos</h3>
+        <p class="paso" style="margin:0">fosfina, del <b>f</b>ósforo. arsina, del <b>ars</b>énico. estibina, del antimonio, que en latín es <i>stibium</i> y por eso su símbolo es Sb.</p>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> amoniaco es NH<sub>3</sub>. El amonio, NH<sub>4</sub>, es un ion y no es un hidruro.</div>
+  </div>
+</section>
+
+<!-- 6. Cómo distinguirlos -->
+<section class="slide" data-titulo="6. ¿Metálico o volátil?">
+  <div class="inner">
+    <h2>Se mira el elemento que acompaña al hidrógeno</h2>
+    <div class="grid2">
+      <div class="card step">
+        <h3>Si es un metal</h3>
+        <p>Na, Ca, Fe, Al, Cu, Sn… Es <b>hidruro metálico</b>. El hidrógeno vale −1 y se nombra en las <b>tres</b> nomenclaturas.</p>
+        <div class="ejemplo">SnH<sub>4</sub> <span class="paso">hidruro estánnico, hidruro de estaño (IV), tetrahidruro de estaño</span></div>
+      </div>
+      <div class="card step">
+        <h3>Si es N, P, As, Sb, B, C o Si</h3>
+        <p>Es <b>hidruro volátil</b>. El hidrógeno vale +1 y se nombra solo en <b>tradicional y sistemática</b>.</p>
+        <div class="ejemplo">SiH<sub>4</sub> <span class="paso">silano, tetrahidruro de silicio</span></div>
+      </div>
+    </div>
+    <div class="clave step"><b>Clave:</b> en los dos tipos se escribe primero el otro elemento y después el hidrógeno: NaH, nunca HNa.</div>
+  </div>
+</section>
+
+<!-- 7. ¿Está bien o está mal? -->
+<section class="slide" data-titulo="7. ¿Está bien o está mal?">
+  <div class="inner">
+    <h2>¿Está bien o está mal?</h2>
+    <p class="lead">Antes de tocar cada tarjeta, decidan si lo que está escrito es correcto.</p>
+    <div class="casos" id="casos"></div>
+  </div>
+</section>
+
+<!-- 8 a 16: ejercicios (se arman con datos.js) -->
+<div id="ejercicios-ancla" hidden></div>
+
+<!-- Tarea -->
+<section class="slide" data-titulo="Tarea">
+  <div class="inner">
+    <h2>Tarea: 10 ejercicios</h2>
+    <p>Resuelve en tu cuaderno, escribe en cada uno cómo llegaste a la respuesta, marca la opción correcta y envía la foto hoy.</p>
+    <p><a class="btn" href="tarea/tarea-hidruros.pdf" download>Descargar la tarea en PDF</a></p>
+    <div class="tarea" id="tarea"></div>
+  </div>
+</section>
+
+</div>
+
+<div class="libre" id="libre"></div>
+
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ---------- Casos de la lámina 7 ---------- */
+const CASOS=[
+  {e:"NaH es el hidruro sódico",ok:true,w:"El sodio tiene una sola valencia, así que termina en ico."},
+  {e:"La fórmula del hidruro de sodio es HNa",ok:false,w:"En los hidruros se escribe primero el otro elemento: NaH."},
+  {e:"En un hidruro metálico el hidrógeno vale +1",ok:false,w:"En el hidruro metálico el hidrógeno vale −1. Vale +1 en el volátil."},
+  {e:"CaH<sub>2</sub> es hidruro de calcio (II)",ok:false,w:"El calcio tiene una sola valencia: hidruro de calcio, sin romano."},
+  {e:"NH<sub>3</sub> es hidruro de nitrógeno (III)",ok:false,w:"Los hidruros volátiles no usan stock: amoniaco o trihidruro de nitrógeno."},
+  {e:"CH<sub>4</sub> es tetrahidruro de carbono",ok:true,w:"Cuatro hidrógenos, prefijo tetra. En tradicional es metano."},
+  {e:"AuH<sub>3</sub> es hidruro auroso",ok:false,w:"Con +3 el oro usa su valencia mayor: hidruro áurico."},
+  {e:"FeH<sub>3</sub> es hidruro de hierro (III)",ok:true,w:"Tres hidrógenos, el hierro trabaja con +3."},
+  {e:"PH<sub>3</sub> se llama arsina",ok:false,w:"PH<sub>3</sub> es fosfina. Arsina es AsH<sub>3</sub>."},
+  {e:"El KOH es un compuesto ternario",ok:true,w:"Tiene tres elementos distintos: potasio, oxígeno e hidrógeno."},
+  {e:"El amoniaco es NH<sub>4</sub>",ok:false,w:"El amoniaco es NH<sub>3</sub>. NH<sub>4</sub> es el ion amonio."},
+  {e:"SnH<sub>2</sub> es dihidruro de estaño",ok:true,w:"Dos hidrógenos, prefijo di."}
+];
+$('casos').innerHTML=CASOS.map((c,i)=>`<div class="caso" data-i="${i}"><div class="expr">${c.e}</div>
+  <button type="button">Ver respuesta</button><div class="ver"><b>${c.ok?'Está bien.':'Está mal.'}</b> ${c.w}</div></div>`).join('');
+$('casos').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  const card=b.closest('.caso'); const c=CASOS[card.dataset.i];
+  card.classList.add(c.ok?'si':'no'); b.remove();
+});
+
+/* ---------- Ejercicios con pizarra ---------- */
+const ancla=$('ejercicios-ancla');
+CLASE.forEach((ej,i)=>{
+  const s=document.createElement('section');
+  s.className='slide'; s.dataset.titulo=`Ejercicio ${i+1}: ${ej.car}`;
+  s.innerHTML=`<div class="ej">
+    <div class="enun">
+      <div><div class="kicker">Ejercicio ${i+1}</div>
+      <span class="chip y" style="display:inline-block;margin-top:6px">${esc(ej.car)}</span></div>
+      <div class="expr-big">${ej.enun}</div>
+      <div class="ops">${ej.ops.map((o,k)=>`<button class="op" type="button"><span class="l">${'ABCD'[k]}</span><span>${o}</span></button>`).join('')}</div>
+      <p class="ayuda">Toca la opción que vota la clase para marcarla.</p>
+    </div>
+    <div class="pzhost"></div>
+  </div>`;
+  ancla.before(s);
+  s.querySelector('.ops').addEventListener('click',e=>{
+    const b=e.target.closest('.op'); if(!b)return;
+    const ya=b.classList.contains('marcada');
+    s.querySelectorAll('.op').forEach(x=>x.classList.remove('marcada'));
+    if(!ya)b.classList.add('marcada');
+  });
+  const pz=crearPizarra(s.querySelector('.pzhost'),true);
+  pz.onGrande=on=>{s.querySelector('.ej').classList.toggle('grande',on);pz.ajustar();};
+});
+document.querySelectorAll('.pzhost').forEach(h=>{h.style.display='contents'});
+
+/* ---------- Tarea ---------- */
+$('tarea').innerHTML=TAREA.map((t,i)=>`<div class="t">
+  <div class="q"><span class="n">${i+1}.</span>${t.enun}</div>
+  <div class="o">${t.ops.map((o,k)=>`<span><b>${'abcd'[k]})</b>${o}</span>`).join('')}</div></div>`).join('');
+
+/* ---------- Pizarra ---------- */
+function crearPizarra(host,conGrande){
+  const COLORES=['#F4F1E8','#FFC800','#3BC97A','#4FB3E8','#FF6B6B'];
+  const box=document.createElement('div'); box.className='pz';
+  box.innerHTML=`<div class="pz-bar">
+    ${COLORES.map((c,i)=>`<button class="col${i?'':' on'}" data-c="${c}" style="background:${c}" aria-label="Color ${i+1}"></button>`).join('')}
+    <span class="sep"></span>
+    <button data-g="3">Fino</button><button data-g="5" class="on">Medio</button><button data-g="9">Grueso</button>
+    <span class="sep"></span>
+    <button data-borr>Borrador</button>
+    <span class="der"><button data-undo>Deshacer</button><button data-clear>Limpiar</button>${conGrande?'<button data-big>Pizarra grande</button>':''}</span>
+  </div><canvas></canvas>`;
+  host.appendChild(box);
+  const cv=box.querySelector('canvas'), ctx=cv.getContext('2d');
+  const st={color:COLORES[0],g:5,borr:false,trazos:[],actual:null,grande:false};
+  const api={ajustar,onGrande:null};
+
+  function ajustar(){
+    const r=cv.getBoundingClientRect(); if(!r.width)return;
+    const dpr=window.devicePixelRatio||1;
+    cv.width=Math.round(r.width*dpr); cv.height=Math.round(r.height*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0); dibujar();
+  }
+  // Los puntos se guardan relativos al ancho para que el dibujo sobreviva a cambios de tamaño.
+  function trazo(t,w){
+    ctx.globalCompositeOperation=t.borr?'destination-out':'source-over';
+    ctx.strokeStyle=t.color; ctx.lineWidth=t.borr?t.g*5:t.g; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath();
+    t.p.forEach(([x,y],k)=>k?ctx.lineTo(x*w,y*w):ctx.moveTo(x*w,y*w));
+    if(t.p.length===1)ctx.lineTo(t.p[0][0]*w+.1,t.p[0][1]*w);
+    ctx.stroke();
+  }
+  function dibujar(){
+    const w=cv.getBoundingClientRect().width;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    st.trazos.forEach(t=>trazo(t,w));
+    ctx.globalCompositeOperation='source-over';
+  }
+  function pos(e){const r=cv.getBoundingClientRect();return[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.width];}
+  cv.addEventListener('pointerdown',e=>{
+    if(e.button>0)return;
+    cv.setPointerCapture(e.pointerId);
+    st.actual={color:st.color,g:st.g,borr:st.borr,p:[pos(e)]};
+    st.trazos.push(st.actual); dibujar();
+  });
+  cv.addEventListener('pointermove',e=>{
+    if(!st.actual)return;
+    (e.getCoalescedEvents?e.getCoalescedEvents():[e]).forEach(ev=>st.actual.p.push(pos(ev)));
+    dibujar();
+  });
+  const fin=()=>{st.actual=null};
+  cv.addEventListener('pointerup',fin); cv.addEventListener('pointercancel',fin);
+
+  box.querySelector('.pz-bar').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b)return;
+    if(b.dataset.c){st.color=b.dataset.c;st.borr=false;
+      box.querySelectorAll('[data-c],[data-borr]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if(b.dataset.g){st.g=+b.dataset.g;box.querySelectorAll('[data-g]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('borr' in b.dataset){st.borr=true;box.querySelectorAll('[data-c]').forEach(x=>x.classList.remove('on'));b.classList.add('on');}
+    else if('undo' in b.dataset){st.trazos.pop();dibujar();}
+    else if('clear' in b.dataset){if(st.trazos.length&&confirm('¿Borrar toda la pizarra?')){st.trazos=[];dibujar();}}
+    else if('big' in b.dataset){st.grande=!st.grande;b.classList.toggle('on',st.grande);
+      b.textContent=st.grande?'Ver opciones al lado':'Pizarra grande';api.onGrande&&api.onGrande(st.grande);}
+  });
+  new ResizeObserver(ajustar).observe(cv);
+  return api;
+}
+
+/* ---------- Pizarra libre ---------- */
+let libre=null;
+function toggleLibre(){
+  const L=$('libre');
+  if(!libre)libre=crearPizarra(L,false);
+  L.classList.toggle('on');
+  $('bLibre').textContent=L.classList.contains('on')?'Cerrar pizarra':'Pizarra';
+  libre.ajustar();
+}
+$('bLibre').onclick=toggleLibre;
+function toggleFull(){
+  if(document.fullscreenElement)document.exitFullscreen();
+  else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+}
+$('bFull').onclick=toggleFull;
+document.addEventListener('fullscreenchange',()=>{$('bFull').textContent=document.fullscreenElement?'Salir de pantalla completa':'Pantalla completa';});
+
+/* ---------- Navegación ---------- */
+const slides=[...document.querySelectorAll('.slide')];
+let cur=0;
+function ir(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle('on',i===cur));
+  slides[cur].scrollTop=0;
+  $('cnt').textContent=`${cur+1} / ${slides.length}`;
+  $('prog').style.width=(cur/(slides.length-1)*100)+'%';
+  $('bAnt').disabled=cur===0;
+  $('bSig').disabled=cur===slides.length-1 && !slides[cur].querySelector('.step:not(.vis)');
+  [...$('indice').children].forEach((b,i)=>b.classList.toggle('act',i===cur));
+  try{history.replaceState(null,'','#'+(cur+1))}catch(e){}
+}
+function avanzar(){
+  const oculto=slides[cur].querySelector('.step:not(.vis)');
+  if(oculto){oculto.classList.add('vis');oculto.scrollIntoView({block:'nearest',behavior:'smooth'});return;}
+  ir(cur+1);
+}
+function retroceder(){
+  const vistos=slides[cur].querySelectorAll('.step.vis');
+  if(vistos.length){vistos[vistos.length-1].classList.remove('vis');return;}
+  ir(cur-1);
+}
+$('bSig').onclick=avanzar; $('bAnt').onclick=retroceder;
+$('indice').innerHTML=slides.map((s,i)=>`<button type="button" data-i="${i}">${i+1}. ${esc(s.dataset.titulo||'')}</button>`).join('');
+$('indice').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ir(+b.dataset.i);$('indice').classList.remove('on');});
+$('bInd').onclick=()=>$('indice').classList.toggle('on');
+document.addEventListener('keydown',e=>{
+  if(e.target.closest('input,textarea'))return;
+  if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();avanzar();}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();retroceder();}
+  else if(e.key==='p'||e.key==='P')toggleLibre();
+  else if(e.key==='f'||e.key==='F')toggleFull();
+  else if(e.key==='Escape'){$('indice').classList.remove('on');if($('libre').classList.contains('on'))toggleLibre();}
+});
+const h=parseInt(location.hash.slice(1));
+ir(h>0?h-1:0);
+</script>
+</body>
+</html>
