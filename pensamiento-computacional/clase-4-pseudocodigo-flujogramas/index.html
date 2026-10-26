@@ -97,6 +97,38 @@ table.t td:first-child{font-weight:900}
 .ej.grande .ayuda,.ej.grande h2{display:none}
 @media (max-width:900px){.ej{grid-template-columns:1fr;height:auto}.pz{height:70vh}}
 
+/* Simulación de PSeInt: ventana clara de editor y consola negra, como el programa */
+.ps-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:900px){.ps-grid{grid-template-columns:1fr}}
+.pseint{display:flex;flex-direction:column;gap:12px}
+.ps-win{background:#F3F3F3;border-radius:10px;overflow:hidden;border:1px solid #9AA5AB;color:#1A1A1A;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.ps-title{display:flex;align-items:center;gap:8px;background:#DDE3E8;padding:6px 12px;font:700 15px Segoe UI,system-ui,sans-serif}
+.ps-logo{width:16px;height:16px;border-radius:4px;background:#2B7BD6}
+.ps-sim{margin-left:auto;font-weight:600;font-size:12px;color:#5A6770}
+.ps-tools{display:flex;gap:8px;flex-wrap:wrap;padding:8px 10px;border-bottom:1px solid #C9D1D6;background:#ECEFF1}
+.ps-sel{font:600 15px Segoe UI,system-ui,sans-serif;padding:6px 8px;border-radius:6px;border:1px solid #A8B3B9;background:#fff;color:#1A1A1A}
+.ps-run{font:800 15px Segoe UI,system-ui,sans-serif;padding:6px 14px;border-radius:6px;border:1px solid #1E7A3F;background:#2BAE66;color:#06210F}
+.ps-ed{display:flex;background:#fff;height:min(52vh,430px)}
+.ps-nums{margin:0;padding:10px 8px;background:#EEF1F3;color:#8A969D;text-align:right;user-select:none;overflow:hidden;min-width:2.6em}
+.ps-code{position:relative;flex:1;min-width:0}
+.ps-hl,.ps-ta,.ps-nums{font:16px/1.5 Consolas,"Courier New",monospace;tab-size:4}
+.ps-hl,.ps-ta{position:absolute;inset:0;margin:0;padding:10px 12px;white-space:pre;overflow:auto;border:0}
+.ps-hl{color:#1A1A1A;pointer-events:none}
+.ps-ta{background:transparent;color:transparent;caret-color:#000;resize:none;outline:none}
+.ps-kw{color:#0B3FB3;font-weight:700}
+.ps-str{color:#B3261E}
+.ps-num{color:#7A3EB1}
+.ps-com{color:#6B7B83;font-style:italic}
+.ps-cons{background:#0C0C0C;border:1px solid #444;border-radius:10px;overflow:hidden;color:#E8E8E8}
+.ps-ctitle{display:flex;align-items:center;background:#2B2B2B;padding:6px 12px;font:700 14px Segoe UI,system-ui,sans-serif;color:#DDD}
+.ps-x{margin-left:auto;background:none;border:0;color:#DDD;font-size:15px}
+.ps-out{font:17px/1.5 Consolas,"Courier New",monospace;padding:10px 14px;max-height:min(40vh,320px);min-height:120px;overflow:auto}
+.ps-l{white-space:pre-wrap}
+.ps-dim{color:#9BA4A8}
+.ps-err{color:#FF8A80}
+.ps-in{display:flex;align-items:center}
+.ps-in input{flex:1;background:transparent;border:0;border-bottom:1px solid #666;color:#FFF;font:inherit;outline:none}
+
 /* Tarea */
 .tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
 .tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
@@ -315,8 +347,33 @@ FIN_PARA</div>
   </div>
 </section>
 
-<!-- 7. ¿Está bien o está mal? -->
-<section class="slide" data-titulo="7. ¿Está bien o está mal?">
+<!-- 7. PSeInt -->
+<section class="slide" data-titulo="7. Así se ve en PSeInt">
+  <div class="inner">
+    <h2>Así se ve en PSeInt</h2>
+    <div class="ps-grid">
+      <div class="pseint"></div>
+      <div>
+        <div class="card">
+          <h3>Las mismas ideas, otras palabras</h3>
+          <table class="t">
+            <tr><th>En el papel</th><th>En PSeInt</th></tr>
+            <tr><td>INICIO … FIN</td><td>Algoritmo nombre … FinAlgoritmo</td></tr>
+            <tr><td>REAL base</td><td>Definir base Como Real</td></tr>
+            <tr><td>LEER edad</td><td>Leer edad</td></tr>
+            <tr><td>ESCRIBIR "Hola"</td><td>Escribir "Hola"</td></tr>
+            <tr><td>edad ← 20</td><td>edad &lt;- 20</td></tr>
+            <tr><td>FIN_SI</td><td>FinSi</td></tr>
+          </table>
+        </div>
+        <div class="clave"><b>Clave:</b> elijan un ejemplo y toquen <b>Ejecutar</b>. Cuando aparezca la línea con el cursor, escriban el dato y presionen Enter. Se puede cambiar el código para ver qué pasa.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. ¿Está bien o está mal? -->
+<section class="slide" data-titulo="8. ¿Está bien o está mal?">
   <div class="inner">
     <h2>¿Está bien o está mal?</h2>
     <p class="lead">Antes de tocar cada tarjeta, decidan si lo que está escrito es correcto.</p>
@@ -353,6 +410,7 @@ FIN_PARA</div>
 </nav>
 
 <script src="datos.js"></script>
+<script src="pseint.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
