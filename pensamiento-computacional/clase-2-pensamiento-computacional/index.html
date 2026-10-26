@@ -103,6 +103,27 @@ table.t td:first-child{font-weight:900}
 .ej.sinpz{grid-template-columns:1fr;max-width:1100px;margin:0 auto;height:auto;min-height:100%;align-content:center}
 .ej.sinpz .op{min-height:84px;font-size:1.08em}
 
+/* Imágenes reales y esquemas */
+.retrato{float:left;width:38%;margin:0 16px 8px 0}
+.retrato img{display:block;width:100%;border-radius:12px}
+.retrato figcaption,.esquema figcaption{color:var(--muted);font-size:.68em;margin-top:5px;line-height:1.35}
+.mini{float:right;width:165px;height:auto;margin:0 0 6px 12px}
+.esquema{margin:14px 0 0}
+.esquema svg{display:block;width:100%;height:auto}
+.datos{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.dato{border-radius:999px;padding:5px 12px;font-weight:800;font-size:.85em;border:2px solid var(--line);color:var(--muted);text-decoration:line-through}
+.dato.si{border-color:var(--green-t);color:var(--text);background:#173A2A;text-decoration:none}
+.eps{display:grid;grid-template-columns:1fr auto 1.2fr auto 1fr;gap:10px;align-items:center;margin:12px 0}
+.eps .caja{background:var(--panel);border:2px solid var(--line);border-radius:16px;padding:12px;text-align:center;height:100%;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.eps .caja b{color:var(--green-t)}
+.eps .val{font-size:1.5em;font-weight:900;color:var(--gold)}
+.eps .proc{display:flex;align-items:center;gap:12px;text-align:left}
+.eps .proc img{width:70px;border-radius:8px}
+.eps .fl{font-size:1.8em;color:var(--gold);font-weight:900}
+@media (max-width:820px){.eps{grid-template-columns:1fr}.eps .fl{transform:rotate(90deg);text-align:center}.retrato{float:none;width:100%}}
+.creditos{font-size:.78em;color:var(--muted)}
+.creditos li{margin-bottom:6px}
+
 /* Tarea */
 .tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
 .tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
@@ -147,7 +168,6 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="1. Qué es el pensamiento computacional">
   <div class="inner">
     <h2>Un proceso mental para resolver problemas</h2>
-    <figure class="ilus"><img src="img/01-pensamiento-computacional.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="card step">
       <h3>Definición</h3>
       <p style="margin:0">El pensamiento computacional es un proceso mental que permite formular problemas y diseñar soluciones de tal forma que puedan ser ejecutadas por un agente que procesa información, sea una computadora, una persona o una combinación de ambas.</p>
@@ -183,14 +203,15 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="2. Origen y pioneros">
   <div class="inner">
     <h2>Dos nombres que entran en el examen</h2>
-    <figure class="ilus"><img src="img/02-pioneros.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
+        <figure class="retrato"><img src="img/fotos/papert.webp" alt="Foto en blanco y negro de Seymour Papert con la tortuga robot de LOGO y un dibujo hecho por ella"><figcaption>Papert con la tortuga de LOGO: un robot que dibuja en el papel las órdenes que se le programan.</figcaption></figure>
         <h3>Seymour Papert (1928 a 2016)</h3>
         <p>Pionero del pensamiento computacional. Propuso que la programación puede dar a los niños una habilidad para resolver problemas y ser creativos.</p>
         <div class="ejemplo">Desarrolló el lenguaje <b>LOGO</b> y sentó las bases de la teoría construccionista del aprendizaje digital.</div>
       </div>
       <div class="card step">
+        <figure class="retrato"><img src="img/fotos/wing.webp" alt="Foto de Jeannette Wing dando una charla"><figcaption>Jeannette Wing en 2013.</figcaption></figure>
         <h3>Jeannette Wing (2006)</h3>
         <p>Formalizó el término pensamiento computacional.</p>
         <div class="ejemplo">«El pensamiento computacional implica resolver problemas, diseñar sistemas y comprender el comportamiento humano, haciendo uso de los conceptos fundamentales de la informática.»</div>
@@ -218,24 +239,46 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="3. Los cuatro pilares">
   <div class="inner">
     <h2>Los cuatro pilares</h2>
-    <figure class="ilus"><img src="img/03-pilares.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
+        <svg class="mini" viewBox="0 0 120 100" aria-label="Pizza cortada en porciones, con una porción separada">
+  <circle cx="50" cy="52" r="40" fill="#E8B04B" stroke="#B5651D" stroke-width="5"/>
+  <g stroke="#B5651D" stroke-width="3"><line x1="50" y1="12" x2="50" y2="92"/><line x1="15" y1="32" x2="85" y2="72"/><line x1="15" y1="72" x2="85" y2="32"/></g>
+  <g fill="#C0392B"><circle cx="38" cy="42" r="5"/><circle cx="62" cy="64" r="5"/><circle cx="36" cy="66" r="5"/></g>
+  <path d="M96 30 L118 18 A30 30 0 0 1 118 46 Z" fill="#E8B04B" stroke="#B5651D" stroke-width="3"/>
+</svg>
         <h3>1. Descomposición</h3>
         <p>Dividir un problema complejo en tareas o etapas más manejables y específicas.</p>
         <p class="paso" style="margin:0">Pizza: nadie la muerde entera, se corta en porciones.</p>
       </div>
       <div class="card step">
+        <svg class="mini" viewBox="-10 0 152 106" aria-label="Tres tazas con agua, café y leche en distinta proporción">
+  <rect x="5" y="73.2" width="30" height="10.8" fill="#4FB3E8"/><rect x="5" y="57.0" width="30" height="16.2" fill="#6F4E37"/><rect x="5" y="30.0" width="30" height="27.0" fill="#F3E6CF"/><rect x="2" y="30" width="36" height="57" rx="4" fill="none" stroke="#F1F5F7" stroke-width="3"/><text x="20" y="100" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="10" text-anchor="middle">Capuchino</text><rect x="51" y="78.6" width="30" height="5.4" fill="#4FB3E8"/><rect x="51" y="67.8" width="30" height="10.8" fill="#6F4E37"/><rect x="51" y="30.0" width="30" height="37.8" fill="#F3E6CF"/><rect x="48" y="30" width="36" height="57" rx="4" fill="none" stroke="#F1F5F7" stroke-width="3"/><text x="66" y="100" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="10" text-anchor="middle">Latte</text><rect x="97" y="73.2" width="30" height="10.8" fill="#4FB3E8"/><rect x="97" y="40.8" width="30" height="32.4" fill="#6F4E37"/><rect x="97" y="30.0" width="30" height="10.8" fill="#F3E6CF"/><rect x="94" y="30" width="36" height="57" rx="4" fill="none" stroke="#F1F5F7" stroke-width="3"/><text x="112" y="100" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="10" text-anchor="middle">Macchiato</text>
+</svg>
         <h3>2. Reconocimiento de patrones</h3>
         <p>Identificar secuencias o estructuras que se repiten para reutilizar soluciones conocidas.</p>
         <p class="paso" style="margin:0">Capuchino, latte y macchiato: agua, café y leche en distintas proporciones.</p>
       </div>
       <div class="card step">
+        <svg class="mini" viewBox="0 0 130 100" aria-label="Calles enredadas a la izquierda y un mapa de metro simple a la derecha">
+  <g stroke="#6B7F88" stroke-width="2" fill="none"><path d="M4 10 L50 18 M8 30 L46 44 M2 52 L52 60 M10 76 L44 90 M14 4 L20 96 M30 6 L26 94 M44 8 L40 92 M4 20 L40 70"/></g>
+  <path d="M56 50 h12" stroke="#FFC800" stroke-width="3"/><path d="M66 44 l6 6 -6 6" fill="none" stroke="#FFC800" stroke-width="3"/>
+  <path d="M80 20 L125 20" stroke="#3BC97A" stroke-width="5"/><path d="M80 80 L125 80" stroke="#4FB3E8" stroke-width="5"/><path d="M102 20 L102 80" stroke="#FFC800" stroke-width="5"/>
+  <g fill="#F1F5F7" stroke="#131F24" stroke-width="2"><circle cx="80" cy="20" r="5"/><circle cx="102" cy="20" r="6"/><circle cx="125" cy="20" r="5"/><circle cx="80" cy="80" r="5"/><circle cx="102" cy="80" r="6"/><circle cx="125" cy="80" r="5"/><circle cx="102" cy="50" r="5"/></g>
+</svg>
         <h3>3. Abstracción</h3>
         <p>Centrarse en lo esencial del problema y descartar los detalles irrelevantes. Se crea un modelo general.</p>
         <p class="paso" style="margin:0">Mapa del metro: solo estaciones, líneas y conexiones.</p>
       </div>
       <div class="card step">
+        <svg class="mini" viewBox="-40 -8 200 128" aria-label="Ciclo de pasos que se repite: dados, casilla, construir, turno">
+  <defs><marker id="pu" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#FFC800"/></marker></defs>
+  <g fill="none" stroke="#FFC800" stroke-width="3" marker-end="url(#pu)">
+    <path d="M60 14 A44 44 0 0 1 104 55"/><path d="M104 60 A44 44 0 0 1 62 100"/><path d="M56 100 A44 44 0 0 1 16 60"/><path d="M16 52 A44 44 0 0 1 54 14"/>
+  </g>
+  <g font-family="Nunito,sans-serif" font-weight="800" font-size="16" fill="#F1F5F7" text-anchor="middle"><text x="60" y="2">Dados</text><text x="110" y="61" text-anchor="start">Casilla</text><text x="60" y="117">Construir</text><text x="10" y="61" text-anchor="end">Turno</text></g>
+  <rect x="48" y="43" width="24" height="24" rx="5" fill="#F1F5F7"/><g fill="#131F24"><circle cx="54" cy="49" r="2.6"/><circle cx="60" cy="55" r="2.6"/><circle cx="66" cy="61" r="2.6"/></g>
+</svg>
         <h3>4. Pensamiento algorítmico</h3>
         <p>Diseñar la solución paso a paso, con un algoritmo.</p>
         <p class="paso" style="margin:0">Monopolio: lanzar los dados, aplicar la casilla, construir, pasar el turno, repetir hasta la bancarrota.</p>
@@ -253,7 +296,6 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="4. Un ejemplo por pilar">
   <div class="inner">
     <h2>Un ejemplo para cada pilar</h2>
-    <figure class="ilus"><img src="img/04-ejemplos-pilares.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Descomposición: organizar una fiesta de cumpleaños</h3>
@@ -277,10 +319,12 @@ table.t td:first-child{font-weight:900}
     </div>
     <div class="card step" style="margin-top:18px">
       <h3>Abstracción: ¿llegará a tiempo el auto?</h3>
-      <div class="grid2">
-        <p class="paso" style="margin:0"><b>Información completa:</b> marca Toyota, color rojo metalizado, año 2022, velocidad actual 80 km/h, música reggaetón, 3 pasajeros, combustible 75 %, olor del ambientador a pino.</p>
-        <p class="paso" style="margin:0"><b>Lo que importa:</b> velocidad actual, distancia al destino y combustible. Lo demás se ignora.</p>
+      <div class="datos">
+        <span class="dato">marca Toyota</span><span class="dato">rojo metalizado</span><span class="dato">año 2022</span>
+        <span class="dato si">velocidad actual 80 km/h</span><span class="dato">música reggaetón</span><span class="dato">3 pasajeros</span>
+        <span class="dato si">combustible 75 %</span><span class="dato">ambientador a pino</span>
       </div>
+      <p class="paso" style="margin:0"><b>Lo que importa:</b> velocidad actual, distancia al destino y combustible. Lo demás se tacha. Fíjense que la distancia al destino no está en la lista: también hay que notar qué dato falta.</p>
     </div>
     <div class="ejemplo step"><b>La escalera:</b> 1. descomposición de un problema en fases más pequeñas, 2. reconocimiento de patrones repetitivos, 3. abstracción de la información irrelevante, 4. algoritmos escritos para resolver el problema.</div>
     <div class="clave step"><b>Clave:</b> en la abstracción se pregunta qué datos sirven para responder la pregunta. El color o la música no cambian si el auto llega a tiempo.</div>
@@ -291,7 +335,6 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="5. El algoritmo">
   <div class="inner">
     <h2>Un algoritmo es ordenado y finito</h2>
-    <figure class="ilus"><img src="img/05-algoritmo.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>Un <b>algoritmo</b> es un conjunto ordenado y finito de operaciones que permite resolver un problema.</p>
     <div class="grid2">
       <div class="card step">
@@ -327,7 +370,26 @@ FIN</div>
       </div>
       <div class="ejemplo step">Si se ingresa 12 y 30, escribe <span class="f">42</span>. Pilares usados: descomposición, abstracción y algoritmo.</div>
     </div>
-    <div class="ejemplo step"><b>Flujograma para hacer un sándwich:</b> INICIO → tomar 2 panes → untar mantequilla → rombo «¿Quiero queso?». Si es sí, agregar queso. Si es no, se salta ese paso. Luego cerrar el sándwich → FIN.</div>
+    <p class="paso step" style="margin:18px 0 0"><b>Flujograma para hacer un sándwich</b></p>
+    <figure class="esquema step"><svg viewBox="0 0 1100 250" role="img" aria-label="Flujograma para hacer un sándwich">
+  <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#F1F5F7"/></marker></defs>
+  <rect x="10" y="30" width="110" height="50" rx="25.0" fill="#1B2B32" stroke="#3BC97A" stroke-width="3"/><text x="65.0" y="61.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">INICIO</text>
+  <path d="M120 55 H150" fill="none" stroke="#F1F5F7" stroke-width="2.5" marker-end="url(#fl)"/>
+  <rect x="152" y="30" width="150" height="50" rx="6" fill="#1B2B32" stroke="#4FB3E8" stroke-width="3"/><text x="227.0" y="61.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">tomar 2 panes</text>
+  <path d="M302 55 H332" fill="none" stroke="#F1F5F7" stroke-width="2.5" marker-end="url(#fl)"/>
+  <rect x="334" y="30" width="160" height="50" rx="6" fill="#1B2B32" stroke="#4FB3E8" stroke-width="3"/><text x="414.0" y="52.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">untar</text><text x="414.0" y="70.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">mantequilla</text>
+  <path d="M494 55 H520" fill="none" stroke="#F1F5F7" stroke-width="2.5" marker-end="url(#fl)"/>
+  <polygon points="617.0,0 712,55.0 617.0,110 522,55.0" fill="#1B2B32" stroke="#FFC800" stroke-width="3"/><text x="617.0" y="52.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">¿Quiero</text><text x="617.0" y="70.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">queso?</text>
+  <path d="M617 110 V160" fill="none" stroke="#F1F5F7" stroke-width="2.5" marker-end="url(#fl)"/>
+  <text x="630" y="140" fill="#3BC97A" font-family="Nunito,sans-serif" font-weight="800" font-size="16">Sí</text>
+  <rect x="542" y="162" width="150" height="50" rx="6" fill="#1B2B32" stroke="#4FB3E8" stroke-width="3"/><text x="617.0" y="193.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">agregar queso</text>
+  <path d="M692 187 H800 V82" fill="none" stroke="#F1F5F7" stroke-width="2.5" marker-end="url(#fl)"/>
+  <path d="M712 55 H758" fill="none" stroke="#F1F5F7" stroke-width="2.5" marker-end="url(#fl)"/>
+  <text x="722" y="45" fill="#FFC800" font-family="Nunito,sans-serif" font-weight="800" font-size="16">No</text>
+  <rect x="760" y="30" width="160" height="50" rx="6" fill="#1B2B32" stroke="#4FB3E8" stroke-width="3"/><text x="840.0" y="52.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">cerrar el</text><text x="840.0" y="70.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">sándwich</text>
+  <path d="M920 55 H950" fill="none" stroke="#F1F5F7" stroke-width="2.5" marker-end="url(#fl)"/>
+  <rect x="952" y="30" width="110" height="50" rx="25.0" fill="#1B2B32" stroke="#3BC97A" stroke-width="3"/><text x="1007.0" y="61.0" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle">FIN</text>
+</svg><figcaption>Óvalo: inicio y fin. Rectángulo: proceso. Rombo: decisión con dos salidas, sí o no. Si la respuesta es no, el flujo se salta «agregar queso».</figcaption></figure>
     <div class="clave step"><b>Clave:</b> «agregar un poco de sal» no es un paso preciso, porque es ambiguo. Un procedimiento que nunca termina no es un algoritmo.</div>
   </div>
 </section>
@@ -336,8 +398,14 @@ FIN</div>
 <section class="slide" data-titulo="6. Entrada, proceso y salida">
   <div class="inner">
     <h2>Todo sistema tiene entrada, proceso y salida</h2>
-    <figure class="ilus"><img src="img/06-entrada-proceso-salida.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>El modelo Entrada, Proceso y Salida (E-P-S) describe el flujo de información dentro de un sistema, sea humano, mecánico o digital.</p>
+    <div class="eps step">
+      <div class="caja"><b>Entrada</b><span class="val">8 &nbsp;+&nbsp; 5</span><span class="paso" style="margin:0">lo que se teclea</span></div>
+      <div class="fl">→</div>
+      <div class="caja proc"><img src="img/fotos/casio.webp" alt="Foto de una calculadora científica Casio"><div><b>Proceso</b><br><span class="paso" style="margin:0">la calculadora aplica la suma</span></div></div>
+      <div class="fl">→</div>
+      <div class="caja"><b>Salida</b><span class="val">13</span><span class="paso" style="margin:0">lo que aparece en pantalla</span></div>
+    </div>
     <div class="grid3">
       <div class="card step">
         <h3>Entrada</h3>
@@ -371,7 +439,6 @@ FIN</div>
 <section class="slide" data-titulo="7. Problemas cotidianos">
   <div class="inner">
     <h2>Resolver problemas en cuatro pasos</h2>
-    <figure class="ilus"><img src="img/07-problemas-cotidianos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="card step">
       <div class="orden"><span class="chip y">1. Comprender</span>→<span class="chip y">2. Diseñar</span>→<span class="chip y">3. Ejecutar</span>→<span class="chip y">4. Verificar</span></div>
       <p class="paso" style="margin:0">Comprender: qué se pide, qué datos hay, qué resultado se espera. Diseñar: descomponer, buscar patrones, abstraer y armar el algoritmo. Ejecutar: seguir el plan sin saltar pasos. Verificar: ver si cumple, si se puede mejorar y si sirve para casos parecidos.</p>
@@ -397,7 +464,6 @@ FIN</div>
 <section class="slide" data-titulo="8. Ocho casos">
   <div class="inner">
     <h2>Ocho casos con entrada, proceso y salida</h2>
-    <figure class="ilus"><img src="img/08-ocho-casos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="card step">
       <table class="t">
         <tr><th>Caso</th><th>Entrada</th><th>Proceso</th><th>Salida</th></tr>
@@ -444,6 +510,19 @@ FIN</div>
     <p>Resuelve en tu cuaderno, escribe en cada uno por qué elegiste esa opción, marca la opción correcta y envía la foto hoy.</p>
     <p><a class="btn" href="tarea/tarea-pensamiento-computacional.pdf" download>Descargar la tarea en PDF</a></p>
     <div class="tarea" id="tarea"></div>
+  </div>
+</section>
+
+<!-- Créditos de imágenes (fuera de la clase) -->
+<section class="slide" data-titulo="Créditos de imágenes">
+  <div class="inner">
+    <h2>Créditos de imágenes</h2>
+    <ul class="creditos">
+      <li>Seymour Papert con la tortuga de LOGO: «Seymour Papert», Matematicamente.it, Wikimedia Commons, CC BY-SA 3.0, reducida.</li>
+      <li>Jeannette Wing: «Jeannette Wing, Davos 2013», World Economic Forum (foto de Mirko Ries), Wikimedia Commons, CC BY-SA 2.0, recortada.</li>
+      <li>Calculadora: «CASIO fx-82ES PLUS A (edited)», Wikimedia Commons, CC0.</li>
+      <li>Los demás dibujos son esquemas propios.</li>
+    </ul>
   </div>
 </section>
 
