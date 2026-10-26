@@ -94,6 +94,15 @@ table.t td:first-child{font-weight:900}
 .ej.grande .ayuda,.ej.grande h2{display:none}
 @media (max-width:900px){.ej{grid-template-columns:1fr;height:auto}.pz{height:70vh}}
 
+/* Ilustración de cada lámina: a la derecha, el texto la rodea. Si la imagen no está, se quita sola. */
+.ilus{float:right;width:min(34%,400px);margin:0 0 14px 22px}
+.ilus img{display:block;width:100%;height:auto;border-radius:18px}
+.inner .card,.inner .clave,.inner .ejemplo,.inner .code{display:flow-root}
+@media (max-width:820px){.ilus{float:none;width:100%;margin:0 0 14px}}
+/* Preguntas de concepto: sin pizarra, opciones grandes al centro */
+.ej.sinpz{grid-template-columns:1fr;max-width:1100px;margin:0 auto;height:auto;min-height:100%;align-content:center}
+.ej.sinpz .op{min-height:84px;font-size:1.08em}
+
 /* Tarea */
 .tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
 .tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
@@ -138,6 +147,7 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="1. Qué es el pensamiento computacional">
   <div class="inner">
     <h2>Un proceso mental para resolver problemas</h2>
+    <figure class="ilus"><img src="img/01-pensamiento-computacional.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="card step">
       <h3>Definición</h3>
       <p style="margin:0">El pensamiento computacional es un proceso mental que permite formular problemas y diseñar soluciones de tal forma que puedan ser ejecutadas por un agente que procesa información, sea una computadora, una persona o una combinación de ambas.</p>
@@ -173,6 +183,7 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="2. Origen y pioneros">
   <div class="inner">
     <h2>Dos nombres que entran en el examen</h2>
+    <figure class="ilus"><img src="img/02-pioneros.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Seymour Papert (1928 a 2016)</h3>
@@ -207,6 +218,7 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="3. Los cuatro pilares">
   <div class="inner">
     <h2>Los cuatro pilares</h2>
+    <figure class="ilus"><img src="img/03-pilares.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>1. Descomposición</h3>
@@ -241,6 +253,7 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="4. Un ejemplo por pilar">
   <div class="inner">
     <h2>Un ejemplo para cada pilar</h2>
+    <figure class="ilus"><img src="img/04-ejemplos-pilares.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Descomposición: organizar una fiesta de cumpleaños</h3>
@@ -278,6 +291,7 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="5. El algoritmo">
   <div class="inner">
     <h2>Un algoritmo es ordenado y finito</h2>
+    <figure class="ilus"><img src="img/05-algoritmo.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>Un <b>algoritmo</b> es un conjunto ordenado y finito de operaciones que permite resolver un problema.</p>
     <div class="grid2">
       <div class="card step">
@@ -322,6 +336,7 @@ FIN</div>
 <section class="slide" data-titulo="6. Entrada, proceso y salida">
   <div class="inner">
     <h2>Todo sistema tiene entrada, proceso y salida</h2>
+    <figure class="ilus"><img src="img/06-entrada-proceso-salida.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>El modelo Entrada, Proceso y Salida (E-P-S) describe el flujo de información dentro de un sistema, sea humano, mecánico o digital.</p>
     <div class="grid3">
       <div class="card step">
@@ -356,6 +371,7 @@ FIN</div>
 <section class="slide" data-titulo="7. Problemas cotidianos">
   <div class="inner">
     <h2>Resolver problemas en cuatro pasos</h2>
+    <figure class="ilus"><img src="img/07-problemas-cotidianos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="card step">
       <div class="orden"><span class="chip y">1. Comprender</span>→<span class="chip y">2. Diseñar</span>→<span class="chip y">3. Ejecutar</span>→<span class="chip y">4. Verificar</span></div>
       <p class="paso" style="margin:0">Comprender: qué se pide, qué datos hay, qué resultado se espera. Diseñar: descomponer, buscar patrones, abstraer y armar el algoritmo. Ejecutar: seguir el plan sin saltar pasos. Verificar: ver si cumple, si se puede mejorar y si sirve para casos parecidos.</p>
@@ -381,6 +397,7 @@ FIN</div>
 <section class="slide" data-titulo="8. Ocho casos">
   <div class="inner">
     <h2>Ocho casos con entrada, proceso y salida</h2>
+    <figure class="ilus"><img src="img/08-ocho-casos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="card step">
       <table class="t">
         <tr><th>Caso</th><th>Entrada</th><th>Proceso</th><th>Salida</th></tr>
@@ -475,10 +492,12 @@ $('casos').addEventListener('click',e=>{
 
 /* ---------- Ejercicios con pizarra ---------- */
 const ancla=$('ejercicios-ancla');
+const CON_PIZARRA=[7];  // ejercicios que se calculan o se rastrean; el resto es de concepto
 CLASE.forEach((ej,i)=>{
+  const conPz=CON_PIZARRA.includes(i+1);
   const s=document.createElement('section');
   s.className='slide'; s.dataset.titulo=`Ejercicio ${i+1}: ${ej.car}`;
-  s.innerHTML=`<div class="ej">
+  s.innerHTML=`<div class="ej${conPz?'':' sinpz'}">
     <div class="enun">
       <div><div class="kicker">Ejercicio ${i+1}</div>
       <span class="chip y" style="display:inline-block;margin-top:6px">${esc(ej.car)}</span></div>
@@ -486,7 +505,7 @@ CLASE.forEach((ej,i)=>{
       <div class="ops">${ej.ops.map((o,k)=>`<button class="op" type="button"><span class="l">${'ABCD'[k]}</span><span>${o}</span></button>`).join('')}</div>
       <p class="ayuda">Toca la opción que vota la clase para marcarla.</p>
     </div>
-    <div class="pzhost"></div>
+    ${conPz?'<div class="pzhost"></div>':''}
   </div>`;
   ancla.before(s);
   s.querySelector('.ops').addEventListener('click',e=>{
@@ -495,6 +514,7 @@ CLASE.forEach((ej,i)=>{
     s.querySelectorAll('.op').forEach(x=>x.classList.remove('marcada'));
     if(!ya)b.classList.add('marcada');
   });
+  if(!conPz)return;
   const pz=crearPizarra(s.querySelector('.pzhost'),true);
   pz.onGrande=on=>{s.querySelector('.ej').classList.toggle('grande',on);pz.ajustar();};
 });

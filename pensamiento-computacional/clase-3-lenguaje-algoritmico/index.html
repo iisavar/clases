@@ -97,6 +97,15 @@ table.t td:first-child{font-weight:900}
 .ej.grande .ayuda,.ej.grande h2{display:none}
 @media (max-width:900px){.ej{grid-template-columns:1fr;height:auto}.pz{height:70vh}}
 
+/* Ilustración de cada lámina: a la derecha, el texto la rodea. Si la imagen no está, se quita sola. */
+.ilus{float:right;width:min(34%,400px);margin:0 0 14px 22px}
+.ilus img{display:block;width:100%;height:auto;border-radius:18px}
+.inner .card,.inner .clave,.inner .ejemplo,.inner .code{display:flow-root}
+@media (max-width:820px){.ilus{float:none;width:100%;margin:0 0 14px}}
+/* Preguntas de concepto: sin pizarra, opciones grandes al centro */
+.ej.sinpz{grid-template-columns:1fr;max-width:1100px;margin:0 auto;height:auto;min-height:100%;align-content:center}
+.ej.sinpz .op{min-height:84px;font-size:1.08em}
+
 /* Tarea */
 .tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
 .tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
@@ -141,6 +150,7 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="1. Tipos de datos">
   <div class="inner">
     <h2>El tipo de dato dice qué se guarda y qué se puede hacer con eso</h2>
+    <figure class="ilus"><img src="img/01-tipos-datos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>Un <b>tipo de dato</b> es la clasificación que indica qué clase de información puede almacenar una variable y qué operaciones se pueden realizar sobre ella.</p>
     <div class="card step">
       <table class="t">
@@ -163,6 +173,7 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="2. Variables y constantes">
   <div class="inner">
     <h2>La variable cambia, la constante no</h2>
+    <figure class="ilus"><img src="img/02-variables-constantes.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Variable</h3>
@@ -191,6 +202,7 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="3. Expresiones y operadores aritméticos">
   <div class="inner">
     <h2>Toda expresión, al evaluarse, produce un valor</h2>
+    <figure class="ilus"><img src="img/03-operadores.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>Una <b>expresión</b> combina valores, variables, constantes y operadores.</p>
     <div class="grid3">
       <div class="card step"><h3>Aritmética: da un número</h3><div class="code">total ← (precio * cantidad) + envio</div></div>
@@ -215,6 +227,7 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="4. Jerarquía de operadores">
   <div class="inner">
     <h2>¿Quién va primero?</h2>
+    <figure class="ilus"><img src="img/04-jerarquia.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="orden"><span class="chip y">1. Paréntesis ( )</span>→<span class="chip y">2. Potencia ^</span>→<span class="chip y">3. * &nbsp; / &nbsp; %</span>→<span class="chip y">4. + &nbsp; −</span></div>
     <div class="grid2" style="margin-top:14px">
       <div class="card step">
@@ -240,6 +253,7 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="5. Operadores relacionales y lógicos">
   <div class="inner">
     <h2>Comparar da verdadero o falso</h2>
+    <figure class="ilus"><img src="img/05-relacionales-logicos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Relacionales</h3>
@@ -271,6 +285,7 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="6. Expresiones combinadas">
   <div class="inner">
     <h2>Se resuelve en tres pasos: aritmético, relacional y lógico</h2>
+    <figure class="ilus"><img src="img/06-expresiones-combinadas.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Descuento, con edad = 45 y compras = 600</h3>
@@ -358,10 +373,12 @@ $('casos').addEventListener('click',e=>{
 
 /* ---------- Ejercicios con pizarra ---------- */
 const ancla=$('ejercicios-ancla');
+const CON_PIZARRA=[3, 4, 5, 6, 7, 8, 9];  // ejercicios que se calculan o se rastrean; el resto es de concepto
 CLASE.forEach((ej,i)=>{
+  const conPz=CON_PIZARRA.includes(i+1);
   const s=document.createElement('section');
   s.className='slide'; s.dataset.titulo=`Ejercicio ${i+1}: ${ej.car}`;
-  s.innerHTML=`<div class="ej">
+  s.innerHTML=`<div class="ej${conPz?'':' sinpz'}">
     <div class="enun">
       <div><div class="kicker">Ejercicio ${i+1}</div>
       <span class="chip y" style="display:inline-block;margin-top:6px">${esc(ej.car)}</span></div>
@@ -369,7 +386,7 @@ CLASE.forEach((ej,i)=>{
       <div class="ops">${ej.ops.map((o,k)=>`<button class="op" type="button"><span class="l">${'ABCD'[k]}</span><span>${o}</span></button>`).join('')}</div>
       <p class="ayuda">Toca la opción que vota la clase para marcarla.</p>
     </div>
-    <div class="pzhost"></div>
+    ${conPz?'<div class="pzhost"></div>':''}
   </div>`;
   ancla.before(s);
   s.querySelector('.ops').addEventListener('click',e=>{
@@ -378,6 +395,7 @@ CLASE.forEach((ej,i)=>{
     s.querySelectorAll('.op').forEach(x=>x.classList.remove('marcada'));
     if(!ya)b.classList.add('marcada');
   });
+  if(!conPz)return;
   const pz=crearPizarra(s.querySelector('.pzhost'),true);
   pz.onGrande=on=>{s.querySelector('.ej').classList.toggle('grande',on);pz.ajustar();};
 });
