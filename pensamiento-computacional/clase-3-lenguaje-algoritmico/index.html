@@ -106,6 +106,33 @@ table.t td:first-child{font-weight:900}
 .ej.sinpz{grid-template-columns:1fr;max-width:1100px;margin:0 auto;height:auto;min-height:100%;align-content:center}
 .ej.sinpz .op{min-height:84px;font-size:1.08em}
 
+/* Esquemas de la clase */
+.grid2>*,.grid3>*{min-width:0}
+.grid2 .code{white-space:pre-wrap}
+mark{background:var(--gold);color:var(--ink);border-radius:6px;padding:0 6px;font-weight:900}
+.orden-n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:900;font-size:.75em;margin-right:8px;vertical-align:middle}
+.mal{color:var(--red);text-decoration:line-through}
+.mem{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end}
+.caja-m{min-width:170px}
+.caja-m .nom{font-weight:900;color:var(--green-t);font-size:.9em;margin-bottom:4px}
+.caja-m .val{background:var(--deep);border:3px solid var(--green-t);border-radius:12px;padding:10px 16px;font-size:1.5em;font-weight:900;display:flex;gap:14px;align-items:center}
+.caja-m.cte .val{border-color:var(--gold)}
+.caja-m .val s{color:var(--muted);font-size:.75em}
+.caja-m .val svg{width:26px;height:26px}
+.galera{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.galera svg{width:230px;height:auto}
+.capas{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.capa{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.capa .et{font-size:.7em;font-weight:900;text-transform:uppercase;letter-spacing:.05em;width:130px}
+.capa .n{border-radius:10px;padding:6px 12px;font-weight:800;font-size:.95em}
+.capa.ar .et{color:var(--blue)} .capa.ar .n{border:2px solid var(--blue)}
+.capa.re .et{color:var(--green-t)} .capa.re .n{border:2px solid var(--green-t)}
+.capa.lo .et{color:var(--gold)} .capa.lo .n{border:2px solid var(--gold)}
+.circ{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.circ figure{margin:0;background:var(--deep);border:1px solid var(--line);border-radius:14px;padding:10px}
+.circ svg{width:100%;height:auto}
+.circ figcaption{font-size:.72em;color:var(--muted);margin-top:4px}
+
 /* Tarea */
 .tarea{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
 .tarea .t{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
@@ -150,7 +177,6 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="1. Tipos de datos">
   <div class="inner">
     <h2>El tipo de dato dice qué se guarda y qué se puede hacer con eso</h2>
-    <figure class="ilus"><img src="img/01-tipos-datos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>Un <b>tipo de dato</b> es la clasificación que indica qué clase de información puede almacenar una variable y qué operaciones se pueden realizar sobre ella.</p>
     <div class="card step">
       <table class="t">
@@ -173,7 +199,6 @@ table.t td:first-child{font-weight:900}
 <section class="slide" data-titulo="2. Variables y constantes">
   <div class="inner">
     <h2>La variable cambia, la constante no</h2>
-    <figure class="ilus"><img src="img/02-variables-constantes.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Variable</h3>
@@ -192,8 +217,16 @@ CONSTANTE REAL PI ← 3.1416</div>
     </div>
     <div class="card step" style="margin-top:18px">
       <h3>Reglas para nombrar variables</h3>
-      <p class="paso" style="margin:0 0 8px">Empieza con letra o guion bajo. Sin espacios ni símbolos como @, $ o %. Edad y edad son distintas. No puede ser una palabra reservada como if, while o for.</p>
+      <p class="paso" style="margin:0 0 8px">Empieza con letra o guion bajo. Sin espacios ni símbolos como @, $ o %. En la mayoría de lenguajes, Edad y edad son distintas; en PSeInt no se distinguen, igual conviene escribirlas siempre igual. No puede ser una palabra reservada como if, while o for.</p>
       <div class="orden"><span class="chip g">edad</span><span class="chip g">notaParcial1</span><span class="chip g">promedio_final</span><span class="chip">1nota</span><span class="chip">mi variable</span><span class="chip">class</span></div>
+    </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>Así se ve en la memoria</h3>
+      <div class="mem">
+        <div class="caja-m"><div class="nom">edad</div><div class="val"><s>20</s> 21</div></div>
+        <div class="caja-m cte"><div class="nom">IVA</div><div class="val">0.15 <svg viewBox="0 0 24 24" aria-label="candado"><rect x="4" y="10" width="16" height="12" rx="2" fill="#FFC800"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="#FFC800" stroke-width="2.5"/></svg></div></div>
+      </div>
+      <p class="paso" style="margin:10px 0 0">Cada variable es una caja con nombre. Al hacer <b>edad ← 21</b> el 20 se borra y queda solo el 21. La constante IVA tiene candado: su valor no cambia.</p>
     </div>
   </div>
 </section>
@@ -202,7 +235,6 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="3. Expresiones y operadores aritméticos">
   <div class="inner">
     <h2>Toda expresión, al evaluarse, produce un valor</h2>
-    <figure class="ilus"><img src="img/03-operadores.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <p>Una <b>expresión</b> combina valores, variables, constantes y operadores.</p>
     <div class="grid3">
       <div class="card step"><h3>Aritmética: da un número</h3><div class="code">total ← (precio * cantidad) + envio</div></div>
@@ -219,6 +251,27 @@ CONSTANTE REAL PI ← 3.1416</div>
         <tr><td>^</td><td>Potencia</td><td>2 ^ 3</td><td>8</td></tr>
       </table>
     </div>
+    <div class="card step" style="margin-top:18px">
+      <h3>¿De dónde sale el módulo?</h3>
+      <div class="galera">
+        <svg viewBox="0 0 230 168" role="img" aria-label="División de 10 entre 3: cociente 3, residuo 1">
+          <g font-family="Nunito,sans-serif" font-weight="900" fill="#F1F5F7" font-size="34">
+            <text x="20" y="48">10</text><text x="150" y="48">3</text>
+            <text x="20" y="96" fill="#A9BCC4">−9</text><text x="150" y="100" fill="#3BC97A">3</text>
+            <text x="44" y="138" fill="#FFC800">1</text>
+          </g>
+          <path d="M130 14 V60 H200" fill="none" stroke="#F1F5F7" stroke-width="3"/>
+          <line x1="14" y1="106" x2="92" y2="106" stroke="#A9BCC4" stroke-width="2"/>
+          <circle cx="54" cy="127" r="22" fill="none" stroke="#FFC800" stroke-width="3"/>
+          <g font-family="Nunito,sans-serif" font-weight="800" font-size="15"><text x="132" y="126" fill="#3BC97A">cociente</text><text x="80" y="162" fill="#FFC800">residuo</text></g>
+        </svg>
+        <div>
+          <p style="margin:0 0 8px"><b>10 % 3 = <span class="f">1</span></b>, lo que sobra.</p>
+          <p style="margin:0 0 8px"><b>10 / 3 = 3.33…</b>, la división con decimales.</p>
+          <p class="paso" style="margin:0">Otro: 14 / 4 = 3.5, pero 14 % 4 = 2, porque 4 cabe 3 veces en 14 (12) y sobran 2.</p>
+        </div>
+      </div>
+    </div>
     <div class="clave step"><b>Clave:</b> % no da el cociente, da lo que sobra. Si n % 2 == 0, el número es par.</div>
   </div>
 </section>
@@ -227,25 +280,25 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="4. Jerarquía de operadores">
   <div class="inner">
     <h2>¿Quién va primero?</h2>
-    <figure class="ilus"><img src="img/04-jerarquia.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="orden"><span class="chip y">1. Paréntesis ( )</span>→<span class="chip y">2. Potencia ^</span>→<span class="chip y">3. * &nbsp; / &nbsp; %</span>→<span class="chip y">4. + &nbsp; −</span></div>
+    <div class="orden"><span class="chip">5. Relacionales &gt; &lt; &gt;= &lt;= == !=</span>→<span class="chip">6. NO</span>→<span class="chip">7. Y</span>→<span class="chip">8. O</span></div>
     <div class="grid2" style="margin-top:14px">
       <div class="card step">
         <h3>Ejemplo</h3>
-        <div class="ejemplo">2 + 3 * 4 ^ 2</div>
-        <div class="ejemplo">2 + 3 * 16 <span class="paso">potencia</span></div>
-        <div class="ejemplo">2 + 48 <span class="paso">multiplicación</span></div>
-        <div class="ejemplo"><span class="f">50</span> <span class="paso">suma</span></div>
+        <div class="ejemplo"><span class="orden-n">1</span>2 + 3 * <mark>4 ^ 2</mark> <span class="paso">potencia</span></div>
+        <div class="ejemplo"><span class="orden-n">2</span>2 + <mark>3 * 16</mark> <span class="paso">multiplicación</span></div>
+        <div class="ejemplo"><span class="orden-n">3</span><mark>2 + 48</mark> <span class="paso">suma</span></div>
+        <div class="ejemplo">= <span class="f">50</span></div>
       </div>
       <div class="card step">
         <h3>Igual prioridad: de izquierda a derecha</h3>
-        <div class="ejemplo">8 / 2 * 4</div>
-        <div class="ejemplo">4 * 4 <span class="paso">la división está a la izquierda</span></div>
-        <div class="ejemplo"><span class="f">16</span></div>
-        <p class="paso" style="margin:0">Quien multiplica primero obtiene 8 / 8 = 1 y se equivoca.</p>
+        <div class="ejemplo"><span class="orden-n">1</span><mark>8 / 2</mark> * 4 <span class="paso">la división está a la izquierda</span></div>
+        <div class="ejemplo"><span class="orden-n">2</span><mark>4 * 4</mark></div>
+        <div class="ejemplo">= <span class="f">16</span></div>
+        <p class="paso" style="margin:0">Mal: <span class="mal">8 / (2 * 4) = 8 / 8 = 1</span>. Quien multiplica primero se equivoca.</p>
       </div>
     </div>
-    <div class="clave step"><b>Clave:</b> multiplicación, división y módulo tienen la misma prioridad. Ninguna va antes que otra, manda la que esté más a la izquierda.</div>
+    <div class="clave step"><b>Clave:</b> después de los cálculos vienen las comparaciones, y al final NO, luego Y, luego O. Multiplicación, división y módulo tienen la misma prioridad. Ninguna va antes que otra, manda la que esté más a la izquierda.</div>
   </div>
 </section>
 
@@ -253,7 +306,6 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="5. Operadores relacionales y lógicos">
   <div class="inner">
     <h2>Comparar da verdadero o falso</h2>
-    <figure class="ilus"><img src="img/05-relacionales-logicos.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Relacionales</h3>
@@ -264,6 +316,7 @@ CONSTANTE REAL PI ← 3.1416</div>
           <tr><td>&gt; &nbsp; &lt;</td><td>mayor, menor</td><td>7 &gt; 10 es falso</td></tr>
           <tr><td>&gt;= &nbsp; &lt;=</td><td>mayor o igual, menor o igual</td><td>5 &gt;= 5 es verdadero</td></tr>
         </table>
+        <p class="paso" style="margin:8px 0 0">En PSeInt, «igual a» se escribe <b>=</b> y «distinto de» se escribe <b>&lt;&gt;</b>.</p>
       </div>
       <div class="card step">
         <h3>Lógicos</h3>
@@ -275,6 +328,10 @@ CONSTANTE REAL PI ← 3.1416</div>
           <tr><td>F</td><td>V</td><td>F</td><td>V</td><td>V</td></tr>
           <tr><td>F</td><td>F</td><td>F</td><td>F</td><td>V</td></tr>
         </table>
+        <div class="circ step">
+          <figure><svg viewBox="0 0 290 122" role="img"><g font-family="Nunito,sans-serif" font-weight="900" font-size="16" fill="#F1F5F7"><path d="M40 60 H70 M110 60 H140 M180 60 H232" stroke="#F1F5F7" stroke-width="3" fill="none"/><path d="M70 60 L110 60 M140 60 L180 60" stroke="#3BC97A" stroke-width="5"/><text x="82" y="48">A</text><text x="152" y="48">B</text></g><circle cx="250" cy="60" r="18" fill="#FFC800"/><g stroke="#FFC800" stroke-width="2"><line x1="250" y1="30" x2="250" y2="22"/><line x1="276" y1="44" x2="283" y2="38"/><line x1="224" y1="44" x2="217" y2="38"/></g><rect x="14" y="44" width="26" height="34" rx="4" fill="#4FB3E8"/></svg><figcaption><b>Y</b> es en serie: el foco solo prende si A y B están cerrados.</figcaption></figure>
+          <figure><svg viewBox="0 0 290 122" role="img"><g font-family="Nunito,sans-serif" font-weight="900" font-size="16" fill="#F1F5F7"><path d="M40 60 H70 V30 H90 M130 30 H160 V60 H232 M70 60 V92 H90 M130 92 H160 V60" stroke="#F1F5F7" stroke-width="3" fill="none"/><path d="M90 30 L130 30" stroke="#3BC97A" stroke-width="5"/><path d="M90 92 L126 78" stroke="#FF6B6B" stroke-width="5"/><text x="102" y="20">A</text><text x="102" y="116">B</text></g><circle cx="250" cy="60" r="18" fill="#FFC800"/><g stroke="#FFC800" stroke-width="2"><line x1="250" y1="30" x2="250" y2="22"/><line x1="276" y1="44" x2="283" y2="38"/><line x1="224" y1="44" x2="217" y2="38"/></g><rect x="14" y="44" width="26" height="34" rx="4" fill="#4FB3E8"/></svg><figcaption><b>O</b> es en paralelo: B está abierto, pero basta con A para que prenda.</figcaption></figure>
+        </div>
       </div>
     </div>
     <div class="clave step"><b>Clave:</b> ← asigna y == compara. Confundirlos es el error más repetido.</div>
@@ -285,14 +342,15 @@ CONSTANTE REAL PI ← 3.1416</div>
 <section class="slide" data-titulo="6. Expresiones combinadas">
   <div class="inner">
     <h2>Se resuelve en tres pasos: aritmético, relacional y lógico</h2>
-    <figure class="ilus"><img src="img/06-expresiones-combinadas.webp" alt="" loading="lazy" onerror="this.parentNode.remove()"></figure>
     <div class="grid2">
       <div class="card step">
         <h3>Descuento, con edad = 45 y compras = 600</h3>
-<div class="code">aplicaDescuento ← (edad >= 60) O (compras * 1.0 > 500)</div>
-        <div class="ejemplo">compras * 1.0 = 600.0 <span class="paso">aritmético</span></div>
-        <div class="ejemplo">(falso) O (verdadero) <span class="paso">relacional</span></div>
-        <div class="ejemplo"><span class="f">verdadero</span> <span class="paso">lógico</span></div>
+<div class="code">aplicaDescuento ← (edad >= 60) O (compras - 50 > 500)</div>
+        <div class="capas">
+          <div class="capa ar step"><span class="et">1. Aritmético</span><span class="n">compras - 50 = 550</span></div>
+          <div class="capa re step"><span class="et">2. Relacional</span><span class="n">45 >= 60 → falso</span><span class="n">550 > 500 → verdadero</span></div>
+          <div class="capa lo step"><span class="et">3. Lógico</span><span class="n">falso O verdadero → <span class="f">verdadero</span></span></div>
+        </div>
       </div>
       <div class="card step">
         <h3>Inicio de sesión</h3>
@@ -302,7 +360,7 @@ CONSTANTE REAL PI ← 3.1416</div>
         <div class="ejemplo">verdadero Y falso = <span class="f">falso</span></div>
       </div>
     </div>
-    <div class="clave step"><b>Clave:</b> los paréntesis separan cada condición. Primero se resuelve cada paréntesis y al final se aplican Y, O y NO.</div>
+    <div class="clave step"><b>Clave:</b> los paréntesis separan cada condición. Primero se resuelve cada paréntesis. Al final se aplica NO, luego Y y por último O.</div>
   </div>
 </section>
 
@@ -356,7 +414,7 @@ const CASOS=[
   {e:"18 / 3 * 2 da 3",ok:false,w:"Igual prioridad, de izquierda a derecha. 18 / 3 es 6 y 6 * 2 es 12."},
   {e:"2 ^ 3 * 2 da 16",ok:true,w:"Primero la potencia. 2 ^ 3 es 8 y 8 * 2 es 16."},
   {e:"1nota es un nombre de variable válido",ok:false,w:"Un nombre no puede empezar con número. notaParcial1 sí es válido."},
-  {e:"Edad y edad son la misma variable",ok:false,w:"Se distinguen mayúsculas de minúsculas. Son dos variables distintas."},
+  {e:"mi variable es un nombre válido",ok:false,w:"Tiene un espacio. Se escribe miVariable o mi_variable."},
   {e:"El IVA de una tienda se guarda como constante",ok:true,w:"Es un valor fijo del problema. Por convención se escribe en MAYÚSCULAS."},
   {e:"edad &gt;= 18 da un número",ok:false,w:"Una expresión relacional siempre da verdadero o falso."},
   {e:"verdadero Y falso da verdadero",ok:false,w:"Y exige que las dos sean verdaderas. Da falso."},
