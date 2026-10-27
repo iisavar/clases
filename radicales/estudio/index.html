@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radicales: clase de hoy</title>
+<meta name="description" content="Clase de radicales para hacer por tu cuenta: 8 videos cortos con preguntas rápidas, test final con nota y tarea.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#131F24;--panel:#1B2B32;--panel2:#22363F;--line:#2E4652;--deep:#0E171B;--text:#F1F5F7;--muted:#A9BCC4;--green:#2BAE66;--green2:#3BC97A;--gold:#FFC800;--red:#FF6B6B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Nunito,system-ui,sans-serif;font-size:18px;line-height:1.5}
+main{max-width:880px;margin:0 auto;padding:24px 16px 80px}
+h1{font-size:2rem;margin:.2em 0 .1em;font-weight:900}
+h1 span{color:var(--gold)}
+h2{font-size:1.4rem;margin:0 0 .4em;font-weight:900}
+.lead{color:var(--muted);margin:0 0 1em}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin:16px 0}
+.plan ol{margin:.3em 0 0;padding-left:1.3em}
+.plan li{margin:.25em 0}
+.hora{display:inline-block;background:var(--gold);color:var(--bg);font-weight:900;padding:2px 10px;border-radius:6px}
+label.nom{display:block;font-weight:800;margin-bottom:6px}
+input[type=text]{width:100%;font:inherit;padding:12px 14px;border-radius:10px;border:2px solid var(--line);background:var(--deep);color:var(--text)}
+input[type=text]:focus{outline:none;border-color:var(--green)}
+.barra{height:12px;background:var(--deep);border-radius:99px;overflow:hidden;margin-top:10px}
+.barra i{display:block;height:100%;width:0;background:var(--green);transition:width .4s}
+.prog{font-weight:800;color:var(--muted);margin-top:6px;font-size:.95rem}
+.paso{border-left:6px solid var(--line)}
+.paso.hecho{border-left-color:var(--green)}
+.paso .cab{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.paso .num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900}
+.paso.hecho .num{background:var(--green);color:var(--bg)}
+.paso .tit{font-weight:900;font-size:1.1rem;flex:1}
+.paso .tit small{display:block;color:var(--muted);font-weight:700;font-size:.85rem}
+.paso .cuerpo{display:none;margin-top:14px}
+.paso.abierto .cuerpo{display:block}
+.flecha{color:var(--muted);font-weight:900;transition:transform .2s}
+.paso.abierto .flecha{transform:rotate(90deg)}
+video{width:100%;border-radius:12px;background:#000;display:block}
+.q{background:var(--deep);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:14px}
+.q .enun{font-weight:800;margin-bottom:10px}
+.q .enun .katex{font-size:1.15em}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:560px){.ops{grid-template-columns:1fr}}
+.ops button{font:inherit;text-align:left;padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;min-height:52px}
+.ops button:hover:not(:disabled){border-color:var(--green)}
+.ops button b{color:var(--gold);margin-right:8px}
+.ops button.ok{border-color:var(--green);background:#173d2a}
+.ops button.mal{border-color:var(--red);background:#3d1d22}
+.ops button.elegida{border-color:var(--gold)}
+.ops button:disabled{cursor:default}
+.err{border-color:var(--gold)}
+.linea{display:block;width:100%;font:inherit;text-align:left;margin-top:8px;padding:10px 14px;border-radius:10px;border:2px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer}
+.linea .katex{font-size:1.25em}
+.linea:hover:not(:disabled){border-color:var(--gold)}
+.linea:disabled{cursor:default}
+.linea.mal{border-color:var(--red);background:#3d1d22}
+.linea.elegida{border-color:var(--gold)}
+.fb{margin-top:10px;font-weight:700;display:none}
+.fb.si{display:block;color:var(--green2)}
+.fb.no{display:block;color:var(--red)}
+.fb span{color:var(--text);font-weight:600}
+.btn{font:inherit;font-weight:900;border:none;border-radius:12px;padding:14px 22px;cursor:pointer;background:var(--green);color:var(--bg)}
+.btn.sec{background:var(--panel2);color:var(--text)}
+.btn:disabled{opacity:.5;cursor:default}
+.nota{font-size:2.4rem;font-weight:900;color:var(--gold)}
+.res{white-space:pre-wrap;background:var(--deep);border:1px dashed var(--line);border-radius:12px;padding:12px;font-family:inherit}
+.aviso{color:var(--muted);font-size:.95rem}
+a{color:var(--green2);font-weight:800}
+.tarea a.btn{display:inline-block;text-decoration:none}
+</style>
+</head>
+<body>
+<main>
+  <h1>Radicales: <span>clase de hoy</span></h1>
+  <p class="lead">Hoy trabajas la clase a tu ritmo. Mira cada video, responde sus dos preguntas, haz el test y resuelve la tarea.</p>
+
+  <div class="card plan">
+    <h2>Cómo trabajamos hoy</h2>
+    <ol>
+      <li>Escribe tu nombre abajo.</li>
+      <li>Haz los 8 pasos en orden: mira el video, responde sus 2 preguntas y encuentra el error en el ejercicio resuelto. Si te equivocas, lee la explicación y vuelve a mirar esa parte del video.</li>
+      <li>Haz el test final de 12 preguntas. Se califica una sola vez, así que tómate tu tiempo.</li>
+      <li>Toca <b>«Copiar mi resultado»</b> y envíalo por WhatsApp.</li>
+      <li>Resuelve la tarea en tu cuaderno, con todo el procedimiento, y envía las fotos.</li>
+    </ol>
+    <p style="margin:.6em 0 0">Todo se entrega hasta las <span class="hora">10:30 p. m.</span></p>
+  </div>
+
+  <div class="card">
+    <label class="nom" for="nombre">Tu nombre y apellido</label>
+    <input type="text" id="nombre" autocomplete="name" placeholder="Ejemplo: María Pérez">
+    <div class="barra"><i id="barra"></i></div>
+    <div class="prog" id="prog">0 de 8 pasos</div>
+  </div>
+
+  <div id="pasos"></div>
+
+  <div class="card" id="test">
+    <h2>Test final</h2>
+    <p class="aviso">12 preguntas. Usa cuaderno y lápiz: haz el procedimiento y luego elige. Al final toca «Calificar».</p>
+    <div id="preguntas"></div>
+    <p style="margin-top:16px"><button class="btn" id="calificar">Calificar</button></p>
+    <div id="resultado" style="display:none">
+      <div>Tu nota: <span class="nota" id="nota"></span></div>
+      <p class="aviso">Revisa en verde la respuesta correcta de cada pregunta.</p>
+      <div class="res" id="texto"></div>
+      <p><button class="btn" id="copiar">Copiar mi resultado</button> <span id="copiado" class="aviso"></span></p>
+    </div>
+  </div>
+
+  <div class="card tarea">
+    <h2>Tarea</h2>
+    <p>10 ejercicios. Resuélvelos en tu cuaderno con todo el procedimiento: no basta con la letra. Toma fotos claras y envíalas hasta las <span class="hora">10:30 p. m.</span></p>
+    <p><a class="btn" href="../tarea/tarea-radicales.pdf" target="_blank" rel="noopener">Abrir la tarea en PDF</a></p>
+    <p class="aviso">¿Quieres repasar las láminas? Están en <a href="../" target="_blank" rel="noopener">la presentación de la clase</a>.</p>
+  </div>
+</main>
+
+<script src="../datos.js"></script>
+<script>
+// Cada paso: video y dos preguntas. La primera opción es la correcta; en pantalla se baraja siempre igual.
+const PASOS = [
+  {t: "¿Qué es la radicación?", s: "Índice, radicando, signo y exponente fraccionario", v: "video-01", q: [
+    {e: "¿Cuánto es $\\sqrt[3]{-64}$?", o: ["$-4$", "$4$", "No existe", "$-\\frac{64}{3}$"], x: "$(-4)^3=-64$. Con índice impar, el signo pasa."},
+    {e: "¿Cuánto es $25^{\\frac{1}{2}}$?", o: ["$5$", "$\\frac{25}{2}$", "$625$", "$-5$"], x: "El exponente $\\frac12$ es raíz cuadrada: $\\sqrt{25}=5$."}]},
+  {t: "Propiedad 1: raíz de un producto", s: "Se reparte en cada factor y sirve para simplificar", v: "video-02", q: [
+    {e: "Simplifica $\\sqrt{50}$", o: ["$5\\sqrt{2}$", "$2\\sqrt{5}$", "$25\\sqrt{2}$", "$10\\sqrt{5}$"], x: "$50=25\\cdot 2$, así que $\\sqrt{50}=\\sqrt{25}\\cdot\\sqrt{2}=5\\sqrt{2}$."},
+    {e: "¿Cuánto es $\\sqrt{16+9}$?", o: ["$5$", "$7$", "$25$", "$\\sqrt{7}$"], x: "Primero se suma: $\\sqrt{25}=5$. La raíz no se reparte en una suma ($4+3=7$ está mal)."}]},
+  {t: "Sumar, restar y multiplicar", s: "Semejantes, raíz por raíz, afuera con afuera", v: "video-03", q: [
+    {e: "¿Cuánto es $2\\sqrt{3}+5\\sqrt{3}$?", o: ["$7\\sqrt{3}$", "$7\\sqrt{6}$", "$10\\sqrt{3}$", "$7$"], x: "Son semejantes: se copia $\\sqrt{3}$ y se suman los de afuera, $2+5=7$."},
+    {e: "¿Cuánto es $\\sqrt{3}\\cdot\\sqrt{27}$?", o: ["$9$", "$\\sqrt{30}$", "$81$", "$3\\sqrt{3}$"], x: "Se juntan: $\\sqrt{3\\cdot 27}=\\sqrt{81}=9$."}]},
+  {t: "Propiedad 2: raíz de un cociente", s: "Arriba y abajo por separado, y racionalizar", v: "video-04", q: [
+    {e: "¿Cuánto es $\\sqrt{\\frac{25}{81}}$?", o: ["$\\frac{5}{9}$", "$\\frac{25}{9}$", "$\\frac{5}{81}$", "$\\frac{9}{5}$"], x: "Arriba $\\sqrt{25}=5$ y abajo $\\sqrt{81}=9$."},
+    {e: "Racionaliza $\\frac{10}{\\sqrt{5}}$", o: ["$2\\sqrt{5}$", "$\\frac{\\sqrt{5}}{2}$", "$10\\sqrt{5}$", "$5$"], x: "Por $\\sqrt5$ arriba y abajo: $\\frac{10\\sqrt5}{5}=2\\sqrt5$."}]},
+  {t: "Propiedad 3: raíz de una raíz", s: "Se multiplican los índices", v: "video-05", q: [
+    {e: "¿Cuánto es $\\sqrt[3]{\\sqrt{64}}$?", o: ["$2$", "$4$", "$8$", "$\\sqrt[5]{64}$"], x: "$3\\cdot 2=6$: $\\sqrt[6]{64}=2$, porque $2^6=64$."},
+    {e: "$\\sqrt{\\sqrt[4]{a}}$ es igual a…", o: ["$\\sqrt[8]{a}$", "$\\sqrt[6]{a}$", "$\\sqrt[4]{a}$", "$\\sqrt[2]{a}$"], x: "Se multiplican los índices: $2\\cdot 4=8$."}]},
+  {t: "Propiedad 4: potencia de una raíz", s: "El exponente va afuera o adentro", v: "video-06", q: [
+    {e: "¿Cuánto es $\\left(\\sqrt[3]{27}\\right)^{2}$?", o: ["$9$", "$27$", "$3$", "$81$"], x: "Primero la raíz: $\\sqrt[3]{27}=3$, y $3^2=9$."},
+    {e: "¿Cuánto es $\\left(2\\sqrt{5}\\right)^{2}$?", o: ["$20$", "$10$", "$100$", "$4\\sqrt{5}$"], x: "El cuadrado va a los dos: $2^2\\cdot(\\sqrt5)^2=4\\cdot 5=20$."}]},
+  {t: "Propiedad 5: simplificar el índice", s: "Índice y exponente se dividen entre lo mismo", v: "video-07", q: [
+    {e: "Simplifica $\\sqrt[6]{27}$", o: ["$\\sqrt{3}$", "$3$", "$\\sqrt[3]{3}$", "$9$"], x: "$27=3^3$: $\\sqrt[6]{3^3}$, se divide entre 3 y queda $\\sqrt{3}$."},
+    {e: "¿Cuánto es $\\sqrt{(-5)^{2}}$?", o: ["$5$", "$-5$", "$25$", "No existe"], x: "$(-5)^2=25$ y $\\sqrt{25}=5$. Con índice par, la raíz nunca es negativa."}]},
+  {t: "Las raíces en la vida real", s: "Terreno, pantalla, una piedra que cae y la hoja A4", v: "video-08", q: [
+    {e: "Un terreno cuadrado tiene $64\\ \\text{m}^2$ de área. ¿Cuánto mide su lado?", o: ["$8$ m", "$32$ m", "$16$ m", "$4$ m"], x: "Lado por lado da 64: el lado es $\\sqrt{64}=8$ m."},
+    {e: "Una pantalla mide 30 cm por 40 cm. ¿Cuánto mide su diagonal?", o: ["$50$ cm", "$70$ cm", "$35$ cm", "$2500$ cm"], x: "$\\sqrt{30^2+40^2}=\\sqrt{900+1600}=\\sqrt{2500}=50$ cm."}]},
+];
+
+// «¿Dónde está el error?»: un ejercicio resuelto con un paso mal; m = índice de la línea equivocada.
+const ERRORES = [
+  {l: ["\\sqrt{49}-\\sqrt[3]{-27}", "=7-(-3)", "=7-3", "=4"], m: 2, x: "Menos por menos es más: $7-(-3)=7+3=10$."},
+  {l: ["\\sqrt{48}", "=\\sqrt{16\\cdot 3}", "=16\\sqrt{3}"], m: 2, x: "Del 16 sale su raíz, no el 16: $\\sqrt{16}=4$, así que queda $4\\sqrt{3}$."},
+  {l: ["2\\sqrt{3}\\cdot 5\\sqrt{3}", "=10\\sqrt{9}", "=10\\cdot 9", "=90"], m: 2, x: "$\\sqrt{9}=3$, no 9: queda $10\\cdot 3=30$."},
+  {l: ["\\frac{6}{\\sqrt{2}}", "=\\frac{6\\sqrt{2}}{\\sqrt{2}\\cdot\\sqrt{2}}", "=\\frac{6\\sqrt{2}}{4}", "=\\frac{3\\sqrt{2}}{2}"], m: 2, x: "$\\sqrt{2}\\cdot\\sqrt{2}=2$, no 4: queda $\\frac{6\\sqrt2}{2}=3\\sqrt{2}$."},
+  {l: ["\\sqrt{\\sqrt[3]{64}}", "=\\sqrt[6]{64}", "=8"], m: 2, x: "Es raíz sexta: $2^6=64$, así que da 2. El 8 sería la raíz cuadrada."},
+  {l: ["\\left(3\\sqrt{5}\\right)^{2}", "=3\\cdot 5", "=15"], m: 1, x: "El cuadrado va al 3 y a la raíz: $3^2\\cdot 5=9\\cdot 5=45$."},
+  {l: ["\\sqrt[6]{8}", "=\\sqrt[6]{2^{3}}", "=\\sqrt[2]{2^{3}}", "=2\\sqrt{2}"], m: 2, x: "Se dividen entre 3 el índice y el exponente: $\\sqrt[2]{2^1}=\\sqrt{2}$."},
+  {l: ["d=\\sqrt{6^{2}+8^{2}}", "=6+8", "=14"], m: 1, x: "La raíz no se reparte en la suma: $\\sqrt{36+64}=\\sqrt{100}=10$."},
+];
+
+// Test: los 9 ejercicios de la presentación (datos.js; posición correcta según la clave) y 3 de conceptos.
+const POS_CLASE = [1, 3, 0, 2, 1, 0, 3, 2, 1];
+const TEST = CLASE.map((c, i) => ({e: "$\\displaystyle " + c.tex + "$", o: c.ops.map(s => "$" + s + "$"), ok: POS_CLASE[i]})).concat([
+  {e: "¿Cuánto es $\\sqrt{-16}$?", o: ["No existe en los reales", "$-4$", "$4$", "$\\pm 4$"], ok: 0},
+  {e: "¿Cuánto es $\\sqrt{9+16}$?", o: ["$7$", "$5$", "$25$", "$\\sqrt{7}$"], ok: 1},
+  {e: "¿Cuánto es $-\\sqrt[3]{-8}$?", o: ["$-2$", "No existe", "$2$", "$8$"], ok: 2},
+]);
+
+const L = "ABCD";
+const guardar = (k, v) => { try { localStorage.setItem("rad_" + k, JSON.stringify(v)); } catch (e) {} };
+const leer = (k, d) => { try { const v = localStorage.getItem("rad_" + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } };
+let estado = leer("estado", {});   // "p-q" -> opción elegida (0 es la correcta)
+let errores = leer("errores", {});   // paso -> línea elegida en «¿Dónde está el error?»
+
+function orden(n, semilla) {   // barajado fijo por pregunta
+  const a = [...Array(n).keys()];
+  let s = semilla * 9301 + 49297;
+  for (let i = n - 1; i > 0; i--) { s = (s * 9301 + 49297) % 233280; const j = Math.floor(s / 233280 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+
+function render(el) { if (window.renderMathInElement) renderMathInElement(el, {delimiters: [{left: "$", right: "$", display: false}], throwOnError: false}); }
+
+function pintarPasos() {
+  const cont = document.getElementById("pasos");
+  PASOS.forEach((p, i) => {
+    const d = document.createElement("div");
+    d.className = "card paso"; d.id = "paso" + i;
+    let html = `<div class="cab"><div class="num">${i + 1}</div><div class="tit">${p.t}<small>${p.s}</small></div><div class="flecha">›</div></div>
+      <div class="cuerpo"><video controls preload="none" playsinline src="../videos/${p.v}.mp4"></video>`;
+    p.q.forEach((q, j) => {
+      const ord = orden(q.o.length, i * 10 + j + 3);
+      html += `<div class="q" id="q${i}-${j}"><div class="enun">Pregunta ${j + 1}. ${q.e}</div><div class="ops">` +
+        ord.map((k, pos) => `<button data-k="${k}"><b>${L[pos]})</b>${q.o[k]}</button>`).join("") +
+        `</div><div class="fb"></div></div>`;
+    });
+    const er = ERRORES[i];
+    html += `<div class="q err" id="err${i}"><div class="enun">¿Dónde está el error? Alguien resolvió esto y se equivocó en un paso. Toca la línea equivocada.</div>` +
+      er.l.map((s, k) => `<button class="linea" data-k="${k}" ${k === 0 ? "disabled" : ""}>$${s}$</button>`).join("") +
+      `<div class="fb"></div></div>`;
+    d.innerHTML = html + "</div>";
+    cont.appendChild(d);
+    d.querySelectorAll(`#err${i} .linea`).forEach(b => b.onclick = () => { errores[i] = +b.dataset.k; guardar("errores", errores); marcarError(i); actualizar(); });
+    if (errores[i] !== undefined) marcarError(i);
+    d.querySelector(".cab").onclick = () => d.classList.toggle("abierto");
+    p.q.forEach((q, j) => {
+      const box = d.querySelector(`#q${i}-${j}`);
+      box.querySelectorAll("button").forEach(b => b.onclick = () => responder(i, j, +b.dataset.k));
+      if (estado[`${i}-${j}`] !== undefined) marcar(i, j, estado[`${i}-${j}`]);
+    });
+  });
+  document.getElementById("paso0").classList.add("abierto");
+}
+
+function responder(i, j, k) {
+  estado[`${i}-${j}`] = k; guardar("estado", estado);
+  marcar(i, j, k);
+  actualizar();
+}
+
+function marcar(i, j, k) {
+  const box = document.getElementById(`q${i}-${j}`), q = PASOS[i].q[j], fb = box.querySelector(".fb");
+  box.querySelectorAll("button").forEach(b => {
+    b.disabled = true;
+    if (+b.dataset.k === 0) b.classList.add("ok");
+    else if (+b.dataset.k === k) b.classList.add("mal");
+  });
+  fb.className = "fb " + (k === 0 ? "si" : "no");
+  fb.innerHTML = (k === 0 ? "¡Bien! " : "No es esa. La correcta está en verde. ") + `<span>${q.x}</span>`;
+  render(fb);
+}
+
+function marcarError(i) {
+  const box = document.getElementById("err" + i), er = ERRORES[i], k = errores[i], fb = box.querySelector(".fb");
+  box.querySelectorAll(".linea").forEach(b => {
+    b.disabled = true;
+    if (+b.dataset.k === er.m) b.classList.add("mal");
+    else if (+b.dataset.k === k) b.classList.add("elegida");
+  });
+  fb.className = "fb " + (k === er.m ? "si" : "no");
+  fb.innerHTML = (k === er.m ? "¡Lo encontraste! " : "No era esa línea. El error está en rojo. ") + `<span>${er.x}</span>`;
+  render(fb);
+}
+
+function actualizar() {
+  let hechos = 0;
+  PASOS.forEach((p, i) => {
+    const h = estado[`${i}-0`] !== undefined && estado[`${i}-1`] !== undefined && errores[i] !== undefined;
+    document.getElementById("paso" + i).classList.toggle("hecho", h);
+    if (h) hechos++;
+  });
+  document.getElementById("barra").style.width = (hechos / PASOS.length * 100) + "%";
+  document.getElementById("prog").textContent = `${hechos} de ${PASOS.length} pasos`;
+}
+
+function aciertosPasos() { return Object.values(estado).filter(k => k === 0).length; }
+
+function pintarTest() {
+  const cont = document.getElementById("preguntas");
+  TEST.forEach((q, i) => {
+    const d = document.createElement("div");
+    d.className = "q"; d.id = "t" + i;
+    d.innerHTML = `<div class="enun">${i + 1}. ${q.e}</div><div class="ops">` +
+      q.o.map((s, k) => `<button data-k="${k}"><b>${L[k]})</b>${s}</button>`).join("") + "</div>";
+    cont.appendChild(d);
+    d.querySelectorAll("button").forEach(b => b.onclick = () => {
+      if (leer("test", null)) return;
+      d.querySelectorAll("button").forEach(x => x.classList.remove("elegida"));
+      b.classList.add("elegida");
+      const r = leer("borrador", {}); r[i] = +b.dataset.k; guardar("borrador", r);
+    });
+  });
+  const borr = leer("borrador", {});
+  Object.entries(borr).forEach(([i, k]) => document.querySelector(`#t${i} [data-k="${k}"]`)?.classList.add("elegida"));
+  const hecho = leer("test", null);
+  if (hecho) mostrarNota(hecho);
+}
+
+function calificar() {
+  const r = leer("borrador", {});
+  const faltan = TEST.map((_, i) => i).filter(i => r[i] === undefined);
+  if (faltan.length && !confirm(`Te faltan ${faltan.length} preguntas (${faltan.map(i => i + 1).join(", ")}). ¿Calificar igual?`)) return;
+  if (!document.getElementById("nombre").value.trim()) { alert("Escribe tu nombre arriba antes de calificar."); document.getElementById("nombre").focus(); return; }
+  const buenas = TEST.filter((q, i) => r[i] === q.ok).length;
+  const res = {r, buenas, cuando: new Date().toLocaleString("es-EC", {dateStyle: "short", timeStyle: "short"})};
+  guardar("test", res);
+  mostrarNota(res);
+}
+
+function mostrarNota(res) {
+  TEST.forEach((q, i) => {
+    document.querySelectorAll(`#t${i} button`).forEach(b => {
+      b.disabled = true;
+      if (+b.dataset.k === q.ok) b.classList.add("ok");
+      else if (+b.dataset.k === res.r[i]) b.classList.add("mal");
+    });
+  });
+  const nota = (res.buenas / TEST.length * 10).toFixed(1).replace(".", ",");
+  document.getElementById("nota").textContent = `${nota} / 10`;
+  document.getElementById("calificar").disabled = true;
+  document.getElementById("resultado").style.display = "block";
+  escribirTexto(res, nota);
+}
+
+function escribirTexto(res, nota) {
+  const nombre = document.getElementById("nombre").value.trim() || "(sin nombre)";
+  const hechos = PASOS.filter((p, i) => estado[`${i}-0`] !== undefined && estado[`${i}-1`] !== undefined && errores[i] !== undefined).length;
+  const hallados = ERRORES.filter((er, i) => errores[i] === er.m).length;
+  const malas = TEST.map((q, i) => res.r[i] === q.ok ? null : i + 1).filter(x => x);
+  document.getElementById("texto").textContent =
+    `Radicales, clase de hoy\nNombre: ${nombre}\nPasos completados: ${hechos} de 8\nPreguntas de los videos: ${aciertosPasos()} de 16 bien\nErrores encontrados: ${hallados} de 8\n` +
+    `Test: ${res.buenas} de ${TEST.length} (${nota} / 10)\n` + (malas.length ? `Me equivoqué en: ${malas.join(", ")}\n` : "") + `Fecha: ${res.cuando}`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const nom = document.getElementById("nombre");
+  nom.value = leer("nombre", "");
+  nom.oninput = () => { guardar("nombre", nom.value); const t = leer("test", null); if (t) mostrarNota(t); };
+  pintarPasos();
+  pintarTest();
+  actualizar();
+  document.getElementById("calificar").onclick = calificar;
+  document.getElementById("copiar").onclick = async () => {
+    const txt = document.getElementById("texto").textContent;
+    try { await navigator.clipboard.writeText(txt); document.getElementById("copiado").textContent = "Copiado. Pégalo en WhatsApp."; }
+    catch (e) { const r = document.createRange(); r.selectNodeContents(document.getElementById("texto")); getSelection().removeAllRanges(); getSelection().addRange(r); document.getElementById("copiado").textContent = "Selecciónalo y cópialo a mano."; }
+  };
+});
+window.addEventListener("load", () => render(document.body));
+</script>
+</body>
+</html>

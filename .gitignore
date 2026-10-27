@@ -60,6 +60,8 @@ desktop.ini
 CLAUDE.md
 # El video de la clase (medicion-quimica/video-lenguaje-quimica.mp4, 6.7 MB) SÍ va al repo: la página lo necesita.
 !medicion-quimica/video-lenguaje-quimica.mp4
+# Los 8 videos de radicales (de 1,6 a 2,7 MB cada uno) SÍ van: la página de estudio autónomo los necesita.
+!radicales/videos/*.mp4
 
 # Generador de la tarea: contiene las respuestas correctas, no se publica
 fracciones-combinadas/scripts/
