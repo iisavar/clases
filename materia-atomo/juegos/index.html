@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Átomo en juego</title>
+<meta name="description" content="Laboratorio para armar átomos e iones y escape room de cuatro candados sobre materia y átomo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Diseño: pensado para el celular del estudiante; tema oscuro de las clases, botones grandes y una sola tarea a la vez. */
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --red:#FF6B6B; --blue:#4FB3E8; --ink:#0E1A1F; --gris:#8A9BA3;
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+sub,sup{font-size:.7em;line-height:0}
+.wrap{max-width:560px;margin:0 auto;padding:12px 16px 40px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0}
+.tabs button{background:var(--panel);color:var(--muted);border:2px solid var(--line);border-radius:14px;padding:10px;font-weight:900}
+.tabs button.on{color:var(--ink);background:var(--green);border-color:var(--green)}
+.vista{display:none}.vista.on{display:block}
+h1{font-weight:900;font-size:26px;line-height:1.15;margin:6px 0 8px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin:12px 0}
+.kicker{color:var(--gold);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
+.muted{color:var(--muted);font-size:.9em}
+.btn{display:inline-block;width:100%;font-weight:900;border:0;border-radius:16px;padding:14px 18px;background:var(--green);color:var(--ink);box-shadow:0 4px 0 var(--green-d);text-align:center}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-d)}
+.btn.sec{background:var(--panel2);color:var(--text);box-shadow:none;border:1px solid var(--line)}
+.letras{display:flex;gap:6px;justify-content:center;margin:8px 0 0}
+.letras span{width:38px;height:44px;border-radius:10px;background:var(--deep);border:2px solid var(--line);display:grid;place-items:center;font-weight:900;font-size:22px;color:var(--gold)}
+.letras span.ya{border-color:var(--gold);animation:pop .5s}
+@keyframes pop{40%{transform:scale(1.25)}}
+
+/* Laboratorio */
+.reto{font-weight:800;font-size:1.05em;margin:4px 0 8px}
+.pista{display:none;background:var(--panel2);border-left:5px solid var(--gold);border-radius:10px;padding:8px 12px;font-size:.9em;margin-top:8px}
+.pista.on{display:block}
+.fila-b{display:flex;gap:8px;margin-top:8px}
+.fila-b .btn{padding:10px}
+.atomo{display:block;width:100%;max-width:340px;margin:0 auto}
+.ctrl{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.ctrl:last-child{border-bottom:0}
+.ctrl .nom{font-weight:900;display:flex;align-items:center;gap:8px}
+.ctrl .nom i{width:14px;height:14px;border-radius:50%;display:inline-block}
+.ctrl button{width:52px;height:52px;border-radius:14px;border:2px solid var(--line);background:var(--panel2);color:var(--text);font-size:26px;font-weight:900;line-height:1}
+.ctrl button:active{background:var(--line)}
+.ctrl .num{min-width:2.2em;text-align:center;font-weight:900;font-size:24px;font-variant-numeric:tabular-nums}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline}
+.ficha b{color:var(--muted);font-weight:700;font-size:.9em}
+.ficha span{font-weight:900}
+.simbolo{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.simbolo .grande{font-size:46px;font-weight:900;line-height:1;display:flex;align-items:center}
+.nuc{display:inline-flex;flex-direction:column;align-items:flex-end;font-size:.42em;line-height:1.1;margin-right:2px}
+.simbolo .grande sup{font-size:.42em;align-self:flex-start;margin-left:2px}
+.nombre{font-weight:900;font-size:1.2em}
+.estado{margin-top:10px;padding:8px 12px;border-radius:10px;background:var(--deep);font-size:.92em}
+.estado.ok{background:#173A2A}
+.estado.malo{background:#3A1F22}
+.logro{display:none;text-align:center;background:#173A2A;border:2px solid var(--green);border-radius:18px;padding:16px;margin:12px 0}
+.logro.on{display:block;animation:pop .5s}
+.logro .l{font-size:44px;font-weight:900;color:var(--gold);line-height:1.1}
+.final{text-align:center}
+.final .palabra{font-size:46px;font-weight:900;letter-spacing:.14em;color:var(--gold);margin:6px 0}
+.final .tiempo{font-size:28px;font-weight:900}
+
+/* Escape room */
+.hud{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 0}
+.reloj{font-size:30px;font-weight:900;font-variant-numeric:tabular-nums}
+.reloj.poco{color:var(--red)}
+.candados{display:flex;gap:6px}
+.candados svg{width:34px;height:40px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.tile{background:var(--panel2);border:2px solid var(--line);color:var(--text);border-radius:14px;padding:12px 8px;font-weight:800;min-height:56px}
+.tile.sel{border-color:var(--gold);background:#3A3418}
+.resp{display:flex;gap:8px;margin:10px 0}
+.resp input{flex:1;min-width:0;background:var(--deep);color:var(--text);border:2px solid var(--line);border-radius:14px;padding:12px;font-size:24px;font-weight:900;text-align:center}
+.resp .btn{width:auto;flex:0 0 auto}
+.opts{display:grid;gap:8px;margin:10px 0}
+.opts button{background:var(--panel2);border:2px solid var(--line);color:var(--text);border-radius:14px;padding:12px;font-weight:800;font-size:1.1em;text-align:center}
+.mal{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.aviso{display:none;margin-top:8px;padding:8px 12px;border-radius:10px;background:#3A1F22;font-size:.92em}
+.aviso.on{display:block}
+.abierto{text-align:center;padding:10px 0}
+.abierto .l{font-size:52px;font-weight:900;color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="tabs" role="tablist">
+    <button type="button" data-v="laboratorio" class="on">Laboratorio</button>
+    <button type="button" data-v="escape">Escape room</button>
+  </div>
+
+  <!-- ================= Laboratorio ================= -->
+  <section class="vista on" id="laboratorio">
+    <h1>Arma el átomo</h1>
+    <div class="card" id="cReto">
+      <div class="kicker" id="rNum">Reto 1 de 6</div>
+      <div class="reto" id="rTxt"></div>
+      <div class="fila-b"><button class="btn sec" id="bPista" type="button">Pista</button></div>
+      <div class="pista" id="rPista"></div>
+      <div class="letras" id="lLetras"></div>
+    </div>
+    <div class="logro" id="logro"><div>¡Logrado! Tu letra es</div><div class="l" id="logroL"></div><button class="btn" id="bSigReto" type="button" style="margin-top:10px">Siguiente reto</button></div>
+    <div class="card final" id="labFinal" hidden>
+      <div class="kicker">Laboratorio terminado</div>
+      <div class="palabra" id="labPalabra"></div>
+      <div class="tiempo" id="labTiempo"></div>
+      <p class="muted" style="margin:8px 0 0">Escribe en el chat la palabra y tu tiempo. Puedes seguir armando átomos abajo.</p>
+    </div>
+
+    <div class="card">
+      <svg class="atomo" id="svgAtomo" viewBox="0 0 220 190" aria-label="Dibujo del átomo armado"></svg>
+      <div class="ctrl"><span class="nom"><i style="background:var(--red)"></i>Protones</span><button type="button" data-k="p" data-d="-1" aria-label="Quitar protón">−</button><span class="num" id="nP">0</span><button type="button" data-k="p" data-d="1" aria-label="Agregar protón">+</button></div>
+      <div class="ctrl"><span class="nom"><i style="background:var(--gris)"></i>Neutrones</span><button type="button" data-k="n" data-d="-1" aria-label="Quitar neutrón">−</button><span class="num" id="nN">0</span><button type="button" data-k="n" data-d="1" aria-label="Agregar neutrón">+</button></div>
+      <div class="ctrl"><span class="nom"><i style="background:var(--blue)"></i>Electrones</span><button type="button" data-k="e" data-d="-1" aria-label="Quitar electrón">−</button><span class="num" id="nE">0</span><button type="button" data-k="e" data-d="1" aria-label="Agregar electrón">+</button></div>
+    </div>
+
+    <div class="card">
+      <div class="simbolo"><div class="grande" id="fSim">?</div><div><div class="nombre" id="fNom">Sin protones</div><div class="muted" id="fTipo">Agrega protones para formar un elemento.</div></div></div>
+      <div class="ficha">
+        <b>Z (protones)</b><span id="fZ">0</span>
+        <b>A (protones + neutrones)</b><span id="fA">0</span>
+        <b>Carga</b><span id="fQ">0</span>
+      </div>
+      <div class="estado" id="fEst">Con 0 protones todavía no hay ningún elemento.</div>
+    </div>
+  </section>
+
+  <!-- ================= Escape room ================= -->
+  <section class="vista" id="escape">
+    <h1>Escape room</h1>
+    <div id="eIntro" class="card">
+      <p>Cuatro candados te separan de la salida. Cada uno se abre con un ejercicio y te da una letra. Tienes <b>12 minutos</b>.</p>
+      <p class="muted">Si te equivocas, el candado no se abre y aparece una pista. Puedes volver a intentar.</p>
+      <button class="btn" id="bEmpezar" type="button">Empezar</button>
+    </div>
+    <div id="eJuego" hidden>
+      <div class="hud"><span class="reloj" id="eReloj">12:00</span><span class="candados" id="eCand"></span></div>
+      <div class="card" id="eCaja"></div>
+      <div class="letras" id="eLetras"></div>
+    </div>
+    <div id="eFinal" class="card final" hidden>
+      <div class="kicker" id="eFinK">¡Escapaste!</div>
+      <div class="palabra">NEÓN</div>
+      <div class="tiempo" id="eFinT"></div>
+      <p class="muted" id="eFinE"></p>
+      <p style="margin:8px 0 0">Escribe en el chat <b>NEÓN</b> y tu tiempo.</p>
+    </div>
+  </section>
+</div>
+
+<script src="bancos.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=s=>{s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+const mezclar=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+/* ---------- Pestañas ---------- */
+function verVista(v){
+  document.querySelectorAll('.vista').forEach(x=>x.classList.toggle('on',x.id===v));
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  try{history.replaceState(null,'','#'+v)}catch(e){}
+}
+document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)verVista(b.dataset.v);});
+if(location.hash==='#escape')verVista('escape');
+
+/* ---------- Datos de los elementos 1 a 20 ---------- */
+const EL=[null,['H','hidrógeno'],['He','helio'],['Li','litio'],['Be','berilio'],['B','boro'],['C','carbono'],['N','nitrógeno'],
+  ['O','oxígeno'],['F','flúor'],['Ne','neón'],['Na','sodio'],['Mg','magnesio'],['Al','aluminio'],['Si','silicio'],['P','fósforo'],
+  ['S','azufre'],['Cl','cloro'],['Ar','argón'],['K','potasio'],['Ca','calcio']];
+// Masas de los isótopos estables de cada elemento, y los radiactivos que existen en la naturaleza
+const ESTABLES={1:[1,2],2:[3,4],3:[6,7],4:[9],5:[10,11],6:[12,13],7:[14,15],8:[16,17,18],9:[19],10:[20,21,22],11:[23],
+  12:[24,25,26],13:[27],14:[28,29,30],15:[31],16:[32,33,34,36],17:[35,37],18:[36,38,40],19:[39,41],20:[40,42,43,44,46,48]};
+const RADIACTIVOS={1:[3],6:[14],19:[40]};
+const MAX={p:20,n:30,e:23};
+
+/* ---------- Laboratorio ---------- */
+const st={p:0,n:0,e:0};
+let reto=0, letrasLab=[], inicioLab=null, pistaVista=false, enLogro=false;
+function cargaTxt(q){return q===0?'0':(q>0?'+':'−')+Math.abs(q);}
+function supCarga(q){return q===0?'':`<sup>${Math.abs(q)===1?'':Math.abs(q)}${q>0?'+':'−'}</sup>`;}
+function circ(svg,x,y,r,fill,extra=''){svg.insertAdjacentHTML('beforeend',`<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" ${extra}/>`);}
+function dibujar(){
+  const svg=$('svgAtomo'), cx=110, cy=95; svg.innerHTML='';
+  const capas=[2,8,8,8], radios=[38,56,72,88]; let quedan=st.e;
+  capas.forEach((cap,i)=>{
+    if(quedan<=0)return;
+    const k=Math.min(cap,quedan);
+    circ(svg,cx,cy,radios[i],'none','stroke="#2E4652" stroke-width="1.5"');
+    for(let j=0;j<k;j++){const a=-Math.PI/2+j*2*Math.PI/k;circ(svg,(cx+radios[i]*Math.cos(a)).toFixed(1),(cy+radios[i]*Math.sin(a)).toFixed(1),5,'#4FB3E8');}
+    quedan-=k;
+  });
+  const orden=[]; let pp=st.p,nn=st.n;
+  while(pp||nn){if(pp){orden.push('#FF6B6B');pp--;}if(nn){orden.push('#8A9BA3');nn--;}}
+  orden.forEach((c,i)=>{const r=i?3.4*Math.sqrt(i):0,a=i*2.4;circ(svg,(cx+r*Math.cos(a)).toFixed(1),(cy+r*Math.sin(a)).toFixed(1),5.2,c,'stroke="#0E171B" stroke-width="1"');});
+  if(!st.p&&!st.n&&!st.e)svg.insertAdjacentHTML('beforeend','<text x="110" y="100" fill="#A9BCC4" font-size="12" text-anchor="middle" font-family="Nunito,sans-serif">Usa los botones + de abajo</text>');
+}
+function ficha(){
+  const {p,n,e}=st, A=p+n, q=p-e;
+  $('nP').textContent=p; $('nN').textContent=n; $('nE').textContent=e;
+  $('fZ').textContent=p; $('fA').textContent=A; $('fQ').textContent=cargaTxt(q);
+  let est='', cls='';
+  if(!p){
+    $('fSim').innerHTML='?'; $('fNom').textContent='Sin protones';
+    $('fTipo').textContent='Agrega protones para formar un elemento.';
+    est='Sin protones todavía no hay ningún elemento: el número de protones dice cuál es.';
+  }else{
+    const [sim,nom]=EL[p];
+    $('fSim').innerHTML=`<span class="nuc"><span>${A}</span><span>${p}</span></span>${sim}${supCarga(q)}`;
+    $('fNom').textContent=`${nom[0].toUpperCase()+nom.slice(1)}-${A}`;
+    $('fTipo').textContent=q===0?'Átomo neutro: tantos electrones como protones.':
+      q>0?`Catión: perdió ${q} electrón${q>1?'es':''}.`:`Anión: ganó ${-q} electrón${-q>1?'es':''}.`;
+    if((ESTABLES[p]||[]).includes(A)){est=`Este isótopo existe en la naturaleza y es estable. Tiene ${n} neutrones.`;cls='ok';}
+    else if((RADIACTIVOS[p]||[]).includes(A)){est=`Este isótopo existe, pero es radiactivo: con el tiempo se transforma en otro elemento.`;cls='ok';}
+    else{est=`Con ${n} neutrones este núcleo no es estable. Los isótopos estables del ${nom} tienen A = ${ESTABLES[p].join(', ')}.`;cls='malo';}
+    if(Math.abs(q)>3)est+=' Un ion con tanta carga casi no se encuentra.';
+  }
+  $('fEst').textContent=est; $('fEst').className='estado '+cls;
+}
+function pintarLetras(host,total,letras){
+  host.innerHTML=Array.from({length:total},(_,i)=>`<span class="${letras[i]?'ya':''}">${letras[i]||''}</span>`).join('');
+}
+function mostrarReto(){
+  pistaVista=false; $('rPista').classList.remove('on');
+  if(reto>=RETOS.length){
+    $('cReto').hidden=true; $('labFinal').hidden=false;
+    $('labPalabra').textContent=letrasLab.join('');
+    $('labTiempo').textContent='Tiempo: '+fmt((Date.now()-inicioLab)/1000);
+    return;
+  }
+  const r=RETOS[reto];
+  $('rNum').textContent=`Reto ${reto+1} de ${RETOS.length}`;
+  $('rTxt').innerHTML=r.t; $('rPista').textContent=r.h;
+  pintarLetras($('lLetras'),RETOS.length,letrasLab);
+}
+function revisar(){
+  if(enLogro||reto>=RETOS.length)return;
+  const r=RETOS[reto];
+  if(st.p===r.p&&st.n===r.n&&st.e===r.e){
+    enLogro=true; letrasLab.push(r.l);
+    $('logroL').textContent=r.l; $('logro').classList.add('on');
+    pintarLetras($('lLetras'),RETOS.length,letrasLab);
+    $('bSigReto').textContent=reto===RETOS.length-1?'Ver mi palabra':'Siguiente reto';
+    $('logro').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+document.querySelectorAll('.ctrl button').forEach(b=>b.addEventListener('click',()=>{
+  if(inicioLab===null)inicioLab=Date.now();
+  const k=b.dataset.k; st[k]=Math.max(0,Math.min(MAX[k],st[k]+(+b.dataset.d)));
+  dibujar(); ficha(); revisar();
+}));
+$('bPista').onclick=()=>{pistaVista=true;$('rPista').classList.add('on');};
+$('bSigReto').onclick=()=>{
+  enLogro=false; $('logro').classList.remove('on'); reto++;
+  st.p=st.n=st.e=0; dibujar(); ficha(); mostrarReto();
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+dibujar(); ficha(); mostrarReto();
+
+/* ---------- Escape room ---------- */
+const DURA=12*60;
+const PISTAS=[
+  'Una mezcla tiene dos o más sustancias juntas. El oro, el hierro o el agua destilada son una sola sustancia.',
+  'Neutrones = A − Z. A es el número de arriba del símbolo.',
+  'Electrones = Z − carga. Si la carga es negativa, el ion ganó electrones.',
+  'Isótopos: el mismo elemento (mismo símbolo) con distinto número de arriba, y los dos sin carga.'
+];
+let eIni=0, eRel=null, eIdx=0, eErr=0, eLetras=[], eVar=null, eFuera=false;
+function candadoSVG(abierto){
+  const c=abierto?'#3BC97A':'#5E7480';
+  const arco=abierto?'M10 18 V11 a8 8 0 0 1 16 0':'M10 18 V11 a8 8 0 0 1 16 0 V18';
+  return `<svg viewBox="0 0 36 40" aria-label="${abierto?'abierto':'cerrado'}"><path d="${arco}" fill="none" stroke="${c}" stroke-width="4" ${abierto?'transform="translate(-6 -3) rotate(-12 18 18)"':''}/><rect x="4" y="17" width="28" height="21" rx="5" fill="${c}"/></svg>`;
+}
+function pintarCandados(){
+  $('eCand').innerHTML=[0,1,2,3].map(i=>candadoSVG(i<eIdx)).join('');
+  pintarLetras($('eLetras'),4,eLetras);
+}
+function tick(){
+  const q=DURA-(Date.now()-eIni)/1000;
+  $('eReloj').textContent=q>0?fmt(q):'0:00';
+  $('eReloj').classList.toggle('poco',q<120);
+  if(q<=0&&!eFuera){eFuera=true;}
+}
+function fallo(caja){
+  eErr++; caja.classList.remove('mal'); void caja.offsetWidth; caja.classList.add('mal');
+  const a=caja.querySelector('.aviso'); a.textContent='No se abrió. Pista: '+PISTAS[eIdx]; a.classList.add('on');
+}
+function abrir(){
+  eLetras.push(ESCAPE.letras[eIdx]); eIdx++; pintarCandados();
+  const caja=$('eCaja');
+  caja.innerHTML=`<div class="abierto"><div class="kicker">Candado ${eIdx} abierto</div><div class="l">${ESCAPE.letras[eIdx-1]}</div>
+    <button class="btn" type="button" id="eSig">${eIdx<4?'Siguiente candado':'Salir'}</button></div>`;
+  $('eSig').onclick=()=>eIdx<4?candado():terminar();
+}
+function candado(){
+  const caja=$('eCaja'), i=eIdx;
+  let html=`<div class="kicker">Candado ${i+1} de 4</div>`;
+  if(i===0){
+    const v=eVar.c1, items=mezclar([...v.si.map(t=>({t,ok:1})),...v.no.map(t=>({t,ok:0}))]);
+    html+=`<p class="reto">Toca las <b>3 mezclas</b>. Las demás son sustancias puras.</p>
+      <div class="tiles">${items.map(x=>`<button class="tile" type="button" data-ok="${x.ok}">${x.t}</button>`).join('')}</div>
+      <button class="btn" type="button" id="eProbar">Probar</button>`;
+  }else if(i===1||i===2){
+    const v=i===1?eVar.c2:eVar.c3;
+    html+=`<p class="reto">${v.t}</p><div class="resp"><input id="eNum" type="number" inputmode="numeric" min="0" max="200" aria-label="Respuesta"><button class="btn" type="button" id="eProbar">Probar</button></div>`;
+  }else{
+    const ops=mezclar(eVar.c4.map((t,k)=>({t,ok:k===0})));
+    html+=`<p class="reto">¿Cuál de estos pares son <b>isótopos</b>?</p><div class="opts">${ops.map(o=>`<button type="button" data-ok="${o.ok?1:0}">${o.t}</button>`).join('')}</div>`;
+  }
+  caja.innerHTML=html+'<div class="aviso"></div>';
+  if(i===0){
+    caja.querySelector('.tiles').addEventListener('click',e=>{const t=e.target.closest('.tile');if(t)t.classList.toggle('sel');});
+    $('eProbar').onclick=()=>{
+      const sel=[...caja.querySelectorAll('.tile')];
+      const bien=sel.every(t=>t.classList.contains('sel')===(t.dataset.ok==='1'));
+      bien?abrir():fallo(caja);
+    };
+  }else if(i<3){
+    const v=i===1?eVar.c2:eVar.c3, inp=$('eNum');
+    const probar=()=>{if(inp.value==='')return; (+inp.value===v.r)?abrir():fallo(caja);};
+    $('eProbar').onclick=probar; inp.addEventListener('keydown',e=>{if(e.key==='Enter')probar();});
+    setTimeout(()=>inp.focus(),50);
+  }else{
+    caja.querySelector('.opts').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;b.dataset.ok==='1'?abrir():fallo(caja);});
+  }
+}
+function terminar(){
+  clearInterval(eRel);
+  const t=(Date.now()-eIni)/1000;
+  $('eJuego').hidden=true; $('eFinal').hidden=false;
+  $('eFinK').textContent=eFuera?'Saliste, pero fuera de tiempo':'¡Escapaste!';
+  $('eFinT').textContent='Tiempo: '+fmt(t);
+  $('eFinE').textContent=eErr?`Intentos fallidos: ${eErr}.`:'Sin un solo error.';
+}
+$('bEmpezar').onclick=()=>{
+  const pick=a=>a[Math.floor(Math.random()*a.length)];
+  eVar={c1:pick(ESCAPE.c1),c2:pick(ESCAPE.c2),c3:pick(ESCAPE.c3),c4:pick(ESCAPE.c4)};
+  eIni=Date.now(); eIdx=0; eErr=0; eLetras=[]; eFuera=false;
+  $('eIntro').hidden=true; $('eJuego').hidden=false;
+  pintarCandados(); candado(); tick(); eRel=setInterval(tick,500);
+};
+</script>
+</body>
+</html>
