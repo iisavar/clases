@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Curso de química</title>
+<meta name="description" content="Curso de química desde cero en 27 clases, con láminas, duelos, juegos para el celular y tareas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#131F24;--panel:#1B2B32;--line:#2E4652;--text:#F1F5F7;--muted:#A9BCC4;--green:#2BAE66;--green-t:#3BC97A;--gold:#FFC800;--ink:#0E1A1F;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.45}
+.wrap{max-width:820px;margin:0 auto;padding:32px 16px 56px}
+h1{font-weight:900;font-size:40px;line-height:1.1;margin:0 0 8px}
+.lead{color:var(--muted);margin:0 0 28px}
+h2{font-weight:900;font-size:20px;color:var(--gold);margin:30px 0 10px}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+li{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px 10px 6px 14px}
+.n{font-weight:900;color:var(--green-t);font-size:20px}
+.t{font-weight:800;color:var(--text);text-decoration:none;padding:9px 0}
+.t:hover{color:var(--gold)}
+.j{font-weight:800;font-size:15px;color:var(--ink);background:var(--gold);border-radius:10px;padding:8px 12px;text-decoration:none}
+a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media (max-width:420px){h1{font-size:32px}li{grid-template-columns:32px 1fr auto}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Curso de química</h1>
+  <p class="lead">Desde cero, en orden. Cada clase parte de lo que dejó la anterior.</p>
+  <div id="curso"></div>
+</main>
+<script>
+const CURSO=[
+  ['Empezar: ciencia y medición',[[1,'que-es-la-quimica','¿Qué es la química?'],[2,'magnitudes-y-notacion','Magnitudes, prefijos y notación científica'],[3,'conversiones','Conversiones con factor unitario']]],
+  ['La materia',[[4,'estados-y-propiedades','Estados y propiedades de la materia'],[5,'mezclas-y-cambios','Mezclas y cambios físicos y químicos']]],
+  ['El átomo',[[6,'modelos-atomicos','Modelos atómicos y partículas'],[7,'numeros-iones-isotopos','Número atómico, másico, iones e isótopos'],[8,'configuracion-electronica','Configuración electrónica']]],
+  ['La tabla periódica',[[9,'tabla-periodica','Cómo se organiza la tabla periódica'],[10,'propiedades-periodicas','Propiedades periódicas']]],
+  ['Cómo se unen los átomos',[[11,'enlace','Enlace iónico, covalente y metálico'],[12,'polaridad-y-fuerzas','Polaridad y fuerzas entre moléculas']]],
+  ['Química inorgánica: los nombres',[[13,'oxidacion','Valencia y número de oxidación'],[14,'oxidos-e-hidroxidos','Óxidos, hidróxidos e hidruros'],[15,'acidos-y-sales','Ácidos y sales']]],
+  ['Reacciones y cálculos',[[16,'reacciones-y-balanceo','Tipos de reacciones y balanceo'],[17,'mol','El mol y la masa molar'],[18,'estequiometria','Estequiometría']]],
+  ['Soluciones, gases y pH',[[19,'soluciones','Soluciones y porcentajes'],[20,'molaridad-dilucion','Molaridad y dilución'],[21,'gases','Gases'],[22,'acidos-bases-ph','Ácidos, bases y pH']]],
+  ['Química orgánica',[[23,'carbono-hidrocarburos','El carbono y los hidrocarburos'],[24,'benceno-alcoholes','Benceno, alcoholes, fenoles y éteres'],[25,'funciones-oxigenadas-nitrogenadas','Aldehídos, cetonas, ácidos, ésteres y aminas'],[26,'reacciones-cotidianas','Reacciones cotidianas, polímeros y biomoléculas']]],
+  ['Para cerrar',[[27,'simulacro','Simulacro final']]]
+];
+document.getElementById('curso').innerHTML=CURSO.map(([b,l])=>`<h2>${b}</h2><ol>${l.map(([n,c,t])=>{
+  const r=`clase-${String(n).padStart(2,'0')}-${c}/`;
+  return `<li><span class="n">${n}</span><a class="t" href="${r}">${t}</a>${n<27?`<a class="j" href="${r}juego/">Juegos</a>`:''}</li>`;
+}).join('')}</ol>`).join('');
+</script>
+</body>
+</html>

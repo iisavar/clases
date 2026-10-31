@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Propiedades periódicas</title>
+<meta name="description" content="Radio atómico, energía de ionización y electronegatividad, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Dos ideas que lo explican todo">
+  <div class="inner">
+    <h2>1. Dos ideas que lo explican todo</h2>
+    <p>Hoy veremos tres propiedades, y no hay que memorizarlas una por una. Todas salen de la pelea entre dos cosas: el núcleo, que jala a los electrones, y la distancia, que debilita ese jalón.</p>
+    <svg class="dib" viewBox="0 0 880 210" role="img" aria-label="A la izquierda, litio y flúor con dos niveles: el flúor es más pequeño porque tiene más protones. A la derecha, litio con dos niveles y sodio con tres: el sodio es más grande." style="max-width:800px;margin:0 auto">
+      <g fill="none" stroke="#2E4652" stroke-width="3">
+        <circle cx="100" cy="92" r="34"/><circle cx="100" cy="92" r="60"/>
+        <circle cx="290" cy="92" r="21"/><circle cx="290" cy="92" r="30"/>
+        <circle cx="580" cy="92" r="34"/><circle cx="580" cy="92" r="60"/>
+        <circle cx="770" cy="92" r="28"/><circle cx="770" cy="92" r="53"/><circle cx="770" cy="92" r="78"/>
+      </g>
+      <g fill="#FF6B6B"><circle cx="100" cy="92" r="14"/><circle cx="290" cy="92" r="14"/><circle cx="580" cy="92" r="14"/><circle cx="770" cy="92" r="14"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" font-size="13" fill="#0E1A1F" text-anchor="middle"><text x="100" y="97">3+</text><text x="290" y="97">9+</text><text x="580" y="97">3+</text><text x="770" y="97">11+</text></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" font-size="20" fill="#F1F5F7" text-anchor="middle"><text x="100" y="198">Litio</text><text x="290" y="198">Flúor</text><text x="580" y="198">Litio</text><text x="770" y="198">Sodio</text></g>
+      <path d="M430 10v190" stroke="#2E4652" stroke-width="2" stroke-dasharray="6 6"/>
+    </svg>
+    <div class="grid2">
+      <div class="card step"><h3>En un periodo, hacia la derecha</h3><p style="margin:0">Los mismos niveles, pero más protones. El núcleo jala más fuerte y el átomo se encoge.</p></div>
+      <div class="card step"><h3>En un grupo, hacia abajo</h3><p style="margin:0">Cada fila agrega un nivel. Los electrones de afuera quedan lejos y el átomo crece.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-titulo="2. El radio atómico">
+  <div class="inner">
+    <h2>2. El radio atómico: qué tan grande es el átomo</h2>
+    <p>El <b>radio atómico</b> mide el tamaño del átomo. Los círculos están dibujados a escala con sus medidas reales.</p>
+    <svg class="dib" viewBox="0 0 800 285" role="img" aria-label="Círculos a escala: en el periodo 3 los átomos se achican del sodio al cloro; en el grupo 1 crecen del litio al cesio." style="max-width:640px;margin:0 auto">
+      <g fill="#4FB3E8" opacity=".35"><circle cx="190" cy="62" r="50"/><circle cx="294" cy="62" r="42"/><circle cx="384" cy="62" r="36"/><circle cx="465" cy="62" r="33"/><circle cx="542" cy="62" r="32"/><circle cx="618" cy="62" r="32"/><circle cx="693" cy="62" r="31"/></g>
+      <g fill="#3BC97A" opacity=".35"><circle cx="170" cy="205" r="38"/><circle cx="272" cy="205" r="50"/><circle cx="397" cy="205" r="61"/><circle cx="538" cy="205" r="66"/><circle cx="691" cy="205" r="73"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" font-size="20" fill="#F1F5F7" text-anchor="middle">
+        <text x="190" y="69">Na</text><text x="294" y="69">Mg</text><text x="384" y="69">Al</text><text x="465" y="69">Si</text><text x="542" y="69">P</text><text x="618" y="69">S</text><text x="693" y="69">Cl</text>
+        <text x="170" y="212">Li</text><text x="272" y="212">Na</text><text x="397" y="212">K</text><text x="538" y="212">Rb</text><text x="691" y="212">Cs</text>
+      </g>
+      <g font-family="Nunito,sans-serif" font-weight="800" font-size="19">
+        <text x="6" y="56" fill="#4FB3E8">Periodo 3</text><text x="6" y="80" fill="#A9BCC4" font-size="16">se achica</text>
+        <text x="6" y="199" fill="#3BC97A">Grupo 1</text><text x="6" y="223" fill="#A9BCC4" font-size="16">crece</text>
+      </g>
+    </svg>
+    <div class="clave step"><b>Regla:</b> el radio baja de izquierda a derecha y sube de arriba hacia abajo. El más grande está abajo a la izquierda.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuál es más grande, el oxígeno o el azufre? El azufre, porque está más abajo en el grupo 16.</div>
+  </div>
+</section>
+
+<section data-titulo="3. El tamaño de los iones">
+  <div class="inner">
+    <h2>3. ¿Y los iones? Cambian de tamaño</h2>
+    <p>Recuerda el Na<sup>+</sup> y el Cl<sup>−</sup> de clases pasadas. Al ganar o perder electrones, el átomo no conserva su tamaño.</p>
+    <svg class="dib" viewBox="0 0 800 130" role="img" aria-label="El sodio se achica al volverse catión y el cloro crece al volverse anión" style="max-width:700px;margin:0 auto">
+      <g fill="#4FB3E8" opacity=".35"><circle cx="70" cy="64" r="50"/><circle cx="240" cy="64" r="31"/></g>
+      <g fill="#3BC97A" opacity=".35"><circle cx="520" cy="64" r="31"/><circle cx="720" cy="64" r="54"/></g>
+      <g fill="none" stroke="#FFC800" stroke-width="3" stroke-linecap="round"><path d="M136 64h60M186 56l10 8-10 8"/><path d="M566 64h80M636 56l10 8-10 8"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" font-size="20" fill="#F1F5F7" text-anchor="middle">
+        <text x="70" y="71">Na</text><text x="240" y="71">Na<tspan dy="-8" font-size="14">+</tspan></text><text x="520" y="71">Cl</text><text x="720" y="71">Cl<tspan dy="-8" font-size="14">−</tspan></text>
+      </g>
+    </svg>
+    <div class="grid2">
+      <div class="card step"><h3>El catión se achica</h3><p style="margin:0">El sodio perdió el electrón de su nivel 3, y con él perdió ese nivel completo. Además, los protones jalan a menos electrones.</p></div>
+      <div class="card step"><h3>El anión crece</h3><p style="margin:0">El cloro recibió un electrón más. Los protones son los mismos, y hay más electrones que se repelen entre sí.</p></div>
+    </div>
+    <div class="clave step"><b>Para recordar:</b> perder electrones achica, ganar electrones agranda.</div>
+  </div>
+</section>
+
+<section data-titulo="4. La energía de ionización">
+  <div class="inner">
+    <h2>4. La energía de ionización: qué tanto cuesta quitar un electrón</h2>
+    <p>Para sacarle un electrón a un átomo hay que gastar energía. Esa es la <b>energía de ionización</b>. Si el electrón está cerca del núcleo, cuesta mucho. Si está lejos, sale fácil. Por eso va al revés que el radio.</p>
+    <svg class="dib" viewBox="0 0 880 170" role="img" aria-label="Barras de energía de ionización: en el periodo 2 crecen de litio a neón; en el grupo 1 bajan de litio a cesio" style="max-width:800px;margin:0 auto">
+      <g font-family="Nunito,sans-serif" font-weight="900" font-size="18" fill="#F1F5F7">
+        <text x="0" y="20" fill="#4FB3E8">Periodo 2, crece</text><text x="460" y="20" fill="#3BC97A">Grupo 1, baja</text>
+        <text x="0" y="56">Li</text><text x="0" y="92">C</text><text x="0" y="128">F</text><text x="0" y="164">Ne</text>
+        <text x="460" y="56">Li</text><text x="460" y="92">Na</text><text x="460" y="128">K</text><text x="460" y="164">Cs</text>
+      </g>
+      <g fill="#4FB3E8"><rect x="40" y="40" width="78" height="20" rx="4"/><rect x="40" y="76" width="163" height="20" rx="4"/><rect x="40" y="112" width="252" height="20" rx="4"/><rect x="40" y="148" width="312" height="20" rx="4"/></g>
+      <g fill="#3BC97A"><rect x="500" y="40" width="78" height="20" rx="4"/><rect x="500" y="76" width="74" height="20" rx="4"/><rect x="500" y="112" width="63" height="20" rx="4"/><rect x="500" y="148" width="56" height="20" rx="4"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" font-size="16" fill="#A9BCC4">
+        <text x="126" y="56">520</text><text x="211" y="92">1086</text><text x="300" y="128">1681</text><text x="360" y="164">2081</text>
+        <text x="586" y="56">520</text><text x="582" y="92">496</text><text x="571" y="128">419</text><text x="564" y="164">376</text>
+      </g>
+    </svg>
+    <div class="clave step"><b>Regla:</b> sube de izquierda a derecha y baja de arriba hacia abajo. Los números están en kilojulios por mol, una unidad de energía que entenderás en la clase del mol. Por ahora solo compáralos: a mayor número, más cuesta.</div>
+    <div class="clave step"><b>Es la tendencia general.</b> Dentro de un periodo hay pequeñas bajadas, como del magnesio al aluminio, que aquí no vamos a comparar.</div>
+  </div>
+</section>
+
+<section data-titulo="5. La electronegatividad">
+  <div class="inner">
+    <h2>5. La electronegatividad: quién jala más</h2>
+    <p>A veces dos átomos comparten electrones. Es como una cuerda en un juego de tira y afloja: los electrones se quedan más cerca del que jala más fuerte. Esa fuerza se llama <b>electronegatividad</b>.</p>
+    <div class="grid2" style="align-items:center;grid-template-columns:1.2fr 1fr">
+      <svg class="dib" viewBox="0 0 520 170" role="img" aria-label="Tira y afloja entre hidrógeno y cloro: el par de electrones compartido queda más cerca del cloro">
+        <path d="M100 76H420" stroke="#D08C55" stroke-width="6"/>
+        <circle cx="100" cy="76" r="38" fill="#4FB3E8" opacity=".4"/><circle cx="420" cy="76" r="62" fill="#3BC97A" opacity=".4"/>
+        <circle cx="330" cy="62" r="9" fill="#FFC800"/><circle cx="330" cy="90" r="9" fill="#FFC800"/>
+        <path d="M262 76h44M296 68l10 8-10 8" fill="none" stroke="#FFC800" stroke-width="3" stroke-linecap="round"/>
+        <g font-family="Nunito,sans-serif" font-weight="900" fill="#F1F5F7" text-anchor="middle">
+          <text x="100" y="84" font-size="24">H</text><text x="420" y="84" font-size="30">Cl</text>
+          <text x="100" y="150" font-size="19">Jala 2,20</text><text x="420" y="160" font-size="19">Jala 3,16</text>
+        </g>
+      </svg>
+      <table class="t">
+        <tr><th>Elemento</th><th>Electronegatividad</th></tr>
+        <tr><td>Flúor</td><td>3,98, la más alta</td></tr>
+        <tr><td>Oxígeno</td><td>3,44</td></tr>
+        <tr><td>Cloro</td><td>3,16</td></tr>
+        <tr><td>Carbono</td><td>2,55</td></tr>
+        <tr><td>Sodio</td><td>0,93</td></tr>
+        <tr><td>Cesio</td><td>0,79</td></tr>
+      </table>
+    </div>
+    <div class="clave step"><b>Regla:</b> sube de izquierda a derecha y baja de arriba hacia abajo. Los gases nobles casi nunca comparten electrones, por eso no entran en esta comparación.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿quién jala más, el nitrógeno o el flúor? El flúor, que está más a la derecha en el mismo periodo.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Todo en un mapa">
+  <div class="inner">
+    <h2>6. Todo en un solo mapa</h2>
+    <div class="grid2" style="align-items:center">
+      <svg class="dib" viewBox="0 0 460 300" role="img" aria-label="Silueta de la tabla periódica. Una flecha hacia arriba a la derecha indica que crecen energía de ionización y electronegatividad. Una flecha hacia abajo a la izquierda indica que crecen radio y carácter metálico." style="max-width:460px;margin:0 auto">
+        <defs>
+          <marker id="pz10a" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0 0l4 2-4 2z" fill="#FFC800"/></marker>
+          <marker id="pz10b" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0 0l4 2-4 2z" fill="#4FB3E8"/></marker>
+        </defs>
+        <path d="M10 20h44v30h44v90h264V50h44V20h44v270H10z" fill="#1B2B32" stroke="#2E4652" stroke-width="3"/>
+        <path d="M150 190L392 66" stroke="#FFC800" stroke-width="5" marker-end="url(#pz10a)"/>
+        <path d="M300 200L72 256" stroke="#4FB3E8" stroke-width="5" marker-end="url(#pz10b)"/>
+        <g font-family="Nunito,sans-serif" font-weight="900" font-size="20" text-anchor="middle" fill="#F1F5F7"><text x="412" y="52" fill="#FFC800">F</text><text x="38" y="274" fill="#4FB3E8">Cs</text></g>
+      </svg>
+      <div>
+        <div class="card"><h3 style="color:var(--gold)">Hacia arriba y a la derecha</h3><p style="margin:0">Crecen la energía de ionización y la electronegatividad. Son átomos pequeños que retienen y atraen electrones.</p></div>
+        <div class="card step" style="margin-top:14px"><h3 style="color:var(--blue)">Hacia abajo y a la izquierda</h3><p style="margin:0">Crecen el radio y el <b>carácter metálico</b>, que es la facilidad para perder electrones.</p></div>
+      </div>
+    </div>
+    <div class="clave step"><b>Por eso</b> los metales están a la izquierda y los no metales a la derecha. La tabla ya te lo estaba diciendo.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Comparar paso a paso">
+  <div class="inner">
+    <h2>7. Comparar dos elementos, paso a paso</h2>
+    <p>Comparemos el sodio y el cloro, los dos del periodo 3. El sodio tiene Z = 11 y está a la izquierda. El cloro tiene Z = 17 y está a la derecha.</p>
+    <table class="t">
+      <tr><th>Pregunta</th><th>Sodio</th><th>Cloro</th><th>Por qué</th></tr>
+      <tr><td>Radio</td><td>Mayor</td><td>Menor</td><td>El cloro tiene más protones en los mismos niveles</td></tr>
+      <tr class="step"><td>Energía de ionización</td><td>Baja, 496</td><td>Alta, 1251</td><td>El electrón del sodio está lejos y solo</td></tr>
+      <tr class="step"><td>Electronegatividad</td><td>Baja, 0,93</td><td>Alta, 3,16</td><td>Con 1 electrón más, el cloro queda como el argón</td></tr>
+      <tr class="step"><td>Tipo</td><td>Metal</td><td>No metal</td><td>El sodio tiende a perder y el cloro a ganar</td></tr>
+    </table>
+    <div class="clave step"><b>Ahora mira lo que pasa si se juntan:</b> uno quiere soltar un electrón y el otro quiere recibirlo. De ese encuentro sale la sal de tu cocina. Eso es un enlace, y es el tema de la próxima clase.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:10,
+  titulo:'Propiedades periódicas',
+  subtitulo:'lo que la tabla dice de cada átomo',
+  lead:'Radio, energía de ionización y electronegatividad: tres propiedades que se leen con solo mirar la posición.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos leer el mapa de los elementos',
+    antesT:'La clase pasada',
+    antes:'Vimos periodos, grupos, bloques y familias, y ubicamos cada elemento con su configuración.',
+    hoy:'La posición también dice cómo es el átomo: qué tan grande es, cuánto cuesta quitarle un electrón y qué tan fuerte atrae electrones.'
+  },
+  sigue:{
+    titulo:'La posición dice cómo se porta cada átomo',
+    hoy:'El radio y el carácter metálico crecen hacia abajo y a la izquierda. La energía de ionización y la electronegatividad, hacia arriba y a la derecha.',
+    proxima:'¿Por qué se unen los átomos? Veremos la regla del octeto y los enlaces iónico, covalente y metálico.'
+  },
+  juego:{titulo:'Récords de la tabla',texto:'Abran este enlace en el celular y elijan «Récords de la tabla». Son 14 récords: el más grande, el más pequeño, el que más jala. Toquen al ganador en la tabla.'},
+  pdf:'tarea/tarea-10.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Magnitudes y notación científica</title>
+<meta name="description" content="Magnitudes, Sistema Internacional, prefijos y notación científica, con un duelo y una carrera para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Medir es comparar">
+  <div class="inner">
+    <h2>1. Medir es comparar</h2>
+    <p>Cuando dices que una puerta mide 2 metros, dices que en esa puerta cabe dos veces una longitud que todos aceptamos: el metro. Medir es comparar algo con una unidad.</p>
+    <p>Lo que se puede medir se llama <b>magnitud</b>. La longitud, la masa, el tiempo y la temperatura son magnitudes. Lo rico de un plato no lo es, porque no hay una unidad para medirlo.</p>
+    <div class="grid2">
+      <div class="card"><h3>Sin unidad</h3><p style="margin:0">«La botella tiene 500.» ¿500 qué? ¿Mililitros? ¿Gramos? Nadie lo sabe.</p></div>
+      <div class="card"><h3>Con unidad</h3><p style="margin:0">«La botella tiene 500 mL.» Todos entendemos lo mismo.</p></div>
+    </div>
+    <div class="clave step"><b>Toda medida tiene dos partes:</b> un número y una unidad.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> una receta dice «agrega 2 de azúcar». ¿Qué falta? La unidad. Podrían ser 2 cucharadas, 2 tazas o 2 kilos, y el pastel sería muy distinto.</div>
+  </div>
+</section>
+
+<section data-titulo="2. El Sistema Internacional">
+  <div class="inner">
+    <h2>2. El Sistema Internacional de Unidades</h2>
+    <p>Antes, cada lugar medía a su manera: varas, leguas, arrobas. Para entenderse, casi todo el mundo acordó un solo sistema, el Sistema Internacional (SI). Tiene siete magnitudes básicas.</p>
+    <table class="t">
+      <tr><th>Magnitud</th><th>Unidad</th><th>Símbolo</th><th>Ejemplo</th></tr>
+      <tr><td>Longitud</td><td>metro</td><td>m</td><td>La altura de una puerta</td></tr>
+      <tr><td>Masa</td><td>kilogramo</td><td>kg</td><td>Un saco de arroz</td></tr>
+      <tr><td>Tiempo</td><td>segundo</td><td>s</td><td>Lo que dura un partido</td></tr>
+      <tr><td>Temperatura</td><td>kelvin</td><td>K</td><td>Qué tan caliente está el agua</td></tr>
+      <tr><td>Cantidad de sustancia</td><td>mol</td><td>mol</td><td>Cuántas partículas hay. Lo veremos más adelante</td></tr>
+      <tr><td>Corriente eléctrica</td><td>amperio</td><td>A</td><td>La que pasa por un foco</td></tr>
+      <tr><td>Intensidad luminosa</td><td>candela</td><td>cd</td><td>El brillo de una linterna</td></tr>
+    </table>
+    <div class="clave step"><b>Ojo:</b> la unidad básica de masa es el kilogramo, no el gramo. Y los símbolos no llevan punto ni plural: se escribe 5 kg, no 5 kgs.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Básicas y derivadas">
+  <div class="inner">
+    <h2>3. Magnitudes básicas y derivadas</h2>
+    <p>Las siete anteriores son las básicas. Todas las demás salen de combinarlas y se llaman <b>derivadas</b>. El área sale de multiplicar dos longitudes. El volumen, de multiplicar tres.</p>
+    <svg class="dib" viewBox="0 0 640 216" role="img" aria-label="Un rectángulo de 3 metros por 2 metros dividido en 6 cuadros de un metro cuadrado, y un cubo de 2 metros de lado con un volumen de 8 metros cúbicos" style="max-width:600px;margin:0 auto">
+      <g fill="#4FB3E8" opacity=".22"><rect x="60" y="20" width="180" height="120"/></g>
+      <g fill="none" stroke="#4FB3E8" stroke-width="2"><rect x="60" y="20" width="180" height="120"/><path d="M120 20v120M180 20v120M60 80h180"/></g>
+      <g fill="#2BAE66" opacity=".22"><path d="M380 50h120v120h-120z"/></g>
+      <g fill="#2BAE66" opacity=".35"><path d="M380 50l40-32h120l-40 32z"/></g>
+      <g fill="#2BAE66" opacity=".12"><path d="M500 50l40-32v120l-40 32z"/></g>
+      <g fill="none" stroke="#3BC97A" stroke-width="2"><path d="M380 50h120v120h-120z"/><path d="M380 50l40-32h120l-40 32"/><path d="M500 170l40-32v-120"/><path d="M440 50v120M380 110h120"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="16" font-weight="800" text-anchor="middle">
+        <text x="150" y="160">3 m</text><text x="36" y="86">2 m</text>
+        <text x="440" y="188">2 m</text><text x="564" y="98">2 m</text><text x="378" y="30">2 m</text>
+      </g>
+      <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="17" font-weight="900" text-anchor="middle">
+        <text x="150" y="208">Área: 3 m × 2 m = 6 m²</text><text x="460" y="212">Volumen: 2 m × 2 m × 2 m = 8 m³</text>
+      </g>
+    </svg>
+    <div class="clave step"><b>La unidad también sale de la cuenta.</b> Metro por metro da m². Metro por metro por metro da m³.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> un corredor hace 100 m en 10 s. ¿Cuál es su velocidad? Se divide distancia entre tiempo: 10 m/s. La velocidad también es derivada.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Potencias de diez">
+  <div class="inner">
+    <h2>4. Las potencias de diez</h2>
+    <p>En química hay cantidades enormes y cantidades diminutas. Para no escribir tantos ceros usamos potencias de diez. El exponente dice cuántas veces multiplicas o divides por 10.</p>
+    <svg class="dib" viewBox="0 0 640 132" role="img" aria-label="Fila de números de 0,001 a 1000, cada uno con su potencia de diez, de diez a la menos tres hasta diez a la tres" style="max-width:760px;margin:0 auto">
+      <g fill="#1B2B32" stroke="#2E4652" stroke-width="2"><rect x="11" y="8" width="84" height="84" rx="10"/><rect x="100" y="8" width="84" height="84" rx="10"/><rect x="189" y="8" width="84" height="84" rx="10"/><rect x="278" y="8" width="84" height="84" rx="10"/><rect x="367" y="8" width="84" height="84" rx="10"/><rect x="456" y="8" width="84" height="84" rx="10"/><rect x="545" y="8" width="84" height="84" rx="10"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="19" font-weight="800" text-anchor="middle"><text x="53" y="42">0,001</text><text x="142" y="42">0,01</text><text x="231" y="42">0,1</text><text x="320" y="42">1</text><text x="409" y="42">10</text><text x="498" y="42">100</text><text x="587" y="42">1000</text></g>
+      <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="19" font-weight="900" text-anchor="middle">
+        <text x="53" y="76">10<tspan dy="-7" font-size="13">−3</tspan></text><text x="142" y="76">10<tspan dy="-7" font-size="13">−2</tspan></text><text x="231" y="76">10<tspan dy="-7" font-size="13">−1</tspan></text><text x="320" y="76">10<tspan dy="-7" font-size="13">0</tspan></text><text x="409" y="76">10<tspan dy="-7" font-size="13">1</tspan></text><text x="498" y="76">10<tspan dy="-7" font-size="13">2</tspan></text><text x="587" y="76">10<tspan dy="-7" font-size="13">3</tspan></text>
+      </g>
+      <g fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="15" font-weight="800"><text x="14" y="120">Cada paso a la izquierda divide por 10</text><text x="626" y="120" text-anchor="end">Cada paso a la derecha multiplica por 10</text></g>
+    </svg>
+    <div class="grid2">
+      <div class="card"><h3>Exponente positivo</h3><p style="margin:0">Dice cuántos ceros van después del 1. Así, 10<sup>5</sup> = 100 000.</p></div>
+      <div class="card"><h3>Exponente negativo</h3><p style="margin:0">Dice cuántos lugares corres la coma hacia la izquierda. Así, 10<sup>−4</sup> = 0,0001.</p></div>
+    </div>
+    <div class="clave step"><b>Un exponente negativo no da un número negativo.</b> 10<sup>−2</sup> es 0,01: un número positivo y pequeño. Y 10<sup>0</sup> vale 1.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Los prefijos">
+  <div class="inner">
+    <h2>5. Los prefijos: kilo, mili, micro</h2>
+    <p>Un prefijo es una palabra que se pega a la unidad y la multiplica. Kilo significa mil: un kilómetro son mil metros.</p>
+    <table class="t">
+      <tr><th>Prefijo</th><th>Símbolo</th><th>Vale</th><th>En número</th><th>Ejemplo</th></tr>
+      <tr><td>mega</td><td>M</td><td>10<sup>6</sup></td><td>1 000 000</td><td>1 Mm = 1 000 000 m</td></tr>
+      <tr><td>kilo</td><td>k</td><td>10<sup>3</sup></td><td>1000</td><td>1 km = 1000 m</td></tr>
+      <tr><td>deci</td><td>d</td><td>10<sup>−1</sup></td><td>0,1</td><td>1 dL = 0,1 L</td></tr>
+      <tr><td>centi</td><td>c</td><td>10<sup>−2</sup></td><td>0,01</td><td>1 cm = 0,01 m</td></tr>
+      <tr><td>mili</td><td>m</td><td>10<sup>−3</sup></td><td>0,001</td><td>1 mg = 0,001 g</td></tr>
+      <tr><td>micro</td><td>µ</td><td>10<sup>−6</sup></td><td>0,000001</td><td>1 µm = 0,000001 m</td></tr>
+      <tr><td>nano</td><td>n</td><td>10<sup>−9</sup></td><td>0,000000001</td><td>1 nm = 0,000000001 m</td></tr>
+    </table>
+    <div class="clave step"><b>La letra importa.</b> m minúscula es mili y M mayúscula es mega: 1 mg y 1 Mg son cosas muy distintas.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> una pastilla dice 500 mg. ¿Es medio gramo? Sí, porque 1000 mg hacen 1 g.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Notación científica">
+  <div class="inner">
+    <h2>6. Notación científica</h2>
+    <p>Es una forma corta de escribir números muy grandes o muy pequeños: un número desde 1 hasta menos de 10, multiplicado por una potencia de diez.</p>
+    <div class="grid2">
+      <div class="card"><h3>Número grande: de la Tierra a la Luna</h3>
+        <svg class="dib" viewBox="0 0 440 92" role="img" aria-label="En 384 000 000 la coma salta 8 lugares hacia la izquierda hasta quedar después del 3">
+          <g fill="none" stroke="#FFC800" stroke-width="2"><path d="M410 40q-18-24-36 0M374 40q-18-24-36 0M338 40q-18-24-36 0M302 40q-18-24-36 0M266 40q-18-24-36 0M230 40q-18-24-36 0M194 40q-18-24-36 0M158 40q-18-24-36 0"/></g>
+          <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="24" font-weight="800" text-anchor="middle"><text x="104" y="66">3</text><text x="140" y="66">8</text><text x="176" y="66">4</text><text x="212" y="66">0</text><text x="248" y="66">0</text><text x="284" y="66">0</text><text x="320" y="66">0</text><text x="356" y="66">0</text><text x="392" y="66">0</text></g>
+          <circle cx="122" cy="62" r="4" fill="#FFC800"/><circle cx="410" cy="62" r="4" fill="none" stroke="#FFC800" stroke-width="2"/>
+          <text x="220" y="88" fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="14" font-weight="800" text-anchor="middle">La coma salta 8 lugares hacia la izquierda</text>
+        </svg>
+        <p style="margin:0">384 000 000 m = <span class="f">3,84 × 10<sup>8</sup> m</span></p></div>
+      <div class="card"><h3>Número pequeño: una bacteria</h3>
+        <svg class="dib" viewBox="0 0 440 92" role="img" aria-label="En 0,000002 la coma salta 6 lugares hacia la derecha hasta quedar después del 2">
+          <g fill="none" stroke="#FFC800" stroke-width="2"><path d="M122 40q18-24 36 0M158 40q18-24 36 0M194 40q18-24 36 0M230 40q18-24 36 0M266 40q18-24 36 0M302 40q18-24 36 0"/></g>
+          <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="24" font-weight="800" text-anchor="middle"><text x="104" y="66">0</text><text x="140" y="66">0</text><text x="176" y="66">0</text><text x="212" y="66">0</text><text x="248" y="66">0</text><text x="284" y="66">0</text><text x="320" y="66">2</text></g>
+          <circle cx="122" cy="62" r="4" fill="none" stroke="#FFC800" stroke-width="2"/><circle cx="338" cy="62" r="4" fill="#FFC800"/>
+          <text x="220" y="88" fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="14" font-weight="800" text-anchor="middle">La coma salta 6 lugares hacia la derecha</text>
+        </svg>
+        <p style="margin:0">0,000002 m = <span class="f">2 × 10<sup>−6</sup> m</span></p></div>
+    </div>
+    <div class="clave step"><b>La regla:</b> cuenta los saltos de la coma. Si salta hacia la izquierda, el exponente es positivo. Si salta hacia la derecha, es negativo. Y 12 × 10<sup>3</sup> no vale, porque 12 es mayor que 10.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Multiplicar y dividir">
+  <div class="inner">
+    <h2>7. Multiplicar y dividir en notación científica</h2>
+    <p>Se trabaja por separado: los números con los números y las potencias con las potencias. Al multiplicar, los exponentes se suman. Al dividir, se restan.</p>
+    <div class="grid3">
+      <div class="card"><h3>Multiplicar</h3><p style="margin:0">(3 × 10<sup>4</sup>) × (2 × 10<sup>5</sup>)</p><p style="margin:0">3 × 2 = 6, y 4 + 5 = 9</p><p class="f" style="margin:0">6 × 10<sup>9</sup></p></div>
+      <div class="card step"><h3>Dividir</h3><p style="margin:0">(8 × 10<sup>6</sup>) ÷ (4 × 10<sup>2</sup>)</p><p style="margin:0">8 ÷ 4 = 2, y 6 − 2 = 4</p><p class="f" style="margin:0">2 × 10<sup>4</sup></p></div>
+      <div class="card step"><h3>Ajustar al final</h3><p style="margin:0">(5 × 10<sup>3</sup>) × (6 × 10<sup>4</sup>)</p><p style="margin:0">5 × 6 = 30, y da 30 × 10<sup>7</sup></p><p class="f" style="margin:0">3 × 10<sup>8</sup></p></div>
+    </div>
+    <div class="ejemplo step"><b>Con arroz:</b> un grano tiene unos 2 × 10<sup>−2</sup> g. ¿Cuánto tienen 5 × 10<sup>4</sup> granos? Calculamos 2 × 5 = 10 y −2 + 4 = 2, y da 10 × 10<sup>2</sup> g = 1 × 10<sup>3</sup> g. Es decir, 1000 g: un kilo de arroz.</div>
+    <div class="clave step"><b>Si el número llega a 10 o más, se ajusta.</b> 30 × 10<sup>7</sup> se escribe 3 × 10<sup>8</sup>: el número se hizo 10 veces menor y por eso el exponente sube en 1.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:2,
+  titulo:'Magnitudes y notación científica',
+  subtitulo:'el idioma común de las medidas',
+  lead:'Qué se mide, con qué unidades y cómo escribir números enormes y diminutos.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Para comparar hay que medir',
+    antesT:'La clase anterior',
+    antes:'Vimos que la ciencia se comprueba y que decir «se oxidó bastante» no sirve: hace falta un número.',
+    hoy:'Aprendemos el idioma común de las medidas: magnitudes, unidades, prefijos y notación científica.'
+  },
+  sigue:{
+    titulo:'Ya sabemos con qué unidades se mide',
+    hoy:'Toda medida tiene número y unidad. El SI ordena las unidades, los prefijos las agrandan o achican y la notación científica acorta los números.',
+    proxima:'Una misma cantidad se puede escribir en unidades distintas. Veremos cómo pasar de una a otra sin equivocarnos con el factor unitario.'
+  },
+  juego:{titulo:'Carrera contra el rival',texto:'Abran este enlace en el celular. Cada acierto adelanta tu carro. El rival llega a la meta en 3 minutos: responde las 12 preguntas antes que él. Si te gana, vuelve a intentarlo.'},
+  pdf:'tarea/tarea-02.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

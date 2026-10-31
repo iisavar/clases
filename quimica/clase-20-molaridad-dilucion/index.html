@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Molaridad y dilución</title>
+<meta name="description" content="Qué es la molaridad, cómo se prepara una solución y cómo se diluye, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Por qué hace falta la molaridad">
+  <div class="inner">
+    <h2>1. Del porcentaje a los moles</h2>
+    <p>Un suero al 0,9 % nos dice cuántos gramos tiene. Pero en la clase de estequiometría vimos que las reacciones se cuentan en moles, no en gramos. Necesitamos una concentración que hable en moles.</p>
+    <div class="clave"><b>Molaridad</b> = moles de soluto ÷ litros de solución. Su unidad es mol/L, y se escribe M. Se lee «molar».</div>
+    <svg class="dib" viewBox="0 0 860 200" role="img" aria-label="Dos recipientes con la misma concentración: el de 1 litro tiene 1 mol y el de medio litro tiene medio mol. La molaridad es la misma, 1 M" style="max-width:760px;margin:0 auto">
+      <defs><g id="p20"><circle r="6" fill="#FFC800"/></g></defs>
+      <rect x="130" y="16" width="190" height="130" rx="12" fill="#4FB3E8" opacity=".3" stroke="#A9BCC4" stroke-width="3"/>
+      <rect x="560" y="81" width="190" height="65" rx="12" fill="#4FB3E8" opacity=".3" stroke="#A9BCC4" stroke-width="3"/>
+      <use href="#p20" x="160" y="46"/><use href="#p20" x="210" y="38"/><use href="#p20" x="265" y="48"/><use href="#p20" x="295" y="84"/><use href="#p20" x="175" y="86"/><use href="#p20" x="228" y="78"/><use href="#p20" x="154" y="122"/><use href="#p20" x="205" y="118"/><use href="#p20" x="258" y="112"/><use href="#p20" x="296" y="128"/>
+      <use href="#p20" x="590" y="105"/><use href="#p20" x="640" y="98"/><use href="#p20" x="690" y="108"/><use href="#p20" x="620" y="128"/><use href="#p20" x="722" y="126"/>
+      <g font-family="Nunito,sans-serif" font-weight="800" fill="#F1F5F7" font-size="20" text-anchor="middle"><text x="225" y="174">1 mol en 1 L</text><text x="655" y="174">0,5 mol en 0,5 L</text></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" fill="#FFC800" font-size="21" text-anchor="middle"><text x="225" y="198">1 M</text><text x="655" y="198">1 M</text></g>
+    </svg>
+    <div class="ejemplo step"><b>Es como el azúcar en el jugo:</b> un vaso y una jarra del mismo jugo tienen distinta cantidad de azúcar, pero saben igual de dulce. La molaridad mide lo dulce, no el tamaño.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Calcular la molaridad">
+  <div class="inner">
+    <h2>2. Cómo se calcula la molaridad</h2>
+    <p>Hacen falta dos datos: los moles de soluto y los litros de solución. Si te dan gramos, pasas a moles. Si te dan mililitros, pasas a litros. Son conversiones que ya conoces.</p>
+    <div class="ejemplo step"><b>Ejemplo 1.</b> Hay 0,5 mol de NaCl en 250 mL de solución.<br>Litros: 250 mL ÷ 1 000 = 0,25 L<br>Molaridad: 0,5 mol ÷ 0,25 L = <span class="f">2 M</span></div>
+    <div class="ejemplo step"><b>Ejemplo 2.</b> Se disuelven 58,5 g de NaCl hasta completar 2 L.<br>Moles: 58,5 g ÷ 58,5 g/mol = 1 mol<br>Molaridad: 1 mol ÷ 2 L = <span class="f">0,5 M</span></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> 2 mol de azúcar en 4 L de solución, ¿qué molaridad tiene? 2 ÷ 4 = 0,5 M.</div>
+    <div class="clave step"><b>Los litros son de solución, no de agua.</b> Es el total que queda en el recipiente, con el soluto ya disuelto.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Despejar los moles y los gramos">
+  <div class="inner">
+    <h2>3. ¿Cuánto hay que pesar?</h2>
+    <p>En la práctica sabes qué solución quieres y debes calcular cuánto soluto pesar. Basta con mover la fórmula.</p>
+    <div class="clave"><b>moles = molaridad × litros</b> &nbsp; y luego &nbsp; <b>gramos = moles × masa molar</b></div>
+    <div class="ejemplo step"><b>Ejemplo.</b> Quieres 500 mL de solución de NaOH 0,2 M. ¿Cuántos gramos pesas?</div>
+    <div class="pasos">
+      <div class="step"><span class="n">1</span><b>Litros</b>500 mL = 0,5 L</div>
+      <div class="step"><span class="n">2</span><b>Moles</b>0,2 mol/L × 0,5 L = 0,1 mol</div>
+      <div class="step"><span class="n">3</span><b>Masa molar</b>NaOH: 23 + 16 + 1 = 40 g/mol</div>
+      <div class="step"><span class="n">4</span><b>Gramos</b>0,1 mol × 40 g/mol = <span class="f">4 g</span></div>
+    </div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos moles hay en 100 mL de una solución 3 M? 3 mol/L × 0,1 L = 0,3 mol.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Preparar la solución">
+  <div class="inner">
+    <h2>4. Cómo se prepara de verdad</h2>
+    <p>Como los litros son de solución, no se mide 1 L de agua y se le echa el soluto: el volumen final no sería 1 L. Se usa un balón aforado, un frasco con una marca que indica el volumen exacto.</p>
+    <div class="grid2" style="align-items:center">
+      <svg class="dib" viewBox="0 0 300 250" role="img" aria-label="Balón aforado con líquido hasta la marca del cuello" style="max-width:270px;margin:0 auto">
+        <path d="M126 12h48v86c0 12 76 56 76 100 0 26-20 42-46 42H96c-26 0-46-16-46-42 0-44 76-88 76-100z" fill="none" stroke="#A9BCC4" stroke-width="3"/>
+        <path d="M128 66h44v32c0 12 76 56 76 100 0 25-19 40-44 40H96c-25 0-44-15-44-40 0-44 76-88 76-100z" fill="#4FB3E8" opacity=".3"/>
+        <path d="M118 66h64" stroke="#FFC800" stroke-width="3"/>
+        <text x="190" y="62" font-family="Nunito,sans-serif" font-weight="900" font-size="18" fill="#FFC800">Marca</text>
+        <text x="150" y="206" font-family="Nunito,sans-serif" font-weight="800" font-size="20" fill="#F1F5F7" text-anchor="middle">Volumen exacto</text>
+      </svg>
+      <div class="pasos" style="grid-template-columns:1fr 1fr">
+        <div class="step"><span class="n">1</span><b>Calcular y pesar</b>Los gramos de soluto.</div>
+        <div class="step"><span class="n">2</span><b>Disolver</b>En un vaso, con un poco de agua.</div>
+        <div class="step"><span class="n">3</span><b>Pasar al balón</b>Con todo lo disuelto.</div>
+        <div class="step"><span class="n">4</span><b>Completar</b>Con agua, hasta la marca.</div>
+      </div>
+    </div>
+    <div class="clave step"><b>Lo importante:</b> el agua se agrega al final, hasta la marca. Así el volumen total es exacto, que es lo que pide la molaridad.</div>
+  </div>
+</section>
+
+<section data-titulo="5. La dilución">
+  <div class="inner">
+    <h2>5. Diluir: agregar agua sin agregar soluto</h2>
+    <p>Un jugo concentrado de caja se mezcla con agua para tomarlo. Cuando agregas agua, el azúcar que había sigue siendo la misma, pero repartida en más líquido. A eso se le llama dilución.</p>
+    <svg class="dib" viewBox="0 0 860 170" role="img" aria-label="A la izquierda un vaso pequeño con seis partículas muy juntas. A la derecha, después de agregar agua, un vaso grande con las mismas seis partículas más separadas" style="max-width:940px;margin:0 auto">
+      <defs><marker id="fl20" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FFC800"/></marker></defs>
+      <rect x="170" y="64" width="130" height="66" rx="10" fill="#4FB3E8" opacity=".5" stroke="#A9BCC4" stroke-width="3"/>
+      <rect x="520" y="14" width="210" height="116" rx="12" fill="#4FB3E8" opacity=".2" stroke="#A9BCC4" stroke-width="3"/>
+      <g fill="#FFC800"><circle cx="195" cy="84" r="6"/><circle cx="235" cy="80" r="6"/><circle cx="272" cy="88" r="6"/><circle cx="195" cy="112" r="6"/><circle cx="236" cy="108" r="6"/><circle cx="274" cy="114" r="6"/></g>
+      <g fill="#FFC800"><circle cx="555" cy="44" r="6"/><circle cx="620" cy="36" r="6"/><circle cx="692" cy="50" r="6"/><circle cx="560" cy="104" r="6"/><circle cx="628" cy="92" r="6"/><circle cx="696" cy="110" r="6"/></g>
+      <path d="M330 97h156" stroke="#FFC800" stroke-width="3" marker-end="url(#fl20)"/>
+      <g font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle" font-size="20" fill="#F1F5F7"><text x="406" y="84">agregar agua</text><text x="235" y="160">Más concentrada</text><text x="625" y="160">Más diluida, mismos moles</text></g>
+    </svg>
+    <div class="clave step"><b>Los moles no cambian</b>, y moles = molaridad × litros. Por eso: <b>M<sub>1</sub> × V<sub>1</sub> = M<sub>2</sub> × V<sub>2</sub></b>. El 1 es antes de diluir y el 2 es después.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Un ejemplo de dilución">
+  <div class="inner">
+    <h2>6. Una dilución paso a paso</h2>
+    <p>Tienes 100 mL de solución 2 M y quieres llevarla a 0,5 M. ¿Hasta qué volumen la diluyes, y cuánta agua agregas?</p>
+    <div class="pasos">
+      <div class="step"><span class="n">1</span><b>Los datos</b>M<sub>1</sub> = 2 M, V<sub>1</sub> = 100 mL, M<sub>2</sub> = 0,5 M</div>
+      <div class="step"><span class="n">2</span><b>Despejar V<sub>2</sub></b>V<sub>2</sub> = (M<sub>1</sub> × V<sub>1</sub>) ÷ M<sub>2</sub></div>
+      <div class="step"><span class="n">3</span><b>Calcular</b>(2 × 100) ÷ 0,5 = <span class="f">400 mL</span></div>
+      <div class="step"><span class="n">4</span><b>Agua</b>400 mL − 100 mL = <span class="f">300 mL de agua</span></div>
+    </div>
+    <div class="clave step"><b>La trampa:</b> V<sub>2</sub> es el volumen final, no el agua que agregas. Ya tenías 100 mL dentro.</div>
+    <div class="ejemplo step"><b>Seguridad.</b> Para diluir un ácido concentrado, como el sulfúrico de batería, se vierte el ácido sobre el agua, poco a poco, y nunca al revés. La mezcla libera mucho calor y podría salpicar.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> si 50 mL de solución 4 M se llevan a 200 mL, ¿qué molaridad queda? (4 × 50) ÷ 200 = 1 M.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Molaridad en una reacción">
+  <div class="inner">
+    <h2>7. La molaridad en una reacción</h2>
+    <p>Ahora se junta todo. Si un ácido está en solución, la molaridad nos da sus moles, y con los moles usamos la receta de siempre. ¿Cuánto zinc reacciona con 50 mL de HCl 2 M?</p>
+    <div class="ejemplo"><span class="f">Zn + 2 HCl → ZnCl<sub>2</sub> + H<sub>2</sub></span></div>
+    <div class="pasos">
+      <div class="step"><span class="n">1</span><b>Moles de HCl</b>2 mol/L × 0,05 L = 0,1 mol</div>
+      <div class="step"><span class="n">2</span><b>Coeficientes</b>0,1 mol HCl × (1 mol Zn ÷ 2 mol HCl) = 0,05 mol de Zn</div>
+      <div class="step"><span class="n">3</span><b>Gramos</b>0,05 mol × 65 g/mol = <span class="f">3,25 g de Zn</span></div>
+    </div>
+    <div class="clave step"><b>Lo nuevo es solo el primer paso:</b> molaridad × litros da los moles. Lo demás es la estequiometría de siempre.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:20,
+  titulo:'Molaridad y dilución',
+  subtitulo:'la concentración que habla en moles',
+  lead:'Cómo se calcula la molaridad, cómo se prepara una solución y cómo se diluye.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Los porcentajes cuentan gramos. Las reacciones cuentan moles',
+    antesT:'La clase pasada',
+    antes:'Vimos soluto, solvente y solubilidad, y expresamos la concentración en % m/m, % m/v y % v/v.',
+    hoy:'Uniremos soluciones y moles con la molaridad. Calcularemos cuánto pesar para preparar una solución, y cuánta agua agregar para diluirla.'
+  },
+  sigue:{
+    titulo:'Ya podemos preparar y diluir soluciones',
+    hoy:'La molaridad es moles de soluto por litro de solución. Al diluir, los moles no cambian: M<sub>1</sub> × V<sub>1</sub> = M<sub>2</sub> × V<sub>2</sub>.',
+    proxima:'Pasamos de los líquidos a los gases: presión, volumen y temperatura, y las leyes que los unen.'
+  },
+  juego:{titulo:'El laboratorio de las perillas',texto:'Abran este enlace en el celular. Mueve las perillas hasta dar con la molaridad pedida. Son 6 misiones y las dos últimas son diluciones.'},
+  pdf:'tarea/tarea-20.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

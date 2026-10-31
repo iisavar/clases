@@ -74,3 +74,9 @@ pensamiento-computacional/*/scripts/
 pensamiento-computacional/simulacro/scripts/
 radicales/scripts/
 materia-atomo/scripts/
+
+# Generadores del curso de química (tienen las respuestas)
+quimica/scripts/
+quimica/*/scripts/
+quimica/*/tarea/*.tex
+quimica/ENCARGO.md

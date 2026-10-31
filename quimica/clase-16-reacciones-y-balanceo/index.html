@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reacciones químicas</title>
+<meta name="description" content="Cómo se lee una ecuación, balanceo por tanteo y los cinco tipos de reacción, con duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Cómo se lee una ecuación">
+  <div class="inner">
+    <h2>1. Una ecuación es la receta de una reacción</h2>
+    <p>Ya sabemos escribir compuestos. Ahora los ponemos a reaccionar. Una ecuación química dice qué entra, qué sale y en qué proporción. A la izquierda van los reactivos y a la derecha los productos.</p>
+    <svg class="dib" viewBox="0 0 860 216" role="img" aria-label="Ecuación 2 H2 más O2 da 2 H2O. Los reactivos están a la izquierda, los productos a la derecha. El 2 grande es un coeficiente y el 2 pequeño es un subíndice" style="max-width:800px;margin:0 auto">
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900" font-size="52" text-anchor="middle"><text x="130" y="106"><tspan fill="#FFC800">2</tspan> H<tspan class="s" dy="12" font-size="32" fill="#3BC97A">2</tspan></text><text x="256" y="106">+</text><text x="350" y="106">O<tspan class="s" dy="12" font-size="32">2</tspan></text><text x="680" y="106"><tspan fill="#FFC800">2</tspan> H<tspan class="s" dy="12" font-size="32">2</tspan><tspan dy="-12">O</tspan></text></g>
+      <path d="M440 90h90" stroke="#F1F5F7" stroke-width="6"/><path d="M548 90l-22-11v22z" fill="#F1F5F7"/>
+      <g fill="none" stroke="#A9BCC4" stroke-width="3"><path d="M70 136v10h340v-10"/><path d="M590 136v10h180v-10"/></g>
+      <g fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="20" font-weight="800" text-anchor="middle"><text x="240" y="176">Reactivos: lo que entra</text><text x="680" y="176">Productos: lo que sale</text></g>
+      <g stroke-width="2"><path d="M92 40v22" stroke="#FFC800"/><path d="M176 40v62" stroke="#3BC97A"/></g>
+      <text x="40" y="30" fill="#FFC800" font-family="Nunito,sans-serif" font-size="19" font-weight="800">Coeficiente: cuántas moléculas</text>
+      <text x="340" y="30" fill="#3BC97A" font-family="Nunito,sans-serif" font-size="19" font-weight="800" text-anchor="start">Subíndice: átomos en una molécula</text>
+    </svg>
+    <div class="clave step"><b>Cómo se lee:</b> dos moléculas de hidrógeno y una de oxígeno producen dos moléculas de agua. La flecha se lee «produce» o «da». Si no hay coeficiente, vale 1: aquí el O<sub>2</sub> lleva un 1 que no se escribe.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos átomos de hidrógeno hay en 2 H<sub>2</sub>O? Cuatro: 2 × 2. ¿Y de oxígeno? Dos.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Nada se pierde">
+  <div class="inner">
+    <h2>2. Los átomos no aparecen ni desaparecen</h2>
+    <p>En una reacción los átomos se reacomodan, como las piezas de un juego de construcción. No se crea ninguno ni se pierde ninguno. Esto es la ley de conservación de la masa. Por eso, a cada lado de la ecuación debe haber los mismos átomos.</p>
+    <svg class="dib" viewBox="0 0 860 178" role="img" aria-label="A la izquierda dos moléculas de hidrógeno y una de oxígeno. A la derecha dos moléculas de agua. A cada lado hay 4 átomos de hidrógeno y 2 de oxígeno" style="max-width:760px;margin:0 auto">
+      <g fill="#4FB3E8"><circle cx="70" cy="44" r="18"/><circle cx="102" cy="44" r="18"/><circle cx="70" cy="100" r="18"/><circle cx="102" cy="100" r="18"/></g>
+      <g fill="#FF6B6B"><circle cx="222" cy="72" r="24"/><circle cx="264" cy="72" r="24"/></g>
+      <text x="162" y="84" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="34" font-weight="900" text-anchor="middle">+</text>
+      <path d="M340 72h100" stroke="#3BC97A" stroke-width="5"/><path d="M456 72l-20-10v20z" fill="#3BC97A"/>
+      <g fill="#FF6B6B"><circle cx="560" cy="60" r="24"/><circle cx="730" cy="60" r="24"/></g>
+      <g fill="#4FB3E8"><circle cx="530" cy="92" r="16"/><circle cx="590" cy="92" r="16"/><circle cx="700" cy="92" r="16"/><circle cx="760" cy="92" r="16"/></g>
+      <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="20" font-weight="900" text-anchor="middle"><text x="166" y="162">4 hidrógenos y 2 oxígenos</text><text x="646" y="162">4 hidrógenos y 2 oxígenos</text></g>
+    </svg>
+    <div class="grid2 step">
+      <div class="card"><h3>Sí se puede</h3><p style="margin:0">Cambiar los coeficientes, los números grandes de adelante.</p></div>
+      <div class="card"><h3>Nunca se puede</h3><p style="margin:0">Cambiar los subíndices. H<sub>2</sub>O<sub>2</sub> ya no es agua: es agua oxigenada.</p></div>
+    </div>
+    <div class="clave step"><b>Balancear</b> es buscar los coeficientes para que cada elemento tenga el mismo número de átomos a los dos lados.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Balancear por tanteo">
+  <div class="inner">
+    <h2>3. Balancear por tanteo, paso a paso</h2>
+    <p>Tanteo significa probar con orden. Balanceemos la fabricación del amoníaco: N<sub>2</sub> + H<sub>2</sub> → NH<sub>3</sub>.</p>
+    <table class="t">
+      <tr><th>Paso</th><th>Qué hacemos</th><th>Cómo va la ecuación</th></tr>
+      <tr><td>1. Contar</td><td>Izquierda: 2 N y 2 H. Derecha: 1 N y 3 H</td><td>N<sub>2</sub> + H<sub>2</sub> → NH<sub>3</sub></td></tr>
+      <tr class="step"><td>2. Nitrógeno</td><td>Hay 2 a la izquierda: se pone 2 al NH<sub>3</sub></td><td>N<sub>2</sub> + H<sub>2</sub> → 2 NH<sub>3</sub></td></tr>
+      <tr class="step"><td>3. Hidrógeno</td><td>Ahora hay 6 a la derecha: se pone 3 al H<sub>2</sub></td><td>N<sub>2</sub> + 3 H<sub>2</sub> → 2 NH<sub>3</sub></td></tr>
+      <tr class="step"><td>4. Revisar</td><td>Izquierda: 2 N y 6 H. Derecha: 2 N y 6 H</td><td>Balanceada</td></tr>
+    </table>
+    <div class="clave step"><b>Consejo:</b> empieza por el elemento que aparece en menos sustancias. Deja para el final el H y el O, y sobre todo lo que aparece solo, como O<sub>2</sub> o H<sub>2</sub>.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> balanceen H<sub>2</sub> + Cl<sub>2</sub> → HCl. Con un 2 en el HCl basta: H<sub>2</sub> + Cl<sub>2</sub> → 2 HCl.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Un caso más largo">
+  <div class="inner">
+    <h2>4. El gas de la cocina</h2>
+    <p>El propano del cilindro de gas arde así: C<sub>3</sub>H<sub>8</sub> + O<sub>2</sub> → CO<sub>2</sub> + H<sub>2</sub>O. Seguimos el orden: carbono, hidrógeno y al final oxígeno.</p>
+    <div class="pasos">
+      <div class="step"><span class="n">1</span><b>Carbono</b>Hay 3 a la izquierda: 3 CO<sub>2</sub>.</div>
+      <div class="step"><span class="n">2</span><b>Hidrógeno</b>Hay 8 a la izquierda: 4 H<sub>2</sub>O.</div>
+      <div class="step"><span class="n">3</span><b>Oxígeno</b>Derecha: 6 + 4 = 10. Cada O<sub>2</sub> trae 2: 5 O<sub>2</sub>.</div>
+      <div class="step"><span class="n">4</span><b>Revisar</b>3 C, 8 H y 10 O a cada lado.</div>
+    </div>
+    <div class="ejemplo step">C<sub>3</sub>H<sub>8</sub> + 5 O<sub>2</sub> → 3 CO<sub>2</sub> + 4 H<sub>2</sub>O</div>
+    <div class="clave step"><b>Truco del número impar:</b> en Fe + O<sub>2</sub> → Fe<sub>2</sub>O<sub>3</sub>, a la derecha hay 3 O, impar, y a la izquierda siempre será par. Pon un 2 al Fe<sub>2</sub>O<sub>3</sub> y sigue: 4 Fe + 3 O<sub>2</sub> → 2 Fe<sub>2</sub>O<sub>3</sub>.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos oxígenos hay en 2 Fe<sub>2</sub>O<sub>3</sub>? Seis: 2 × 3. Coincide con 3 O<sub>2</sub>.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Unir y separar">
+  <div class="inner">
+    <h2>5. Dos tipos de reacción: unir y separar</h2>
+    <p>Las reacciones se parecen entre sí. Si reconoces el patrón, casi puedes adivinar los productos.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Síntesis</h3>
+        <svg class="dib" viewBox="0 0 400 74" role="img" aria-label="Un círculo rojo más un círculo azul da los dos unidos" style="max-width:320px">
+          <circle cx="44" cy="37" r="24" fill="#FF6B6B"/><circle cx="130" cy="37" r="24" fill="#4FB3E8"/>
+          <circle cx="294" cy="37" r="24" fill="#FF6B6B"/><circle cx="334" cy="37" r="24" fill="#4FB3E8"/>
+          <text x="87" y="48" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="30" font-weight="900" text-anchor="middle">+</text>
+          <path d="M176 37h66" stroke="#3BC97A" stroke-width="5"/><path d="M256 37l-16-8v16z" fill="#3BC97A"/>
+        </svg>
+        <p>Dos sustancias se unen en una sola.</p>
+        <p style="margin:0">2 Mg + O<sub>2</sub> → 2 MgO</p>
+      </div>
+      <div class="card">
+        <h3>Descomposición</h3>
+        <svg class="dib" viewBox="0 0 400 74" role="img" aria-label="Dos círculos unidos dan un círculo rojo más uno azul" style="max-width:320px">
+          <circle cx="44" cy="37" r="24" fill="#FF6B6B"/><circle cx="84" cy="37" r="24" fill="#4FB3E8"/>
+          <circle cx="244" cy="37" r="24" fill="#FF6B6B"/><circle cx="340" cy="37" r="24" fill="#4FB3E8"/>
+          <text x="292" y="48" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="30" font-weight="900" text-anchor="middle">+</text>
+          <path d="M126 37h66" stroke="#3BC97A" stroke-width="5"/><path d="M206 37l-16-8v16z" fill="#3BC97A"/>
+        </svg>
+        <p>Una sustancia se rompe en dos o más. Casi siempre hace falta calor o electricidad.</p>
+        <p style="margin:0">CaCO<sub>3</sub> → CaO + CO<sub>2</sub></p>
+      </div>
+    </div>
+    <div class="clave step"><b>En la vida real:</b> la cal viva con agua es síntesis: CaO + H<sub>2</sub>O → Ca(OH)<sub>2</sub>. El agua oxigenada que burbujea en una herida es descomposición: 2 H<sub>2</sub>O<sub>2</sub> → 2 H<sub>2</sub>O + O<sub>2</sub>.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿qué tipo es 2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O? Síntesis: sale una sola sustancia.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Cambiar de lugar">
+  <div class="inner">
+    <h2>6. Dos tipos más: cambiar de lugar</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Desplazamiento simple</h3>
+        <svg class="dib" viewBox="0 0 400 74" role="img" aria-label="Un elemento solo entra en un compuesto y saca a otro elemento" style="max-width:340px">
+          <circle cx="30" cy="37" r="20" fill="#FFC800"/><circle cx="88" cy="37" r="20" fill="#FF6B6B"/><circle cx="122" cy="37" r="20" fill="#4FB3E8"/>
+          <circle cx="238" cy="37" r="20" fill="#FFC800"/><circle cx="272" cy="37" r="20" fill="#4FB3E8"/><circle cx="350" cy="37" r="20" fill="#FF6B6B"/>
+          <text x="59" y="47" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="26" font-weight="900" text-anchor="middle">+</text><text x="311" y="47" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="26" font-weight="900" text-anchor="middle">+</text>
+          <path d="M150 37h50" stroke="#3BC97A" stroke-width="5"/><path d="M212 37l-14-7v14z" fill="#3BC97A"/>
+        </svg>
+        <p>Un elemento saca a otro de su compuesto.</p>
+        <p style="margin:0">Zn + 2 HCl → ZnCl<sub>2</sub> + H<sub>2</sub></p>
+      </div>
+      <div class="card">
+        <h3>Doble desplazamiento</h3>
+        <svg class="dib" viewBox="0 0 400 74" role="img" aria-label="Dos compuestos intercambian sus partes" style="max-width:340px">
+          <circle cx="20" cy="37" r="18" fill="#FFC800"/><circle cx="50" cy="37" r="18" fill="#3BC97A"/><circle cx="112" cy="37" r="18" fill="#FF6B6B"/><circle cx="142" cy="37" r="18" fill="#4FB3E8"/>
+          <circle cx="252" cy="37" r="18" fill="#FFC800"/><circle cx="282" cy="37" r="18" fill="#4FB3E8"/><circle cx="344" cy="37" r="18" fill="#FF6B6B"/><circle cx="374" cy="37" r="18" fill="#3BC97A"/>
+          <text x="81" y="47" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="26" font-weight="900" text-anchor="middle">+</text><text x="313" y="47" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="26" font-weight="900" text-anchor="middle">+</text>
+          <path d="M170 37h46" stroke="#3BC97A" stroke-width="5"/><path d="M228 37l-14-7v14z" fill="#3BC97A"/>
+        </svg>
+        <p>Dos compuestos intercambian sus partes.</p>
+        <p style="margin:0">AgNO<sub>3</sub> + NaCl → AgCl + NaNO<sub>3</sub></p>
+      </div>
+    </div>
+    <div class="clave step"><b>La neutralización de la clase pasada</b> es un doble desplazamiento: HCl + NaOH → NaCl + H<sub>2</sub>O. El H y el Na cambian de pareja.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> un clavo de hierro en sulfato de cobre se cubre de cobre: Fe + CuSO<sub>4</sub> → FeSO<sub>4</sub> + Cu. ¿Qué tipo es? Desplazamiento simple.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Combustión">
+  <div class="inner">
+    <h2>7. Combustión: el quinto tipo</h2>
+    <p>Una sustancia con carbono e hidrógeno reacciona con oxígeno y libera mucha energía. Si hay oxígeno suficiente, los productos son siempre los mismos: CO<sub>2</sub> y H<sub>2</sub>O. Es lo que pasa en la cocina, en el motor del carro y, más despacio, en tus células.</p>
+    <table class="t">
+      <tr><th>Tipo</th><th>Patrón</th><th>Cómo reconocerlo</th></tr>
+      <tr><td>Síntesis</td><td>A + B → AB</td><td>Sale una sola sustancia</td></tr>
+      <tr><td>Descomposición</td><td>AB → A + B</td><td>Entra una sola sustancia</td></tr>
+      <tr><td>Desplazamiento simple</td><td>A + BC → AC + B</td><td>Elemento solo y compuesto a cada lado</td></tr>
+      <tr><td>Doble desplazamiento</td><td>AB + CD → AD + CB</td><td>Dos compuestos a cada lado</td></tr>
+      <tr><td>Combustión</td><td>Combustible + O<sub>2</sub> → CO<sub>2</sub> + H<sub>2</sub>O</td><td>Entra O<sub>2</sub> y salen CO<sub>2</sub> y agua</td></tr>
+    </table>
+    <div class="ejemplo step">Metano, el gas de los pantanos: CH<sub>4</sub> + 2 O<sub>2</sub> → CO<sub>2</sub> + 2 H<sub>2</sub>O</div>
+    <div class="clave step"><b>Recuerda la clase del número de oxidación:</b> en la combustión y en muchas síntesis y desplazamientos, unos átomos pierden electrones y otros los ganan. Esas reacciones se llaman redox.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:16,
+  titulo:'Reacciones químicas',
+  subtitulo:'tipos y balanceo',
+  lead:'Cómo se lee una ecuación, cómo se balancea por tanteo y cómo reconocer los cinco tipos de reacción.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos cómo se llaman los compuestos',
+    antesT:'La clase pasada',
+    antes:'Terminamos de nombrar compuestos con hidrácidos, oxoácidos y sales.',
+    hoy:'Ponemos esos compuestos a reaccionar y aprendemos a escribir lo que pasa, sin perder ni un átomo.'
+  },
+  sigue:{
+    titulo:'Ya sabemos leer y balancear una reacción',
+    hoy:'Los átomos no se crean ni se pierden: por eso se balancea con coeficientes. Y hay cinco tipos de reacción fáciles de reconocer.',
+    proxima:'Los coeficientes cuentan moléculas, pero nadie cuenta moléculas una por una. Veremos el mol, la unidad para contar átomos con una balanza.'
+  },
+  juego:{titulo:'La balanza de átomos',texto:'Abran este enlace en el celular. Suban y bajen los coeficientes hasta que cada elemento quede igual a los dos lados. Son 8 ecuaciones.'},
+  pdf:'tarea/tarea-16.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

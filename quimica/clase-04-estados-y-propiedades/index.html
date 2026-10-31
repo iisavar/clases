@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estados y propiedades</title>
+<meta name="description" content="Estados de la materia, propiedades, densidad y temperatura, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Los estados de la materia">
+  <div class="inner">
+    <h2>1. Sólido, líquido y gas</h2>
+    <p>La materia está hecha de partículas muy pequeñas. Lo que cambia entre un estado y otro es qué tan juntas están y cuánto se mueven.</p>
+    <svg class="dib" viewBox="0 0 640 158" role="img" aria-label="Tres cajas con partículas: en el sólido están ordenadas y juntas, en el líquido juntas y desordenadas en el fondo, y en el gas muy separadas por toda la caja" style="max-width:600px;margin:0 auto">
+      <g fill="none" stroke="#A9BCC4" stroke-width="2.5"><rect x="20" y="8" width="180" height="122" rx="6"/><rect x="230" y="8" width="180" height="122" rx="6"/><rect x="440" y="8" width="180" height="122" rx="6"/></g>
+      <g fill="#FFC800"><circle cx="54" cy="114" r="13"/><circle cx="82" cy="114" r="13"/><circle cx="110" cy="114" r="13"/><circle cx="138" cy="114" r="13"/><circle cx="166" cy="114" r="13"/><circle cx="54" cy="86" r="13"/><circle cx="82" cy="86" r="13"/><circle cx="110" cy="86" r="13"/><circle cx="138" cy="86" r="13"/><circle cx="166" cy="86" r="13"/><circle cx="54" cy="58" r="13"/><circle cx="82" cy="58" r="13"/><circle cx="110" cy="58" r="13"/><circle cx="138" cy="58" r="13"/><circle cx="166" cy="58" r="13"/></g>
+      <g fill="#4FB3E8"><circle cx="250" cy="114" r="13"/><circle cx="279" cy="116" r="13"/><circle cx="308" cy="113" r="13"/><circle cx="338" cy="116" r="13"/><circle cx="367" cy="114" r="13"/><circle cx="393" cy="112" r="13"/><circle cx="262" cy="88" r="13"/><circle cx="294" cy="89" r="13"/><circle cx="324" cy="88" r="13"/><circle cx="354" cy="89" r="13"/><circle cx="384" cy="86" r="13"/></g>
+      <g fill="#3BC97A"><circle cx="470" cy="38" r="13"/><circle cx="548" cy="28" r="13"/><circle cx="598" cy="62" r="13"/><circle cx="500" cy="96" r="13"/><circle cx="572" cy="112" r="13"/></g>
+      <g stroke="#3BC97A" stroke-width="2.5" stroke-linecap="round"><path d="M450 50l-8 8M566 20l10-6M585 74l-8 8M482 106l-10 8M586 106l12-6"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="900" text-anchor="middle"><text x="110" y="152">Sólido</text><text x="320" y="152">Líquido</text><text x="530" y="152">Gas</text></g>
+    </svg>
+    <table class="t">
+      <tr><th>Estado</th><th>Forma</th><th>Volumen</th><th>Las partículas</th></tr>
+      <tr><td>Sólido</td><td>Fija</td><td>Fijo</td><td>Juntas y ordenadas, solo vibran en su sitio</td></tr>
+      <tr><td>Líquido</td><td>La del recipiente</td><td>Fijo</td><td>Juntas, pero resbalan unas sobre otras</td></tr>
+      <tr><td>Gas</td><td>La del recipiente</td><td>Ocupa todo el recipiente</td><td>Muy separadas y moviéndose rápido</td></tr>
+    </table>
+    <div class="clave step"><b>Hay un cuarto estado:</b> el plasma, un gas tan caliente que sus partículas tienen carga eléctrica. Está en el Sol y en los rayos.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Los cambios de estado">
+  <div class="inner">
+    <h2>2. Los cambios de estado</h2>
+    <p>Si le das calor a la materia, sus partículas se mueven más y se separan. Si le quitas calor, se acercan. Cada cambio tiene su nombre.</p>
+    <svg class="dib" viewBox="0 0 680 216" role="img" aria-label="Esquema de los cambios de estado. Ganando calor: fusión de sólido a líquido, vaporización de líquido a gas y sublimación de sólido a gas. Perdiendo calor: condensación de gas a líquido, solidificación de líquido a sólido y deposición de gas a sólido" style="max-width:640px;margin:0 auto">
+      <defs>
+        <marker id="fg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0l10 5-10 5z" fill="#FFC800"/></marker>
+        <marker id="fb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0l10 5-10 5z" fill="#4FB3E8"/></marker>
+      </defs>
+      <g fill="#22363F" stroke="#2E4652" stroke-width="2"><rect x="20" y="84" width="120" height="48" rx="12"/><rect x="280" y="84" width="120" height="48" rx="12"/><rect x="540" y="84" width="120" height="48" rx="12"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="19" font-weight="900" text-anchor="middle"><text x="80" y="115">Sólido</text><text x="340" y="115">Líquido</text><text x="600" y="115">Gas</text></g>
+      <g fill="none" stroke="#FFC800" stroke-width="3"><path d="M140 96h138" marker-end="url(#fg)"/><path d="M400 96h138" marker-end="url(#fg)"/><path d="M80 84q0-58 60-58h400q60 0 60 56" marker-end="url(#fg)"/></g>
+      <g fill="none" stroke="#4FB3E8" stroke-width="3"><path d="M538 120h-136" marker-end="url(#fb)"/><path d="M278 120h-136" marker-end="url(#fb)"/><path d="M600 132q0 58-60 58h-400q-60 0-60-56" marker-end="url(#fb)"/></g>
+      <g font-family="Nunito,sans-serif" font-size="16" font-weight="800" text-anchor="middle">
+        <g fill="#FFC800"><text x="208" y="88">Fusión</text><text x="468" y="88">Vaporización</text><text x="340" y="18">Sublimación</text></g>
+        <g fill="#4FB3E8"><text x="208" y="142">Solidificación</text><text x="468" y="142">Condensación</text><text x="340" y="210">Deposición</text></g>
+      </g>
+    </svg>
+    <p style="color:var(--muted);font-size:.85em;text-align:center;margin:0 0 8px">Flechas doradas: gana calor. Flechas azules: pierde calor.</p>
+    <div class="grid3 step">
+      <div class="card"><h3>Con líquidos</h3><p style="margin:0">El hielo se derrite en el vaso: fusión. El agua de la cubeta se congela: solidificación.</p></div>
+      <div class="card"><h3>Con vapor</h3><p style="margin:0">La olla suelta vapor: vaporización. El espejo del baño se empaña: condensación.</p></div>
+      <div class="card"><h3>Sin pasar por líquido</h3><p style="margin:0">El hielo seco se vuelve gas: sublimación. La escarcha del congelador: deposición.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-titulo="3. Propiedades de la materia">
+  <div class="inner">
+    <h2>3. ¿Cómo reconocer una sustancia?</h2>
+    <p>Saca un vaso de agua de una piscina. Tiene mucha menos masa que la piscina. Pero las dos aguas tienen el mismo aspecto y hierven a la misma temperatura. Hay propiedades que dependen de cuánto hay, y otras que no.</p>
+    <div class="grid2">
+      <div class="card"><h3>Extensivas</h3><p>Dependen de la cantidad de materia.</p><p style="margin:0">Masa, volumen, longitud. Si tienes el doble de agua, tienes el doble de masa.</p></div>
+      <div class="card"><h3>Intensivas</h3><p>No dependen de la cantidad.</p><p style="margin:0">Densidad, punto de ebullición, color, olor. Un anillo de oro y un lingote tienen la misma densidad.</p></div>
+    </div>
+    <div class="clave step"><b>Las intensivas identifican a la sustancia.</b> Con la masa no sabes qué es algo, porque cualquier cosa puede tener 1 kg. Con la densidad y el punto de ebullición sí puedes reconocerla.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> si partes un pan en dos, ¿qué cambia, la masa o el color? Cambia la masa, que es extensiva. El color sigue igual, porque es intensivo.</div>
+  </div>
+</section>
+
+<section data-titulo="4. La densidad">
+  <div class="inner">
+    <h2>4. La densidad: cuánta masa cabe en un volumen</h2>
+    <p>Dos cubitos del mismo tamaño pueden tener masas muy distintas. Uno de corcho casi no pesa en la mano, y uno de hierro sí. El hierro guarda mucha más masa en el mismo espacio.</p>
+    <div class="grid2">
+      <svg class="dib" viewBox="0 0 400 176" role="img" aria-label="Dos cubos del mismo volumen, 1 centímetro cúbico: el de corcho tiene pocas partículas y una masa de 0,24 gramos, el de hierro tiene muchas y una masa de 7,9 gramos" style="max-width:380px;margin:0 auto">
+        <g fill="#22363F" stroke="#A9BCC4" stroke-width="2.5"><rect x="40" y="14" width="120" height="120" rx="6"/><rect x="240" y="14" width="120" height="120" rx="6"/></g>
+        <g fill="#D08C55"><circle cx="72" cy="48" r="9"/><circle cx="128" cy="44" r="9"/><circle cx="100" cy="82" r="9"/><circle cx="66" cy="106" r="9"/><circle cx="134" cy="108" r="9"/></g>
+        <g fill="#C0C9CE"><circle cx="258" cy="32" r="9"/><circle cx="279" cy="32" r="9"/><circle cx="300" cy="32" r="9"/><circle cx="321" cy="32" r="9"/><circle cx="342" cy="32" r="9"/><circle cx="258" cy="53" r="9"/><circle cx="279" cy="53" r="9"/><circle cx="300" cy="53" r="9"/><circle cx="321" cy="53" r="9"/><circle cx="342" cy="53" r="9"/><circle cx="258" cy="74" r="9"/><circle cx="279" cy="74" r="9"/><circle cx="300" cy="74" r="9"/><circle cx="321" cy="74" r="9"/><circle cx="342" cy="74" r="9"/><circle cx="258" cy="95" r="9"/><circle cx="279" cy="95" r="9"/><circle cx="300" cy="95" r="9"/><circle cx="321" cy="95" r="9"/><circle cx="342" cy="95" r="9"/><circle cx="258" cy="116" r="9"/><circle cx="279" cy="116" r="9"/><circle cx="300" cy="116" r="9"/><circle cx="321" cy="116" r="9"/><circle cx="342" cy="116" r="9"/></g>
+        <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="16" font-weight="800" text-anchor="middle"><text x="100" y="154">Corcho, 1 cm³</text><text x="300" y="154">Hierro, 1 cm³</text></g>
+        <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="16" font-weight="900" text-anchor="middle"><text x="100" y="174">0,24 g</text><text x="300" y="174">7,9 g</text></g>
+      </svg>
+      <div>
+        <div class="ejemplo" style="text-align:center"><span class="f">densidad = masa ÷ volumen</span><br>d = m / V</div>
+        <div class="card step"><h3>Ejemplo: 100 mL de aceite tienen 92 g</h3><p style="margin:0">d = 92 g ÷ 100 mL = <span class="f">0,92 g/mL</span></p></div>
+      </div>
+    </div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿qué tiene más masa, un kilo de algodón o un kilo de hierro? Tienen lo mismo: un kilo. El algodón solo ocupa mucho más volumen, porque es menos denso.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Flotar o hundirse">
+  <div class="inner">
+    <h2>5. Flotar o hundirse</h2>
+    <p>Lo menos denso queda arriba y lo más denso se va al fondo. Por eso el aceite flota sobre la sopa, y el hielo flota en la bebida. El hielo es un caso raro: casi todos los sólidos son más densos que su líquido.</p>
+    <div class="grid2">
+      <svg class="dib" viewBox="0 0 360 240" role="img" aria-label="Vaso con tres capas: aceite arriba, agua en el medio y miel abajo. Un corcho flota sobre el aceite y una moneda descansa en el fondo" style="max-width:300px;margin:0 auto">
+        <path d="M70 106h220v48h-220z" fill="#4FB3E8" opacity=".32"/><path d="M70 154h220v60a12 12 0 0 1-12 12h-196a12 12 0 0 1-12-12z" fill="#D08C55" opacity=".55"/><path d="M70 62h220v44h-220z" fill="#FFC800" opacity=".2"/>
+        <path d="M70 14v200a12 12 0 0 0 12 12h196a12 12 0 0 0 12-12V14" fill="none" stroke="#A9BCC4" stroke-width="3"/>
+        <rect x="122" y="46" width="46" height="24" rx="6" fill="#D08C55"/>
+        <ellipse cx="220" cy="218" rx="26" ry="6" fill="#C0C9CE"/>
+        <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="16" font-weight="800"><text x="180" y="92" text-anchor="middle">Aceite</text><text x="180" y="136" text-anchor="middle">Agua</text><text x="180" y="196" text-anchor="middle">Miel</text></g>
+      </svg>
+      <table class="t">
+        <tr><th>Sustancia</th><th>Densidad (g/mL)</th></tr>
+        <tr><td>Corcho</td><td>0,24</td></tr>
+        <tr><td>Aceite y hielo</td><td>0,92</td></tr>
+        <tr><td>Agua</td><td>1,00</td></tr>
+        <tr><td>Miel</td><td>1,4</td></tr>
+        <tr><td>Hierro</td><td>7,9</td></tr>
+        <tr><td>Oro</td><td>19,3</td></tr>
+      </table>
+    </div>
+    <div class="grid2 step" style="margin-top:10px">
+      <div class="ejemplo" style="margin:0;font-size:.95em"><b>Hallar la masa:</b> 2 L de aceite son 2000 mL.<br>m = d × V = 0,92 × 2000 = <span class="f">1840 g</span></div>
+      <div class="ejemplo" style="margin:0;font-size:.95em"><b>Hallar el volumen:</b> un trozo de hierro de 79 g.<br>V = m ÷ d = 79 ÷ 7,9 = <span class="f">10 cm<sup>3</sup></span></div>
+    </div>
+  </div>
+</section>
+
+<section data-titulo="6. La temperatura">
+  <div class="inner">
+    <h2>6. Temperatura y sus escalas</h2>
+    <p>La <b>temperatura</b> dice qué tan rápido se mueven las partículas. El <b>calor</b> es la energía que pasa de lo caliente a lo frío. Por eso un café caliente se enfría en la mesa: le pasa calor al aire.</p>
+    <div class="grid2">
+      <svg class="dib" viewBox="0 0 460 226" role="img" aria-label="Tres escalas de temperatura lado a lado. El hielo se derrite a 0 grados Celsius, 273 kelvin y 32 grados Fahrenheit. El cuerpo humano está a 37 grados Celsius, 310 kelvin y 98,6 grados Fahrenheit. El agua hierve a 100 grados Celsius, 373 kelvin y 212 grados Fahrenheit">
+        <g stroke="#2E4652" stroke-width="2"><path d="M130 50h320M130 121h320M130 190h320"/></g>
+        <g fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="15" font-weight="800"><text x="4" y="45">Hierve</text><text x="4" y="62">el agua</text><text x="4" y="116">Cuerpo</text><text x="4" y="133">humano</text><text x="4" y="185">Se derrite</text><text x="4" y="202">el hielo</text></g>
+        <g fill="#4FB3E8" font-family="Nunito,sans-serif" font-size="18" font-weight="900" text-anchor="middle"><text x="180" y="24">°C</text></g>
+        <g fill="#3BC97A" font-family="Nunito,sans-serif" font-size="18" font-weight="900" text-anchor="middle"><text x="290" y="24">K</text></g>
+        <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="18" font-weight="900" text-anchor="middle"><text x="400" y="24">°F</text></g>
+        <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="800" text-anchor="middle">
+          <text x="180" y="44">100</text><text x="290" y="44">373</text><text x="400" y="44">212</text>
+          <text x="180" y="115">37</text><text x="290" y="115">310</text><text x="400" y="115">98,6</text>
+          <text x="180" y="184">0</text><text x="290" y="184">273</text><text x="400" y="184">32</text>
+        </g>
+      </svg>
+      <div>
+        <div class="ejemplo" style="margin-top:0"><span class="f">K = °C + 273</span><br><span style="font-size:.85em">25 °C + 273 = 298 K</span></div>
+        <div class="ejemplo"><span class="f">°F = 1,8 × °C + 32</span><br><span style="font-size:.85em">1,8 × 20 + 32 = 68 °F</span></div>
+      </div>
+    </div>
+    <div class="clave step"><b>El cero de los kelvin es de verdad.</b> 0 K es la temperatura más baja posible: no hay nada más frío. Son −273,15 °C, que en el curso redondeamos a −273 °C. Por eso la escala kelvin no tiene números negativos, y se dice «kelvin», no «grados kelvin».</div>
+  </div>
+</section>
+
+<section data-titulo="7. Calentando hielo">
+  <div class="inner">
+    <h2>7. ¿Qué pasa cuando calentamos hielo?</h2>
+    <p>Pon hielo en una olla al fuego y mide la temperatura cada minuto. El resultado sorprende: hay dos tramos en que el termómetro se queda quieto.</p>
+    <svg class="dib" viewBox="0 0 640 236" role="img" aria-label="Gráfico de temperatura contra tiempo. El hielo se calienta hasta 0 grados, la temperatura se queda fija mientras se derrite, el agua líquida sube hasta 100 grados, la temperatura se queda fija mientras hierve, y después sube el vapor" style="max-width:640px;margin:0 auto">
+      <path d="M60 14v196h564" fill="none" stroke="#A9BCC4" stroke-width="2"/>
+      <path d="M60 46h564M60 174h564" stroke="#2E4652" stroke-width="1.5" stroke-dasharray="5 6"/>
+      <path d="M60 204L130 174H250L370 46H540L610 20" fill="none" stroke="#FFC800" stroke-width="4" stroke-linejoin="round"/>
+      <g fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="14" font-weight="800"><text x="52" y="51" text-anchor="end">100 °C</text><text x="52" y="179" text-anchor="end">0 °C</text><text x="620" y="230" text-anchor="end">Tiempo, con el fuego siempre igual</text></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="15" font-weight="800" text-anchor="middle"><text x="92" y="166">Hielo</text><text x="190" y="164">Se derrite</text><text x="350" y="130">Agua líquida</text><text x="455" y="36">Hierve</text><text x="590" y="66">Vapor</text></g>
+    </svg>
+    <div class="clave step"><b>Durante un cambio de estado la temperatura no sube.</b> El calor se gasta en separar las partículas, no en acelerarlas. Por eso hablamos de punto de fusión y punto de ebullición.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> la olla ya hierve. Si subes el fuego, ¿sube la temperatura del agua? No. Se evapora más rápido, pero sigue en 100 °C. Eso a nivel del mar. En Quito hierve cerca de 90 °C, porque el aire hace menos presión.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:4,
+  titulo:'Estados y propiedades',
+  subtitulo:'de la materia',
+  lead:'Por qué el hielo flota, qué es la densidad y cómo se mide la temperatura.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos medir: ahora, a mirar la materia',
+    antesT:'La clase anterior',
+    antes:'Aprendimos a convertir unidades con el factor unitario, incluidos litros, mililitros y centímetros cúbicos.',
+    hoy:'Usamos esas medidas para estudiar la materia: sus estados, sus propiedades, la densidad y la temperatura.'
+  },
+  sigue:{
+    titulo:'Ya sabemos describir la materia',
+    hoy:'La materia cambia de estado con el calor. Las propiedades intensivas, como la densidad, ayudan a reconocer cada sustancia.',
+    proxima:'Casi nada de lo que nos rodea es una sola sustancia. Veremos las mezclas, cómo se separan y qué diferencia a un cambio físico de uno químico.'
+  },
+  juego:{titulo:'Laboratorio de perillas',texto:'Abran este enlace en el celular. Son 6 misiones: muevan las perillas hasta llegar a la meta. Hagan la cuenta antes de mover. El primero en terminar gana.'},
+  pdf:'tarea/tarea-04.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estequiometría</title>
+<meta name="description" content="Cuánto reacciona y cuánto se produce: relaciones mol a mol, masa a masa y reactivo limitante, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. La ecuación es una receta">
+  <div class="inner">
+    <h2>1. Una ecuación balanceada es una receta</h2>
+    <p>Una receta dice: 2 panes y 1 queso hacen 1 sánduche. Si quieres 5 sánduches, multiplicas todo por 5. Una ecuación balanceada funciona igual, y sus coeficientes se pueden leer en moles.</p>
+    <svg class="dib" viewBox="0 0 860 200" role="img" aria-label="Una molécula de nitrógeno más tres de hidrógeno forman dos de amoníaco. Debajo: 1 mol, 3 mol y 2 mol" style="max-width:860px;margin:0 auto">
+      <defs><g id="h2-18"><circle cx="-9" cy="0" r="11" fill="#F1F5F7"/><circle cx="9" cy="0" r="11" fill="#F1F5F7"/></g>
+      <g id="nh3-18"><circle cx="0" cy="0" r="17" fill="#4FB3E8"/><circle cx="-22" cy="12" r="10" fill="#F1F5F7"/><circle cx="22" cy="12" r="10" fill="#F1F5F7"/><circle cx="0" cy="-24" r="10" fill="#F1F5F7"/></g></defs>
+      <circle cx="80" cy="80" r="17" fill="#4FB3E8"/><circle cx="108" cy="80" r="17" fill="#4FB3E8"/>
+      <use href="#h2-18" x="290" y="46"/><use href="#h2-18" x="250" y="100"/><use href="#h2-18" x="330" y="100"/>
+      <use href="#nh3-18" x="600" y="84"/><use href="#nh3-18" x="720" y="84"/>
+      <g font-family="Nunito,sans-serif" font-weight="900" fill="#FFC800" font-size="34" text-anchor="middle"><text x="182" y="92">+</text><text x="452" y="92">→</text></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" fill="#F1F5F7" font-size="21" text-anchor="middle"><text x="94" y="150">N<tspan dy="5" font-size="14">2</tspan></text><text x="290" y="150">3 H<tspan dy="5" font-size="14">2</tspan></text><text x="660" y="150">2 NH<tspan dy="5" font-size="14">3</tspan></text></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" fill="#3BC97A" font-size="22" text-anchor="middle"><text x="94" y="186">1 mol</text><text x="290" y="186">3 mol</text><text x="660" y="186">2 mol</text></g>
+    </svg>
+    <div class="clave step"><b>Estequiometría</b> es calcular cuánto reacciona y cuánto se produce, usando la ecuación balanceada como receta. Por eso la ecuación debe estar balanceada antes de empezar.</div>
+  </div>
+</section>
+
+<section data-titulo="2. De moles a moles">
+  <div class="inner">
+    <h2>2. De moles a moles</h2>
+    <p>Los coeficientes dan la proporción entre dos sustancias. Esa proporción se llama razón molar y se usa como un factor unitario: lo que tienes va abajo y lo que buscas va arriba.</p>
+    <div class="ejemplo"><span class="f">N<sub>2</sub> + 3 H<sub>2</sub> → 2 NH<sub>3</sub></span></div>
+    <div class="ejemplo step"><b>Ejemplo 1.</b> ¿Cuántos moles de NH<sub>3</sub> se forman con 6 mol de H<sub>2</sub>?<br>6 mol H<sub>2</sub> × (2 mol NH<sub>3</sub> ÷ 3 mol H<sub>2</sub>) = <span class="f">4 mol de NH<sub>3</sub></span></div>
+    <div class="ejemplo step"><b>Ejemplo 2.</b> ¿Cuántos moles de H<sub>2</sub> se necesitan para 5 mol de N<sub>2</sub>?<br>5 mol N<sub>2</sub> × (3 mol H<sub>2</sub> ÷ 1 mol N<sub>2</sub>) = <span class="f">15 mol de H<sub>2</sub></span></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> en CH<sub>4</sub> + 2 O<sub>2</sub> → CO<sub>2</sub> + 2 H<sub>2</sub>O, ¿cuántos moles de O<sub>2</sub> se gastan con 3 mol de CH<sub>4</sub>? Son 3 × 2 = 6 mol de O<sub>2</sub>.</div>
+  </div>
+</section>
+
+<section data-titulo="3. De masa a masa">
+  <div class="inner">
+    <h2>3. De gramos a gramos: el puente de los moles</h2>
+    <p>La balanza da gramos, pero la ecuación habla en moles. Nunca se pasa directo de gramos de una sustancia a gramos de otra. Siempre se cruza por los moles, en tres pasos.</p>
+    <svg class="dib" viewBox="0 0 900 150" role="img" aria-label="Cuatro cajas en fila: gramos de lo que tengo, moles de lo que tengo, moles de lo que busco y gramos de lo que busco. Entre ellas: dividir para la masa molar, usar los coeficientes y multiplicar por la masa molar" style="max-width:900px;margin:0 auto">
+      <defs><marker id="fl18" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FFC800"/></marker></defs>
+      <g fill="#1B2B32" stroke="#2E4652" stroke-width="2"><rect x="6" y="60" width="150" height="74" rx="14"/><rect x="744" y="60" width="150" height="74" rx="14"/></g>
+      <g fill="#22363F" stroke="#FFC800" stroke-width="2.5"><rect x="252" y="60" width="150" height="74" rx="14"/><rect x="498" y="60" width="150" height="74" rx="14"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle" fill="#F1F5F7" font-size="20">
+        <text x="81" y="92">Gramos</text><text x="81" y="118" font-size="16" fill="#A9BCC4">de lo que tengo</text>
+        <text x="327" y="92" fill="#FFC800">Moles</text><text x="327" y="118" font-size="16" fill="#A9BCC4">de lo que tengo</text>
+        <text x="573" y="92" fill="#FFC800">Moles</text><text x="573" y="118" font-size="16" fill="#A9BCC4">de lo que busco</text>
+        <text x="819" y="92">Gramos</text><text x="819" y="118" font-size="16" fill="#A9BCC4">de lo que busco</text>
+      </g>
+      <g stroke="#FFC800" stroke-width="3" marker-end="url(#fl18)"><path d="M160 97h86"/><path d="M406 97h86"/><path d="M652 97h86"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle" font-size="17" fill="#3BC97A"><text x="204" y="34">paso 1</text><text x="204" y="54">÷ masa molar</text><text x="450" y="34">paso 2</text><text x="450" y="54">coeficientes</text><text x="696" y="34">paso 3</text><text x="696" y="54">× masa molar</text></g>
+    </svg>
+    <div class="ejemplo step"><b>Ejemplo.</b> En 2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O, ¿cuánta agua se forma con 8 g de H<sub>2</sub>?<br><b>Paso 1:</b> 8 g ÷ 2 g/mol = 4 mol de H<sub>2</sub><br><b>Paso 2:</b> 4 mol H<sub>2</sub> × (2 mol H<sub>2</sub>O ÷ 2 mol H<sub>2</sub>) = 4 mol de H<sub>2</sub>O<br><b>Paso 3:</b> 4 mol × 18 g/mol = <span class="f">72 g de agua</span></div>
+  </div>
+</section>
+
+<section data-titulo="4. El gas de la cocina">
+  <div class="inner">
+    <h2>4. Un caso real: el gas de la cocina</h2>
+    <p>El gas de cocina contiene propano, C<sub>3</sub>H<sub>8</sub>. Al quemarse produce dióxido de carbono y agua. ¿Cuánto CO<sub>2</sub> sale de quemar 44 g de propano?</p>
+    <div class="ejemplo"><span class="f">C<sub>3</sub>H<sub>8</sub> + 5 O<sub>2</sub> → 3 CO<sub>2</sub> + 4 H<sub>2</sub>O</span></div>
+    <div class="pasos">
+      <div class="step"><span class="n">Paso 1</span><b>Gramos a moles</b>Masa molar del propano: 3 × 12 + 8 × 1 = 44 g/mol.<br>44 g ÷ 44 g/mol = 1 mol</div>
+      <div class="step"><span class="n">Paso 2</span><b>Coeficientes</b>1 mol C<sub>3</sub>H<sub>8</sub> × (3 mol CO<sub>2</sub> ÷ 1 mol C<sub>3</sub>H<sub>8</sub>) = 3 mol de CO<sub>2</sub></div>
+      <div class="step"><span class="n">Paso 3</span><b>Moles a gramos</b>Masa molar del CO<sub>2</sub>: 44 g/mol.<br>3 mol × 44 g/mol = <span class="f">132 g de CO<sub>2</sub></span></div>
+    </div>
+    <div class="clave step"><b>Se puede comprobar.</b> Entran 44 g de propano y 160 g de O<sub>2</sub>: en total, 204 g. Salen 132 g de CO<sub>2</sub> y 72 g de agua: también 204 g. La masa se conserva.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos gramos de agua salen de 22 g de propano? Es medio mol, da 2 mol de agua: 36 g.</div>
+  </div>
+</section>
+
+<section data-titulo="5. El reactivo limitante">
+  <div class="inner">
+    <h2>5. El reactivo limitante</h2>
+    <p>Hasta ahora suponíamos que había de todo. Pero en la vida real algo se acaba primero. Con 10 panes y 3 quesos, y la receta de 2 panes y 1 queso, ¿cuántos sánduches salen?</p>
+    <svg class="dib" viewBox="0 0 860 150" role="img" aria-label="Tres sánduches armados con seis panes y tres quesos, y cuatro panes que sobran" style="max-width:800px;margin:0 auto">
+      <defs><g id="san18"><rect x="0" y="0" width="84" height="16" rx="7" fill="#D08C55"/><rect x="4" y="19" width="76" height="9" rx="3" fill="#FFC800"/><rect x="0" y="31" width="84" height="16" rx="7" fill="#D08C55"/></g></defs>
+      <use href="#san18" x="30" y="30"/><use href="#san18" x="140" y="30"/><use href="#san18" x="250" y="30"/>
+      <path d="M380 10v100" stroke="#2E4652" stroke-width="2"/>
+      <g fill="#D08C55"><rect x="430" y="28" width="84" height="16" rx="7"/><rect x="540" y="28" width="84" height="16" rx="7"/><rect x="650" y="28" width="84" height="16" rx="7"/><rect x="760" y="28" width="84" height="16" rx="7"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle" fill="#F1F5F7" font-size="20"><text x="187" y="116">3 sánduches: se acabó el queso</text><text x="637" y="82">Sobran 4 panes</text></g>
+    </svg>
+    <div class="grid2 step">
+      <div class="card"><h3>Reactivo limitante</h3><p style="margin:0">El que se acaba primero y decide cuánto producto sale. Aquí, el queso.</p></div>
+      <div class="card"><h3>Reactivo en exceso</h3><p style="margin:0">El que sobra cuando la reacción se detiene. Aquí, el pan.</p></div>
+    </div>
+    <div class="clave step"><b>Ojo:</b> el limitante no siempre es lo que hay en menor cantidad. Con 6 panes y 4 quesos hay menos quesos, pero se acaba primero el pan: solo alcanza para 3 sánduches.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Limitante con moles">
+  <div class="inner">
+    <h2>6. El limitante con moles</h2>
+    <p>Se calcula cuánto producto daría cada reactivo por separado. El que dé menos es el limitante. Tomemos 2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O, con 3 mol de H<sub>2</sub> y 2 mol de O<sub>2</sub>.</p>
+    <div class="grid2">
+      <div class="card step"><h3>Si manda el H<sub>2</sub></h3><p style="margin:0">3 mol H<sub>2</sub> × (2 mol H<sub>2</sub>O ÷ 2 mol H<sub>2</sub>) = 3 mol de agua</p></div>
+      <div class="card step"><h3>Si manda el O<sub>2</sub></h3><p style="margin:0">2 mol O<sub>2</sub> × (2 mol H<sub>2</sub>O ÷ 1 mol O<sub>2</sub>) = 4 mol de agua</p></div>
+    </div>
+    <div class="clave step"><b>Resultado:</b> el H<sub>2</sub> da menos, así que es el limitante. Se forman <b>3 mol de agua</b>.</div>
+    <div class="ejemplo step"><b>¿Cuánto sobra?</b> 3 mol de H<sub>2</sub> gastan 3 × (1 ÷ 2) = 1,5 mol de O<sub>2</sub>.<br>Había 2 mol, entonces sobran 2 − 1,5 = <span class="f">0,5 mol de O<sub>2</sub></span>.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Limitante con gramos">
+  <div class="inner">
+    <h2>7. El limitante con gramos</h2>
+    <p>Si los datos vienen en gramos, primero se pasan a moles. El zinc reacciona con ácido clorhídrico y suelta hidrógeno. Tenemos 65 g de Zn y 36,5 g de HCl.</p>
+    <div class="ejemplo"><span class="f">Zn + 2 HCl → ZnCl<sub>2</sub> + H<sub>2</sub></span></div>
+    <div class="pasos">
+      <div class="step"><span class="n">1</span><b>A moles</b>Zn: 65 g ÷ 65 g/mol = 1 mol<br>HCl: 36,5 g ÷ 36,5 g/mol = 1 mol</div>
+      <div class="step"><span class="n">2</span><b>Producto de cada uno</b>Zn: 1 mol × (1 ÷ 1) = 1 mol de H<sub>2</sub><br>HCl: 1 mol × (1 ÷ 2) = 0,5 mol de H<sub>2</sub></div>
+      <div class="step"><span class="n">3</span><b>Limitante</b>El HCl da menos.<br>Se forman 0,5 mol de H<sub>2</sub></div>
+      <div class="step"><span class="n">4</span><b>A gramos</b>0,5 mol × 2 g/mol = <span class="f">1 g de H<sub>2</sub></span></div>
+    </div>
+    <div class="clave step"><b>Fíjate:</b> había 1 mol de cada uno y aun así el HCl fue el limitante, porque la receta pide el doble de HCl. Por eso se compara con los coeficientes y no a ojo.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuánto Zn sobra? Se gastaron 0,5 mol y sobran 0,5 mol, o sea 32,5 g.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:18,
+  titulo:'Estequiometría',
+  subtitulo:'la receta de las reacciones',
+  lead:'Cuánto reacciona, cuánto se produce y qué se acaba primero.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos pasar de gramos a moles',
+    antesT:'La clase pasada',
+    antes:'Un mol son 6,02×10<sup>23</sup> partículas, y la masa molar convierte gramos en moles.',
+    hoy:'Juntaremos eso con las ecuaciones balanceadas para calcular cuánto producto sale de una reacción, y qué pasa cuando un reactivo se acaba primero.'
+  },
+  sigue:{
+    titulo:'Ya podemos predecir el resultado de una reacción',
+    hoy:'Los coeficientes son una receta en moles. De gramos a gramos siempre se cruza por los moles, y el reactivo limitante decide cuánto producto sale.',
+    proxima:'Muchas reacciones ocurren disueltas en agua. Veremos qué es una solución, cuánto se puede disolver y cómo se expresa en porcentaje.'
+  },
+  juego:{titulo:'La caja fuerte del laboratorio',texto:'Abran este enlace en el celular. Tienen 12 minutos para abrir 6 candados. Tengan cuaderno a la mano: varios piden hacer la cuenta y escribir el número.'},
+  pdf:'tarea/tarea-18.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

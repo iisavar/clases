@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Los gases</title>
+<meta name="description" content="Presión, leyes de los gases, volumen molar y gas ideal, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Cómo es un gas">
+  <div class="inner">
+    <h2>1. ¿Cómo es un gas por dentro?</h2>
+    <p>En un gas, las partículas están muy separadas y se mueven rápido en todas las direcciones. Cada vez que una choca contra la pared del recipiente, la empuja un poquito. Millones de esos golpes, sumados, son la <b>presión</b>.</p>
+    <svg class="dib" viewBox="0 0 860 190" role="img" aria-label="Una caja con partículas que se mueven en varias direcciones y chocan contra las paredes, lo que produce presión" style="max-width:900px;margin:0 auto">
+      <defs><marker id="fl21" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3BC97A"/></marker>
+      <marker id="fl21b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FF6B6B"/></marker></defs>
+      <rect x="240" y="14" width="380" height="160" rx="10" fill="#1B2B32" stroke="#A9BCC4" stroke-width="4"/>
+      <g fill="#4FB3E8"><circle cx="300" cy="60" r="10"/><circle cx="390" cy="48" r="10"/><circle cx="500" cy="62" r="10"/><circle cx="580" cy="92" r="10"/><circle cx="340" cy="130" r="10"/><circle cx="450" cy="118" r="10"/><circle cx="540" cy="146" r="10"/></g>
+      <g stroke="#3BC97A" stroke-width="3" marker-end="url(#fl21)"><path d="M300 60l-40 -24"/><path d="M390 48l36 24"/><path d="M500 62l40 -32"/><path d="M340 130l-46 22"/><path d="M450 118l-30 -26"/><path d="M540 146l34 18"/></g>
+      <path d="M592 92h22" stroke="#3BC97A" stroke-width="3" marker-end="url(#fl21)"/>
+      <g stroke="#FF6B6B" stroke-width="4" marker-end="url(#fl21b)"><path d="M630 92h40"/><path d="M230 142h-40"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" font-size="20" fill="#F1F5F7"><text x="680" y="88">El choque</text><text x="680" y="112">empuja</text><text x="180" y="138" text-anchor="end">Presión</text></g>
+    </svg>
+    <div class="clave step"><b>Cuatro magnitudes describen a un gas:</b> presión (P), volumen (V), temperatura (T) y cantidad en moles (n). Si cambias una, las otras responden.</div>
+    <div class="ejemplo step"><b>Por eso se infla un globo:</b> soplas más partículas, hay más choques por dentro, y el hule cede hasta que la presión se iguala.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Presión y temperatura">
+  <div class="inner">
+    <h2>2. Las unidades: presión y temperatura</h2>
+    <p>El aire también pesa y nos empuja: es la presión atmosférica. A nivel del mar, como en Guayaquil, es cerca de 1 atmósfera. En Quito hay menos aire encima, unos 0,7 atm, y por eso el agua hierve cerca de 90 °C.</p>
+    <div class="grid2">
+      <div class="card"><h3>Presión</h3><p style="margin:0"><b>1 atm = 760 mmHg = 101,3 kPa</b>. Son milímetros de mercurio y kilopascales.</p></div>
+      <div class="card"><h3>Temperatura</h3><p style="margin:0"><b>K = °C + 273</b>. En gases siempre se usa kelvin.</p></div>
+    </div>
+    <div class="ejemplo step"><b>Ejemplo 1.</b> ¿Cuántas atmósferas son 380 mmHg?<br>380 mmHg × (1 atm ÷ 760 mmHg) = <span class="f">0,5 atm</span></div>
+    <div class="ejemplo step"><b>Ejemplo 2.</b> ¿Cuánto es 27 °C en kelvin?<br>27 + 273 = <span class="f">300 K</span></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuánto es 0 °C en kelvin? 273 K. En los cálculos de hoy usamos kelvin porque la escala empieza en el cero absoluto, y así las proporciones funcionan.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Ley de Boyle">
+  <div class="inner">
+    <h2>3. Ley de Boyle: apretar un gas</h2>
+    <p>Tapa la punta de una jeringa y empuja el émbolo. El aire se comprime y cada vez cuesta más. Con menos espacio, las partículas chocan más seguido contra las paredes y la presión sube.</p>
+    <svg class="dib" viewBox="0 0 860 130" role="img" aria-label="Dos jeringas tapadas: con 6 litros a 1 atmósfera y con 3 litros a 2 atmósferas" style="max-width:760px;margin:0 auto">
+      <g fill="none" stroke="#A9BCC4" stroke-width="3"><rect x="20" y="18" width="330" height="62" rx="6"/><rect x="480" y="18" width="330" height="62" rx="6"/></g>
+      <rect x="22" y="20" width="240" height="58" fill="#4FB3E8" opacity=".25"/><rect x="482" y="20" width="120" height="58" fill="#4FB3E8" opacity=".45"/>
+      <g fill="#A9BCC4"><rect x="262" y="18" width="9" height="62"/><rect x="271" y="44" width="120" height="10"/><rect x="391" y="26" width="8" height="46"/><rect x="602" y="18" width="9" height="62"/><rect x="611" y="44" width="240" height="10"/><rect x="851" y="26" width="8" height="46"/></g>
+      <g fill="#4FB3E8"><circle cx="50" cy="38" r="5"/><circle cx="110" cy="62" r="5"/><circle cx="165" cy="36" r="5"/><circle cx="225" cy="60" r="5"/><circle cx="500" cy="38" r="5"/><circle cx="530" cy="62" r="5"/><circle cx="558" cy="36" r="5"/><circle cx="586" cy="60" r="5"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" font-size="20" fill="#F1F5F7" text-anchor="middle"><text x="180" y="112">6 L a 1 atm</text><text x="640" y="112" fill="#FFC800">3 L a 2 atm</text></g>
+    </svg>
+    <div class="clave step"><b>Ley de Boyle.</b> Con temperatura y moles fijos, si la presión sube, el volumen baja en la misma proporción: <b>P<sub>1</sub> × V<sub>1</sub> = P<sub>2</sub> × V<sub>2</sub></b></div>
+    <div class="ejemplo step"><b>Ejemplo.</b> Un gas ocupa 6 L a 1 atm. ¿Cuánto ocupa a 2 atm?<br>V<sub>2</sub> = (P<sub>1</sub> × V<sub>1</sub>) ÷ P<sub>2</sub> = (1 × 6) ÷ 2 = <span class="f">3 L</span></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> una funda de papitas sellada en Guayaquil llega inflada a Quito. ¿Por qué? Afuera la presión baja, y el aire de adentro se expande.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Ley de Charles">
+  <div class="inner">
+    <h2>4. Ley de Charles: calentar un globo</h2>
+    <p>Mete un globo inflado en la refrigeradora y se encoge. Sácalo al sol y se estira. Al calentar, las partículas se mueven más rápido, empujan más y el globo crece, mientras la presión se mantiene.</p>
+    <div class="grid2" style="align-items:center">
+      <svg class="dib" viewBox="0 0 400 230" role="img" aria-label="Gráfica de volumen contra temperatura en kelvin: una recta pasa por 2 litros a 300 K y 4 litros a 600 K" style="max-width:390px;margin:0 auto">
+        <g stroke="#A9BCC4" stroke-width="2.5"><path d="M56 190V16"/><path d="M56 190H380"/></g>
+        <g fill="none" stroke="#2E4652" stroke-width="1.5" stroke-dasharray="5 5"><path d="M56 110H210V190"/><path d="M56 30H364V190"/></g>
+        <path d="M56 190L364 30" stroke="#FFC800" stroke-width="4"/>
+        <circle cx="210" cy="110" r="7" fill="#3BC97A"/><circle cx="364" cy="30" r="7" fill="#3BC97A"/>
+        <g font-family="Nunito,sans-serif" font-weight="800" font-size="16" fill="#F1F5F7" text-anchor="middle"><text x="210" y="210">300 K</text><text x="364" y="210">600 K</text><text x="56" y="210">0 K</text><text x="30" y="115">2 L</text><text x="30" y="35">4 L</text><text x="210" y="226" fill="#A9BCC4">Temperatura</text></g>
+        <text x="66" y="16" font-family="Nunito,sans-serif" font-weight="800" font-size="16" fill="#A9BCC4">Volumen</text>
+      </svg>
+      <div>
+        <div class="clave step" style="margin-top:0"><b>Ley de Charles.</b> Con presión y moles fijos, el volumen crece con la temperatura en kelvin: <b>V<sub>1</sub> ÷ T<sub>1</sub> = V<sub>2</sub> ÷ T<sub>2</sub></b></div>
+        <div class="ejemplo step"><b>Ejemplo.</b> Un gas ocupa 2 L a 27 °C. ¿Cuánto ocupa a 327 °C?<br>T<sub>1</sub> = 300 K y T<sub>2</sub> = 600 K<br>V<sub>2</sub> = 2 L × (600 ÷ 300) = <span class="f">4 L</span></div>
+      </div>
+    </div>
+    <div class="clave step"><b>La trampa:</b> con grados Celsius saldría 2 L × (327 ÷ 27) = 24,2 L, que es falso. Primero pasa a kelvin.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Ley de Gay-Lussac">
+  <div class="inner">
+    <h2>5. Ley de Gay-Lussac: el recipiente que no cede</h2>
+    <p>Si el gas está en un recipiente rígido, no puede estirarse. Al calentarlo, las partículas chocan con más fuerza y la presión sube. Por eso un aerosol nunca se tira al fuego. En una olla de presión pasa algo parecido, aunque ahí además se forma más vapor.</p>
+    <div class="clave"><b>Ley de Gay-Lussac.</b> Con volumen y moles fijos: <b>P<sub>1</sub> ÷ T<sub>1</sub> = P<sub>2</sub> ÷ T<sub>2</sub></b></div>
+    <div class="ejemplo step"><b>Ejemplo.</b> Una llanta está a 2 atm y 27 °C. Tras rodar al sol llega a 57 °C, sin cambiar su volumen. ¿Cuál es su presión?<br>T<sub>1</sub> = 300 K y T<sub>2</sub> = 330 K<br>P<sub>2</sub> = 2 atm × (330 ÷ 300) = <span class="f">2,2 atm</span></div>
+    <table class="t step">
+      <tr><th>Ley</th><th>Lo que se mantiene fijo</th><th>Fórmula</th><th>Relación</th></tr>
+      <tr><td>Boyle</td><td>T y n</td><td>P<sub>1</sub> × V<sub>1</sub> = P<sub>2</sub> × V<sub>2</sub></td><td>Sube P, baja V</td></tr>
+      <tr><td>Charles</td><td>P y n</td><td>V<sub>1</sub> ÷ T<sub>1</sub> = V<sub>2</sub> ÷ T<sub>2</sub></td><td>Sube T, sube V</td></tr>
+      <tr><td>Gay-Lussac</td><td>V y n</td><td>P<sub>1</sub> ÷ T<sub>1</sub> = P<sub>2</sub> ÷ T<sub>2</sub></td><td>Sube T, sube P</td></tr>
+    </table>
+  </div>
+</section>
+
+<section data-titulo="6. Volumen molar">
+  <div class="inner">
+    <h2>6. Un mol de gas: 22,4 litros</h2>
+    <p>Avogadro propuso algo sorprendente: a la misma presión y temperatura, volúmenes iguales de gases distintos tienen el mismo número de partículas. No importa si el gas es liviano o pesado, porque las partículas están muy separadas.</p>
+    <div class="clave"><b>Condiciones normales</b> son 0 °C y 1 atm. En esas condiciones, <b>1 mol de cualquier gas ocupa 22,4 L</b>. Es el volumen molar.</div>
+    <div class="ejemplo step"><b>Ejemplo 1.</b> ¿Cuántos moles son 11,2 L de O<sub>2</sub> en condiciones normales?<br>11,2 L × (1 mol ÷ 22,4 L) = <span class="f">0,5 mol</span></div>
+    <div class="ejemplo step"><b>Ejemplo 2.</b> ¿Cuál es la masa de esos 11,2 L de O<sub>2</sub>?<br>0,5 mol × 32 g/mol = <span class="f">16 g</span></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿qué volumen ocupan 2 mol de CO<sub>2</sub> en condiciones normales? 2 × 22,4 = 44,8 L.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Gas ideal">
+  <div class="inner">
+    <h2>7. La ecuación del gas ideal</h2>
+    <p>Todas las leyes de hoy caben en una sola ecuación, que une presión, volumen, moles y temperatura. Se llama ideal porque supone partículas sin atracción entre ellas. Los gases reales se le acercan mucho en condiciones comunes.</p>
+    <div class="clave"><b>P × V = n × R × T</b>, con R = 0,082 atm L/(mol K). La presión va en atm, el volumen en L y la temperatura en K.</div>
+    <div class="ejemplo step"><b>Ejemplo 1.</b> ¿Qué presión ejercen 2 mol de gas en 10 L a 27 °C?<br>T = 27 + 273 = 300 K<br>P = (n × R × T) ÷ V = (2 × 0,082 × 300) ÷ 10 = <span class="f">4,92 atm</span></div>
+    <div class="ejemplo step"><b>Comprobación.</b> ¿Cuánto ocupa 1 mol a 1 atm y 273 K?<br>V = (1 × 0,082 × 273) ÷ 1 = 22,386 L, que redondeado es <span class="f">22,4 L</span>. Coincide con el volumen molar.</div>
+    <div class="clave step"><b>El orden de siempre:</b> pasa a kelvin, pasa a litros y a atm, y recién ahí reemplaza en la fórmula.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:21,
+  titulo:'Los gases',
+  subtitulo:'presión, volumen y temperatura',
+  lead:'Qué es la presión, las leyes de los gases y la ecuación que las une.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'De los líquidos a los gases',
+    antesT:'La clase pasada',
+    antes:'Con la molaridad contamos moles en un líquido, y aprendimos que al diluir los moles no cambian.',
+    hoy:'Un gas no tiene forma ni volumen propio. Veremos cómo se relacionan su presión, su volumen y su temperatura, y cómo contar moles de gas.'
+  },
+  sigue:{
+    titulo:'Ya podemos predecir cómo se porta un gas',
+    hoy:'Boyle, Charles y Gay-Lussac relacionan presión, volumen y temperatura. Un mol de gas ocupa 22,4 L en condiciones normales, y P × V = n × R × T lo une todo.',
+    proxima:'Volvemos a las soluciones, con las más famosas de todas: ácidos y bases, cómo se neutralizan y qué mide el pH.'
+  },
+  juego:{titulo:'Domador de gases',texto:'Abran este enlace en el celular. Mueve las perillas hasta dejar cada gas en la meta. Son 6 misiones.'},
+  pdf:'tarea/tarea-21.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

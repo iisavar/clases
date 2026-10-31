@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Óxidos e hidróxidos</title>
+<meta name="description" content="Óxidos, peróxidos, hidróxidos e hidruros: fórmula, nombre actual y nombre tradicional, con bingo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. El mapa de los compuestos">
+  <div class="inner">
+    <h2>1. De dónde sale cada familia</h2>
+    <p>Hoy empezamos a ponerles nombre a los compuestos. Se ordenan en familias, y cada familia nace de una combinación sencilla. Este mapa es la guía de hoy y de la próxima clase.</p>
+    <svg class="dib" viewBox="0 0 900 262" role="img" aria-label="Metal más oxígeno da óxido de metal, y este más agua da hidróxido. No metal más oxígeno da óxido de no metal, y este más agua da oxoácido. Metal más hidrógeno da hidruro" style="max-width:860px;margin:0 auto">
+      <g fill="#1B2B32" stroke="#2E4652" stroke-width="2"><rect x="10" y="14" width="210" height="60" rx="14"/><rect x="10" y="100" width="210" height="60" rx="14"/><rect x="10" y="186" width="210" height="60" rx="14"/></g>
+      <g fill="#22363F" stroke="#3BC97A" stroke-width="3"><rect x="340" y="14" width="210" height="60" rx="14"/><rect x="340" y="100" width="210" height="60" rx="14"/><rect x="340" y="186" width="210" height="60" rx="14"/><rect x="670" y="14" width="210" height="60" rx="14"/></g>
+      <rect x="670" y="100" width="210" height="60" rx="14" fill="#22363F" stroke="#FFC800" stroke-width="3" stroke-dasharray="8 6"/>
+      <g stroke="#A9BCC4" stroke-width="4"><path d="M222 44h104M222 130h104M222 216h104M552 44h104M552 130h104"/></g>
+      <g fill="#A9BCC4"><path d="M338 44l-14-7v14zM338 130l-14-7v14zM338 216l-14-7v14zM668 44l-14-7v14zM668 130l-14-7v14z"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="20" font-weight="800" text-anchor="middle"><text x="115" y="51">Metal + oxígeno</text><text x="115" y="137">No metal + oxígeno</text><text x="115" y="223">Metal + hidrógeno</text></g>
+      <g fill="#3BC97A" font-family="Nunito,sans-serif" font-size="21" font-weight="900" text-anchor="middle"><text x="445" y="51">Óxido de metal</text><text x="445" y="137">Óxido de no metal</text><text x="445" y="223">Hidruro</text><text x="775" y="51">Hidróxido</text></g>
+      <text x="775" y="137" fill="#FFC800" font-family="Nunito,sans-serif" font-size="21" font-weight="900" text-anchor="middle">Oxoácido</text>
+      <g fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="17" font-weight="800" text-anchor="middle"><text x="610" y="32">+ agua</text><text x="610" y="118">+ agua</text><text x="775" y="182">próxima clase</text></g>
+    </svg>
+    <div class="clave step"><b>Cada compuesto tendrá dos nombres.</b> El nombre actual dice exactamente qué hay en la fórmula. El tradicional es más viejo, pero sigue en etiquetas y libros. Hay que conocer los dos.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> la cal viva es CaO. ¿Es óxido de metal o de no metal? De metal, porque el calcio es metal.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Óxidos de metal">
+  <div class="inner">
+    <h2>2. Óxidos de metal</h2>
+    <div class="grid2">
+      <div class="card"><h3>Nombre actual</h3><p style="margin:0">«Óxido de» y el metal. Si el metal tiene varios números de oxidación, se indica cuál con romanos.</p></div>
+      <div class="card"><h3>Nombre tradicional</h3><p style="margin:0">Termina en <b>-oso</b> con el número menor y en <b>-ico</b> con el mayor. Si tiene uno solo, en <b>-ico</b>.</p></div>
+    </div>
+    <table class="t" style="margin-top:12px">
+      <tr><th>Fórmula</th><th>Nombre actual</th><th>Nombre tradicional</th><th>Dónde lo ves</th></tr>
+      <tr><td>Na<sub>2</sub>O</td><td>óxido de sodio</td><td>óxido sódico</td><td>En el vidrio</td></tr>
+      <tr><td>CaO</td><td>óxido de calcio</td><td>óxido cálcico</td><td>La cal viva</td></tr>
+      <tr><td>Al<sub>2</sub>O<sub>3</sub></td><td>óxido de aluminio</td><td>óxido alumínico</td><td>El rubí y la capa del aluminio</td></tr>
+      <tr><td>FeO</td><td>óxido de hierro(II)</td><td>óxido ferroso</td><td>Hierro con +2</td></tr>
+      <tr><td>Fe<sub>2</sub>O<sub>3</sub></td><td>óxido de hierro(III)</td><td>óxido férrico</td><td>El óxido rojo de las rejas</td></tr>
+      <tr><td>CuO</td><td>óxido de cobre(II)</td><td>óxido cúprico</td><td>Cobre con +2</td></tr>
+    </table>
+    <div class="clave step"><b>Raíces que cambian:</b> hierro da ferroso y férrico, cobre da cuproso y cúprico, plomo da plumboso y plúmbico, estaño da estannoso y estánnico.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Dos caminos">
+  <div class="inner">
+    <h2>3. Del nombre a la fórmula, y de vuelta</h2>
+    <p>Todo se resuelve con lo de la clase pasada: buscar los números de oxidación y comprobar que la suma dé cero.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Del nombre a la fórmula</h3>
+        <p><b>óxido de cobre(I)</b></p>
+        <p class="step" style="margin:0 0 6px">1. El romano dice Cu<sup>+</sup>. El óxido trae O<sup>2−</sup>.</p>
+        <p class="step" style="margin:0 0 6px">2. Se cruzan: Cu<sub>2</sub>O.</p>
+        <p class="step" style="margin:0">3. Suma: 2(+1) + (−2) = 0.</p>
+      </div>
+      <div class="card">
+        <h3>De la fórmula al nombre</h3>
+        <p><b>PbO<sub>2</sub></b></p>
+        <p class="step" style="margin:0 0 6px">1. Dos oxígenos dan 2(−2) = −4.</p>
+        <p class="step" style="margin:0 0 6px">2. El plomo debe compensar: +4.</p>
+        <p class="step" style="margin:0">3. Actual: óxido de plomo(IV). Tradicional: óxido plúmbico, porque +4 es su número mayor.</p>
+      </div>
+    </div>
+    <div class="clave step"><b>El romano no es la cantidad de átomos.</b> En óxido de hierro(III), el III es el número de oxidación del hierro. La fórmula tiene dos hierros: Fe<sub>2</sub>O<sub>3</sub>.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cómo se llama el SnO? O es −2, así que Sn es +2: óxido de estaño(II) u óxido estannoso.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Óxidos de no metal">
+  <div class="inner">
+    <h2>4. Óxidos de no metal</h2>
+    <p>Aquí el nombre actual cuenta átomos con prefijos: mono 1, di 2, tri 3, tetra 4, penta 5, hexa 6, hepta 7. El nombre tradicional usa la palabra «anhídrido», que significa «sin agua», con -oso para el número menor y -ico para el mayor.</p>
+    <table class="t" style="font-size:.84em">
+      <tr><th>Fórmula</th><th>Nombre actual</th><th>Nombre tradicional</th><th>Número del no metal</th></tr>
+      <tr><td>CO<sub>2</sub></td><td>dióxido de carbono</td><td>anhídrido carbónico</td><td>C +4</td></tr>
+      <tr><td>SO<sub>2</sub></td><td>dióxido de azufre</td><td>anhídrido sulfuroso</td><td>S +4</td></tr>
+      <tr><td>SO<sub>3</sub></td><td>trióxido de azufre</td><td>anhídrido sulfúrico</td><td>S +6</td></tr>
+      <tr><td>N<sub>2</sub>O<sub>3</sub></td><td>trióxido de dinitrógeno</td><td>anhídrido nitroso</td><td>N +3</td></tr>
+      <tr><td>N<sub>2</sub>O<sub>5</sub></td><td>pentaóxido de dinitrógeno</td><td>anhídrido nítrico</td><td>N +5</td></tr>
+      <tr><td>P<sub>2</sub>O<sub>5</sub></td><td>pentaóxido de difósforo</td><td>anhídrido fosfórico</td><td>P +5</td></tr>
+      <tr><td>As<sub>2</sub>O<sub>3</sub></td><td>trióxido de diarsénico</td><td>anhídrido arsenioso</td><td>As +3</td></tr>
+      <tr><td>Sb<sub>2</sub>O<sub>5</sub></td><td>pentaóxido de diantimonio</td><td>anhídrido antimónico</td><td>Sb +5</td></tr>
+    </table>
+    <div class="clave step"><b>Cloro, con cuatro números:</b> Cl<sub>2</sub>O anhídrido hipocloroso (+1), Cl<sub>2</sub>O<sub>3</sub> anhídrido cloroso (+3), Cl<sub>2</sub>O<sub>5</sub> anhídrido clórico (+5), Cl<sub>2</sub>O<sub>7</sub> anhídrido perclórico (+7).<br><b>Ojo:</b> P<sub>2</sub>O<sub>5</sub> es la fórmula escolar. La molécula real es el doble, P<sub>4</sub>O<sub>10</sub>.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Peróxidos">
+  <div class="inner">
+    <h2>5. Peróxidos: el oxígeno que va en pareja</h2>
+    <p>En los peróxidos dos oxígenos viajan unidos como un grupo, O<sub>2</sub><sup>2−</sup>. Cada oxígeno tiene −1, no −2. Ese par no se separa, así que el O<sub>2</sub> nunca se simplifica. El agua oxigenada de la farmacia es un peróxido.</p>
+    <svg class="dib" viewBox="0 0 760 112" role="img" aria-label="A la izquierda, en el óxido de sodio hay un solo oxígeno con menos 2. A la derecha, en el peróxido de sodio hay dos oxígenos unidos, cada uno con menos 1" style="max-width:640px;margin:0 auto">
+      <g fill="#C0C9CE"><circle cx="60" cy="42" r="20"/><circle cx="200" cy="42" r="20"/><circle cx="440" cy="42" r="20"/><circle cx="670" cy="42" r="20"/></g>
+      <g fill="#FF6B6B"><circle cx="130" cy="42" r="26"/><circle cx="520" cy="42" r="26"/><circle cx="590" cy="42" r="26"/></g>
+      <path d="M546 42h18" stroke="#F1F5F7" stroke-width="6"/>
+      <g fill="#0E1A1F" font-family="Nunito,sans-serif" font-size="17" font-weight="900" text-anchor="middle"><text x="60" y="48">Na</text><text x="200" y="48">Na</text><text x="440" y="48">Na</text><text x="670" y="48">Na</text><text x="130" y="48">−2</text><text x="520" y="48">−1</text><text x="590" y="48">−1</text></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="800" text-anchor="middle"><text x="130" y="96">Óxido: un oxígeno con −2</text><text x="555" y="96">Peróxido: dos oxígenos unidos, −1 cada uno</text></g>
+    </svg>
+    <table class="t">
+      <tr><th>Fórmula</th><th>Nombre actual</th><th>Nombre tradicional</th><th>Suma de cargas</th></tr>
+      <tr><td>H<sub>2</sub>O<sub>2</sub></td><td>peróxido de hidrógeno</td><td>agua oxigenada</td><td>2(+1) + 2(−1) = 0</td></tr>
+      <tr><td>Na<sub>2</sub>O<sub>2</sub></td><td>peróxido de sodio</td><td>peróxido sódico</td><td>2(+1) + 2(−1) = 0</td></tr>
+      <tr><td>CaO<sub>2</sub></td><td>peróxido de calcio</td><td>peróxido cálcico</td><td>+2 + 2(−1) = 0</td></tr>
+      <tr><td>BaO<sub>2</sub></td><td>peróxido de bario</td><td>peróxido bárico</td><td>+2 + 2(−1) = 0</td></tr>
+    </table>
+    <div class="clave step"><b>La trampa:</b> el MnO<sub>2</sub> y el PbO<sub>2</sub> no son peróxidos. El manganeso y el plomo pueden tener +4, así que cada oxígeno es −2: son óxidos. En cambio, en el CaO<sub>2</sub> el calcio solo puede ser +2, y por eso cada oxígeno es −1.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿por qué Na<sub>2</sub>O<sub>2</sub> no se simplifica a NaO? Porque el grupo O<sub>2</sub> no se rompe.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Hidróxidos">
+  <div class="inner">
+    <h2>6. Hidróxidos: un óxido de metal con agua</h2>
+    <p>La cal viva se echa al agua y sale cal apagada: CaO + H<sub>2</sub>O → Ca(OH)<sub>2</sub>. El nuevo compuesto trae el grupo OH<sup>−</sup>, que ya conocemos. Va un OH por cada carga del metal. Si hay más de uno, lleva paréntesis.</p>
+    <table class="t">
+      <tr><th>Fórmula</th><th>Nombre actual</th><th>Nombre tradicional</th><th>Dónde lo ves</th></tr>
+      <tr><td>NaOH</td><td>hidróxido de sodio</td><td>hidróxido sódico</td><td>La soda que destapa cañerías</td></tr>
+      <tr><td>Ca(OH)<sub>2</sub></td><td>hidróxido de calcio</td><td>hidróxido cálcico</td><td>La cal apagada</td></tr>
+      <tr><td>Mg(OH)<sub>2</sub></td><td>hidróxido de magnesio</td><td>hidróxido magnésico</td><td>La leche de magnesia</td></tr>
+      <tr><td>Al(OH)<sub>3</sub></td><td>hidróxido de aluminio</td><td>hidróxido alumínico</td><td>Antiácidos</td></tr>
+      <tr><td>Fe(OH)<sub>2</sub></td><td>hidróxido de hierro(II)</td><td>hidróxido ferroso</td><td>Hierro con +2</td></tr>
+      <tr><td>Fe(OH)<sub>3</sub></td><td>hidróxido de hierro(III)</td><td>hidróxido férrico</td><td>Hierro con +3</td></tr>
+    </table>
+    <div class="clave step"><b>El paréntesis importa.</b> Ca(OH)<sub>2</sub> tiene dos O y dos H. Escribir CaOH<sub>2</sub> está mal, porque el 2 solo alcanzaría al hidrógeno.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Hidruros">
+  <div class="inner">
+    <h2>7. Hidruros: el hidrógeno con otro elemento</h2>
+    <div class="grid2">
+      <div>
+        <p style="margin-bottom:6px">Con metales, el hidrógeno es H<sup>−</sup> y el metal va primero.</p>
+        <table class="t">
+          <tr><th>Fórmula</th><th>Actual</th><th>Tradicional</th></tr>
+          <tr><td>NaH</td><td>hidruro de sodio</td><td>hidruro sódico</td></tr>
+          <tr><td>CaH<sub>2</sub></td><td>hidruro de calcio</td><td>hidruro cálcico</td></tr>
+          <tr><td>AlH<sub>3</sub></td><td>hidruro de aluminio</td><td>hidruro alumínico</td></tr>
+        </table>
+      </div>
+      <div>
+        <p style="margin-bottom:6px">Con no metales de los grupos 13, 14 y 15, cada uno tiene nombre propio.</p>
+        <table class="t">
+          <tr><th>Fórmula</th><th>Actual</th><th>Tradicional</th></tr>
+          <tr><td>BH<sub>3</sub></td><td>borano</td><td>borano</td></tr>
+          <tr><td>CH<sub>4</sub></td><td>metano</td><td>metano</td></tr>
+          <tr><td>SiH<sub>4</sub></td><td>silano</td><td>silano</td></tr>
+          <tr><td>NH<sub>3</sub></td><td>amoníaco</td><td>amoníaco</td></tr>
+          <tr><td>PH<sub>3</sub></td><td>fosfano</td><td>fosfina</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="clave step"><b>El signo del hidrógeno:</b> es −1 en BH<sub>3</sub> y SiH<sub>4</sub>, porque el boro y el silicio son menos electronegativos que él. Es +1 en CH<sub>4</sub> y NH<sub>3</sub>.</div>
+    <div class="clave step"><b>Mismo metal, cuatro familias:</b> CaO es óxido, CaO<sub>2</sub> es peróxido, Ca(OH)<sub>2</sub> es hidróxido y CaH<sub>2</sub> es hidruro. Mira qué acompaña al metal.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:14,
+  titulo:'Óxidos, peróxidos, hidróxidos e hidruros',
+  subtitulo:'fórmula y nombre',
+  lead:'Las primeras familias de compuestos: cómo se escriben y cómo se llaman, con su nombre actual y el tradicional.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos contar y armar fórmulas',
+    antesT:'La clase pasada',
+    antes:'Vimos el número de oxidación, la suma que da cero y el cruce de números para armar una fórmula.',
+    hoy:'Usaremos esos números para escribir y nombrar cuatro familias de compuestos.'
+  },
+  sigue:{
+    titulo:'Ya les pusimos nombre a las primeras familias',
+    hoy:'Óxidos, peróxidos, hidróxidos e hidruros: mira qué acompaña al elemento, calcula su número de oxidación y di sus dos nombres.',
+    proxima:'Los óxidos de no metal con agua dan oxoácidos. Veremos hidrácidos, oxoácidos y sales, y el mapa quedará completo con lo que usas en casa.'
+  },
+  juego:{titulo:'Bingo de los óxidos',texto:'Abran este enlace en el celular. Cada uno recibe un cartón de 9 fórmulas. El profesor canta los nombres y ustedes marcan la fórmula. Tres en línea es bingo.',cantar:true},
+  pdf:'tarea/tarea-14.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

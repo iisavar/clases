@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Número de oxidación</title>
+<meta name="description" content="Valencia y número de oxidación: cómo calcularlo, cómo armar fórmulas y qué significa oxidarse, con duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Valencia y número de oxidación">
+  <div class="inner">
+    <h2>1. Dos números para contar electrones</h2>
+    <p>Para escribir y nombrar compuestos necesitamos saber cuántos electrones pone en juego cada átomo. Hay dos ideas parecidas que conviene separar desde hoy.</p>
+    <div class="grid2">
+      <div class="card"><h3>Valencia</h3><p style="margin:0">Cuántos enlaces forma un átomo, o cuántos electrones pone en juego. Es un número sin signo. En el H<sub>2</sub>O, el oxígeno tiene valencia 2.</p></div>
+      <div class="card"><h3>Número de oxidación</h3><p style="margin:0">La carga que tendría el átomo si los electrones de cada enlace se fueran al más electronegativo. Lleva signo. En el H<sub>2</sub>O, el oxígeno tiene −2.</p></div>
+    </div>
+    <svg class="dib" viewBox="0 0 760 170" role="img" aria-label="Molécula de agua. Los electrones de cada enlace se cuentan para el oxígeno, que queda con menos 2. Cada hidrógeno queda con más 1" style="max-width:640px;margin:10px auto 0">
+      <g stroke="#A9BCC4" stroke-width="5"><path d="M380 62l-112 50M380 62l112 50"/></g>
+      <circle cx="380" cy="58" r="36" fill="#FF6B6B"/><circle cx="256" cy="118" r="24" fill="#4FB3E8"/><circle cx="504" cy="118" r="24" fill="#4FB3E8"/>
+      <g fill="#FFC800"><circle cx="318" cy="84" r="7"/><circle cx="332" cy="77" r="7"/><circle cx="442" cy="84" r="7"/><circle cx="428" cy="77" r="7"/></g>
+      <g fill="#0E1A1F" font-family="Nunito,sans-serif" font-size="22" font-weight="900" text-anchor="middle"><text x="380" y="66">O</text><text x="256" y="126">H</text><text x="504" y="126">H</text></g>
+      <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="24" font-weight="900" text-anchor="middle"><text x="450" y="42">−2</text><text x="192" y="126">+1</text><text x="568" y="126">+1</text></g>
+      <text x="380" y="162" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="800" text-anchor="middle">El par de electrones de cada enlace se cuenta para el oxígeno</text>
+    </svg>
+    <div class="clave step"><b>La prueba de que son distintos:</b> en el CH<sub>4</sub> y en el CO<sub>2</sub> el carbono tiene valencia 4 en los dos. Pero su número de oxidación es −4 en el CH<sub>4</sub> y +4 en el CO<sub>2</sub>.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Las reglas">
+  <div class="inner">
+    <h2>2. Siete reglas para hallar el número de oxidación</h2>
+    <table class="t">
+      <tr><th>Caso</th><th>Número de oxidación</th><th>Ejemplo</th></tr>
+      <tr><td>Elemento solo</td><td>0</td><td>Fe, Na, O<sub>2</sub>, Cl<sub>2</sub></td></tr>
+      <tr><td>Ion de un átomo</td><td>Su carga</td><td>Na<sup>+</sup> es +1, Cl<sup>−</sup> es −1</td></tr>
+      <tr><td>Grupos 1 y 2, aluminio</td><td>+1, +2 y +3</td><td>K, Ca, Al en compuestos</td></tr>
+      <tr><td>Flúor</td><td>Siempre −1</td><td>NaF</td></tr>
+      <tr><td>Oxígeno</td><td>−2, y −1 en peróxidos</td><td>CaO, H<sub>2</sub>O<sub>2</sub></td></tr>
+      <tr><td>Hidrógeno</td><td>+1, y −1 si va con un átomo menos electronegativo</td><td>H<sub>2</sub>O, HCl. −1 en NaH, CaH<sub>2</sub>, BH<sub>3</sub>, SiH<sub>4</sub></td></tr>
+      <tr><td>La suma total</td><td>0 si es neutro, la carga si es un ion</td><td>H<sub>2</sub>O: 2(+1) + (−2) = 0</td></tr>
+    </table>
+    <div class="clave step"><b>Por qué el boro y el silicio son la excepción:</b> B tiene electronegatividad 2,04 y Si 1,90, menos que el H con 2,20. En BH<sub>3</sub> y SiH<sub>4</sub>, el hidrógeno se queda con los electrones. El carbono tiene 2,55, y por eso en el CH<sub>4</sub> el H es +1.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Calcular en un compuesto">
+  <div class="inner">
+    <h2>3. Calcular en un compuesto: la suma debe dar cero</h2>
+    <p>Lo que no sabes lo llamas x. Multiplica cada número de oxidación por los átomos que hay y despeja. Veamos el azufre en el H<sub>2</sub>SO<sub>4</sub>, el ácido de las baterías de carro.</p>
+    <div class="pasos">
+      <div class="step"><span class="n">1</span><b>Lo conocido</b>H es +1 y O es −2.</div>
+      <div class="step"><span class="n">2</span><b>La suma</b>2(+1) + x + 4(−2) = 0</div>
+      <div class="step"><span class="n">3</span><b>Opera</b>+2 + x − 8 = 0</div>
+      <div class="step"><span class="n">4</span><b>Despeja</b>x = +6</div>
+    </div>
+    <div class="ejemplo step">Ahora el manganeso en KMnO<sub>4</sub>, el polvo morado de la farmacia: +1 + x + 4(−2) = 0, entonces x = <span class="f">+7</span>.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuál es el número de oxidación del nitrógeno en el HNO<sub>3</sub>? +1 + x + 3(−2) = 0, entonces x = +5.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Calcular en un ion">
+  <div class="inner">
+    <h2>4. Si el grupo tiene carga, la suma da esa carga</h2>
+    <p>Algunos grupos de átomos viajan juntos con carga propia. Se llaman iones poliatómicos, y los veremos mucho en las próximas clases. Aquí la suma no da cero: da la carga del ion.</p>
+    <table class="t">
+      <tr><th>Ion</th><th>La suma</th><th>Resultado</th></tr>
+      <tr><td>SO<sub>4</sub><sup>2−</sup></td><td>x + 4(−2) = −2</td><td>S es +6</td></tr>
+      <tr><td>NO<sub>3</sub><sup>−</sup></td><td>x + 3(−2) = −1</td><td>N es +5</td></tr>
+      <tr><td>PO<sub>4</sub><sup>3−</sup></td><td>x + 4(−2) = −3</td><td>P es +5</td></tr>
+      <tr><td>CO<sub>3</sub><sup>2−</sup></td><td>x + 3(−2) = −2</td><td>C es +4</td></tr>
+      <tr><td>NH<sub>4</sub><sup>+</sup></td><td>x + 4(+1) = +1</td><td>N es −3</td></tr>
+      <tr><td>OH<sup>−</sup></td><td>−2 + (+1) = −1</td><td>Comprobado: O es −2 y H es +1</td></tr>
+    </table>
+    <div class="clave step"><b>Ojo:</b> la carga va afuera del ion y se escribe arriba. En SO<sub>4</sub><sup>2−</sup>, el 2− es de todo el grupo, no del oxígeno.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Un elemento, varios números">
+  <div class="inner">
+    <h2>5. Un mismo elemento puede tener varios números</h2>
+    <p>Los metales de los grupos 1 y 2 tienen uno solo. Otros cambian según con quién estén. Mira qué hace el azufre en cuatro sustancias.</p>
+    <svg class="dib" viewBox="0 0 760 150" role="img" aria-label="Recta numérica de menos 2 a más 6 con el azufre: H2S en menos 2, S solo en 0, SO2 en más 4 y SO3 en más 6" style="max-width:700px;margin:0 auto">
+      <path d="M60 80h640" stroke="#A9BCC4" stroke-width="4"/>
+      <g stroke="#A9BCC4" stroke-width="3"><path d="M100 72v16M170 72v16M240 72v16M310 72v16M380 72v16M450 72v16M520 72v16M590 72v16M660 72v16"/></g>
+      <g fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="17" font-weight="800" text-anchor="middle"><text x="100" y="112">−2</text><text x="170" y="112">−1</text><text x="240" y="112">0</text><text x="310" y="112">+1</text><text x="380" y="112">+2</text><text x="450" y="112">+3</text><text x="520" y="112">+4</text><text x="590" y="112">+5</text><text x="660" y="112">+6</text></g>
+      <g fill="#FFC800"><circle cx="100" cy="80" r="9"/><circle cx="240" cy="80" r="9"/><circle cx="520" cy="80" r="9"/><circle cx="660" cy="80" r="9"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="20" font-weight="900" text-anchor="middle"><text x="100" y="52">H<tspan class="s" dy="5" font-size="14">2</tspan><tspan dy="-5">S</tspan></text><text x="240" y="52">S solo</text><text x="520" y="52">SO<tspan class="s" dy="5" font-size="14">2</tspan></text><text x="660" y="52">SO<tspan class="s" dy="5" font-size="14">3</tspan></text></g>
+    </svg>
+    <table class="t">
+      <tr><th>Elemento</th><th>Números más usados</th><th>Elemento</th><th>Números más usados</th></tr>
+      <tr><td>Fe</td><td>+2, +3</td><td>Cl, Br, I</td><td>−1, +1, +3, +5, +7</td></tr>
+      <tr><td>Cu</td><td>+1, +2</td><td>S</td><td>−2, +4, +6</td></tr>
+      <tr><td>Sn, Pb</td><td>+2, +4</td><td>N, P</td><td>−3, +3, +5</td></tr>
+      <tr><td>Zn</td><td>+2</td><td>As, Sb</td><td>+3, +5</td></tr>
+      <tr><td>Ag</td><td>+1</td><td>C</td><td>−4, +2, +4</td></tr>
+    </table>
+  </div>
+</section>
+
+<section data-titulo="6. Armar una fórmula">
+  <div class="inner">
+    <h2>6. Con los números se arma la fórmula</h2>
+    <p>Un compuesto debe sumar cero. Ya usamos este truco con los iones: el número de cada uno baja, sin signo, como subíndice del otro. Luego se simplifica si se puede.</p>
+    <svg class="dib" viewBox="0 0 760 170" role="img" aria-label="El aluminio con más 3 y el oxígeno con menos 2. El 3 baja como subíndice del oxígeno y el 2 como subíndice del aluminio, y queda Al2O3" style="max-width:640px;margin:0 auto">
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900" font-size="42" text-anchor="middle"><text x="130" y="78">Al</text><text x="290" y="78">O</text></g>
+      <g fill="#FFC800" font-family="Nunito,sans-serif" font-weight="900" font-size="24" text-anchor="middle"><text x="172" y="50">+3</text><text x="330" y="50">−2</text></g>
+      <g fill="none" stroke="#FFC800" stroke-width="4"><path d="M176 60C200 90 280 110 316 128"/><path d="M326 60C300 90 180 110 150 128"/></g>
+      <g fill="#FFC800"><path d="M322 134l-18-3 9-13z"/><path d="M142 134l18-1-9-13z"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900" font-size="22" text-anchor="middle"><text x="130" y="154">2</text><text x="330" y="154">3</text></g>
+      <path d="M390 84h70" stroke="#3BC97A" stroke-width="5"/><path d="M474 84l-18-9v18z" fill="#3BC97A"/>
+      <text x="610" y="98" fill="#3BC97A" font-family="Nunito,sans-serif" font-weight="900" font-size="48" text-anchor="middle">Al<tspan class="s" dy="10" font-size="28">2</tspan><tspan dy="-10">O</tspan><tspan class="s" dy="10" font-size="28">3</tspan></text>
+    </svg>
+    <div class="grid2 step">
+      <div class="card"><h3>Comprueba siempre</h3><p style="margin:0">Al<sub>2</sub>O<sub>3</sub>: 2(+3) + 3(−2) = +6 − 6 = 0.</p></div>
+      <div class="card"><h3>Simplifica</h3><p style="margin:0">Ca<sup>2+</sup> con O<sup>2−</sup> daría Ca<sub>2</sub>O<sub>2</sub>. Dividiendo para 2 queda CaO.</p></div>
+    </div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿qué fórmula sale de Fe<sup>3+</sup> con Cl<sup>−</sup>? El 3 baja al cloro y el 1 al hierro: FeCl<sub>3</sub>.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Oxidarse es perder electrones">
+  <div class="inner">
+    <h2>7. Por eso se llama número de oxidación</h2>
+    <p>Recuerda el clavo de hierro de la primera clase. El hierro solo tiene 0. En el óxido Fe<sub>2</sub>O<sub>3</sub> tiene +3. Cada átomo perdió 3 electrones.</p>
+    <div class="grid2">
+      <div class="card"><h3>Oxidarse</h3><p style="margin:0">Perder electrones. El número de oxidación <b>sube</b>. El hierro va de 0 a +3.</p></div>
+      <div class="card"><h3>Reducirse</h3><p style="margin:0">Ganar electrones. El número de oxidación <b>baja</b>. El oxígeno del aire va de 0 a −2.</p></div>
+    </div>
+    <div class="clave step"><b>Siempre van juntas.</b> Si un átomo pierde electrones, otro los tiene que recibir. No hace falta que haya oxígeno: el sodio que le da un electrón al cloro también se oxida.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> una batería pasa el plomo de 0 a +2. ¿Se oxida o se reduce? Se oxida, porque el número sube.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:13,
+  titulo:'Valencia y número de oxidación',
+  subtitulo:'la llave de los nombres',
+  lead:'Cómo contar los electrones de cada átomo en un compuesto y cómo usar ese número para armar fórmulas.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos cómo se reparten los electrones',
+    antesT:'La clase pasada',
+    antes:'Vimos que en un enlace el átomo más electronegativo jala los electrones hacia su lado.',
+    hoy:'Vamos a llevar esa cuenta con un número, para cada átomo de cualquier compuesto.'
+  },
+  sigue:{
+    titulo:'Ya sabemos contar y armar fórmulas',
+    hoy:'El número de oxidación se calcula con una suma que da cero en un compuesto, o la carga en un ion. Cruzando esos números se arma la fórmula.',
+    proxima:'Empezamos a ponerles nombre a los compuestos: óxidos, peróxidos, hidróxidos e hidruros. Cada uno con su nombre actual y el tradicional.'
+  },
+  juego:{titulo:'Carrera de los números',texto:'Abran este enlace en el celular. Cada acierto avanza tu carro. Calcula el número de oxidación antes de que el rival llegue a la meta.'},
+  pdf:'tarea/tarea-13.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

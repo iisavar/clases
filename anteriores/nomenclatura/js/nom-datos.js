@@ -1,5 +1,4 @@
-/* Datos de nomenclatura inorgánica — Test 1 UNEMI (Unidad 1: compuestos binarios I)
-   Basado en sílabo de la M.Sc. Mónica Villamar (Química, Admisión UNEMI). */
+/* Datos de nomenclatura inorgánica (compuestos binarios). */
 (function () {
   'use strict';
 

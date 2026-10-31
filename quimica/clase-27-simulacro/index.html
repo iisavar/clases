@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulacro final</title>
+<meta name="description" content="Simulacro final de química: 40 preguntas de todo el curso en 60 minutos, con nota y corrección al final.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652; --deep:#0E171B;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-d:#1F8A4F; --green-t:#3BC97A;
+  --gold:#FFC800; --red:#FF6B6B; --ink:#0E1A1F;
+  --f-body:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--f-body);font-size:18px;line-height:1.5}
+button,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+sub{font-size:.7em;line-height:0}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+h1{font-weight:900;font-size:clamp(30px,5vw,48px);line-height:1.08;margin:0 0 10px}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:1.3em;margin:0 0 12px}
+.lead{color:var(--muted);margin:0 0 18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin:0 0 16px}
+.reglas{margin:0;padding-left:20px}
+.reglas li{margin:4px 0}
+label{display:block;font-weight:800;margin:0 0 8px}
+.campo{width:100%;background:var(--deep);color:var(--text);border:2px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:700}
+.btn{display:inline-block;font-weight:900;border:0;border-radius:16px;padding:12px 22px;background:var(--green);color:var(--ink);box-shadow:0 4px 0 var(--green-d)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sec{background:var(--panel2);color:var(--text);box-shadow:none;border:1px solid var(--line)}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.ayuda{color:var(--muted);font-size:.85em;margin:8px 0 0}
+.oculto{display:none !important}
+
+/* Barra del examen */
+.barra{position:sticky;top:0;z-index:10;background:var(--deep);border-bottom:1px solid var(--line)}
+.barra .in{max-width:860px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.reloj{font-weight:900;font-size:1.35em;font-variant-numeric:tabular-nums;color:var(--gold);min-width:78px}
+.reloj.poco{color:var(--red)}
+.estado{color:var(--muted);font-weight:800;font-size:.85em;flex:1;min-width:0}
+.estado b{color:var(--text)}
+.estado span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.barra .btn{padding:8px 16px;font-size:.9em}
+
+/* Pregunta */
+.num{color:var(--gold);font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:.75em}
+.enun{font-size:1.2em;font-weight:800;margin:6px 0 16px;line-height:1.35}
+.ops{display:grid;gap:10px}
+.op{display:flex;align-items:center;gap:12px;width:100%;background:var(--panel2);color:var(--text);border:2px solid var(--line);border-radius:16px;padding:10px 14px;text-align:left;min-height:58px;font-weight:700}
+.op .l{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font-weight:900;font-size:.85em}
+.op.marcada{border-color:var(--gold)}
+.op.marcada .l{background:var(--gold);color:var(--ink)}
+.pasos{display:flex;justify-content:space-between;gap:10px;margin:16px 0}
+.mapa{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.mapa button{aspect-ratio:1;border-radius:10px;border:2px solid var(--line);background:var(--panel);color:var(--muted);font-weight:900;font-size:.85em;padding:0}
+.mapa button.resp{background:var(--panel2);color:var(--text);border-color:var(--green-d)}
+.mapa button.act{border-color:var(--gold);color:var(--gold)}
+@media (max-width:520px){.mapa{grid-template-columns:repeat(5,1fr)}}
+
+/* Resultado */
+.notas{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.nota{background:var(--deep);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.nota b{display:block;font-size:2.4em;font-weight:900;line-height:1.1;color:var(--gold);font-variant-numeric:tabular-nums}
+.nota span{color:var(--muted);font-weight:800;font-size:.85em}
+.porclase{display:grid;gap:6px;margin:6px 0 0;padding:0;list-style:none}
+.porclase li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:4px 0;font-size:.92em}
+.porclase b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.corr{border-left:6px solid var(--line)}
+.corr.bien{border-left-color:var(--green)}
+.corr.mal{border-left-color:var(--red)}
+.corr .q{font-weight:800;margin:4px 0 10px}
+.corr .r{margin:4px 0;font-size:.95em}
+.corr .r b{font-weight:900}
+.corr.bien .tu b{color:var(--green-t)}
+.corr.mal .tu b{color:var(--red)}
+.corr .ok b{color:var(--green-t)}
+.corr .x{color:var(--muted);font-size:.92em;margin:8px 0 0}
+.sello{font-weight:900;font-size:.75em;border-radius:99px;padding:2px 10px;float:right}
+.bien .sello{background:#173A2A;color:var(--green-t)}
+.mal .sello{background:#3A1F22;color:var(--red)}
+</style>
+</head>
+<body>
+
+<!-- Inicio -->
+<section id="vInicio" class="wrap">
+  <h1>Simulacro <span>final</span></h1>
+  <p class="lead">Todo el curso de química en una sola prueba, con opción múltiple y tiempo limitado.</p>
+  <div class="card">
+    <h2>Cómo funciona</h2>
+    <ul class="reglas">
+      <li>40 preguntas al azar, 4 de cada uno de los 10 bloques del curso.</li>
+      <li>Tienes 60 minutos. El reloj está siempre arriba.</li>
+      <li>Puedes cambiar tus respuestas y saltar entre preguntas.</li>
+      <li>No sabrás si acertaste hasta terminar. Al final verás tu nota y la corrección de cada pregunta.</li>
+      <li>Cada intento trae preguntas distintas y las opciones en otro orden.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <label for="nombre">Tu nombre</label>
+    <input class="campo" id="nombre" type="text" maxlength="60" autocomplete="name" placeholder="Nombre y apellido">
+    <p class="ayuda">Solo se muestra en tu resultado. No se envía a ningún lado.</p>
+    <div class="acciones">
+      <button class="btn" id="bEmpezar" type="button" disabled>Empezar</button>
+      <button class="btn sec oculto" id="bSeguir" type="button">Continuar el intento sin terminar</button>
+    </div>
+  </div>
+</section>
+
+<!-- Examen -->
+<div id="vExamen" class="oculto">
+  <div class="barra"><div class="in">
+    <div class="reloj" id="reloj" aria-live="off">60:00</div>
+    <div class="estado" id="estado"></div>
+    <button class="btn" id="bTerminar" type="button">Terminar</button>
+  </div></div>
+  <main class="wrap">
+    <div class="card">
+      <div class="num" id="qNum"></div>
+      <div class="enun" id="qEnun"></div>
+      <div class="ops" id="qOps"></div>
+    </div>
+    <div class="pasos">
+      <button class="btn sec" id="bAnt" type="button">Anterior</button>
+      <button class="btn" id="bSig" type="button">Siguiente</button>
+    </div>
+    <div class="card">
+      <h2 style="font-size:1em">Ir a la pregunta</h2>
+      <div class="mapa" id="mapa"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Resultado -->
+<section id="vResultado" class="wrap oculto">
+  <h1>Tu <span>resultado</span></h1>
+  <div class="card">
+    <div id="rNombre" style="font-weight:900;font-size:1.2em"></div>
+    <div class="ayuda" id="rDetalle" style="margin:2px 0 0"></div>
+    <div class="notas">
+      <div class="nota"><b id="r20"></b><span>aciertos de 40</span></div>
+      <div class="nota"><b id="r10"></b><span>sobre 10</span></div>
+    </div>
+    <h2 style="font-size:1em;margin:14px 0 4px">Aciertos por bloque</h2>
+    <ul class="porclase" id="rClases"></ul>
+    <div class="acciones"><button class="btn" id="bOtro" type="button">Empezar otro intento</button></div>
+  </div>
+  <h2>Corrección</h2>
+  <div id="rLista"></div>
+  <div class="acciones"><button class="btn" id="bOtro2" type="button">Empezar otro intento</button></div>
+</section>
+
+<script src="preguntas.js"></script>
+<script>
+const MINUTOS = 60, POR_CLASE = 4;
+const CLASES = {1:"Ciencia y medición", 2:"La materia", 3:"El átomo", 4:"Tabla periódica", 5:"Enlaces",
+  6:"Nomenclatura inorgánica", 7:"Reacciones y cálculos", 8:"Soluciones, gases y pH",
+  9:"Hidrocarburos y alcoholes", 10:"Orgánica y vida diaria"};
+const CLAVE = "simulacro-final-quimica-intento";
+const $ = id => document.getElementById(id);
+const PORID = Object.fromEntries(PREGUNTAS.map(p => [p.id, p]));
+let intento = null, actual = 0, tic = null;
+
+function guardar(){ try { localStorage.setItem(CLAVE, JSON.stringify(intento)); } catch (e) {} }
+function leer(){ try { return JSON.parse(localStorage.getItem(CLAVE) || "null"); } catch (e) { return null; } }
+function borrar(){ try { localStorage.removeItem(CLAVE); } catch (e) {} }
+
+function barajar(a){
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
+function ver(id){
+  ["vInicio","vExamen","vResultado"].forEach(v => $(v).classList.toggle("oculto", v !== id));
+  window.scrollTo(0, 0);
+}
+
+// Inicio
+const campo = $("nombre");
+campo.addEventListener("input", () => { $("bEmpezar").disabled = campo.value.trim().length < 2; });
+campo.addEventListener("keydown", e => { if (e.key === "Enter" && !$("bEmpezar").disabled) empezar(); });
+$("bEmpezar").addEventListener("click", empezar);
+$("bSeguir").addEventListener("click", () => { intento = leer(); if (intento) abrirExamen(); });
+
+function empezar(){
+  const ids = [];
+  for (let c = 1; c <= 10; c++) {
+    ids.push(...barajar(PREGUNTAS.filter(p => p.c === c).map(p => p.id)).slice(0, POR_CLASE));
+  }
+  barajar(ids);
+  intento = {
+    nombre: campo.value.trim().slice(0, 60),
+    ids,
+    orden: ids.map(() => barajar([0, 1, 2, 3])),
+    resp: ids.map(() => null),
+    inicio: Date.now(),
+    limite: Date.now() + MINUTOS * 60000
+  };
+  guardar();
+  actual = 0;
+  abrirExamen();
+}
+
+// Examen
+function abrirExamen(){
+  ver("vExamen");
+  const mapa = $("mapa");
+  mapa.innerHTML = "";
+  intento.ids.forEach((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = i + 1;
+    b.setAttribute("aria-label", "Pregunta " + (i + 1));
+    b.addEventListener("click", () => { actual = i; pintar(); });
+    mapa.appendChild(b);
+  });
+  pintar();
+  clearInterval(tic);
+  tic = setInterval(reloj, 500);
+  reloj();
+}
+
+function pintar(){
+  const p = PORID[intento.ids[actual]];
+  const total = intento.ids.length;
+  $("qNum").textContent = `Pregunta ${actual + 1} de ${total}`;
+  $("qEnun").innerHTML = p.e;
+  const ops = $("qOps");
+  ops.innerHTML = "";
+  intento.orden[actual].forEach((orig, pos) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "op" + (intento.resp[actual] === orig ? " marcada" : "");
+    b.setAttribute("aria-pressed", intento.resp[actual] === orig ? "true" : "false");
+    b.innerHTML = `<span class="l">${"ABCD"[pos]}</span><span>${p.o[orig]}</span>`;
+    b.addEventListener("click", () => {
+      intento.resp[actual] = intento.resp[actual] === orig ? null : orig;
+      guardar(); pintar();
+    });
+    ops.appendChild(b);
+  });
+  $("bAnt").disabled = actual === 0;
+  $("bSig").textContent = actual === total - 1 ? "Revisar y terminar" : "Siguiente";
+  [...$("mapa").children].forEach((b, i) => {
+    b.classList.toggle("resp", intento.resp[i] !== null);
+    b.classList.toggle("act", i === actual);
+  });
+  const n = intento.resp.filter(r => r !== null).length;
+  $("estado").innerHTML = `<span></span>Respondidas <b>${n}</b> de ${total}`;
+  $("estado").firstChild.textContent = intento.nombre;
+}
+
+$("bAnt").addEventListener("click", () => { if (actual > 0) { actual--; pintar(); } });
+$("bSig").addEventListener("click", () => {
+  if (actual < intento.ids.length - 1) { actual++; pintar(); window.scrollTo(0, 0); }
+  else pedirTerminar();
+});
+$("bTerminar").addEventListener("click", pedirTerminar);
+
+function pedirTerminar(){
+  const faltan = intento.resp.filter(r => r === null).length;
+  const msg = faltan ? (faltan === 1 ? "Te falta 1 pregunta por responder." : `Te faltan ${faltan} preguntas por responder.`) + " ¿Quieres terminar de todos modos?" : "¿Quieres terminar y ver tu nota?";
+  if (confirm(msg)) terminar(false);
+}
+
+function reloj(){
+  const resta = Math.max(0, intento.limite - Date.now());
+  const s = Math.ceil(resta / 1000);
+  const r = $("reloj");
+  r.textContent = `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+  r.classList.toggle("poco", s <= 300);
+  if (resta <= 0) terminar(true);
+}
+
+// Resultado
+function terminar(porTiempo){
+  clearInterval(tic);
+  const fin = Math.min(Date.now(), intento.limite);
+  const total = intento.ids.length;
+  let buenas = 0;
+  const clases = {};
+  const lista = $("rLista");
+  lista.innerHTML = "";
+  intento.ids.forEach((id, i) => {
+    const p = PORID[id];
+    const r = intento.resp[i];
+    const bien = r === p.k;
+    if (bien) buenas++;
+    clases[p.c] = clases[p.c] || [0, 0];
+    clases[p.c][1]++;
+    if (bien) clases[p.c][0]++;
+    const d = document.createElement("div");
+    d.className = "card corr " + (bien ? "bien" : "mal");
+    d.innerHTML =
+      `<span class="sello">${bien ? "Correcta" : (r === null ? "Sin responder" : "Incorrecta")}</span>` +
+      `<div class="num">Pregunta ${i + 1}, ${CLASES[p.c]}</div>` +
+      `<div class="q">${p.e}</div>` +
+      `<div class="r tu">Tu respuesta: <b>${r === null ? "sin responder" : p.o[r]}</b></div>` +
+      (bien ? "" : `<div class="r ok">Respuesta correcta: <b>${p.o[p.k]}</b></div>`) +
+      `<div class="x">${p.x}</div>`;
+    lista.appendChild(d);
+  });
+  $("rNombre").textContent = intento.nombre;
+  const min = Math.max(1, Math.round((fin - intento.inicio) / 60000));
+  const fecha = new Date(intento.inicio).toLocaleDateString("es-EC", {day:"numeric", month:"long", year:"numeric"});
+  $("rDetalle").textContent = (porTiempo ? "Se acabó el tiempo. " : "") + `${fecha}, ${min} min de 60`;
+  $("r20").textContent = `${buenas}`;
+  $("r10").textContent = (buenas / total * 10).toFixed(1).replace(".", ",");
+  $("rClases").innerHTML = Object.keys(CLASES).map(c =>
+    `<li><span>${CLASES[c]}</span><b>${(clases[c] || [0, 0])[0]} de ${(clases[c] || [0, 0])[1]}</b></li>`).join("");
+  borrar();
+  intento = null;
+  ver("vResultado");
+}
+
+function otro(){
+  $("bSeguir").classList.add("oculto");
+  $("bEmpezar").disabled = campo.value.trim().length < 2;
+  ver("vInicio");
+  campo.focus();
+}
+$("bOtro").addEventListener("click", otro);
+$("bOtro2").addEventListener("click", otro);
+
+// Intento sin terminar guardado en este dispositivo
+(function(){
+  const g = leer();
+  if (!g || !Array.isArray(g.ids) || !g.ids.every(id => PORID[id])) { borrar(); return; }
+  campo.value = g.nombre || "";
+  $("bEmpezar").disabled = campo.value.trim().length < 2;
+  if (Date.now() >= g.limite) { intento = g; terminar(true); return; }
+  $("bSeguir").classList.remove("oculto");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El mol</title>
+<meta name="description" content="Cómo contar átomos por paquetes: el mol, el número de Avogadro y la masa molar, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Contar por paquetes">
+  <div class="inner">
+    <h2>1. ¿Cómo se cuentan los átomos?</h2>
+    <p>En la clase pasada escribimos 2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O. Esos coeficientes cuentan moléculas. Pero una sola gota de agua tiene más de mil trillones de moléculas, y nadie puede contarlas de una en una.</p>
+    <p>En el mercado resolvemos esto con paquetes. Los huevos se compran por cubeta y los panes por docena. La química hace lo mismo, con un paquete muchísimo más grande.</p>
+    <svg class="dib" viewBox="0 0 900 170" role="img" aria-label="Tres paquetes: una docena son 12 huevos, una cubeta son 30 huevos y un mol son 6,02 por 10 a la 23 partículas" style="max-width:980px;margin:0 auto">
+      <g fill="#F1F5F7" stroke="#A9BCC4" stroke-width="1.5">
+        <ellipse cx="60" cy="42" rx="13" ry="16"/><ellipse cx="92" cy="42" rx="13" ry="16"/><ellipse cx="124" cy="42" rx="13" ry="16"/><ellipse cx="156" cy="42" rx="13" ry="16"/><ellipse cx="188" cy="42" rx="13" ry="16"/><ellipse cx="220" cy="42" rx="13" ry="16"/>
+        <ellipse cx="60" cy="82" rx="13" ry="16"/><ellipse cx="92" cy="82" rx="13" ry="16"/><ellipse cx="124" cy="82" rx="13" ry="16"/><ellipse cx="156" cy="82" rx="13" ry="16"/><ellipse cx="188" cy="82" rx="13" ry="16"/><ellipse cx="220" cy="82" rx="13" ry="16"/>
+      </g>
+      <g id="cub" fill="#F1F5F7" stroke="#A9BCC4" stroke-width="1">
+        <g id="f1"><ellipse cx="345" cy="24" rx="8" ry="9"/><ellipse cx="365" cy="24" rx="8" ry="9"/><ellipse cx="385" cy="24" rx="8" ry="9"/><ellipse cx="405" cy="24" rx="8" ry="9"/><ellipse cx="425" cy="24" rx="8" ry="9"/><ellipse cx="445" cy="24" rx="8" ry="9"/></g>
+        <use href="#f1" y="22"/><use href="#f1" y="44"/><use href="#f1" y="66"/><use href="#f1" y="88"/>
+      </g>
+      <rect x="560" y="14" width="300" height="104" rx="14" fill="#22363F" stroke="#FFC800" stroke-width="2"/>
+      <g fill="#4FB3E8"><circle cx="585" cy="34" r="3"/><circle cx="610" cy="56" r="3"/><circle cx="592" cy="88" r="3"/><circle cx="640" cy="32" r="3"/><circle cx="660" cy="74" r="3"/><circle cx="632" cy="100" r="3"/><circle cx="690" cy="44" r="3"/><circle cx="712" cy="92" r="3"/><circle cx="742" cy="30" r="3"/><circle cx="752" cy="66" r="3"/><circle cx="782" cy="100" r="3"/><circle cx="800" cy="42" r="3"/><circle cx="836" cy="70" r="3"/><circle cx="828" cy="30" r="3"/><circle cx="838" cy="102" r="3"/><circle cx="700" cy="70" r="3"/><circle cx="620" cy="80" r="3"/><circle cx="770" cy="60" r="3"/></g>
+      <g font-family="Nunito,sans-serif" text-anchor="middle" font-weight="800" fill="#F1F5F7" font-size="20">
+        <text x="140" y="152">1 docena = 12</text>
+        <text x="395" y="152">1 cubeta = 30</text>
+        <text x="710" y="152" fill="#FFC800">1 mol = 6,02×10<tspan dy="-8" font-size="14">23</tspan></text>
+      </g>
+    </svg>
+    <div class="clave step"><b>El mol</b> es el paquete de la química: 1 mol son 6,02×10<sup>23</sup> partículas. Pueden ser átomos, moléculas o iones.</div>
+  </div>
+</section>
+
+<section data-titulo="2. El número de Avogadro">
+  <div class="inner">
+    <h2>2. El número de Avogadro</h2>
+    <p>El número 6,02×10<sup>23</sup> se llama número de Avogadro. Aquí sirve la notación científica de la clase 2, porque escrito completo tiene 24 cifras: 602 000 000 000 000 000 000 000.</p>
+    <p>Para imaginarlo: si contaras una partícula por segundo, sin dormir, terminarías un mol en unos 19 000 billones de años.</p>
+    <div class="ejemplo step"><b>De moles a partículas:</b> ¿cuántos átomos hay en 2 mol de hierro?<br>2 mol × 6,02×10<sup>23</sup> átomos/mol = <span class="f">1,204×10<sup>24</sup> átomos</span></div>
+    <div class="ejemplo step"><b>De partículas a moles:</b> ¿cuántos moles son 3,01×10<sup>23</sup> moléculas de agua?<br>3,01×10<sup>23</sup> ÷ 6,02×10<sup>23</sup> = <span class="f">0,5 mol</span></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántas partículas hay en 0,25 mol? Multiplica 0,25 × 6,02×10<sup>23</sup> y da 1,505×10<sup>23</sup>.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Lo que hay dentro de una fórmula">
+  <div class="inner">
+    <h2>3. Lo que hay dentro de una fórmula</h2>
+    <p>Los subíndices de una fórmula valen también para moles. Una molécula de agua tiene 2 átomos de hidrógeno y 1 de oxígeno. Entonces, 1 mol de moléculas de agua tiene 2 mol de átomos de H y 1 mol de átomos de O.</p>
+    <table class="t">
+      <tr><th>En 1 mol de…</th><th>Hay…</th><th>Total de moles de átomos</th></tr>
+      <tr><td>H<sub>2</sub>O</td><td>2 mol de H y 1 mol de O</td><td>3 mol</td></tr>
+      <tr><td>CO<sub>2</sub></td><td>1 mol de C y 2 mol de O</td><td>3 mol</td></tr>
+      <tr><td>H<sub>2</sub>SO<sub>4</sub></td><td>2 mol de H, 1 mol de S y 4 mol de O</td><td>7 mol</td></tr>
+    </table>
+    <div class="ejemplo step"><b>Ejemplo:</b> en 3 mol de CO<sub>2</sub> hay 3 × 1 = <span class="f">3 mol de C</span> y 3 × 2 = <span class="f">6 mol de O</span>.</div>
+    <div class="clave step"><b>Ojo con la sal.</b> La sal de mesa no forma moléculas: es una red de iones, como vimos en enlace. Por eso decimos «1 mol de NaCl» y contamos unidades NaCl, no moléculas.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Masa molar de un elemento">
+  <div class="inner">
+    <h2>4. Mismo número, distinta masa</h2>
+    <p>Una docena de uvas y una docena de sandías tienen la misma cantidad de frutas, pero no pesan lo mismo. Con el mol pasa igual: 1 mol de carbono y 1 mol de hierro tienen el mismo número de átomos, pero el átomo de hierro pesa más.</p>
+    <svg class="dib" viewBox="0 0 860 190" role="img" aria-label="Tres balanzas con la misma cantidad de átomos y átomos cada vez más pesados: un mol de carbono, 12 gramos; un mol de azufre, 32 gramos; y un mol de hierro, 56 gramos" style="max-width:940px;margin:0 auto">
+      <g id="bal" fill="none" stroke="#A9BCC4" stroke-width="3"><path d="M60 118h160"/><path d="M140 118v30"/><path d="M100 148h80"/></g>
+      <use href="#bal" x="290"/><use href="#bal" x="580"/>
+      <g fill="#8A9BA3"><circle cx="118" cy="106" r="10"/><circle cx="140" cy="106" r="10"/><circle cx="162" cy="106" r="10"/></g>
+      <g fill="#FFC800"><circle cx="400" cy="102" r="14"/><circle cx="430" cy="102" r="14"/><circle cx="460" cy="102" r="14"/></g>
+      <g fill="#D08C55"><circle cx="684" cy="99" r="17"/><circle cx="720" cy="99" r="17"/><circle cx="756" cy="99" r="17"/></g>
+      <g font-family="Nunito,sans-serif" text-anchor="middle" fill="#F1F5F7" font-weight="800" font-size="20">
+        <text x="140" y="26">1 mol de C</text><text x="430" y="26">1 mol de S</text><text x="720" y="26">1 mol de Fe</text>
+        <text x="140" y="178" fill="#FFC800" font-size="23">12 g</text><text x="430" y="178" fill="#FFC800" font-size="23">32 g</text><text x="720" y="178" fill="#FFC800" font-size="23">56 g</text>
+      </g>
+    </svg>
+    <div class="clave step"><b>La masa molar</b> es la masa de 1 mol de una sustancia, en gramos por mol (g/mol). Para un elemento, es su masa atómica escrita en gramos. Por eso C = 12 g/mol y Fe = 56 g/mol.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Masa molar de un compuesto">
+  <div class="inner">
+    <h2>5. La masa molar de un compuesto</h2>
+    <p>Para un compuesto se suma la masa de todos sus átomos. Se multiplica cada masa atómica por su subíndice y al final se suma. Veamos el ácido sulfúrico, H<sub>2</sub>SO<sub>4</sub>, el de la batería del carro.</p>
+    <div class="pasos">
+      <div class="step"><span class="n">H</span><b>2 átomos</b>2 × 1 = 2</div>
+      <div class="step"><span class="n">S</span><b>1 átomo</b>1 × 32 = 32</div>
+      <div class="step"><span class="n">O</span><b>4 átomos</b>4 × 16 = 64</div>
+      <div class="step"><span class="n">Suma</span><b>2 + 32 + 64</b><span class="f">98 g/mol</span></div>
+    </div>
+    <table class="t step">
+      <tr><th>Sustancia</th><th>Cuenta</th><th>Masa molar</th></tr>
+      <tr><td>H<sub>2</sub>O, agua</td><td>2 × 1 + 16</td><td>18 g/mol</td></tr>
+      <tr><td>NaCl, sal de mesa</td><td>23 + 35,5</td><td>58,5 g/mol</td></tr>
+      <tr><td>CaCO<sub>3</sub>, carbonato de calcio</td><td>40 + 12 + 3 × 16</td><td>100 g/mol</td></tr>
+    </table>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuál es la masa molar del CO<sub>2</sub>? 12 + 2 × 16 = 44 g/mol. Si te dio 28, olvidaste multiplicar por el subíndice.</div>
+  </div>
+</section>
+
+<section data-titulo="6. De gramos a moles">
+  <div class="inner">
+    <h2>6. De gramos a moles, y de vuelta</h2>
+    <p>En el laboratorio nadie cuenta moles: se pesa en una balanza. La masa molar es el puente, y se usa como un factor unitario, igual que en la clase de conversiones.</p>
+    <div class="clave"><b>moles = gramos ÷ masa molar</b> &nbsp; y &nbsp; <b>gramos = moles × masa molar</b></div>
+    <div class="ejemplo step"><b>Ejemplo 1.</b> ¿Cuántos moles hay en 36 g de agua?<br>Masa molar del agua: 18 g/mol<br>36 g × (1 mol ÷ 18 g) = <span class="f">2 mol</span> <span class="paso">los gramos se cancelan</span></div>
+    <div class="ejemplo step"><b>Ejemplo 2.</b> ¿Cuántos gramos son 0,5 mol de sal de mesa?<br>Masa molar del NaCl: 58,5 g/mol<br>0,5 mol × (58,5 g ÷ 1 mol) = <span class="f">29,25 g</span> <span class="paso">los moles se cancelan</span></div>
+  </div>
+</section>
+
+<section data-titulo="7. El mapa completo">
+  <div class="inner">
+    <h2>7. El mapa completo</h2>
+    <p>Todo lo de hoy cabe en un dibujo. El mol va en el centro, y para ir de gramos a partículas siempre se pasa por él.</p>
+    <svg class="dib" viewBox="0 0 860 170" role="img" aria-label="Mapa: gramos a moles dividiendo para la masa molar, moles a partículas multiplicando por 6,02 por 10 a la 23, y las operaciones inversas para volver" style="max-width:900px;margin:0 auto">
+      <defs><marker id="fl17" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FFC800"/></marker></defs>
+      <g fill="#1B2B32" stroke="#2E4652" stroke-width="2"><rect x="14" y="52" width="170" height="66" rx="16"/><rect x="676" y="52" width="170" height="66" rx="16"/></g>
+      <rect x="345" y="52" width="170" height="66" rx="16" fill="#22363F" stroke="#FFC800" stroke-width="3"/>
+      <g font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle" font-size="25" fill="#F1F5F7"><text x="99" y="94">Gramos</text><text x="430" y="94" fill="#FFC800">Moles</text><text x="761" y="94">Partículas</text></g>
+      <g stroke="#FFC800" stroke-width="3" fill="none" marker-end="url(#fl17)"><path d="M190 70h148"/><path d="M340 102h-148"/><path d="M522 70h148"/><path d="M670 102h-148"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle" font-size="18" fill="#3BC97A">
+        <text x="264" y="56">÷ masa molar</text><text x="264" y="130">× masa molar</text>
+        <text x="596" y="56">× 6,02×10<tspan dy="-7" font-size="12">23</tspan></text><text x="596" y="130">÷ 6,02×10<tspan dy="-7" font-size="12">23</tspan></text>
+      </g>
+    </svg>
+    <div class="ejemplo step"><b>Ejemplo.</b> ¿Cuántas moléculas hay en 9 g de agua?<br>9 g ÷ 18 g/mol = 0,5 mol <span class="paso">de gramos a moles</span><br>0,5 mol × 6,02×10<sup>23</sup> = <span class="f">3,01×10<sup>23</sup> moléculas</span> <span class="paso">de moles a partículas</span></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos átomos de hidrógeno hay en esos 9 g de agua? Cada molécula trae 2, entonces 6,02×10<sup>23</sup> átomos de H.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:17,
+  titulo:'El mol',
+  subtitulo:'cómo se cuentan los átomos',
+  lead:'Un paquete para contar partículas, y el puente entre la balanza y las fórmulas.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos balancear. Ahora hay que contar',
+    antesT:'La clase pasada',
+    antes:'Vimos los tipos de reacciones y las balanceamos por tanteo. Los coeficientes dicen cuántas moléculas o átomos participan.',
+    hoy:'Las moléculas son demasiado pequeñas para contarlas de una en una. Aprenderemos a contarlas por paquetes, y a pasar de ese paquete a los gramos de la balanza.'
+  },
+  sigue:{
+    titulo:'Ya podemos contar átomos con una balanza',
+    hoy:'Un mol son 6,02×10<sup>23</sup> partículas. La masa molar convierte gramos en moles, y el número de Avogadro convierte moles en partículas.',
+    proxima:'Uniremos el mol con las ecuaciones balanceadas para calcular cuánto reacciona y cuánto se produce. Eso se llama estequiometría.'
+  },
+  juego:{titulo:'La balanza de Avogadro',texto:'Abran este enlace en el celular. Mueve las perillas hasta dar en la meta de cada misión. Son 6 misiones y cada una se comprueba con un cálculo de hoy.'},
+  pdf:'tarea/tarea-17.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

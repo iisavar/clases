@@ -129,7 +129,7 @@ const ELEMENTOS = [
 // rm / rnm = nombres tradicionales con raíz especial, en el mismo orden que las valencias,
 // nota = aclaración corta.
 const CURSO = {
-  H:{neg:[-1,"en los hidruros metálicos, frente a un metal."],pos:[1,"en los haluros de hidrógeno, los hidruros volátiles, los ácidos y los hidróxidos."]},
+  H:{neg:[-1,"en los hidruros metálicos, frente a un metal."],pos:[1,"en los hidrácidos, los hidruros volátiles, los ácidos y los hidróxidos."]},
   Li:{m:[1]}, Na:{m:[1]}, K:{m:[1]}, Rb:{m:[1]}, Cs:{m:[1]}, Fr:{m:[1]}, Ag:{m:[1]},
   Cu:{m:[1,2],rm:["cuproso","cúprico"]},
   Hg:{m:[1,2]},

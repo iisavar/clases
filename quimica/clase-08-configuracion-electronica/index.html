@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Configuración electrónica</title>
+<meta name="description" content="Niveles, subniveles y orden de llenado de los electrones, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Los niveles de energía">
+  <div class="inner">
+    <h2>1. Los electrones viven en niveles</h2>
+    <p>Bohr propuso que los electrones no están en cualquier lado. Imagina un edificio: cada piso es un <b>nivel de energía</b>. Abajo, cerca del núcleo, tienen poca energía. Mientras más arriba, más energía tienen.</p>
+    <div class="grid2" style="align-items:center">
+      <svg class="dib" viewBox="0 0 300 300" role="img" aria-label="Átomo de sodio: núcleo y tres niveles con 2, 8 y 1 electrones" style="max-width:300px;margin:0 auto">
+        <g fill="none" stroke="#2E4652" stroke-width="3"><circle cx="150" cy="150" r="56"/><circle cx="150" cy="150" r="96"/><circle cx="150" cy="150" r="136"/></g>
+        <circle cx="150" cy="150" r="26" fill="#FF6B6B"/>
+        <text x="150" y="157" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="20" fill="#0E1A1F">11+</text>
+        <g fill="#4FB3E8">
+          <circle cx="150" cy="94" r="8"/><circle cx="150" cy="206" r="8"/>
+          <circle cx="150" cy="54" r="8"/><circle cx="218" cy="82" r="8"/><circle cx="246" cy="150" r="8"/><circle cx="218" cy="218" r="8"/><circle cx="150" cy="246" r="8"/><circle cx="82" cy="218" r="8"/><circle cx="54" cy="150" r="8"/><circle cx="82" cy="82" r="8"/>
+          <circle cx="246" cy="54" r="8" fill="#FFC800"/>
+        </g>
+      </svg>
+      <div>
+        <table class="t">
+          <tr><th>Nivel</th><th>Electrones que caben</th></tr>
+          <tr><td>1</td><td>2</td></tr>
+          <tr><td>2</td><td>8</td></tr>
+          <tr><td>3</td><td>18</td></tr>
+          <tr><td>4</td><td>32</td></tr>
+        </table>
+        <div class="clave step"><b>El sodio</b> tiene 11 electrones: 2 en el nivel 1, 8 en el nivel 2 y 1 en el nivel 3, el de color dorado.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-titulo="2. Los subniveles">
+  <div class="inner">
+    <h2>2. Cada nivel tiene subniveles</h2>
+    <p>Sigamos con el edificio. Cada piso se divide en departamentos que se llaman <b>subniveles</b>, con las letras s, p, d y f. Cada uno tiene un tope de electrones.</p>
+    <div class="grid2" style="align-items:center">
+      <table class="t">
+        <tr><th>Nivel</th><th>Subniveles</th><th>Total</th></tr>
+        <tr><td>1</td><td>1s</td><td>2</td></tr>
+        <tr><td>2</td><td>2s, 2p</td><td>2 + 6 = 8</td></tr>
+        <tr><td>3</td><td>3s, 3p, 3d</td><td>2 + 6 + 10 = 18</td></tr>
+        <tr><td>4</td><td>4s, 4p, 4d, 4f</td><td>2 + 6 + 10 + 14 = 32</td></tr>
+      </table>
+      <svg class="dib" viewBox="60 0 400 200" role="img" aria-label="Lectura de 3p5: 3 es el nivel, p es el subnivel y 5 es la cantidad de electrones">
+        <g font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle">
+          <text x="150" y="118" font-size="90" fill="#FFC800">3</text>
+          <text x="208" y="118" font-size="90" fill="#3BC97A">p</text>
+          <text x="262" y="74" font-size="48" fill="#4FB3E8">5</text>
+        </g>
+        <g fill="none" stroke-width="3" stroke-linecap="round">
+          <path d="M150 132v28" stroke="#FFC800"/><path d="M208 136v24" stroke="#3BC97A"/><path d="M284 62h26" stroke="#4FB3E8"/>
+        </g>
+        <g font-family="Nunito,sans-serif" font-weight="800" font-size="20">
+          <text x="150" y="186" text-anchor="end" fill="#FFC800">nivel</text>
+          <text x="196" y="186" fill="#3BC97A">subnivel</text>
+          <text x="316" y="70" fill="#4FB3E8">electrones</text>
+        </g>
+      </svg>
+    </div>
+    <div class="clave step"><b>Topes para memorizar:</b> s tiene 2, p tiene 6, d tiene 10 y f tiene 14.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿existe el subnivel 2d? No: el nivel 2 solo tiene s y p.</div>
+  </div>
+</section>
+
+<section data-titulo="3. El orden de llenado">
+  <div class="inner">
+    <h2>3. ¿En qué orden se llenan?</h2>
+    <div class="grid2" style="align-items:center">
+      <div>
+        <p>Los electrones ocupan primero los lugares de menor energía, y solo cuando se llenan pasan a los siguientes. Se llama <b>principio de Aufbau</b>, una palabra alemana que significa «construcción».</p>
+        <p>Para no memorizar el orden, se dibuja este cuadro y se siguen las flechas, de arriba hacia abajo.</p>
+        <div class="clave step"><b>Orden:</b> 1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s…</div>
+        <div class="clave step"><b>Fíjate:</b> después de 3p no viene 3d, viene 4s.</div>
+      </div>
+      <svg class="dib" viewBox="0 0 340 290" role="img" aria-label="Cuadro de los subniveles del 1s al 7p con flechas diagonales que marcan el orden de llenado" style="max-width:500px;margin:0 auto">
+        <defs><marker id="pz8" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0l7 3.5L0 7z" fill="#FFC800"/></marker></defs>
+        <g stroke="#FFC800" stroke-width="2" marker-end="url(#pz8)" fill="none">
+          <path d="M86 6L14 42" marker-end="url(#pz8)"/><path d="M86 46L14 82" marker-end="url(#pz8)"/><path d="M166 46L14 122" marker-end="url(#pz8)"/><path d="M166 86L14 162" marker-end="url(#pz8)"/>
+          <path d="M246 86L14 202" marker-end="url(#pz8)"/><path d="M246 126L14 242" marker-end="url(#pz8)"/><path d="M326 126L14 282" marker-end="url(#pz8)"/><path d="M326 166L94 282" marker-end="url(#pz8)"/>
+        </g>
+        <g fill="#1B2B32">
+          <rect x="30" y="10" width="40" height="28" rx="8"/>
+          <rect x="30" y="50" width="40" height="28" rx="8"/><rect x="110" y="50" width="40" height="28" rx="8"/>
+          <rect x="30" y="90" width="40" height="28" rx="8"/><rect x="110" y="90" width="40" height="28" rx="8"/><rect x="190" y="90" width="40" height="28" rx="8"/>
+          <rect x="30" y="130" width="40" height="28" rx="8"/><rect x="110" y="130" width="40" height="28" rx="8"/><rect x="190" y="130" width="40" height="28" rx="8"/><rect x="270" y="130" width="40" height="28" rx="8"/>
+          <rect x="30" y="170" width="40" height="28" rx="8"/><rect x="110" y="170" width="40" height="28" rx="8"/><rect x="190" y="170" width="40" height="28" rx="8"/><rect x="270" y="170" width="40" height="28" rx="8"/>
+          <rect x="30" y="210" width="40" height="28" rx="8"/><rect x="110" y="210" width="40" height="28" rx="8"/><rect x="190" y="210" width="40" height="28" rx="8"/>
+          <rect x="30" y="250" width="40" height="28" rx="8"/><rect x="110" y="250" width="40" height="28" rx="8"/>
+        </g>
+        <g font-family="Nunito,sans-serif" font-weight="900" font-size="18" fill="#F1F5F7" text-anchor="middle">
+          <text x="50" y="30">1s</text>
+          <text x="50" y="70">2s</text><text x="130" y="70">2p</text>
+          <text x="50" y="110">3s</text><text x="130" y="110">3p</text><text x="210" y="110">3d</text>
+          <text x="50" y="150">4s</text><text x="130" y="150">4p</text><text x="210" y="150">4d</text><text x="290" y="150">4f</text>
+          <text x="50" y="190">5s</text><text x="130" y="190">5p</text><text x="210" y="190">5d</text><text x="290" y="190">5f</text>
+          <text x="50" y="230">6s</text><text x="130" y="230">6p</text><text x="210" y="230">6d</text>
+          <text x="50" y="270">7s</text><text x="130" y="270">7p</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section data-titulo="4. Escribir una configuración">
+  <div class="inner">
+    <h2>4. Escribir la configuración, paso a paso</h2>
+    <p>La <b>configuración electrónica</b> dice cómo se reparten los electrones de un átomo. Hagamos la del sodio, Z = 11. Tenemos 11 electrones para acomodar.</p>
+    <table class="t">
+      <tr><th>Paso</th><th>Subnivel</th><th>Lleva</th><th>Ya van</th><th>Quedan</th></tr>
+      <tr><td>1</td><td>1s</td><td>2</td><td>2</td><td>9</td></tr>
+      <tr class="step"><td>2</td><td>2s</td><td>2</td><td>4</td><td>7</td></tr>
+      <tr class="step"><td>3</td><td>2p</td><td>6</td><td>10</td><td>1</td></tr>
+      <tr class="step"><td>4</td><td>3s</td><td>1, el que queda</td><td>11</td><td>0</td></tr>
+    </table>
+    <div class="ejemplo step">Sodio: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>1</sup></span><span class="paso">2 + 2 + 6 + 1 = 11</span></div>
+    <div class="clave step"><b>Revisa siempre:</b> la suma de los exponentes debe dar el número de electrones.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cómo queda el oxígeno, Z = 8? 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>4</sup>. El 2p no se llena porque ya no quedan electrones.</div>
+  </div>
+</section>
+
+<section data-titulo="5. La trampa del 4s y el 3d">
+  <div class="inner">
+    <h2>5. La trampa del 4s y el 3d</h2>
+    <p>Aquí está el error más común. Al llegar al potasio, el electrón que sigue no va al 3d, sino al 4s, porque en ese momento el 4s tiene menos energía. El 3d se empieza a llenar después.</p>
+    <table class="t">
+      <tr><th>Átomo</th><th>Z</th><th>Configuración</th></tr>
+      <tr><td>Potasio</td><td>19</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>1</sup></span></td></tr>
+      <tr class="step"><td>Calcio</td><td>20</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup></span></td></tr>
+      <tr class="step"><td>Hierro</td><td>26</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup> 3d<sup>6</sup></span></td></tr>
+    </table>
+    <p class="step" style="margin-top:12px">En el hierro: hasta 3p<sup>6</sup> van 18 electrones. El 4s lleva 2 y suman 20. Los 6 que faltan para 26 van al 3d.</p>
+    <div class="clave step"><b>Dos rebeldes conocidos:</b> el cromo (Z = 24) y el cobre (Z = 29) pasan un electrón del 4s al 3d, porque un subnivel d lleno a la mitad o completo es más estable. En este curso no se piden.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Electrones de valencia">
+  <div class="inner">
+    <h2>6. Los electrones de valencia</h2>
+    <p>No todos los electrones trabajan igual. Los de los pisos bajos quedan adentro. Los del <b>último nivel</b> son los que tocan a otros átomos, y por eso son los que deciden cómo reacciona cada elemento.</p>
+    <div class="clave"><b>Electrones de valencia:</b> son los del nivel más alto. Se suman todos los subniveles de ese nivel.</div>
+    <table class="t">
+      <tr><th>Átomo</th><th>Configuración</th><th>Último nivel</th><th>De valencia</th></tr>
+      <tr><td>Sodio</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>1</sup></span></td><td>3</td><td>1</td></tr>
+      <tr class="step"><td>Oxígeno</td><td>1s<sup>2</sup> <span class="f">2s<sup>2</sup> 2p<sup>4</sup></span></td><td>2</td><td>2 + 4 = 6</td></tr>
+      <tr class="step"><td>Cloro</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>2</sup> 3p<sup>5</sup></span></td><td>3</td><td>2 + 5 = 7</td></tr>
+    </table>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos electrones de valencia tiene el nitrógeno, 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>3</sup>? Tiene 5: 2 de 2s y 3 de 2p.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Atajo y configuración de iones">
+  <div class="inner">
+    <h2>7. Un atajo, y la configuración de los iones</h2>
+    <div class="grid2">
+      <div class="card"><h3>El atajo</h3>
+        <p>Algunos gases, como el neón y el argón, tienen 8 electrones en su último nivel: s y p completos. Su configuración se usa como abreviatura, entre corchetes.</p>
+        <p style="margin:0">Neón: 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup><br>Sodio: <span class="f">[Ne] 3s<sup>1</sup></span></p></div>
+      <div class="card step"><h3>Los iones</h3>
+        <p>Primero se cuentan los electrones del ion, y después se reparten igual que siempre. Vale para los átomos de hoy hasta Z = 20. En metales como el hierro, los primeros en salir son los del 4s.</p>
+        <p style="margin:0">Na<sup>+</sup> tiene 10: 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup><br>Cl<sup>−</sup> tiene 18: 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup></p></div>
+    </div>
+    <div class="clave step"><b>Mira esto:</b> Na<sup>+</sup> quedó igual que el neón, y Cl<sup>−</sup> igual que el argón. No es casualidad, y lo vamos a retomar cuando veamos por qué se unen los átomos.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:8,
+  titulo:'Configuración electrónica',
+  subtitulo:'dónde están los electrones',
+  lead:'Niveles, subniveles y el orden en que los electrones ocupan su lugar.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos cuántos electrones tiene un átomo',
+    antesT:'La clase pasada',
+    antes:'Con Z y A contamos protones, neutrones y electrones, incluso en iones e isótopos.',
+    hoy:'Falta saber dónde están esos electrones. Vamos a ubicarlos en niveles y subniveles, y a escribirlo en una sola línea.'
+  },
+  sigue:{
+    titulo:'Ya sabemos dónde están los electrones',
+    hoy:'Los electrones se acomodan en niveles y subniveles, de menor a mayor energía, y los del último nivel son los de valencia.',
+    proxima:'La forma de la tabla periódica sale de esta configuración. Con lo de hoy vas a poder leerla sin memorizarla.'
+  },
+  juego:{titulo:'Maestro de obra',texto:'Abran este enlace en el celular y elijan «Maestro de obra». Construyan cada configuración tocando las piezas en orden. En cada reto sobran dos piezas.'},
+  pdf:'tarea/tarea-08.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

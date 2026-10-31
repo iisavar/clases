@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El enlace químico</title>
+<meta name="description" content="Regla del octeto, estructuras de Lewis y enlaces iónico, covalente y metálico, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Por qué se unen los átomos">
+  <div class="inner">
+    <h2>1. ¿Por qué se unen los átomos?</h2>
+    <p>Casi nada en la naturaleza está hecho de átomos sueltos. Los únicos que viven solos, tranquilos, son los gases nobles. ¿Qué tienen de especial? Tienen 8 electrones en su última capa, y el helio 2.</p>
+    <div class="clave"><b>Regla del octeto:</b> los átomos se unen para quedar con 8 electrones en su última capa, como un gas noble.</div>
+    <p class="step">Ya lo vimos sin ponerle nombre: Na<sup>+</sup> quedó igual que el neón y Cl<sup>−</sup> igual que el argón. Hay tres maneras de llegar.</p>
+    <div class="grid3 step">
+      <div class="card"><h3>Ceder</h3><p style="margin:0">Un metal entrega electrones.</p></div>
+      <div class="card"><h3>Recibir</h3><p style="margin:0">Un no metal toma electrones.</p></div>
+      <div class="card"><h3>Compartir</h3><p style="margin:0">Dos no metales ponen electrones en común.</p></div>
+    </div>
+    <div class="clave step"><b>La excepción más útil:</b> el hidrógeno se completa con 2 electrones, como el helio.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Símbolos de Lewis">
+  <div class="inner">
+    <h2>2. Los símbolos de Lewis</h2>
+    <p>Para ver qué pasa en un enlace solo necesitamos los electrones de valencia. Gilbert Lewis los dibujó como puntos alrededor del símbolo. El grupo te dice cuántos poner.</p>
+    <svg class="dib" viewBox="0 0 900 140" role="img" aria-label="Símbolos de Lewis del sodio, magnesio, aluminio, carbono, nitrógeno, oxígeno, flúor y neón, con 1 a 8 puntos" style="max-width:900px;margin:0 auto"><text x="58" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">Na</text><circle cx="92" cy="58" r="4.5" fill="#4FB3E8"/><text x="58" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">1 de valencia</text><text x="170" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">Mg</text><circle cx="136" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="204" cy="58" r="4.5" fill="#4FB3E8"/><text x="170" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">2 de valencia</text><text x="282" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">Al</text><circle cx="248" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="316" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="282" cy="24" r="4.5" fill="#4FB3E8"/><text x="282" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">3 de valencia</text><text x="394" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">C</text><circle cx="366" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="422" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="394" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="394" cy="86" r="4.5" fill="#4FB3E8"/><text x="394" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">4 de valencia</text><text x="506" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">N</text><circle cx="478" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="534" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="499" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="513" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="506" cy="86" r="4.5" fill="#4FB3E8"/><text x="506" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">5 de valencia</text><text x="618" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">O</text><circle cx="590" cy="51" r="4.5" fill="#4FB3E8"/><circle cx="590" cy="65" r="4.5" fill="#4FB3E8"/><circle cx="646" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="611" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="625" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="618" cy="86" r="4.5" fill="#4FB3E8"/><text x="618" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">6 de valencia</text><text x="730" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">F</text><circle cx="702" cy="51" r="4.5" fill="#4FB3E8"/><circle cx="702" cy="65" r="4.5" fill="#4FB3E8"/><circle cx="758" cy="58" r="4.5" fill="#4FB3E8"/><circle cx="723" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="737" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="723" cy="86" r="4.5" fill="#4FB3E8"/><circle cx="737" cy="86" r="4.5" fill="#4FB3E8"/><text x="730" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">7 de valencia</text><text x="842" y="70" text-anchor="middle" font-size="32" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">Ne</text><circle cx="808" cy="51" r="4.5" fill="#4FB3E8"/><circle cx="808" cy="65" r="4.5" fill="#4FB3E8"/><circle cx="876" cy="51" r="4.5" fill="#4FB3E8"/><circle cx="876" cy="65" r="4.5" fill="#4FB3E8"/><circle cx="835" cy="24" r="4.5" fill="#4FB3E8"/><circle cx="849" cy="24" r="4.5" fill="#4FB3E8"/><circle cx="835" cy="92" r="4.5" fill="#4FB3E8"/><circle cx="849" cy="92" r="4.5" fill="#4FB3E8"/><text x="842" y="128" text-anchor="middle" font-size="16" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">8 de valencia</text></svg>
+    <div class="clave step"><b>Cómo se dibujan:</b> un punto por cada lado, y cuando ya hay uno en cada lado se forman pares. Los puntos solos son los que buscan enlace.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos puntos lleva el azufre, del grupo 16? Lleva 6, igual que el oxígeno, porque son de la misma familia.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Enlace iónico">
+  <div class="inner">
+    <h2>3. Enlace iónico: uno da y otro recibe</h2>
+    <p>Recuerda la clase pasada: al sodio le cuesta poco soltar su electrón y al cloro le falta uno. Cuando se encuentran, el electrón pasa del metal al no metal.</p>
+    <svg class="dib" viewBox="0 0 860 160" role="img" aria-label="El sodio cede su electrón de valencia al cloro. Queda el ion sodio positivo y el ion cloruro negativo con ocho electrones" style="max-width:800px;margin:0 auto"><text x="80" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">Na</text><circle cx="116" cy="80" r="6" fill="#FFC800"/><text x="175" y="92" text-anchor="middle" font-size="34" fill="#A9BCC4" font-family="Nunito,sans-serif" font-weight="900">+</text><text x="280" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">Cl</text><circle cx="273" cy="46" r="4.5" fill="#4FB3E8"/><circle cx="287" cy="46" r="4.5" fill="#4FB3E8"/><circle cx="273" cy="114" r="4.5" fill="#4FB3E8"/><circle cx="287" cy="114" r="4.5" fill="#4FB3E8"/><circle cx="314" cy="73" r="4.5" fill="#4FB3E8"/><circle cx="314" cy="87" r="4.5" fill="#4FB3E8"/><circle cx="246" cy="80" r="4.5" fill="#4FB3E8"/><path d="M345 80h82M416 71l11 9-11 9" fill="none" stroke="#FFC800" stroke-width="3" stroke-linecap="round"/><path d="M122 62Q190 10 240 62" fill="none" stroke="#FFC800" stroke-width="2.5" stroke-dasharray="6 5"/><text x="500" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">[Na]</text><text x="556" y="67" text-anchor="middle" font-size="24" fill="#FFC800" font-family="Nunito,sans-serif" font-weight="900">+</text><text x="690" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">[</text><text x="740" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">Cl</text><text x="794" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">]</text><text x="820" y="65" text-anchor="middle" font-size="26" fill="#FFC800" font-family="Nunito,sans-serif" font-weight="900">−</text><circle cx="733" cy="47" r="4.5" fill="#4FB3E8"/><circle cx="747" cy="47" r="4.5" fill="#4FB3E8"/><circle cx="733" cy="113" r="4.5" fill="#4FB3E8"/><circle cx="747" cy="113" r="4.5" fill="#4FB3E8"/><circle cx="773" cy="73" r="4.5" fill="#4FB3E8"/><circle cx="773" cy="87" r="4.5" fill="#4FB3E8"/><circle cx="707" cy="76" r="5" fill="#FFC800"/><circle cx="707" cy="88" r="4.5" fill="#4FB3E8"/><g font-size="17" fill="#A9BCC4" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900"><text x="80" y="150">1 de valencia</text><text x="280" y="150">7 de valencia</text><text x="500" y="150">capa llena</text><text x="740" y="150">8 de valencia</text></g></svg>
+    <div class="clave step"><b>Enlace iónico:</b> es la atracción entre iones de carga contraria. Por lo general se forma entre un metal y un no metal.</div>
+    <p class="step">Los iones no quedan en parejas sueltas. Millones de ellos se ordenan en un cristal, y por eso la sal de cocina forma cubitos que puedes ver con una lupa.</p>
+  </div>
+</section>
+
+<section data-titulo="4. La fórmula de un compuesto iónico">
+  <div class="inner">
+    <h2>4. ¿Cuántos iones hacen falta?</h2>
+    <p>La regla es simple: un compuesto es neutro, así que las cargas positivas y negativas deben sumar cero.</p>
+    <table class="t">
+      <tr><th>Iones</th><th>Cuenta</th><th>Fórmula</th></tr>
+      <tr><td>Na<sup>+</sup> y Cl<sup>−</sup></td><td>+1 − 1 = 0</td><td>NaCl</td></tr>
+      <tr class="step"><td>Mg<sup>2+</sup> y O<sup>2−</sup></td><td>+2 − 2 = 0</td><td>MgO</td></tr>
+      <tr class="step"><td>Ca<sup>2+</sup> y Cl<sup>−</sup></td><td>+2 − 1 − 1 = 0</td><td>CaCl<sub>2</sub></td></tr>
+      <tr class="step"><td>Al<sup>3+</sup> y O<sup>2−</sup></td><td>2 × (+3) + 3 × (−2) = 0</td><td>Al<sub>2</sub>O<sub>3</sub></td></tr>
+    </table>
+    <div class="clave step"><b>Truco:</b> la carga de un ion pasa a ser el subíndice del otro. Con Al<sup>3+</sup> y O<sup>2−</sup>, el 3 baja al oxígeno y el 2 baja al aluminio. Si quedan simplificables, se simplifican: Mg<sub>2</sub>O<sub>2</sub> se escribe MgO.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuál es la fórmula entre K<sup>+</sup> y O<sup>2−</sup>? K<sub>2</sub>O, porque hacen falta dos potasios por cada oxígeno.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Enlace covalente">
+  <div class="inner">
+    <h2>5. Enlace covalente: compartir electrones</h2>
+    <p>Dos no metales quieren recibir electrones y ninguno quiere soltarlos. La salida es compartir: cada uno pone electrones y los usan entre los dos, como dos amigos que ponen plata para una pizza que ninguno podría pagar solo.</p>
+    <div class="clave"><b>Enlace covalente:</b> dos átomos comparten pares de electrones. Se forma entre no metales. Cada raya es un par compartido.</div>
+    <svg class="dib" viewBox="0 0 860 140" role="img" aria-label="Enlaces covalentes: simple en H2, doble en O2 y triple en N2" style="max-width:760px;margin:0 auto"><text x="100" y="72" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><text x="190" y="72" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><line x1="124.0" y1="60.0" x2="166.0" y2="60.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><text x="385" y="72" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">O</text><text x="475" y="72" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">O</text><line x1="409.0" y1="55.5" x2="451.0" y2="55.5" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="409.0" y1="64.5" x2="451.0" y2="64.5" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><circle cx="378" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="392" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="378" cy="90" r="4.5" fill="#4FB3E8"/><circle cx="392" cy="90" r="4.5" fill="#4FB3E8"/><circle cx="468" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="482" cy="30" r="4.5" fill="#4FB3E8"/><circle cx="468" cy="90" r="4.5" fill="#4FB3E8"/><circle cx="482" cy="90" r="4.5" fill="#4FB3E8"/><text x="670" y="72" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">N</text><text x="770" y="72" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">N</text><line x1="694.0" y1="51.0" x2="746.0" y2="51.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="694.0" y1="60.0" x2="746.0" y2="60.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="694.0" y1="69.0" x2="746.0" y2="69.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><circle cx="640" cy="53" r="4.5" fill="#4FB3E8"/><circle cx="640" cy="67" r="4.5" fill="#4FB3E8"/><circle cx="800" cy="53" r="4.5" fill="#4FB3E8"/><circle cx="800" cy="67" r="4.5" fill="#4FB3E8"/><g font-size="18" fill="#F1F5F7" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900"><text x="145" y="128">Simple, 1 par</text><text x="430" y="128">Doble, 2 pares</text><text x="720" y="128">Triple, 3 pares</text></g></svg>
+    <p class="step">El hidrógeno comparte 1 par y llega a 2 electrones. Al oxígeno le faltan 2 y comparte 2 pares. Al nitrógeno le faltan 3 y comparte 3 pares. El grupo de átomos unidos así se llama <b>molécula</b>.</p>
+  </div>
+</section>
+
+<section data-titulo="6. Estructura de Lewis de una molécula">
+  <div class="inner">
+    <h2>6. La estructura de Lewis, paso a paso</h2>
+    <div class="pasos">
+      <div><span class="n">1</span><b>Cuenta</b>Suma los electrones de valencia. Agua: 1 + 1 + 6 = 8.</div>
+      <div class="step"><span class="n">2</span><b>Ubica</b>Al centro va el átomo que forma más enlaces. El H nunca va al centro.</div>
+      <div class="step"><span class="n">3</span><b>Une</b>Une cada H al oxígeno con un enlace. Usaste 2 pares, 4 electrones.</div>
+      <div class="step"><span class="n">4</span><b>Completa</b>Los 4 que quedan van en pares libres sobre el oxígeno.</div>
+      <div class="step"><span class="n">5</span><b>Revisa</b>Cada H con 2, y el O con 8.</div>
+    </div>
+    <svg class="dib" viewBox="0 0 880 192" role="img" aria-label="Estructuras de Lewis del agua, el amoníaco, el metano y el dióxido de carbono" style="max-width:760px;margin:0 auto"><text x="110" y="74" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">O</text><text x="48" y="132" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><text x="172" y="132" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><line x1="92.5" y1="78.4" x2="65.5" y2="103.6" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="127.5" y1="78.4" x2="154.5" y2="103.6" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><circle cx="84" cy="44" r="4.5" fill="#4FB3E8"/><circle cx="95" cy="34" r="4.5" fill="#4FB3E8"/><circle cx="136" cy="44" r="4.5" fill="#4FB3E8"/><circle cx="125" cy="34" r="4.5" fill="#4FB3E8"/><text x="330" y="70" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">N</text><text x="268" y="118" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><text x="330" y="144" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><text x="392" y="118" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><line x1="311.0" y1="72.7" x2="287.0" y2="91.3" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="330.0" y1="82.0" x2="330.0" y2="108.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="349.0" y1="72.7" x2="373.0" y2="91.3" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><circle cx="323" cy="28" r="4.5" fill="#4FB3E8"/><circle cx="337" cy="28" r="4.5" fill="#4FB3E8"/><text x="545" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">C</text><text x="545" y="28" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><text x="545" y="156" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><text x="479" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><text x="611" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">H</text><line x1="545.0" y1="56.0" x2="545.0" y2="40.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="545.0" y1="104.0" x2="545.0" y2="120.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="521.0" y1="80.0" x2="503.0" y2="80.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="569.0" y1="80.0" x2="587.0" y2="80.0" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><text x="770" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">C</text><text x="694" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">O</text><text x="846" y="92" text-anchor="middle" font-size="34" fill="#F1F5F7" font-family="Nunito,sans-serif" font-weight="900">O</text><line x1="746.0" y1="84.5" x2="718.0" y2="84.5" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="746.0" y1="75.5" x2="718.0" y2="75.5" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="794.0" y1="75.5" x2="822.0" y2="75.5" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><line x1="794.0" y1="84.5" x2="822.0" y2="84.5" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/><circle cx="687" cy="50" r="4.5" fill="#4FB3E8"/><circle cx="701" cy="50" r="4.5" fill="#4FB3E8"/><circle cx="687" cy="110" r="4.5" fill="#4FB3E8"/><circle cx="701" cy="110" r="4.5" fill="#4FB3E8"/><circle cx="839" cy="50" r="4.5" fill="#4FB3E8"/><circle cx="853" cy="50" r="4.5" fill="#4FB3E8"/><circle cx="839" cy="110" r="4.5" fill="#4FB3E8"/><circle cx="853" cy="110" r="4.5" fill="#4FB3E8"/><g font-size="19" fill="#F1F5F7" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900"><text x="110" y="182">H₂O</text><text x="330" y="182">NH₃</text><text x="545" y="182">CH₄</text><text x="770" y="182">CO₂</text></g></svg>
+    <div class="clave step"><b>Pregunta para el chat:</b> en el CO<sub>2</sub> hay 4 + 6 + 6 = 16 electrones. ¿Por qué lleva enlaces dobles? Con enlaces simples no alcanza para que el carbono y los oxígenos lleguen a 8.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Enlace metálico y comparación">
+  <div class="inner">
+    <h2>7. Enlace metálico, y los tres frente a frente</h2>
+    <div class="grid2" style="align-items:center;grid-template-columns:1fr 1.5fr">
+      <svg class="dib" viewBox="0 0 420 200" role="img" aria-label="Iones metálicos positivos ordenados en filas, rodeados por electrones que se mueven libremente" style="max-width:420px;margin:0 auto"><rect x="4" y="4" width="412" height="192" rx="16" fill="#4FB3E8" opacity=".14"/><circle cx="58" cy="44" r="20" fill="#FF6B6B"/><text x="58" y="51" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="134" cy="44" r="20" fill="#FF6B6B"/><text x="134" y="51" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="210" cy="44" r="20" fill="#FF6B6B"/><text x="210" y="51" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="286" cy="44" r="20" fill="#FF6B6B"/><text x="286" y="51" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="362" cy="44" r="20" fill="#FF6B6B"/><text x="362" y="51" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="58" cy="100" r="20" fill="#FF6B6B"/><text x="58" y="107" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="134" cy="100" r="20" fill="#FF6B6B"/><text x="134" y="107" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="210" cy="100" r="20" fill="#FF6B6B"/><text x="210" y="107" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="286" cy="100" r="20" fill="#FF6B6B"/><text x="286" y="107" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="362" cy="100" r="20" fill="#FF6B6B"/><text x="362" y="107" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="58" cy="156" r="20" fill="#FF6B6B"/><text x="58" y="163" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="134" cy="156" r="20" fill="#FF6B6B"/><text x="134" y="163" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="210" cy="156" r="20" fill="#FF6B6B"/><text x="210" y="163" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="286" cy="156" r="20" fill="#FF6B6B"/><text x="286" y="163" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="362" cy="156" r="20" fill="#FF6B6B"/><text x="362" y="163" text-anchor="middle" font-size="20" fill="#0E1A1F" font-family="Nunito,sans-serif" font-weight="900">+</text><circle cx="112" cy="25" r="5" fill="#4FB3E8"/><circle cx="342" cy="21" r="5" fill="#4FB3E8"/><circle cx="249" cy="138" r="5" fill="#4FB3E8"/><circle cx="246" cy="113" r="5" fill="#4FB3E8"/><circle cx="112" cy="117" r="5" fill="#4FB3E8"/><circle cx="256" cy="111" r="5" fill="#4FB3E8"/><circle cx="187" cy="74" r="5" fill="#4FB3E8"/><circle cx="268" cy="180" r="5" fill="#4FB3E8"/><circle cx="324" cy="30" r="5" fill="#4FB3E8"/><circle cx="264" cy="63" r="5" fill="#4FB3E8"/><circle cx="89" cy="162" r="5" fill="#4FB3E8"/><circle cx="247" cy="163" r="5" fill="#4FB3E8"/><circle cx="241" cy="87" r="5" fill="#4FB3E8"/><circle cx="95" cy="167" r="5" fill="#4FB3E8"/><circle cx="90" cy="105" r="5" fill="#4FB3E8"/><circle cx="275" cy="182" r="5" fill="#4FB3E8"/><circle cx="138" cy="17" r="5" fill="#4FB3E8"/><circle cx="165" cy="101" r="5" fill="#4FB3E8"/><circle cx="31" cy="122" r="5" fill="#4FB3E8"/><circle cx="166" cy="120" r="5" fill="#4FB3E8"/><circle cx="103" cy="182" r="5" fill="#4FB3E8"/><circle cx="99" cy="183" r="5" fill="#4FB3E8"/><circle cx="27" cy="65" r="5" fill="#4FB3E8"/><circle cx="406" cy="55" r="5" fill="#4FB3E8"/><circle cx="167" cy="43" r="5" fill="#4FB3E8"/><circle cx="20" cy="111" r="5" fill="#4FB3E8"/></svg>
+      <p style="margin:0">En un metal, los átomos sueltan sus electrones de valencia y estos quedan libres entre los iones positivos, como un <b>mar de electrones</b>. Ese mar explica por qué un cable conduce la corriente y por qué el metal se dobla sin romperse.</p>
+    </div>
+    <table class="t" style="margin-top:10px;font-size:.84em">
+      <tr><th>Enlace</th><th>Entre</th><th>Qué pasa</th><th>Cómo se comporta, en general</th></tr>
+      <tr class="step"><td>Iónico</td><td>Metal y no metal</td><td>Ceder y recibir</td><td>Cristales duros. Conducen disueltos o fundidos, no sólidos</td></tr>
+      <tr class="step"><td>Covalente</td><td>No metales</td><td>Compartir</td><td>Muchos son gases o líquidos. Casi no conducen</td></tr>
+      <tr class="step"><td>Metálico</td><td>Metales</td><td>Mar de electrones</td><td>Brillan y conducen, incluso sólidos</td></tr>
+    </table>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:11,
+  titulo:'El enlace químico',
+  subtitulo:'por qué se unen los átomos',
+  lead:'La regla del octeto, las estructuras de Lewis y los tres tipos de enlace.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'La posición dice cómo se porta cada átomo',
+    antesT:'La clase pasada',
+    antes:'Los metales pierden electrones con facilidad y los no metales los atraen con fuerza.',
+    hoy:'Vamos a ver qué pasa cuando esos átomos se encuentran: ceden, reciben o comparten electrones, y así se forman casi todas las sustancias.'
+  },
+  sigue:{
+    titulo:'Ya sabemos por qué se unen los átomos',
+    hoy:'Buscan llegar a 8 electrones de valencia. Metal y no metal suelen formar enlace iónico, dos no metales enlace covalente y los metales enlace metálico.',
+    proxima:'En un enlace covalente no siempre se comparte por igual. Eso da lugar a la polaridad, y explica por qué el agua es tan especial.'
+  },
+  juego:{titulo:'El casting de los enlaces',texto:'Abran este enlace en el celular y elijan «El casting de los enlaces». Manden cada sustancia a su lugar: enlace iónico, covalente o metálico.'},
+  pdf:'tarea/tarea-11.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

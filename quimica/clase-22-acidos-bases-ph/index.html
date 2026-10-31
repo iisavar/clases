@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ácidos, bases y pH</title>
+<meta name="description" content="Qué son los ácidos y las bases, qué mide el pH y cómo se neutralizan, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Ácidos y bases en tu casa">
+  <div class="inner">
+    <h2>1. Ácidos y bases en tu casa</h2>
+    <p>Abre la cocina y el baño de tu casa. El limón y el vinagre son agrios. El jabón se siente resbaloso y la lejía limpia con fuerza. Parecen cosas sueltas, pero casi todas caben en dos familias: los ácidos y las bases.</p>
+    <div class="grid2">
+      <div class="card"><h3>Ácidos</h3><p style="margin:0">Tienen sabor agrio y atacan metales como el hierro y el zinc. Ejemplos: limón, vinagre, jugo gástrico y ácido de batería.</p></div>
+      <div class="card"><h3>Bases</h3><p style="margin:0">Tienen sabor amargo y tacto resbaloso. Ejemplos: jabón, bicarbonato, amoniaco, lejía y destapacañerías.</p></div>
+    </div>
+    <div class="clave step"><b>Regla de seguridad.</b> Esas propiedades las conocemos por experiencia, no para que las pruebes. Nunca huelas de cerca, toques ni pruebes una sustancia para saber qué es. Los ácidos y las bases fuertes queman la piel.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿a qué familia pertenece el jugo de naranja? A los ácidos: es agrio y contiene ácido cítrico.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Qué hace ácido a un ácido">
+  <div class="inner">
+    <h2>2. ¿Qué hace ácido a un ácido?</h2>
+    <p>Todo depende de lo que la sustancia suelta en el agua. Esta idea la propuso Arrhenius en 1884. Un ácido suelta iones H<sup>+</sup>. Una base suelta iones OH<sup>−</sup>.</p>
+    <svg class="dib" viewBox="0 0 780 190" role="img" aria-label="En agua, el HCl se separa en H más y Cl menos, y el NaOH se separa en Na más y OH menos" style="max-width:780px;margin:0 auto">
+      <g font-family="Nunito,sans-serif" font-weight="800" text-anchor="middle" fill="#F1F5F7">
+        <text x="185" y="24" font-size="20" fill="#3BC97A">Ácido: suelta H<tspan dy="-7" font-size="13">+</tspan></text>
+        <text x="595" y="24" font-size="20" fill="#3BC97A">Base: suelta OH<tspan dy="-7" font-size="13">−</tspan></text>
+        <circle cx="42" cy="95" r="18" fill="#FFC800"/><circle cx="82" cy="95" r="29" fill="#2BAE66"/>
+        <text x="42" y="101" font-size="16" fill="#0E1A1F">H</text><text x="82" y="101" font-size="17" fill="#0E1A1F">Cl</text>
+        <text x="62" y="160" font-size="18">HCl</text>
+        <path d="M130 95h62" stroke="#A9BCC4" stroke-width="3"/><path d="M192 95l-11-7v14z" fill="#A9BCC4"/>
+        <text x="160" y="83" font-size="14" fill="#A9BCC4">agua</text>
+        <circle cx="232" cy="95" r="18" fill="#FFC800"/><text x="232" y="101" font-size="16" fill="#0E1A1F">H</text>
+        <circle cx="312" cy="95" r="29" fill="#2BAE66"/><text x="312" y="101" font-size="17" fill="#0E1A1F">Cl</text>
+        <text x="232" y="160" font-size="18">H<tspan dy="-7" font-size="13">+</tspan></text>
+        <text x="312" y="160" font-size="18">Cl<tspan dy="-7" font-size="13">−</tspan></text>
+        <circle cx="440" cy="95" r="27" fill="#4FB3E8"/><circle cx="486" cy="95" r="19" fill="#FF6B6B"/><circle cx="515" cy="95" r="12" fill="#FFC800"/>
+        <text x="440" y="101" font-size="17" fill="#0E1A1F">Na</text><text x="486" y="101" font-size="16" fill="#0E1A1F">O</text><text x="515" y="100" font-size="13" fill="#0E1A1F">H</text>
+        <text x="477" y="160" font-size="18">NaOH</text>
+        <path d="M540 95h62" stroke="#A9BCC4" stroke-width="3"/><path d="M602 95l-11-7v14z" fill="#A9BCC4"/>
+        <text x="570" y="83" font-size="14" fill="#A9BCC4">agua</text>
+        <circle cx="646" cy="95" r="27" fill="#4FB3E8"/><text x="646" y="101" font-size="17" fill="#0E1A1F">Na</text>
+        <circle cx="722" cy="95" r="19" fill="#FF6B6B"/><circle cx="751" cy="95" r="12" fill="#FFC800"/>
+        <text x="722" y="101" font-size="16" fill="#0E1A1F">O</text><text x="751" y="100" font-size="13" fill="#0E1A1F">H</text>
+        <text x="646" y="160" font-size="18">Na<tspan dy="-7" font-size="13">+</tspan></text>
+        <text x="733" y="160" font-size="18">OH<tspan dy="-7" font-size="13">−</tspan></text>
+      </g>
+    </svg>
+    <div class="clave step"><b>El caso del amoniaco.</b> El NH<sub>3</sub> no trae OH y aun así es base. Por eso hay una forma más amplia de decirlo: el ácido entrega un H<sup>+</sup> y la base lo recibe. El amoniaco toma un H<sup>+</sup> del agua y deja libre un OH<sup>−</sup>.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Fuerte no es concentrado">
+  <div class="inner">
+    <h2>3. Fuerte no es lo mismo que concentrado</h2>
+    <p>Un ácido fuerte se separa casi por completo en el agua. Un ácido débil se separa muy poco: la mayoría de sus moléculas sigue entera.</p>
+    <svg class="dib" viewBox="0 0 760 190" role="img" aria-label="Dos vasos. En el del ácido fuerte todos los iones están separados. En el del ácido débil casi todas las moléculas están enteras y solo una se separó" style="max-width:640px;margin:0 auto">
+      <g fill="none" stroke="#A9BCC4" stroke-width="3"><path d="M90 10v125a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V10"/><path d="M470 10v125a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V10"/></g>
+      <path d="M92 32h196v103a10 10 0 0 1-10 10H102a10 10 0 0 1-10-10z" fill="#4FB3E8" opacity=".22"/>
+      <path d="M472 32h196v103a10 10 0 0 1-10 10H482a10 10 0 0 1-10-10z" fill="#4FB3E8" opacity=".22"/>
+      <g fill="#FFC800"><circle cx="120" cy="60" r="7"/><circle cx="190" cy="52" r="7"/><circle cx="255" cy="66" r="7"/><circle cx="150" cy="104" r="7"/><circle cx="225" cy="112" r="7"/><circle cx="118" cy="128" r="7"/></g>
+      <g fill="#2BAE66"><circle cx="155" cy="62" r="11"/><circle cx="225" cy="72" r="11"/><circle cx="118" cy="94" r="11"/><circle cx="190" cy="98" r="11"/><circle cx="262" cy="108" r="11"/><circle cx="170" cy="130" r="11"/></g>
+      <g fill="#2BAE66"><circle cx="505" cy="60" r="11"/><circle cx="590" cy="56" r="11"/><circle cx="515" cy="118" r="11"/><circle cx="600" cy="120" r="11"/><circle cx="640" cy="88" r="11"/><circle cx="550" cy="90" r="11"/></g>
+      <g fill="#FFC800"><circle cx="520" cy="60" r="7"/><circle cx="605" cy="56" r="7"/><circle cx="530" cy="118" r="7"/><circle cx="615" cy="120" r="7"/><circle cx="655" cy="88" r="7"/><circle cx="582" cy="96" r="7"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="17" font-weight="800" text-anchor="middle"><text x="190" y="176">Fuerte: casi todo separado</text><text x="570" y="176">Débil: casi todo entero</text></g>
+    </svg>
+    <table class="t">
+      <tr><th></th><th>Fuertes</th><th>Débiles</th></tr>
+      <tr><td>Ácidos</td><td>HCl, HNO<sub>3</sub>, H<sub>2</sub>SO<sub>4</sub></td><td>Ácido acético del vinagre, ácido carbónico de la gaseosa</td></tr>
+      <tr><td>Bases</td><td>NaOH, KOH, Ca(OH)<sub>2</sub></td><td>Amoniaco, NH<sub>3</sub></td></tr>
+    </table>
+    <div class="clave step"><b>Fuerte</b> dice cuánto se separa. <b>Concentrado</b> dice cuánto hay en el agua. Puede existir un ácido fuerte muy diluido y un ácido débil muy concentrado.</div>
+  </div>
+</section>
+
+<section data-titulo="4. La escala de pH">
+  <div class="inner">
+    <h2>4. La escala de pH</h2>
+    <p>El pH dice qué tan ácida o básica es una mezcla con agua. En la vida diaria va de 0 a 14. Los valores de esta regla son aproximados.</p>
+    <svg class="dib" viewBox="0 0 1000 176" role="img" aria-label="Regla de pH de 0 a 14: ácido de batería 1, limón 2, vinagre 3, café 5, leche 6,5, agua pura 7, sangre 7,4, bicarbonato 8, jabón 10, amoniaco 11, lejía 13">
+      <g id="celdas">
+        <rect x="40" y="62" width="61.3" height="44" fill="#FF6B6B"/><rect x="101.3" y="62" width="61.3" height="44" fill="#FF6B6B" opacity=".9"/><rect x="162.6" y="62" width="61.3" height="44" fill="#FF6B6B" opacity=".8"/><rect x="223.9" y="62" width="61.3" height="44" fill="#FF6B6B" opacity=".65"/><rect x="285.2" y="62" width="61.3" height="44" fill="#FF6B6B" opacity=".5"/><rect x="346.5" y="62" width="61.3" height="44" fill="#FF6B6B" opacity=".38"/><rect x="407.8" y="62" width="61.3" height="44" fill="#FF6B6B" opacity=".25"/>
+        <rect x="469.1" y="62" width="61.8" height="44" fill="#2BAE66"/>
+        <rect x="530.9" y="62" width="61.3" height="44" fill="#4FB3E8" opacity=".25"/><rect x="592.2" y="62" width="61.3" height="44" fill="#4FB3E8" opacity=".38"/><rect x="653.5" y="62" width="61.3" height="44" fill="#4FB3E8" opacity=".5"/><rect x="714.8" y="62" width="61.3" height="44" fill="#4FB3E8" opacity=".65"/><rect x="776.1" y="62" width="61.3" height="44" fill="#4FB3E8" opacity=".8"/><rect x="837.4" y="62" width="61.3" height="44" fill="#4FB3E8" opacity=".9"/><rect x="898.7" y="62" width="61.3" height="44" fill="#4FB3E8"/>
+      </g>
+      <g font-family="Nunito,sans-serif" font-size="19" font-weight="900" text-anchor="middle" fill="#0E1A1F"><text x="71" y="91">0</text><text x="132" y="91">1</text><text x="193" y="91">2</text><text x="255" y="91">3</text><text x="316" y="91" fill="#F1F5F7">4</text><text x="377" y="91" fill="#F1F5F7">5</text><text x="438" y="91" fill="#F1F5F7">6</text><text x="500" y="91">7</text><text x="562" y="91" fill="#F1F5F7">8</text><text x="623" y="91" fill="#F1F5F7">9</text><text x="684" y="91">10</text><text x="745" y="91">11</text><text x="807" y="91">12</text><text x="868" y="91">13</text><text x="929" y="91">14</text></g>
+      <g stroke="#A9BCC4" stroke-width="2"><path d="M132 44v18M255 44v18M377 44v18M500 44v18M581 44v18M745 44v18"/><path d="M193 106v18M469 106v18M524 106v18M684 106v18M868 106v18"/></g>
+      <g font-family="Nunito,sans-serif" font-size="16" font-weight="800" text-anchor="middle" fill="#F1F5F7"><text x="132" y="36">Ácido de batería</text><text x="255" y="36">Vinagre</text><text x="377" y="36">Café</text><text x="490" y="36">Agua pura</text><text x="600" y="36">Bicarbonato</text><text x="745" y="36">Amoniaco</text>
+        <text x="193" y="142">Limón</text><text x="460" y="142">Leche</text><text x="530" y="142">Sangre</text><text x="684" y="142">Jabón</text><text x="868" y="142">Lejía</text></g>
+      <g font-family="Nunito,sans-serif" font-size="15" font-weight="800" fill="#A9BCC4"><text x="40" y="170">Más ácido</text><text x="500" y="170" text-anchor="middle">Neutro</text><text x="960" y="170" text-anchor="end">Más básico</text></g>
+    </svg>
+    <div class="clave"><b>Cómo se lee.</b> A 25 °C, un pH menor que 7 es ácido, igual a 7 es neutro y mayor que 7 es básico.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> la sangre tiene pH 7,4. ¿Es ácida o básica? Ligeramente básica. Tu cuerpo la mantiene casi fija, porque un cambio pequeño ya es peligroso.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Calcular el pH">
+  <div class="inner">
+    <h2>5. Calcular el pH</h2>
+    <p>El pH sale de la concentración de H<sup>+</sup> en mol/L, que se escribe entre corchetes: <span class="f">pH = −log [H<sup>+</sup>]</span>. Si la concentración es una potencia de 10, el pH es el exponente sin el signo menos.</p>
+    <div class="grid2">
+      <div class="card"><h3>Ácido fuerte: HCl 0,01 mol/L</h3>
+        <p class="step" style="margin:0 0 4px">1. Se separa todo: [H<sup>+</sup>] = 0,01 mol/L.</p>
+        <p class="step" style="margin:0 0 4px">2. En potencia de 10: 0,01 = 10<sup>−2</sup>.</p>
+        <p class="step" style="margin:0"><b>3. pH = 2.</b></p></div>
+      <div class="card"><h3>Base fuerte: NaOH 0,001 mol/L</h3>
+        <p class="step" style="margin:0 0 4px">1. [OH<sup>−</sup>] = 0,001 mol/L = 10<sup>−3</sup>.</p>
+        <p class="step" style="margin:0 0 4px">2. El pOH es lo mismo con el OH<sup>−</sup>: pOH = 3.</p>
+        <p class="step" style="margin:0"><b>3. A 25 °C, pH + pOH = 14, así que pH = 14 − 3 = 11.</b></p></div>
+    </div>
+    <div class="clave step"><b>Cada unidad de pH vale 10 veces.</b> Un pH 3 tiene 10 veces más H<sup>+</sup> que un pH 4, y 100 veces más que un pH 5. Por eso un cambio de dos unidades es enorme.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Neutralización">
+  <div class="inner">
+    <h2>6. Neutralización: el ácido y la base se cancelan</h2>
+    <p>Cuando un ácido se junta con una base, el H<sup>+</sup> y el OH<sup>−</sup> forman agua. Lo que queda de cada uno forma una sal.</p>
+    <div class="ejemplo" style="text-align:center"><b>ácido + base → sal + agua</b><br>HCl + NaOH → NaCl + H<sub>2</sub>O</div>
+    <div class="card step"><h3>Ejemplo. ¿Cuántos mL de NaOH 0,20 mol/L neutralizan 50 mL de HCl 0,10 mol/L?</h3>
+      <p style="margin:0 0 4px">1. Moles de ácido: 0,10 mol/L × 0,050 L = 0,0050 mol.</p>
+      <p style="margin:0 0 4px">2. La ecuación es 1 a 1, entonces se necesitan 0,0050 mol de base.</p>
+      <p style="margin:0">3. Volumen: 0,0050 mol ÷ 0,20 mol/L = 0,025 L = <b>25 mL</b>.</p></div>
+    <div class="clave step"><b>En la vida diaria.</b> La leche de magnesia, Mg(OH)<sub>2</sub>, neutraliza el exceso de ácido del estómago. La cal corrige los suelos ácidos de una finca.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Saberlo sin probar">
+  <div class="inner">
+    <h2>7. ¿Cómo se sabe sin probarlo?</h2>
+    <p>Un indicador es una sustancia que cambia de color según el pH. Se usa una cantidad pequeña y el color te dice si la muestra es ácida o básica.</p>
+    <table class="t">
+      <tr><th>Indicador</th><th>En ácido</th><th>En base</th></tr>
+      <tr><td>Papel tornasol</td><td>Rojo</td><td>Azul</td></tr>
+      <tr><td>Fenolftaleína</td><td>Incolora</td><td>Fucsia</td></tr>
+      <tr><td>Jugo de col morada</td><td>Rojo o rosado</td><td>Verde o amarillo</td></tr>
+    </table>
+    <p style="margin-top:12px">Si necesitas el número exacto, se usa un medidor electrónico, el pH-metro. Así se controla el agua de una piscina.</p>
+    <div class="clave step"><b>Pregunta para el chat:</b> pones jugo de col morada en vinagre. ¿Qué color esperas? Rojo o rosado, porque el vinagre es ácido. Puedes probarlo en casa.</div>
+    <div class="clave step"><b>Peligro real.</b> Nunca mezcles cloro o lejía con limpiadores ácidos ni con amoniaco. Se libera un gas tóxico. La mezcla no limpia mejor: te enferma.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:22,
+  titulo:'Ácidos, bases',
+  subtitulo:'y la escala de pH',
+  lead:'Qué los diferencia, qué mide el pH y cómo se cancelan.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'De las burbujas de la gaseosa al sabor agrio',
+    antesT:'Lo que ya sabes',
+    antes:'Sabes medir un gas y sabes expresar concentraciones en mol/L. La gaseosa guarda CO<sub>2</sub> a presión y, al abrirla, el gas escapa en burbujas.',
+    hoy:'Una parte de ese CO<sub>2</sub> reacciona con el agua y forma un ácido débil. Por eso la gaseosa pica. Hoy veremos qué es un ácido, qué es una base y cómo se mide la acidez.'
+  },
+  sigue:{
+    titulo:'Ya sabemos medir qué tan ácida es una sustancia',
+    hoy:'Un ácido suelta H<sup>+</sup>, una base suelta OH<sup>−</sup>, al juntarse forman sal y agua, y el pH mide la acidez.',
+    proxima:'Muchos ácidos de la vida diaria, como el del vinagre, tienen carbono. Entramos a la química orgánica con los hidrocarburos.'
+  },
+  juego:{titulo:'¿Ácido, neutro o base?',texto:'Abran este enlace en el celular. Cada tarjeta debe ir a su canasta. Gana quien termine más rápido, y si te equivocas, la tarjeta vuelve a salir.'},
+  pdf:'tarea/tarea-22.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

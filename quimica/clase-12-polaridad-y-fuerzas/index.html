@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polaridad y fuerzas</title>
+<meta name="description" content="Enlaces polares, moléculas polares, fuerzas entre moléculas y por qué el agua es especial, con duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Compartir no es repartir por igual">
+  <div class="inner">
+    <h2>1. Compartir no siempre es repartir por igual</h2>
+    <p>En la clase pasada vimos que en el enlace covalente dos átomos comparten electrones. Pero si un átomo tiene mayor electronegatividad, jala los electrones más fuerte hacia su lado. Es como una cuerda entre dos personas de distinta fuerza.</p>
+    <svg class="dib" viewBox="0 0 760 196" role="img" aria-label="A la izquierda, en H2 la nube de electrones queda centrada entre dos átomos iguales. A la derecha, en HCl la nube se corre hacia el cloro, que queda con carga parcial negativa, y el hidrógeno con carga parcial positiva" style="max-width:800px;margin:0 auto">
+      <ellipse cx="190" cy="88" rx="112" ry="60" fill="#4FB3E8" opacity=".3"/>
+      <circle cx="150" cy="88" r="26" fill="#4FB3E8"/><circle cx="230" cy="88" r="26" fill="#4FB3E8"/>
+      <ellipse cx="575" cy="88" rx="112" ry="64" fill="#4FB3E8" opacity=".2"/><ellipse cx="605" cy="88" rx="78" ry="56" fill="#4FB3E8" opacity=".35"/>
+      <circle cx="478" cy="88" r="21" fill="#4FB3E8"/><circle cx="600" cy="88" r="40" fill="#3BC97A"/>
+      <g fill="#0E1A1F" font-family="Nunito,sans-serif" font-size="20" font-weight="900" text-anchor="middle"><text x="150" y="95">H</text><text x="230" y="95">H</text><text x="478" y="95">H</text><text x="600" y="95">Cl</text></g>
+      <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="24" font-weight="900" text-anchor="middle"><text x="478" y="40">δ+</text><text x="640" y="24">δ−</text></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="800" text-anchor="middle"><text x="190" y="182">Átomos iguales: reparto parejo</text><text x="560" y="182">Cloro más fuerte: los electrones se le acercan</text></g>
+    </svg>
+    <div class="grid2 step">
+      <div class="card"><h3>Covalente apolar</h3><p style="margin:0">Los electrones quedan en el medio. No hay lado positivo ni negativo.</p></div>
+      <div class="card"><h3>Covalente polar</h3><p style="margin:0">Un lado queda con un poquito de carga negativa y el otro con un poquito de positiva.</p></div>
+    </div>
+    <div class="clave step"><b>La letra δ</b> se lee «delta» y aquí significa «un poquito». δ− es una carga parcial, no la carga completa de un ion.</div>
+  </div>
+</section>
+
+<section data-titulo="2. La diferencia decide el enlace">
+  <div class="inner">
+    <h2>2. Una resta decide qué enlace tienes</h2>
+    <p>Para saber qué tan dispareja es la pelea, se restan las electronegatividades de los dos átomos: la mayor menos la menor. Usaremos estos valores: Na 0,93, H 2,20, C 2,55, N 3,04, Cl 3,16 y O 3,44.</p>
+    <table class="t">
+      <tr><th>Diferencia</th><th>Tipo de enlace</th><th>Ejemplo</th></tr>
+      <tr><td>Hasta 0,4</td><td>Covalente apolar</td><td>H y H: 2,20 − 2,20 = 0. C y H: 2,55 − 2,20 = 0,35</td></tr>
+      <tr><td>Más de 0,4 y hasta 1,7</td><td>Covalente polar</td><td>H y Cl: 3,16 − 2,20 = 0,96. O y H: 3,44 − 2,20 = 1,24</td></tr>
+      <tr><td>Mayor que 1,7</td><td>Iónico</td><td>Na y Cl: 3,16 − 0,93 = 2,23</td></tr>
+    </table>
+    <div class="clave"><b>Estos límites son una guía,</b> no una frontera exacta: otros libros cortan en 0,5 o en 2,0. Sirven para comparar enlaces.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cómo es el enlace entre N y H en el amoníaco? Resta: 3,04 − 2,20 = 0,84. Es covalente polar.</div>
+  </div>
+</section>
+
+<section data-titulo="3. La forma de la molécula">
+  <div class="inner">
+    <h2>3. Enlaces polares no siempre dan molécula polar</h2>
+    <p>Una molécula tiene varios enlaces, y cada uno jala hacia un lado. Lo que importa es el resultado total, y ese depende de la forma de la molécula. Compara dos moléculas de tres átomos.</p>
+    <svg class="dib" viewBox="0 0 760 232" role="img" aria-label="El CO2 es recto: los dos oxígenos jalan en sentidos opuestos y los jalones se cancelan. El agua es doblada: los dos jalones van hacia el oxígeno y se suman" style="max-width:760px;margin:0 auto">
+      <g stroke="#A9BCC4" stroke-width="5"><path d="M92 92h76M92 104h76M212 92h76M212 104h76"/><path d="M552 92l-52 56M588 92l52 56"/></g>
+      <circle cx="70" cy="98" r="28" fill="#FF6B6B"/><circle cx="190" cy="98" r="24" fill="#8A9BA3"/><circle cx="310" cy="98" r="28" fill="#FF6B6B"/>
+      <circle cx="570" cy="70" r="30" fill="#FF6B6B"/><circle cx="490" cy="158" r="20" fill="#4FB3E8"/><circle cx="650" cy="158" r="20" fill="#4FB3E8"/>
+      <g fill="#0E1A1F" font-family="Nunito,sans-serif" font-size="19" font-weight="900" text-anchor="middle"><text x="70" y="105">O</text><text x="190" y="105">C</text><text x="310" y="105">O</text><text x="570" y="77">O</text><text x="490" y="165">H</text><text x="650" y="165">H</text></g>
+      <g stroke="#FFC800" stroke-width="5" fill="#FFC800"><path d="M168 42H96"/><path d="M84 42l16-8v16z"/><path d="M212 42h72"/><path d="M296 42l-16-8v16z"/><path d="M570 165v-52"/><path d="M570 104l-8 16h16z"/></g>
+      <g fill="#FFC800" font-family="Nunito,sans-serif" font-size="20" font-weight="900" text-anchor="middle"><text x="570" y="28">δ−</text><text x="456" y="146">δ+</text><text x="684" y="146">δ+</text></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="800" text-anchor="middle"><text x="190" y="170">Recta: los jalones se cancelan</text><text x="190" y="196">molécula apolar</text><text x="570" y="202">Doblada: los jalones se suman</text><text x="570" y="222">molécula polar</text></g>
+    </svg>
+    <div class="clave step"><b>Molécula polar:</b> tiene un lado con δ− y otro con δ+. H<sub>2</sub>O, NH<sub>3</sub> y HCl son polares. CO<sub>2</sub> y CH<sub>4</sub> reparten sus enlaces en forma pareja, y son apolares.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> si dos equipos iguales jalan una cuerda en sentidos opuestos, ¿la cuerda se mueve? No: eso le pasa al CO<sub>2</sub>.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Fuerzas entre moléculas">
+  <div class="inner">
+    <h2>4. Las moléculas también se atraen entre sí</h2>
+    <p>Hasta ahora vimos enlaces, que unen átomos <b>dentro</b> de una molécula. Las fuerzas intermoleculares actúan <b>entre</b> moléculas vecinas y son mucho más débiles. Cuando el agua hierve, esas fuerzas se vencen, pero cada molécula sigue siendo H<sub>2</sub>O: el vapor no es hidrógeno y oxígeno sueltos.</p>
+    <table class="t">
+      <tr><th>Fuerza</th><th>Quiénes la tienen</th><th>Ejemplo</th></tr>
+      <tr><td>London</td><td>Todas las moléculas. Crece con el tamaño de la molécula</td><td>Cl<sub>2</sub> es gas, Br<sub>2</sub> líquido, I<sub>2</sub> sólido</td></tr>
+      <tr><td>Dipolo-dipolo</td><td>Moléculas polares: el δ+ de una atrae el δ− de otra</td><td>HCl</td></tr>
+      <tr><td>Puente de hidrógeno</td><td>H unido a F, O o N, atraído por el F, O o N de otra molécula</td><td>H<sub>2</sub>O, NH<sub>3</sub></td></tr>
+    </table>
+    <div class="clave step"><b>Tres moléculas de tamaño parecido:</b> CH<sub>4</sub> hierve a −162 °C, NH<sub>3</sub> a −33 °C y H<sub>2</sub>O a 100 °C. Mientras más fuerte la atracción entre moléculas, más calor se necesita para separarlas.</div>
+  </div>
+</section>
+
+<section data-titulo="5. El puente de hidrógeno">
+  <div class="inner">
+    <h2>5. El agua está llena de puentes de hidrógeno</h2>
+    <p>El oxígeno jala tan fuerte que el hidrógeno queda con un δ+ bien marcado. Ese hidrógeno es atraído por el oxígeno de la molécula vecina. Cada molécula de agua puede hacer esto hasta con cuatro vecinas.</p>
+    <svg class="dib" viewBox="0 0 760 218" role="img" aria-label="Cuatro moléculas de agua en fila. Cada una está unida a la siguiente por una línea punteada dorada, que va del hidrógeno de una al oxígeno de la otra" style="max-width:800px;margin:0 auto">
+      <g stroke="#FFC800" stroke-width="4" stroke-dasharray="8 7"><path d="M194 86l72 10"/><path d="M340 134h86"/><path d="M506 96l74-14"/></g>
+      <g stroke="#F1F5F7" stroke-width="6"><path d="M122 76l-30 34M122 76l64 8"/><path d="M286 96l36-30M286 96l44 38"/><path d="M450 132l48-36M450 132l40 42"/><path d="M600 78l46-26M600 78l42 42"/></g>
+      <g fill="#FF6B6B"><circle cx="122" cy="76" r="24"/><circle cx="286" cy="96" r="24"/><circle cx="450" cy="132" r="24"/><circle cx="600" cy="78" r="24"/></g>
+      <g fill="#4FB3E8"><circle cx="92" cy="110" r="14"/><circle cx="186" cy="84" r="14"/><circle cx="322" cy="66" r="14"/><circle cx="330" cy="134" r="14"/><circle cx="498" cy="96" r="14"/><circle cx="490" cy="174" r="14"/><circle cx="646" cy="52" r="14"/><circle cx="642" cy="120" r="14"/></g>
+      <g fill="#0E1A1F" font-family="Nunito,sans-serif" font-size="17" font-weight="900" text-anchor="middle"><text x="122" y="82">O</text><text x="286" y="102">O</text><text x="450" y="138">O</text><text x="600" y="84">O</text></g>
+      <path d="M150 28v46" stroke="#F1F5F7" stroke-width="2"/><text x="150" y="20" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="17" font-weight="800" text-anchor="middle">Enlace covalente: fuerte, dentro</text>
+      <path d="M380 138v42" stroke="#FFC800" stroke-width="2"/><text x="300" y="204" fill="#FFC800" font-family="Nunito,sans-serif" font-size="17" font-weight="800" text-anchor="middle">Puente de hidrógeno: débil, entre moléculas</text>
+    </svg>
+    <div class="clave step"><b>Ojo con el nombre.</b> Se llama «puente», pero no es un enlace dentro de la molécula. Es la atracción más fuerte entre moléculas, y aun así es mucho más débil que un enlace covalente.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿el CH<sub>4</sub> forma puentes de hidrógeno? No: sus hidrógenos están unidos a carbono, no a F, O o N.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Por qué el agua es especial">
+  <div class="inner">
+    <h2>6. Por qué el agua es tan especial</h2>
+    <p>Casi todos los sólidos se hunden en su propio líquido. El hielo flota. La explicación está en los puentes de hidrógeno: al congelarse, las moléculas se ordenan y dejan huecos.</p>
+    <svg class="dib" viewBox="0 0 760 176" role="img" aria-label="A la izquierda, moléculas de agua líquida juntas y desordenadas. A la derecha, moléculas de hielo ordenadas en anillos de seis, con un hueco en el centro" style="max-width:760px;margin:0 auto">
+      <g fill="#4FB3E8"><circle cx="110" cy="40" r="12"/><circle cx="140" cy="66" r="12"/><circle cx="104" cy="74" r="12"/><circle cx="170" cy="38" r="12"/><circle cx="200" cy="70" r="12"/><circle cx="232" cy="44" r="12"/><circle cx="262" cy="74" r="12"/><circle cx="118" cy="110" r="12"/><circle cx="154" cy="102" r="12"/><circle cx="190" cy="118" r="12"/><circle cx="228" cy="100" r="12"/><circle cx="268" cy="112" r="12"/><circle cx="72" cy="100" r="12"/><circle cx="70" cy="56" r="12"/><circle cx="302" cy="52" r="12"/><circle cx="304" cy="96" r="12"/></g>
+      <g fill="none" stroke="#FFC800" stroke-width="3" stroke-dasharray="6 5"><path d="M470 40h44l22 38l-22 38h-44l-22-38z"/><path d="M536 78h44l22-38h44l22 38l-22 38h-44l-22-38"/></g>
+      <g fill="#4FB3E8"><circle cx="470" cy="40" r="12"/><circle cx="514" cy="40" r="12"/><circle cx="536" cy="78" r="12"/><circle cx="514" cy="116" r="12"/><circle cx="470" cy="116" r="12"/><circle cx="448" cy="78" r="12"/><circle cx="580" cy="78" r="12"/><circle cx="602" cy="40" r="12"/><circle cx="646" cy="40" r="12"/><circle cx="668" cy="78" r="12"/><circle cx="646" cy="116" r="12"/><circle cx="602" cy="116" r="12"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="800" text-anchor="middle"><text x="190" y="164">Agua líquida: juntas y desordenadas</text><text x="558" y="164">Hielo: ordenadas, con huecos, menos densa</text></g>
+    </svg>
+    <div class="grid3 step">
+      <div class="card"><h3>El hielo flota</h3><p style="margin:0">Densidad del hielo: 0,92 g/mL. Del agua: 1,00 g/mL. Por eso un lago se congela desde arriba.</p></div>
+      <div class="card"><h3>Guarda mucho calor</h3><p style="margin:0">Separar sus moléculas cuesta energía. Por eso sudar te enfría y el mar suaviza el clima.</p></div>
+      <div class="card"><h3>Piel en la superficie</h3><p style="margin:0">Las moléculas de arriba se jalan entre sí. Es la tensión superficial: gotas redondas e insectos que caminan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-titulo="7. Lo semejante disuelve a lo semejante">
+  <div class="inner">
+    <h2>7. Lo semejante disuelve a lo semejante</h2>
+    <div class="grid2">
+      <div>
+        <p>El agua es polar, así que rodea lo que tiene carga o también es polar. Por eso disuelve la sal y el azúcar. El aceite es apolar: el agua prefiere atraerse a sí misma y lo deja aparte.</p>
+        <p>El jabón resuelve el problema porque tiene dos extremos. La cabeza polar se queda en el agua y la cola apolar se mete en la grasa. Así la grasa sale con el enjuague.</p>
+      </div>
+      <svg class="dib" viewBox="0 0 400 268" role="img" aria-label="Una gota de grasa en el centro rodeada de moléculas de jabón. Las colas apuntan hacia la grasa y las cabezas hacia el agua" style="max-width:380px;margin:0 auto">
+        <circle cx="200" cy="118" r="52" fill="#FFC800" opacity=".75"/>
+        <g stroke="#A9BCC4" stroke-width="5" fill="#3BC97A">
+          <g><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+          <g transform="rotate(45 200 118)"><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+          <g transform="rotate(90 200 118)"><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+          <g transform="rotate(135 200 118)"><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+          <g transform="rotate(180 200 118)"><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+          <g transform="rotate(225 200 118)"><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+          <g transform="rotate(270 200 118)"><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+          <g transform="rotate(315 200 118)"><path d="M200 86V28"/><circle cx="200" cy="22" r="13" stroke="none"/></g>
+        </g>
+        <text x="200" y="125" fill="#0E1A1F" font-family="Nunito,sans-serif" font-size="20" font-weight="900" text-anchor="middle">grasa</text>
+        <text x="200" y="256" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="17" font-weight="800" text-anchor="middle">Cabezas al agua, colas a la grasa</text>
+      </svg>
+    </div>
+    <div class="clave step"><b>La regla:</b> lo polar se mezcla con lo polar, y lo apolar con lo apolar. La gasolina quita la grasa porque las dos son apolares.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿por qué una mancha de aceite en la camisa no sale solo con agua? Porque el agua es polar y el aceite apolar: hace falta jabón.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:12,
+  titulo:'Polaridad y fuerzas entre moléculas',
+  subtitulo:'y por qué el agua es especial',
+  lead:'Cómo se reparten los electrones, cómo se atraen las moléculas y qué tiene que ver eso con tu vida diaria.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'Ya sabemos cómo se unen los átomos',
+    antesT:'La clase pasada',
+    antes:'Vimos la regla del octeto, las estructuras de Lewis y los enlaces iónico, covalente y metálico.',
+    hoy:'Veremos cómo se reparten los electrones en un enlace y qué mantiene unidas a las moléculas entre sí.'
+  },
+  sigue:{
+    titulo:'Ya sabemos por qué la materia se comporta como se comporta',
+    hoy:'La electronegatividad decide la polaridad, la polaridad decide las fuerzas entre moléculas, y esas fuerzas explican el agua.',
+    proxima:'Vamos a contar los electrones de cada átomo en un compuesto con la valencia y el número de oxidación. Es la llave para escribir y nombrar compuestos.'
+  },
+  juego:{titulo:'Agentes del agua',texto:'Abran este enlace en el celular. Tienen 10 minutos para abrir 5 candados con lo que vimos hoy. Cada candado da una letra.'},
+  pdf:'tarea/tarea-12.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mezclas y cambios</title>
+<meta name="description" content="Sustancias puras y mezclas, métodos de separación y cambios físicos y químicos, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Sustancias puras y mezclas">
+  <div class="inner">
+    <h2>1. ¿Es una sola cosa o son varias juntas?</h2>
+    <p>Mira un vaso de agua de la llave. Parece una sola cosa, pero tiene sales disueltas y un poco de cloro. Casi nada de lo que te rodea es una sola sustancia. Por eso la química ordena la materia así:</p>
+    <svg class="dib" viewBox="0 0 640 190" role="img" aria-label="Esquema: la materia se divide en sustancias puras y mezclas. Las sustancias puras se dividen en elementos y compuestos. Las mezclas se dividen en homogéneas y heterogéneas" style="max-width:640px;margin:0 auto">
+      <g fill="none" stroke="#A9BCC4" stroke-width="2"><path d="M320 46v18H160v22M320 64h160v22M160 124v18H80v10M160 142h80v10M480 124v18H400v10M480 142h80v10"/></g>
+      <g fill="#22363F" stroke="#2E4652" stroke-width="2"><rect x="250" y="6" width="140" height="40" rx="10"/><rect x="70" y="86" width="180" height="38" rx="10"/><rect x="400" y="86" width="160" height="38" rx="10"/><rect x="14" y="152" width="132" height="34" rx="10"/><rect x="174" y="152" width="132" height="34" rx="10"/><rect x="334" y="152" width="132" height="34" rx="10"/><rect x="494" y="152" width="132" height="34" rx="10"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle">
+        <text x="320" y="32" font-size="19" fill="#FFC800">Materia</text>
+        <g font-size="17" fill="#3BC97A"><text x="160" y="111">Sustancias puras</text><text x="480" y="111">Mezclas</text></g>
+        <g font-size="16" fill="#F1F5F7"><text x="80" y="175">Elementos</text><text x="240" y="175">Compuestos</text><text x="400" y="175">Homogéneas</text><text x="560" y="175">Heterogéneas</text></g>
+      </g>
+    </svg>
+    <div class="grid2 step" style="margin-top:14px">
+      <div class="card"><h3>Sustancia pura</h3><p style="margin:0">Tiene una composición fija y propiedades fijas. En un mismo lugar, el agua destilada siempre hierve a la misma temperatura.</p></div>
+      <div class="card"><h3>Mezcla</h3><p style="margin:0">Son dos o más sustancias juntas, sin reaccionar. Se pueden poner en cualquier proporción: más o menos azúcar en tu café.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-titulo="2. Elementos y compuestos">
+  <div class="inner">
+    <h2>2. Elementos y compuestos</h2>
+    <p>Un <b>elemento</b> no se puede descomponer en sustancias más simples. Hoy se conocen 118, como el oxígeno, el hierro y el oro. Un <b>compuesto</b> tiene dos o más elementos unidos siempre en la misma proporción.</p>
+    <svg class="dib" viewBox="0 0 640 158" role="img" aria-label="Tres cajas de partículas. Elemento: todas las partículas iguales. Compuesto: grupos iguales de dos clases de partículas unidas. Mezcla: partículas sueltas y grupos de distintas clases, revueltos" style="max-width:600px;margin:0 auto">
+      <g fill="none" stroke="#A9BCC4" stroke-width="2.5"><rect x="20" y="8" width="180" height="120" rx="6"/><rect x="230" y="8" width="180" height="120" rx="6"/><rect x="440" y="8" width="180" height="120" rx="6"/></g>
+      <g fill="#FFC800"><circle cx="56" cy="38" r="13"/><circle cx="110" cy="32" r="13"/><circle cx="164" cy="42" r="13"/><circle cx="76" cy="90" r="13"/><circle cx="130" cy="82" r="13"/><circle cx="172" cy="100" r="13"/></g>
+      <g fill="#4FB3E8"><circle cx="268" cy="42" r="13"/><circle cx="344" cy="38" r="13"/><circle cx="286" cy="98" r="13"/><circle cx="366" cy="96" r="13"/></g>
+      <g fill="#F1F5F7"><circle cx="252" cy="52" r="8"/><circle cx="284" cy="52" r="8"/><circle cx="328" cy="48" r="8"/><circle cx="360" cy="48" r="8"/><circle cx="270" cy="108" r="8"/><circle cx="302" cy="108" r="8"/><circle cx="350" cy="106" r="8"/><circle cx="382" cy="106" r="8"/></g>
+      <g fill="#FFC800"><circle cx="470" cy="38" r="13"/><circle cx="598" cy="44" r="13"/><circle cx="530" cy="108" r="13"/></g>
+      <g fill="#4FB3E8"><circle cx="536" cy="34" r="13"/><circle cx="478" cy="94" r="13"/><circle cx="590" cy="98" r="13"/></g>
+      <g fill="#F1F5F7"><circle cx="520" cy="44" r="8"/><circle cx="552" cy="44" r="8"/><circle cx="462" cy="104" r="8"/><circle cx="494" cy="104" r="8"/><circle cx="574" cy="108" r="8"/><circle cx="606" cy="108" r="8"/></g>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="18" font-weight="900" text-anchor="middle"><text x="110" y="152">Elemento</text><text x="320" y="152">Compuesto</text><text x="530" y="152">Mezcla</text></g>
+    </svg>
+    <div class="grid2 step">
+      <div class="card"><h3>El agua es un compuesto</h3><p style="margin:0">Su fórmula es H<sub>2</sub>O: siempre dos partes de hidrógeno por una de oxígeno. Con electricidad se separa en esos dos elementos.</p></div>
+      <div class="card"><h3>Un compuesto es otra cosa</h3><p style="margin:0">El hidrógeno arde y el oxígeno aviva el fuego. Unidos forman agua, que lo apaga. El compuesto no se parece a sus elementos.</p></div>
+    </div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿la sal de mesa es elemento o compuesto? Compuesto: tiene sodio y cloro unidos.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Homogéneas y heterogéneas">
+  <div class="inner">
+    <h2>3. Mezclas homogéneas y heterogéneas</h2>
+    <p>Hay mezclas en las que no se distinguen sus partes, y otras en las que sí. La pregunta es sencilla: ¿se ve igual en todas partes?</p>
+    <div class="grid2">
+      <div class="card"><h3>Homogénea</h3><p>Se ve igual en todas sus partes. No distingues sus componentes, ni con un microscopio.</p><p style="margin:0"><b>Ejemplos:</b> agua con sal, vinagre, aire limpio, gaseosa sin burbujas, acero.</p></div>
+      <div class="card"><h3>Heterogénea</h3><p>Se distinguen sus partes, a simple vista o con un microscopio.</p><p style="margin:0"><b>Ejemplos:</b> arena con agua, agua con aceite, ensalada, sangre.</p></div>
+    </div>
+    <div class="clave step"><b>También hay mezclas sólidas y gaseosas.</b> El acero es hierro con un poco de carbono. El aire es cerca de 78 % nitrógeno y 21 % oxígeno, más otros gases.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿el aire es una sustancia pura? No. Es una mezcla homogénea de gases.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Separar con métodos sencillos">
+  <div class="inner">
+    <h2>4. Cómo separar una mezcla</h2>
+    <p>Como en una mezcla las sustancias no reaccionan, se pueden separar con métodos físicos. El truco es buscar en qué se diferencian: tamaño, densidad, si los atrae un imán.</p>
+    <div class="grid2" style="grid-template-columns:2fr 3fr;align-items:center">
+      <svg class="dib" viewBox="0 0 300 250" role="img" aria-label="Filtración: una mezcla de arena y agua cae en un embudo con papel de filtro. La arena se queda en el papel y el agua limpia gotea al vaso de abajo" style="max-width:280px;margin:0 auto">
+        <path d="M70 26h160l-68 96v40h-24v-40z" fill="#22363F" stroke="#A9BCC4" stroke-width="3"/>
+        <path d="M96 34h108l-54 76z" fill="#F1F5F7" opacity=".18"/>
+        <path d="M118 66h64l-32 44z" fill="#D08C55"/>
+        <path d="M90 174v56a10 10 0 0 0 10 10h100a10 10 0 0 0 10-10v-56" fill="none" stroke="#A9BCC4" stroke-width="3"/>
+        <path d="M92 204h116v26a8 8 0 0 1-8 8h-100a8 8 0 0 1-8-8z" fill="#4FB3E8" opacity=".5"/>
+        <path d="M150 166v4M150 178v4M150 190v4" stroke="#4FB3E8" stroke-width="4" stroke-linecap="round"/>
+        <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="15" font-weight="800"><text x="236" y="84">Arena</text><text x="218" y="226">Agua</text></g>
+        <path d="M232 80h-52" stroke="#A9BCC4" stroke-width="1.5"/>
+      </svg>
+      <table class="t">
+        <tr><th>Método</th><th>Qué aprovecha</th><th>Ejemplo</th></tr>
+        <tr><td>Tamizado</td><td>El tamaño de los sólidos</td><td>Separar piedras de la arena con un cernidor</td></tr>
+        <tr><td>Filtración</td><td>Un sólido no pasa por el papel</td><td>Arena y agua, café y su filtro</td></tr>
+        <tr><td>Decantación</td><td>La densidad</td><td>Agua y aceite: se espera y se vierte con cuidado</td></tr>
+        <tr><td>Imantación</td><td>Algunos metales van al imán</td><td>Limaduras de hierro y arena</td></tr>
+      </table>
+    </div>
+    <div class="clave step"><b>La pregunta clave:</b> ¿en qué se diferencian las dos sustancias? Esa diferencia te dice qué método usar.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Separar con calor y otros métodos">
+  <div class="inner">
+    <h2>5. Cuando el filtro no alcanza</h2>
+    <p>Un filtro no saca la sal del agua de mar, porque está disuelta. Aquí se usa otra diferencia: el agua hierve mucho antes que la sal.</p>
+    <svg class="dib" viewBox="0 0 640 204" role="img" aria-label="Destilación: un matraz con agua salada hierve sobre una llama, el vapor sube y pasa por un tubo inclinado donde se enfría, y cae como agua pura en un vaso. La sal se queda en el matraz" style="max-width:600px;margin:0 auto">
+      <path d="M115 40V16H170L400 78V104" fill="none" stroke="#A9BCC4" stroke-width="16" stroke-linejoin="round"/>
+      <path d="M115 40V16H170L400 78V104" fill="none" stroke="#131F24" stroke-width="10" stroke-linejoin="round"/>
+      <path d="M115 40V16H170L400 78V100" fill="none" stroke="#4FB3E8" stroke-width="3" stroke-dasharray="9 9"/>
+      <path d="M99 34v34l-42 64a12 12 0 0 0 10 18h96a12 12 0 0 0 10-18l-42-64V34z" fill="#131F24" stroke="#A9BCC4" stroke-width="3"/>
+      <path d="M74 112h82l20 30a6 6 0 0 1-5 7H59a6 6 0 0 1-5-7z" fill="#4FB3E8" opacity=".5"/>
+      <path d="M115 198c-16-12-10-22-5-34 3 8 8 8 10 0 8 12 11 22-5 34z" fill="#FFC800"/>
+      <path d="M400 112v5M400 124v5" stroke="#4FB3E8" stroke-width="4" stroke-linecap="round"/>
+      <path d="M356 118v68a8 8 0 0 0 8 8h72a8 8 0 0 0 8-8v-68" fill="none" stroke="#A9BCC4" stroke-width="3"/>
+      <path d="M358 158h84v28a6 6 0 0 1-6 6h-72a6 6 0 0 1-6-6z" fill="#4FB3E8" opacity=".5"/>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="15" font-weight="800"><text x="194" y="134">1. El agua hierve.</text><text x="194" y="154">La sal se queda aquí.</text><text x="282" y="28">2. El vapor se enfría en el tubo</text><text x="456" y="166">3. Gotea agua pura</text></g>
+    </svg>
+    <table class="t">
+      <tr><th>Método</th><th>Cómo funciona</th><th>Ejemplo</th></tr>
+      <tr><td>Evaporación</td><td>El líquido se va y el sólido se queda</td><td>Salinas: la sal del agua de mar</td></tr>
+      <tr><td>Destilación</td><td>Se hierve y se enfría el vapor</td><td>Agua destilada de la farmacia</td></tr>
+      <tr><td>Cristalización</td><td>Al enfriarse, lo disuelto forma cristales</td><td>Cristales de azúcar</td></tr>
+      <tr><td>Cromatografía</td><td>Cada sustancia avanza distinto en el papel</td><td>Los colores de la tinta de un marcador</td></tr>
+      <tr><td>Centrifugación</td><td>Gira muy rápido: lo denso va al fondo</td><td>Separar la sangre en el laboratorio</td></tr>
+    </table>
+  </div>
+</section>
+
+<section data-titulo="6. Cambios físicos y químicos">
+  <div class="inner">
+    <h2>6. Cambio físico o cambio químico</h2>
+    <p>La pregunta es una sola: al terminar, ¿sigue siendo la misma sustancia?</p>
+    <div class="grid2">
+      <div class="card"><h3>Cambio físico</h3><p>La sustancia sigue siendo la misma. Cambia su forma o su estado.</p><p style="margin:0"><b>Ejemplos:</b> derretir hielo, romper un vidrio, disolver azúcar en agua.</p></div>
+      <div class="card"><h3>Cambio químico</h3><p>Aparecen sustancias nuevas, con otras propiedades. También se llama reacción química.</p><p style="margin:0"><b>Ejemplos:</b> freír un huevo, oxidarse un clavo, quemar leña.</p></div>
+    </div>
+    <div class="clave step"><b>Señales de un cambio químico:</b> cambia el color, aparece un olor, salen burbujas sin que nada hierva, se desprende luz o calor, o se forma un sólido al juntar dos líquidos. Son pistas: lo que decide es si apareció una sustancia nueva.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> una vela encendida, ¿tiene cambio físico o químico? Los dos. La cera que se derrite es físico. La cera que se quema en la mecha es químico.</div>
+  </div>
+</section>
+
+<section data-titulo="7. La masa no desaparece">
+  <div class="inner">
+    <h2>7. En una reacción, la masa no desaparece</h2>
+    <p>En la primera clase vimos un clavo que pasó de 5,00 g a 5,08 g al oxidarse. ¿De dónde salió esa masa? Del aire: el hierro se unió con oxígeno. No se creó nada.</p>
+    <svg class="dib" viewBox="0 0 640 150" role="img" aria-label="Barras de masa: antes de la reacción, 12 gramos de carbono más 32 gramos de oxígeno. Después, 44 gramos de dióxido de carbono. Las dos barras miden lo mismo" style="max-width:600px;margin:0 auto">
+      <rect x="150" y="16" width="120" height="44" fill="#A9BCC4"/><rect x="270" y="16" width="320" height="44" fill="#4FB3E8"/>
+      <rect x="150" y="84" width="440" height="44" fill="#3BC97A"/>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="16" font-weight="800"><text x="140" y="44" text-anchor="end">Antes</text><text x="140" y="112" text-anchor="end">Después</text></g>
+      <g fill="#0E1A1F" font-family="Nunito,sans-serif" font-size="16" font-weight="900" text-anchor="middle"><text x="210" y="44">12 g carbono</text><text x="430" y="44">32 g de oxígeno</text><text x="370" y="112">44 g de dióxido de carbono</text></g>
+    </svg>
+    <div class="clave step"><b>Ley de la conservación de la masa.</b> En una reacción química la masa total no cambia: la masa de lo que entra es igual a la masa de lo que sale. La materia no se crea ni se destruye, solo se transforma. Lo demostró Lavoisier en el siglo XVIII.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> la leña arde y quedan pocas cenizas. ¿Se perdió materia? No. La mayor parte se fue al aire como gases y vapor de agua. Si los atraparas y sumaras el oxígeno que se gastó, la cuenta daría exacta.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:5,
+  titulo:'Mezclas y cambios',
+  subtitulo:'físicos y químicos',
+  lead:'De qué está hecho lo que te rodea, cómo se separa y cuándo aparece algo nuevo.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'De las propiedades a las sustancias',
+    antesT:'La clase anterior',
+    antes:'Vimos los estados de la materia y propiedades como la densidad y el punto de ebullición, que ayudan a reconocer una sustancia.',
+    hoy:'Usamos esas diferencias para separar mezclas, y aprendemos a distinguir un cambio físico de uno químico.'
+  },
+  sigue:{
+    titulo:'Ya sabemos clasificar la materia',
+    hoy:'La materia se divide en sustancias puras y mezclas. Las mezclas se separan con métodos físicos, y en un cambio químico aparecen sustancias nuevas sin que la masa cambie.',
+    proxima:'Si un elemento no se puede descomponer, ¿de qué está hecho? Veremos cómo se descubrió el átomo y qué partículas tiene.'
+  },
+  juego:{titulo:'¿A qué canasta va?',texto:'Abran este enlace en el celular. Manden cada tarjeta a su canasta: elemento, compuesto o mezcla. Cuenten sus errores: gana quien termine antes y con menos.'},
+  pdf:'tarea/tarea-05.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

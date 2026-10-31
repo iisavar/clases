@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Las reacciones de todos los días</title>
+<meta name="description" content="Combustión, fermentación, saponificación, polímeros y biomoléculas, con juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. Combustión">
+  <div class="inner">
+    <h2>1. Combustión: quemar es reaccionar con oxígeno</h2>
+    <p>Cuando prendes la cocina, el gas reacciona con el oxígeno del aire y suelta calor y luz. Si hay oxígeno suficiente, solo se forman dióxido de carbono y agua. Eso es una <b>combustión completa</b>.</p>
+    <svg class="dib" viewBox="0 0 940 150" role="img" aria-label="Una molécula de metano y dos de oxígeno forman una de dióxido de carbono y dos de agua" style="max-width:860px;margin:0 auto">
+      <g stroke="#A9BCC4" stroke-width="3"><path d="M70 65L36 40M70 65l34-25M70 65L36 90M70 65l34 25"/></g>
+      <g fill="#FFC800"><circle cx="36" cy="40" r="11"/><circle cx="104" cy="40" r="11"/><circle cx="36" cy="90" r="11"/><circle cx="104" cy="90" r="11"/><circle cx="716" cy="26" r="11"/><circle cx="776" cy="26" r="11"/><circle cx="716" cy="88" r="11"/><circle cx="776" cy="88" r="11"/></g>
+      <circle cx="70" cy="65" r="22" fill="#3BC97A"/>
+      <g fill="#FF6B6B"><circle cx="228" cy="38" r="17"/><circle cx="256" cy="38" r="17"/><circle cx="228" cy="92" r="17"/><circle cx="256" cy="92" r="17"/><circle cx="462" cy="65" r="17"/><circle cx="582" cy="65" r="17"/><circle cx="746" cy="42" r="17"/><circle cx="746" cy="104" r="17"/></g>
+      <circle cx="522" cy="65" r="22" fill="#3BC97A"/>
+      <g fill="none" stroke="#FFC800" stroke-width="3"><path d="M479 60h22M479 70h22M543 60h22M543 70h22"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="900" font-size="28" text-anchor="middle" fill="#F1F5F7"><text x="160" y="75">+</text><text x="658" y="75">+</text></g>
+      <path d="M305 65h104" stroke="#A9BCC4" stroke-width="3"/><path d="M423 65l-14-8v16z" fill="#A9BCC4"/>
+      <text x="360" y="50" font-family="Nunito,sans-serif" font-weight="800" font-size="16" text-anchor="middle" fill="#A9BCC4">calor y luz</text>
+      <g font-family="Nunito,sans-serif" font-weight="900" font-size="19" text-anchor="middle" fill="#F1F5F7">
+        <text x="70" y="140">CH<tspan dy="5" font-size="13">4</tspan></text><text x="242" y="140">2 O<tspan dy="5" font-size="13">2</tspan></text><text x="522" y="140">CO<tspan dy="5" font-size="13">2</tspan></text><text x="746" y="146">2 H<tspan dy="5" font-size="13">2</tspan><tspan dy="-5">O</tspan></text>
+      </g>
+    </svg>
+    <div class="card step"><h3>Ejemplo con el cilindro de gas</h3>
+      <p style="margin:0 0 4px">Si un cilindro de 15 kg fuera solo propano: C<sub>3</sub>H<sub>8</sub> + 5 O<sub>2</sub> → 3 CO<sub>2</sub> + 4 H<sub>2</sub>O.</p>
+      <p style="margin:0">Un mol de propano, 44 g, da 3 mol de CO<sub>2</sub>, 132 g. Sale el triple de la masa: 15 kg × 3 = <b>45 kg de CO<sub>2</sub></b>.</p></div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cómo salen 45 kg de 15 kg? La diferencia viene del oxígeno del aire. La masa se conserva. El CO<sub>2</sub> retiene calor en la atmósfera, y por eso quemar combustibles calienta el planeta.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Cuando falta oxígeno">
+  <div class="inner">
+    <h2>2. Cuando falta oxígeno aparece un gas que mata</h2>
+    <p>Si el oxígeno no alcanza, la combustión queda <b>incompleta</b>. El carbono no llega a CO<sub>2</sub>: se queda como monóxido de carbono, CO, o como hollín, que es carbono negro.</p>
+    <div class="ejemplo" style="text-align:center">Con poco oxígeno: 2 CH<sub>4</sub> + 3 O<sub>2</sub> → 2 CO + 4 H<sub>2</sub>O</div>
+    <div class="grid2">
+      <div class="card"><h3>Completa</h3><p style="margin:0">Llama azul. Produce CO<sub>2</sub> y agua. Aprovecha todo el combustible.</p></div>
+      <div class="card"><h3>Incompleta</h3><p style="margin:0">Llama amarilla y humo negro. Produce CO y hollín. Desperdicia combustible.</p></div>
+    </div>
+    <div class="clave step"><b>Peligro real.</b> El CO no tiene color ni olor. Se pega a la hemoglobina de la sangre con mucha más fuerza que el oxígeno, y la persona se duerme sin darse cuenta. Por eso el calefón de gas no va dentro de un baño cerrado, y nunca se deja un carro prendido en un garaje cerrado ni un brasero en un dormitorio.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> la hornilla de tu cocina da llama amarilla. ¿Qué significa? Que le falta aire. Hay que limpiarla o revisarla.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Fermentación">
+  <div class="inner">
+    <h2>3. Fermentación: seres diminutos que hacen química</h2>
+    <p>Las levaduras son hongos microscópicos. Sin oxígeno, sacan energía del azúcar y lo convierten en etanol y dióxido de carbono.</p>
+    <div class="ejemplo" style="text-align:center"><b>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> → 2 C<sub>2</sub>H<sub>5</sub>OH + 2 CO<sub>2</sub></b><br>glucosa → etanol + dióxido de carbono</div>
+    <div class="grid3">
+      <div class="card"><h3>Pan</h3><p style="margin:0">El CO<sub>2</sub> infla la masa. El etanol se evapora en el horno.</p></div>
+      <div class="card"><h3>Chicha y vino</h3><p style="margin:0">Los azúcares del maíz o de la uva se vuelven etanol.</p></div>
+      <div class="card"><h3>Yogur</h3><p style="margin:0">Aquí trabajan bacterias: el azúcar de la leche se vuelve ácido láctico.</p></div>
+    </div>
+    <div class="card step" style="margin-top:14px"><h3>Ejemplo. ¿Cuánto etanol sale de 180 g de glucosa?</h3>
+      <p style="margin:0 0 4px">1. Masa molar de la glucosa: 6 × 12 + 12 × 1 + 6 × 16 = 180 g/mol. Entonces hay 1 mol.</p>
+      <p style="margin:0">2. Un mol da 2 mol de etanol: 2 × 46 g = <b>92 g</b>. También salen 2 × 44 g = <b>88 g de CO<sub>2</sub></b>. Comprueba: 92 + 88 = 180.</p></div>
+  </div>
+</section>
+
+<section data-titulo="4. Saponificación">
+  <div class="inner">
+    <h2>4. Saponificación: del aceite al jabón</h2>
+    <p>Las grasas y los aceites son ésteres. Si se calientan con una base fuerte, se rompen y forman jabón y glicerina. La palabra viene de <i>sapo</i>, «jabón» en latín.</p>
+    <div class="ejemplo" style="text-align:center"><b>grasa + 3 NaOH → 3 jabón + glicerina</b></div>
+    <svg class="dib" viewBox="0 0 830 200" role="img" aria-label="Una molécula de jabón con cabeza que se une al agua y cola que se une a la grasa. A la derecha, muchas moléculas de jabón rodean una gota de grasa con las colas hacia adentro" style="max-width:720px;margin:0 auto">
+      <path transform="translate(60 0)" d="M64 86l24-14 24 14 24-14 24 14 24-14 24 14 24-14" fill="none" stroke="#FFC800" stroke-width="5"/>
+      <circle cx="106" cy="86" r="17" fill="#4FB3E8"/>
+      <g font-family="Nunito,sans-serif" font-weight="800" font-size="17" text-anchor="middle" fill="#F1F5F7"><text x="96" y="130">Cabeza:</text><text x="96" y="152">le gusta el agua</text><text x="256" y="130">Cola:</text><text x="256" y="152">le gusta la grasa</text><text x="640" y="192" fill="#A9BCC4">El agua se lleva la grasa atrapada</text></g>
+      <circle cx="640" cy="95" r="44" fill="#FFC800" opacity=".35"/>
+      <g stroke="#FFC800" stroke-width="4"><path d="M665 95h35M657.700 112.700l24.700 24.700M640 120v35M622.300 112.700l-24.700 24.700M615 95h-35M622.300 77.300l-24.700-24.700M640 70V35M657.700 77.300l24.700-24.700"/></g>
+      <g fill="#4FB3E8"><circle cx="708" cy="95" r="10"/><circle cx="688" cy="143" r="10"/><circle cx="640" cy="163" r="10"/><circle cx="592" cy="143" r="10"/><circle cx="572" cy="95" r="10"/><circle cx="592" cy="47" r="10"/><circle cx="640" cy="27" r="10"/><circle cx="688" cy="47" r="10"/></g>
+      <text x="640" y="101" font-family="Nunito,sans-serif" font-weight="900" font-size="17" text-anchor="middle" fill="#F1F5F7">Grasa</text>
+    </svg>
+    <div class="clave step"><b>Por qué limpia.</b> El agua no se mezcla con la grasa. El jabón sirve de puente: la cola se mete en la grasa y la cabeza queda en el agua. <b>Cuidado:</b> el NaOH, la sosa cáustica, quema la piel. No se prepara jabón sin guantes ni gafas.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Polímeros">
+  <div class="inner">
+    <h2>5. Polímeros: moléculas gigantes hechas de piezas</h2>
+    <p>Un <b>monómero</b> es una molécula pequeña. Si se unen miles en cadena, se forma un <b>polímero</b>, como vagones en un tren.</p>
+    <svg class="dib" viewBox="0 0 900 120" role="img" aria-label="Moléculas sueltas de eteno se unen en una cadena larga de polietileno" style="max-width:800px;margin:0 auto">
+      <g fill="none" stroke="#FFC800" stroke-width="3"><path d="M40 34h34M40 42h34M130 34h34M130 42h34M40 70h34M40 78h34M130 70h34M130 78h34"/></g>
+      <g fill="#3BC97A"><circle cx="38" cy="38" r="12"/><circle cx="76" cy="38" r="12"/><circle cx="128" cy="38" r="12"/><circle cx="166" cy="38" r="12"/><circle cx="38" cy="74" r="12"/><circle cx="76" cy="74" r="12"/><circle cx="128" cy="74" r="12"/><circle cx="166" cy="74" r="12"/></g>
+      <path d="M225 56h76" stroke="#A9BCC4" stroke-width="3"/><path d="M315 56l-14-8v16z" fill="#A9BCC4"/>
+      <path d="M350 56H870" stroke="#A9BCC4" stroke-width="4"/>
+      <g fill="#3BC97A"><circle cx="380" cy="56" r="12"/><circle cx="430" cy="56" r="12"/><circle cx="480" cy="56" r="12"/><circle cx="530" cy="56" r="12"/><circle cx="580" cy="56" r="12"/><circle cx="630" cy="56" r="12"/><circle cx="680" cy="56" r="12"/><circle cx="730" cy="56" r="12"/><circle cx="780" cy="56" r="12"/><circle cx="830" cy="56" r="12"/></g>
+      <g font-family="Nunito,sans-serif" font-weight="800" font-size="18" text-anchor="middle" fill="#F1F5F7"><text x="102" y="114">Monómeros: eteno</text><text x="605" y="114">Polímero: polietileno</text></g>
+    </svg>
+    <table class="t">
+      <tr><th>Polímero</th><th>Monómero</th><th>Dónde lo ves</th></tr>
+      <tr><td>Polietileno</td><td>Eteno</td><td>Fundas y botellas de shampoo</td></tr>
+      <tr><td>Polipropileno</td><td>Propeno</td><td>Tapas y tarrinas</td></tr>
+      <tr><td>PVC o policloruro de vinilo</td><td>Cloruro de vinilo</td><td>Tubos de agua</td></tr>
+      <tr><td>Almidón y celulosa, naturales</td><td>Glucosa</td><td>Arroz, papa, madera y algodón</td></tr>
+    </table>
+    <div class="clave step"><b>El problema.</b> Los plásticos pueden tardar cientos de años en degradarse y se rompen en trozos diminutos que llegan al mar. Por eso conviene usarlos menos, reciclarlos y no quemarlos.</div>
+  </div>
+</section>
+
+<section data-titulo="6. Biomoléculas">
+  <div class="inner">
+    <h2>6. Biomoléculas: la química de tu cuerpo</h2>
+    <p>Tu cuerpo está hecho sobre todo de agua y de cuatro familias de moléculas con carbono. Tres de ellas son polímeros. Los grupos funcionales que aprendiste están en todas.</p>
+    <table class="t">
+      <tr><th>Familia</th><th>Unidad</th><th>Ejemplos</th><th>Para qué sirve</th></tr>
+      <tr><td>Carbohidratos</td><td>Azúcares como la glucosa</td><td>Azúcar, almidón, celulosa</td><td>Energía rápida y soporte de plantas</td></tr>
+      <tr><td>Lípidos</td><td>Ácidos grasos y glicerina</td><td>Aceites, mantequilla, cera</td><td>Reserva de energía y membranas</td></tr>
+      <tr><td>Proteínas</td><td>Aminoácidos</td><td>Carne, huevo, enzimas</td><td>Forman músculos y aceleran reacciones</td></tr>
+      <tr><td>Ácidos nucleicos</td><td>Nucleótidos</td><td>ADN y ARN</td><td>Guardan la información genética</td></tr>
+    </table>
+    <div class="clave step"><b>Conecta con lo que ya viste.</b> La glucosa tiene varios grupos OH. Un aceite es un éster de glicerina. Un aminoácido tiene un grupo amina y un grupo ácido. Las enzimas son proteínas que aceleran reacciones dentro de ti.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuál de las cuatro familias no forma cadenas repetidas, es decir, no es un polímero? Los lípidos.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Química en un almuerzo">
+  <div class="inner">
+    <h2>7. Todo junto en un almuerzo</h2>
+    <p>Imagina arroz con pollo, una limonada y platos sucios. En esa mesa está casi todo el curso.</p>
+    <div class="grid3">
+      <div class="card step"><h3>La cocina</h3><p style="margin:0">Propano y butano arden con oxígeno y dan CO<sub>2</sub>, agua y calor. Combustión.</p></div>
+      <div class="card step"><h3>El arroz</h3><p style="margin:0">Almidón: polímero de glucosa, reserva de energía de la planta.</p></div>
+      <div class="card step"><h3>El pollo</h3><p style="margin:0">Proteínas: cadenas de aminoácidos, con carbono y nitrógeno.</p></div>
+      <div class="card step"><h3>El aceite</h3><p style="margin:0">Lípido: un éster de glicerina y ácidos grasos. No se mezcla con agua.</p></div>
+      <div class="card step"><h3>La limonada</h3><p style="margin:0">Ácido cítrico, débil, con pH cerca de 2 antes de diluir. Azúcar disuelta en agua.</p></div>
+      <div class="card step"><h3>Lavar los platos</h3><p style="margin:0">El jabón rodea la grasa y el agua se la lleva. Salió de una saponificación.</p></div>
+    </div>
+    <div class="clave step"><b>La idea que queda.</b> Todo lo que comes, usas y quemas son átomos que se reorganizan. Ya puedes leer una etiqueta y entender de qué está hecha.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:26,
+  titulo:'Las reacciones',
+  subtitulo:'de todos los días',
+  lead:'Quemar gas, hacer pan, fabricar jabón y plástico, y la química de tu cuerpo.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'De las familias a lo que pasa en tu casa',
+    antesT:'Las clases anteriores',
+    antes:'Conocimos hidrocarburos, alcoholes, ácidos, ésteres y aminas. Ya sabes balancear ecuaciones y calcular masas con moles.',
+    hoy:'Juntamos todo para explicar cinco cosas cotidianas: la combustión, la fermentación, el jabón, los plásticos y las moléculas de tu cuerpo.'
+  },
+  sigue:{
+    titulo:'Ya entendemos la química de cada día',
+    hoy:'Combustión con y sin oxígeno, fermentación, saponificación, polímeros y biomoléculas. Son las mismas ideas del curso aplicadas a tu vida.',
+    proxima:'Cerramos con un simulacro final de todo el curso: del átomo a las moléculas de la vida.'
+  },
+  juego:{titulo:'¿Quién soy?',texto:'Abran este enlace en el celular. Cada sustancia da pistas sobre sí misma: mientras menos pistas uses, más puntos ganas.'},
+  pdf:'tarea/tarea-26.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>

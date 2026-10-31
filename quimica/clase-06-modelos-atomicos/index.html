@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modelos atómicos</title>
+<meta name="description" content="Cómo se descubrió el átomo, de Demócrito al modelo actual, y sus partículas, con un duelo y juegos para el celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../motor/motor.css">
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<template id="laminas">
+<section data-titulo="1. La idea de átomo">
+  <div class="inner">
+    <h2>1. Una idea de hace 2400 años</h2>
+    <p>Toma una hoja de papel y pártela en dos. Parte una mitad otra vez, y otra, y otra. ¿Se puede seguir para siempre? En la antigua Grecia, Demócrito pensó que no: en algún momento llegas a un pedacito que ya no se puede partir.</p>
+    <svg class="dib" viewBox="0 0 640 100" role="img" aria-label="Una barra que se corta a la mitad varias veces hasta llegar a un punto que ya no se puede cortar" style="max-width:640px;margin:0 auto">
+      <g fill="#4FB3E8" opacity=".35"><rect x="10" y="20" width="240" height="44" rx="4"/><rect x="290" y="20" width="120" height="44" rx="4"/><rect x="448" y="20" width="60" height="44" rx="4"/><rect x="544" y="20" width="24" height="44" rx="4"/></g>
+      <g stroke="#FFC800" stroke-width="2.5" stroke-dasharray="6 5"><path d="M130 12v60M350 12v60M478 12v60"/></g>
+      <g fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="24" font-weight="900" text-anchor="middle"><text x="270" y="50">▶</text><text x="429" y="50">▶</text><text x="526" y="50">▶</text><text x="586" y="50">▶</text></g>
+      <circle cx="618" cy="42" r="8" fill="#FFC800"/>
+      <text x="630" y="92" fill="#FFC800" font-family="Nunito,sans-serif" font-size="15" font-weight="900" text-anchor="end">Ya no se puede cortar: el átomo</text>
+    </svg>
+    <div class="clave step"><b>Átomo significa «sin división».</b> Hoy lo definimos como la partícula más pequeña de un elemento que conserva sus propiedades.</div>
+    <div class="clave step"><b>Pero Demócrito no hizo experimentos.</b> Era una idea. Durante unos 2000 años nadie pudo comprobarla. Un <b>modelo atómico</b> es una explicación de cómo es el átomo, y cambia cuando aparecen pruebas nuevas.</div>
+  </div>
+</section>
+
+<section data-titulo="2. Dalton">
+  <div class="inner">
+    <h2>2. Dalton, 1808: la esfera maciza</h2>
+    <p>El profesor inglés John Dalton volvió a la idea, pero con datos: los compuestos siempre tienen la misma proporción de elementos. Eso se explica si la materia está hecha de átomos.</p>
+    <div class="grid2">
+      <div class="card"><h3>Lo que propuso</h3><p style="margin:0 0 6px">Todo está hecho de átomos, esferas macizas que no se dividen.</p><p style="margin:0 0 6px">Los átomos de un elemento son iguales entre sí y distintos a los de otro.</p><p style="margin:0">En una reacción, los átomos solo se reordenan.</p></div>
+      <div>
+        <svg class="dib" viewBox="0 0 440 150" role="img" aria-label="Un átomo de carbono y dos de oxígeno unidos antes de la reacción. Después, los mismos tres átomos unidos de otra forma">
+          <circle cx="50" cy="60" r="24" fill="#A9BCC4"/><text x="102" y="68" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="24" font-weight="900" text-anchor="middle">+</text>
+          <circle cx="146" cy="60" r="20" fill="#4FB3E8"/><circle cx="184" cy="60" r="20" fill="#4FB3E8"/>
+          <text x="238" y="68" fill="#FFC800" font-family="Nunito,sans-serif" font-size="26" font-weight="900" text-anchor="middle">▶</text>
+          <circle cx="302" cy="60" r="20" fill="#4FB3E8"/><circle cx="342" cy="60" r="24" fill="#A9BCC4"/><circle cx="382" cy="60" r="20" fill="#4FB3E8"/>
+          <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="16" font-weight="800" text-anchor="middle"><text x="50" y="112">Carbono</text><text x="165" y="112">Oxígeno</text><text x="342" y="112">Dióxido de carbono</text></g>
+          <text x="220" y="142" fill="#A9BCC4" font-family="Nunito,sans-serif" font-size="15" font-weight="800" text-anchor="middle">Antes y después: los mismos tres átomos</text>
+        </svg>
+      </div>
+    </div>
+    <div class="clave step"><b>Esto explica la clase pasada.</b> Si los átomos no se crean ni se destruyen en una reacción, la masa total no cambia.</div>
+    <div class="clave step"><b>Lo que falló:</b> Dalton creía que el átomo era lo más pequeño que existe. Casi un siglo después se vio que tenía partes.</div>
+  </div>
+</section>
+
+<section data-titulo="3. Thomson">
+  <div class="inner">
+    <h2>3. Thomson, 1897: el electrón</h2>
+    <p>J. J. Thomson trabajaba con un tubo de vidrio casi sin aire. Al aplicar electricidad, salía un rayo. Ese rayo se doblaba hacia una placa positiva. Por eso supo que llevaba carga negativa, porque las cargas opuestas se atraen.</p>
+    <svg class="dib" viewBox="0 0 640 176" role="img" aria-label="Izquierda: tubo de vidrio con un rayo que se dobla hacia la placa positiva. Derecha: el modelo de Thomson, una esfera positiva con electrones incrustados" style="max-width:600px;margin:0 auto">
+      <rect x="14" y="30" width="330" height="104" rx="46" fill="none" stroke="#A9BCC4" stroke-width="3"/>
+      <rect x="150" y="38" width="90" height="10" fill="#FF6B6B"/><rect x="150" y="116" width="90" height="10" fill="#4FB3E8"/>
+      <path d="M44 82H140Q200 82 316 50" fill="none" stroke="#FFC800" stroke-width="4" stroke-linecap="round"/>
+      <g font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle" font-size="20"><text x="195" y="26" fill="#FF6B6B">+</text><text x="195" y="152" fill="#4FB3E8">−</text></g>
+      <text x="180" y="172" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="15" font-weight="800" text-anchor="middle">El rayo se dobla hacia la placa positiva</text>
+      <circle cx="500" cy="76" r="70" fill="#D08C55" opacity=".4" stroke="#D08C55" stroke-width="2"/>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="22" font-weight="900" text-anchor="middle"><text x="470" y="58">+</text><text x="530" y="52">+</text><text x="500" y="84">+</text><text x="456" y="108">+</text><text x="540" y="104">+</text></g>
+      <g fill="#4FB3E8"><circle cx="500" cy="44" r="9"/><circle cx="462" cy="80" r="9"/><circle cx="538" cy="78" r="9"/><circle cx="498" cy="118" r="9"/></g>
+      <text x="500" y="172" fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="15" font-weight="800" text-anchor="middle">Esfera positiva con electrones</text>
+    </svg>
+    <div class="clave step"><b>El electrón</b> es una partícula con carga negativa, muchísimo más liviana que un átomo. Era la primera parte del átomo que se conocía. El átomo sí se podía dividir.</div>
+    <div class="clave step"><b>Su modelo, de 1904:</b> una esfera con carga positiva y electrones incrustados, como las pasas en un pan. Las cargas se compensan y el átomo queda neutro.</div>
+  </div>
+</section>
+
+<section data-titulo="4. Rutherford">
+  <div class="inner">
+    <h2>4. Rutherford, 1911: el núcleo</h2>
+    <p>Ernest Rutherford disparó partículas positivas contra una lámina de oro muy fina. Si el átomo fuera una esfera blanda y uniforme, todas debían pasar casi derecho. No fue así.</p>
+    <svg class="dib" viewBox="0 0 640 186" role="img" aria-label="Partículas que llegan a una lámina de oro: casi todas pasan recto, algunas se desvían y muy pocas rebotan" style="max-width:600px;margin:0 auto">
+      <defs><marker id="f1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#3BC97A"/></marker>
+      <marker id="f2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#4FB3E8"/></marker>
+      <marker id="f3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#FF6B6B"/></marker></defs>
+      <rect x="10" y="62" width="62" height="60" rx="8" fill="#22363F" stroke="#2E4652" stroke-width="2"/>
+      <g fill="none" stroke-width="3">
+        <path d="M72 76H330M72 92H330M72 108H330" stroke="#A9BCC4"/>
+        <g stroke="#3BC97A"><path d="M335 76H620" marker-end="url(#f1)"/><path d="M335 92H620" marker-end="url(#f1)"/><path d="M335 108H620" marker-end="url(#f1)"/></g>
+        <path d="M335 76L560 30" stroke="#4FB3E8" marker-end="url(#f2)"/><path d="M335 108L560 154" stroke="#4FB3E8" marker-end="url(#f2)"/>
+        <path d="M326 92L170 30" stroke="#FF6B6B" marker-end="url(#f3)"/>
+      </g>
+      <rect x="326" y="8" width="9" height="150" fill="#FFC800"/>
+      <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="14" font-weight="800">
+        <text x="41" y="96" text-anchor="middle">Fuente</text>
+        <text x="200" y="130" text-anchor="middle">Partículas positivas</text>
+        <text x="330" y="176" text-anchor="middle">Lámina de oro</text>
+        <text x="620" y="68" text-anchor="end">Casi todas pasan</text>
+        <text x="350" y="26">Algunas se desvían</text>
+        <text x="160" y="28" text-anchor="end">Muy pocas rebotan</text>
+      </g>
+    </svg>
+    <table class="t">
+      <tr><th>Lo que pasó</th><th>Lo que significa</th></tr>
+      <tr><td>Casi todas pasan recto</td><td>Casi todo el átomo es espacio vacío</td></tr>
+      <tr><td>Algunas se desvían</td><td>Hay algo positivo que las empuja</td></tr>
+      <tr><td>Muy pocas rebotan</td><td>Ese algo es muy pequeño y concentra casi toda la masa: el <b>núcleo</b></td></tr>
+    </table>
+    <div class="clave step"><b>Para imaginarlo:</b> si el átomo fuera un estadio, el núcleo sería una bolita en el centro de la cancha. Los electrones se mueven alrededor, en un espacio casi vacío.</div>
+  </div>
+</section>
+
+<section data-titulo="5. Bohr">
+  <div class="inner">
+    <h2>5. Bohr, 1913: los niveles de energía</h2>
+    <div class="grid2">
+      <div>
+        <p>El modelo de Rutherford tenía un problema. Un electrón que gira debería perder energía y caer al núcleo, y los átomos no se derrumban.</p>
+        <p>El danés Niels Bohr propuso que el electrón solo puede estar en ciertas órbitas, cada una con una energía fija. Son como las gradas de una escalera: te paras en una o en otra, nunca en el medio.</p>
+      </div>
+      <svg class="dib" viewBox="0 0 360 230" role="img" aria-label="Núcleo con tres órbitas. Un electrón baja de la órbita 3 a la órbita 2 y suelta luz" style="max-width:320px;margin:0 auto">
+        <g fill="none" stroke="#2E4652" stroke-width="2.5"><circle cx="130" cy="115" r="44"/><circle cx="130" cy="115" r="74"/><circle cx="130" cy="115" r="104"/></g>
+        <circle cx="130" cy="115" r="14" fill="#FF6B6B"/>
+        <circle cx="130" cy="71" r="8" fill="#4FB3E8"/><circle cx="82" cy="170" r="8" fill="#4FB3E8"/>
+        <circle cx="203.5" cy="41.5" r="9" fill="#4FB3E8"/><circle cx="182" cy="63" r="9" fill="#4FB3E8" stroke="#FFC800" stroke-width="2.5"/>
+        <path d="M198 47L188 57" stroke="#FFC800" stroke-width="3"/>
+        <path d="M212 74q8-12 16-4t16-4 16-4 16-4 16-4 16-4" fill="none" stroke="#FFC800" stroke-width="3"/>
+        <g fill="#F1F5F7" font-family="Nunito,sans-serif" font-size="15" font-weight="800"><text x="290" y="84">Luz</text><text x="130" y="168" text-anchor="middle">1</text><text x="130" y="198" text-anchor="middle">2</text><text x="130" y="228" text-anchor="middle">3</text></g>
+      </svg>
+    </div>
+    <div class="grid2 step" style="margin-top:8px">
+      <div class="card"><h3>Sube</h3><p style="margin:0">Si el electrón recibe energía, salta a un nivel más alto.</p></div>
+      <div class="card"><h3>Baja</h3><p style="margin:0">Al regresar, devuelve esa energía en forma de luz.</p></div>
+    </div>
+    <div class="clave step"><b>Pregunta para el chat:</b> ¿por qué los fuegos artificiales tienen colores distintos? Cada metal tiene sus propios niveles, y por eso da luz de su propio color.</div>
+  </div>
+</section>
+
+<section data-titulo="6. El modelo actual">
+  <div class="inner">
+    <h2>6. El modelo actual: una nube</h2>
+    <p>Bohr dibujó órbitas, como planetas alrededor del Sol. Desde 1926, con Schrödinger, sabemos que no se puede seguir el camino de un electrón. Solo se puede decir dónde es más probable encontrarlo. Esa zona se llama <b>orbital</b>.</p>
+    <div class="grid5">
+      <div class="card modelo" style="padding:12px 8px"><h3>Dalton</h3><div class="anio">1808</div><svg class="dib" viewBox="0 0 100 100" style="max-width:96px;margin:4px auto" role="img" aria-label="Esfera maciza"><circle cx="50" cy="50" r="36" fill="#A9BCC4"/></svg><p>Esfera maciza</p></div>
+      <div class="card modelo" style="padding:12px 8px"><h3>Thomson</h3><div class="anio">1904</div><svg class="dib" viewBox="0 0 100 100" style="max-width:96px;margin:4px auto" role="img" aria-label="Esfera con electrones incrustados"><circle cx="50" cy="50" r="38" fill="#D08C55" opacity=".5"/><g fill="#4FB3E8"><circle cx="50" cy="28" r="6"/><circle cx="28" cy="50" r="6"/><circle cx="72" cy="48" r="6"/><circle cx="52" cy="72" r="6"/></g></svg><p>Pan con pasas</p></div>
+      <div class="card modelo" style="padding:12px 8px"><h3>Rutherford</h3><div class="anio">1911</div><svg class="dib" viewBox="0 0 100 100" style="max-width:96px;margin:4px auto" role="img" aria-label="Núcleo pequeño y electrones alrededor"><circle cx="50" cy="50" r="7" fill="#FF6B6B"/><g fill="#4FB3E8"><circle cx="20" cy="30" r="5"/><circle cx="82" cy="40" r="5"/><circle cx="60" cy="88" r="5"/></g></svg><p>Núcleo y vacío</p></div>
+      <div class="card modelo" style="padding:12px 8px"><h3>Bohr</h3><div class="anio">1913</div><svg class="dib" viewBox="0 0 100 100" style="max-width:96px;margin:4px auto" role="img" aria-label="Núcleo con órbitas fijas"><g fill="none" stroke="#A9BCC4" stroke-width="1.5"><circle cx="50" cy="50" r="22"/><circle cx="50" cy="50" r="42"/></g><circle cx="50" cy="50" r="7" fill="#FF6B6B"/><g fill="#4FB3E8"><circle cx="50" cy="28" r="5"/><circle cx="92" cy="50" r="5"/><circle cx="20" cy="80" r="5"/></g></svg><p>Órbitas fijas</p></div>
+      <div class="card modelo" style="padding:12px 8px"><h3>Actual</h3><div class="anio">1926</div><svg class="dib" viewBox="0 0 100 100" style="max-width:96px;margin:4px auto" role="img" aria-label="Núcleo rodeado de una nube de puntos, más densa cerca del centro"><g fill="#4FB3E8"><circle cx="50" cy="30" r="2.5"/><circle cx="62" cy="34" r="2.5"/><circle cx="70" cy="44" r="2.5"/><circle cx="71" cy="58" r="2.5"/><circle cx="62" cy="68" r="2.5"/><circle cx="50" cy="72" r="2.5"/><circle cx="37" cy="68" r="2.5"/><circle cx="29" cy="57" r="2.5"/><circle cx="29" cy="44" r="2.5"/><circle cx="38" cy="34" r="2.5"/><circle cx="56" cy="40" r="2.5"/><circle cx="62" cy="52" r="2.5"/><circle cx="52" cy="62" r="2.5"/><circle cx="40" cy="58" r="2.5"/><circle cx="40" cy="44" r="2.5"/><circle cx="50" cy="16" r="2"/><circle cx="74" cy="24" r="2"/><circle cx="86" cy="48" r="2"/><circle cx="78" cy="74" r="2"/><circle cx="52" cy="86" r="2"/><circle cx="24" cy="78" r="2"/><circle cx="13" cy="52" r="2"/><circle cx="22" cy="26" r="2"/></g><circle cx="50" cy="50" r="6" fill="#FF6B6B"/></svg><p>Nube de probabilidad</p></div>
+    </div>
+    <div class="clave step"><b>Cada modelo corrigió al anterior.</b> Ninguno fue una tontería: cada uno explicó lo que se sabía en su momento. Así avanza la ciencia, igual que vimos en la primera clase.</div>
+  </div>
+</section>
+
+<section data-titulo="7. Las partículas del átomo">
+  <div class="inner">
+    <h2>7. Las tres partículas del átomo</h2>
+    <p>Hoy sabemos que el átomo tiene tres partículas. Rutherford identificó el protón en 1919, y Chadwick descubrió el neutrón en 1932.</p>
+    <div class="grid2" style="grid-template-columns:2fr 3fr;align-items:center">
+      <svg class="dib" viewBox="0 0 310 240" role="img" aria-label="Átomo de helio: en el núcleo, 2 protones y 2 neutrones; alrededor, 2 electrones" style="max-width:290px;margin:0 auto">
+        <circle cx="110" cy="120" r="96" fill="none" stroke="#2E4652" stroke-width="2.5"/>
+        <circle cx="98" cy="112" r="14" fill="#FF6B6B"/><circle cx="122" cy="128" r="14" fill="#FF6B6B"/><circle cx="122" cy="108" r="14" fill="#8A9BA3"/><circle cx="98" cy="132" r="14" fill="#8A9BA3"/>
+        <circle cx="110" cy="24" r="9" fill="#4FB3E8"/><circle cx="110" cy="216" r="9" fill="#4FB3E8"/>
+        <path d="M134 104L232 96M134 132L232 140M120 24H232" fill="none" stroke="#A9BCC4" stroke-width="1.5"/>
+        <g font-family="Nunito,sans-serif" font-size="15" font-weight="800"><text x="238" y="29" fill="#4FB3E8">Electrón</text><text x="238" y="101" fill="#A9BCC4">Neutrón</text><text x="238" y="145" fill="#FF6B6B">Protón</text></g>
+      </svg>
+      <table class="t">
+        <tr><th>Partícula</th><th>Carga</th><th>Dónde está</th><th>Masa (protón = 1)</th></tr>
+        <tr><td class="p-c">Protón</td><td>+1</td><td>Núcleo</td><td>1</td></tr>
+        <tr><td class="n-c">Neutrón</td><td>0</td><td>Núcleo</td><td>Casi 1</td></tr>
+        <tr><td class="e-c">Electrón</td><td>−1</td><td>Fuera del núcleo</td><td>1/1836 del protón</td></tr>
+      </table>
+    </div>
+    <div class="clave step"><b>Un átomo neutro tiene tantos electrones como protones.</b> Las cargas positivas y negativas se cancelan. Casi toda la masa está en el núcleo.</div>
+    <div class="clave step"><b>Pregunta para el chat:</b> un átomo neutro tiene 8 protones. ¿Cuántos electrones tiene? 8. Es el oxígeno.</div>
+  </div>
+</section>
+</template>
+
+<div class="libre" id="libre"></div>
+<div class="indice" id="indice"></div>
+<nav class="nav" aria-label="Láminas">
+  <button id="bInd" aria-label="Índice de láminas">☰</button>
+  <button id="bAnt" aria-label="Lámina anterior">◀</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button class="av" id="bSig">Avanzar ▶</button>
+  <div class="prog"><i id="prog"></i></div>
+  <button id="bLibre" title="Pizarra libre (tecla P)">Pizarra</button>
+  <button id="bFull" title="Pantalla completa (tecla F)">Pantalla completa</button>
+</nav>
+
+<script src="datos.js"></script>
+<script>
+const CLASE={
+  num:6,
+  titulo:'Modelos atómicos',
+  subtitulo:'y las partículas del átomo',
+  lead:'Cómo se descubrió lo que no se puede ver.',
+  portada:'img/portada.webp',
+  retoma:{
+    titulo:'¿De qué está hecho un elemento?',
+    antesT:'La clase anterior',
+    antes:'Vimos que los elementos no se descomponen en sustancias más simples y que en una reacción la masa se conserva.',
+    hoy:'Entramos al interior de la materia: cómo se descubrió el átomo y qué partículas tiene.'
+  },
+  sigue:{
+    titulo:'Ya sabemos cómo es un átomo',
+    hoy:'De la esfera maciza se pasó a un núcleo con protones y neutrones, rodeado por una nube de electrones.',
+    proxima:'Si todos los átomos tienen las mismas partículas, ¿qué hace distinto a uno de otro? Veremos el número atómico, el número de masa, los iones y los isótopos.'
+  },
+  juego:{titulo:'¿Quién soy?',texto:'Abran este enlace en el celular. Cada caso da pistas, de la más difícil a la más fácil. Mientras menos pistas uses, más puntos ganas. Escriban en el chat la palabra secreta y sus puntos.'},
+  pdf:'tarea/tarea-06.pdf'
+};
+</script>
+<script src="../motor/motor.js"></script>
+</body>
+</html>
