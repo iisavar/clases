@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131F24">
+<title>Test difícil: Fracciones</title>
+<meta name="description" content="Quiz de 15 preguntas de jerarquía de operaciones con registro.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FFC800'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-weight='900' font-size='30' fill='%23131F24'%3E()%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#58CC02; --green-d:#3F9A00; --coral:#E8503A; --gold:#FFC800; --shadow:0 4px 0 #101a1e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 16px 40px}
+.wrap{width:100%;max-width:560px}
+header{text-align:center;margin-bottom:14px}
+.badge{display:inline-block;background:var(--gold);color:#131F24;font-weight:800;font-size:.72rem;
+  letter-spacing:.12em;padding:6px 12px;border-radius:999px;margin-bottom:10px}
+h1{font-size:1.7rem;font-weight:900;line-height:1.1}
+.sub{color:var(--muted);font-weight:700;margin-top:6px;font-size:.92rem}
+.timer{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:2px solid var(--line);
+  border-radius:999px;padding:8px 16px;font-weight:900;font-size:1.15rem;margin-top:12px;box-shadow:var(--shadow)}
+.timer.warn{color:var(--coral);border-color:var(--coral)}
+.bar{height:12px;background:var(--line);border-radius:999px;overflow:hidden;margin:14px 0}
+.bar>i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+.meta{display:flex;justify-content:space-between;font-weight:800;color:var(--muted);font-size:.9rem;margin-bottom:12px}
+.meta b{color:var(--ink)}
+.card{background:var(--card);border-radius:22px;padding:24px 20px;box-shadow:var(--shadow);border:2px solid var(--line)}
+.q{text-align:center;font-size:2rem;font-weight:900;margin:6px 0 20px;letter-spacing:.02em;line-height:1.25}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{background:var(--bg);border:2px solid var(--line);border-radius:16px;padding:18px 10px;
+  font-family:inherit;font-size:1.5rem;font-weight:900;color:var(--ink);cursor:pointer;transition:transform .08s}
+.opt:active{transform:scale(.97)}
+.opt:hover{border-color:var(--green)}
+.opt.ok{background:var(--green);border-color:var(--green-d);color:#fff}
+.opt.no{background:var(--coral);border-color:#b83a27;color:#fff}
+.opt:disabled{cursor:default}
+.why{margin-top:16px;background:var(--bg);border:2px dashed var(--line);border-radius:14px;padding:13px 16px;
+  font-weight:700;font-size:.98rem;line-height:1.45;color:var(--ink);opacity:0;max-height:0;overflow:hidden;transition:opacity .25s}
+.why.show{opacity:1;max-height:400px}
+.why b{color:var(--green-d)}
+.next{margin-top:14px;width:100%;background:var(--gold);color:#131F24;border:none;border-radius:16px;
+  padding:16px;font-family:inherit;font-size:1.1rem;font-weight:900;cursor:pointer;box-shadow:0 4px 0 #c99e00;
+  opacity:0;pointer-events:none;transition:opacity .2s}
+.next.show{opacity:1;pointer-events:auto}
+.next:active{transform:translateY(2px);box-shadow:0 2px 0 #c99e00}
+.end{text-align:center;padding:10px 4px}
+.score{font-size:4rem;font-weight:900;line-height:1;color:var(--green)}
+.score small{font-size:1.4rem;color:var(--muted)}
+.emoji{font-size:3.4rem;margin:6px 0}
+.msg{font-weight:800;font-size:1.2rem;margin:8px 0 4px}
+.pct{color:var(--muted);font-weight:800;margin-top:2px}
+.tip{color:var(--muted);font-weight:700;margin-top:12px}
+.again{margin-top:18px;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 22px;
+  font-family:inherit;font-weight:900;font-size:1rem;color:var(--ink);cursor:pointer}
+.hidden{display:none}
+.start{text-align:center}
+.reg{max-width:340px;margin:14px auto 4px;display:grid;gap:10px}
+.reg input{font-family:inherit;font-weight:800;font-size:1.05rem;padding:14px 16px;border-radius:14px;
+  border:2px solid var(--line);background:var(--bg);color:var(--ink);text-align:center}
+.reg input:focus{outline:none;border-color:var(--green)}
+.regErr{color:var(--coral);font-weight:800;font-size:.9rem;min-height:1.1em}
+.start ul{list-style:none;text-align:left;max-width:340px;margin:16px auto;display:grid;gap:10px}
+.start li{font-weight:700;background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+.go{margin-top:8px;background:var(--gold);color:#131F24;border:none;border-radius:16px;padding:16px 34px;
+  font-family:inherit;font-size:1.15rem;font-weight:900;cursor:pointer;box-shadow:0 4px 0 #c99e00}
+.go:active{transform:translateY(2px);box-shadow:0 2px 0 #c99e00}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="badge">💪 TEST DIFÍCIL</span>
+    <h1>Jerarquía de Operaciones</h1>
+    <div class="sub">12 preguntas · operaciones y mixtos</div>
+  </header>
+
+  <!-- INICIO -->
+  <div id="intro" class="card start">
+    <div class="emoji">🧮</div>
+    <div class="msg">Antes de empezar…</div>
+    <div class="reg">
+      <input id="rNombre" type="text" placeholder="Tu nombre y apellido" autocomplete="name">
+      <input id="rCorreo" type="hidden" value="">
+      <div class="regErr" id="regErr"></div>
+    </div>
+    <ul>
+      <li>✔ 12 ejercicios de operaciones con fracciones.</li>
+      <li>⏳ Tienes 25 minutos.</li>
+      <li>🎯 Corchetes, potencias con signo y raíces.</li>
+    </ul>
+    <button class="go" id="go">Empezar quiz →</button>
+  </div>
+
+  <!-- JUEGO -->
+  <div id="game" class="hidden">
+    <div style="text-align:center"><span class="timer" id="timer">⏱ 20:00</span></div>
+    <div class="bar"><i id="prog"></i></div>
+    <div class="meta"><span>Pregunta <b id="qn">1</b>/12</span><span>Aciertos: <b id="sc">0</b></span></div>
+    <div class="card">
+      <div class="q" id="q">—</div>
+      <div class="opts" id="opts"></div>
+      <div class="why" id="why"></div>
+      <button class="next" id="next">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div id="final" class="card end hidden">
+    <div class="emoji" id="fEmoji">🎉</div>
+    <div class="score"><span id="fScore">0</span><small>/12</small></div>
+    <div class="pct" id="fPct"></div>
+    <div class="msg" id="fMsg"></div>
+    <div class="tip">Al final, díganme cuál les costó más 👇</div>
+    <button class="again" onclick="location.reload()">↻ Repetir</button>
+  </div>
+</div>
+
+<script src="../js/cola-envios.js"></script>
+<script src="quiz-sync.js?v=2"></script>
+<script>
+const N=12, MINUTES=20;
+const DATA=[
+ {t:"1/2 + 1/3", o:["5/6","2/5","1/6","3/5"], a:0, w:"Común 6: 3/6 + 2/6 = <b>5/6</b>."},
+ {t:"3/4 − 1/2", o:["2/8","1/4","1/2","3/8"], a:1, w:"1/2 = 2/4; 3/4 − 2/4 = <b>1/4</b>."},
+ {t:"2/3 × 3/4", o:["6/7","1/2","5/7","2/4"], a:1, w:"6/12 = <b>1/2</b>."},
+ {t:"1/2 ÷ 1/3", o:["3/2","1/6","2/3","1/5"], a:0, w:"1/2 × 3/1 = <b>3/2</b>."},
+ {t:"2/5 + 1/2", o:["3/10","9/10","3/7","2/7"], a:1, w:"4/10 + 5/10 = <b>9/10</b>."},
+ {t:"5/6 − 1/3", o:["1/2","4/3","3/9","5/9"], a:0, w:"5/6 − 2/6 = 3/6 = <b>1/2</b>."},
+ {t:"3/4 × 2/3", o:["5/7","6/7","1/2","4/9"], a:2, w:"6/12 = <b>1/2</b>."},
+ {t:"2/3 ÷ 4/3", o:["8/9","3/4","1/2","2/7"], a:2, w:"2/3 × 3/4 = 6/12 = <b>1/2</b>."},
+ {t:"7/4 en número mixto", o:["3 1/4","1 3/4","1 1/4","2 1/4"], a:1, w:"4 entra 1 vez, sobra 3 → <b>1 3/4</b>."},
+ {t:"1 1/2 + 1/2", o:["1","2","5/2","2 1/2"], a:1, w:"3/2 + 1/2 = 4/2 = <b>2</b>."},
+ {t:"Simplifica 8/12", o:["2/3","4/6","2/4","3/4"], a:0, w:"÷4 arriba y abajo = <b>2/3</b>."},
+ {t:"1/3 + 1/6", o:["1/2","2/9","2/6","1/9"], a:0, w:"2/6 + 1/6 = 3/6 = <b>1/2</b>."},
+];
+let Q=DATA.slice().sort(()=>Math.random()-.5), i=0, score=0, locked=false, timeLeft=MINUTES*60, tick=null;
+const $=id=>document.getElementById(id);
+
+function startTimer(){
+  updateTimer();
+  tick=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(tick);end(true);}},1000);
+}
+function updateTimer(){
+  const m=Math.floor(timeLeft/60), s=timeLeft%60;
+  const t=$('timer');t.textContent='⏱ '+m+':'+String(s).padStart(2,'0');
+  t.classList.toggle('warn',timeLeft<=90);
+}
+function render(){
+  locked=false;
+  const it=Q[i];
+  $('q').textContent=it.t;
+  $('qn').textContent=i+1;
+  $('prog').style.width=(i/N*100)+'%';
+  $('why').innerHTML='';$('why').className='why';
+  $('next').classList.remove('show');
+  $('next').textContent=i===N-1?'Ver resultado →':'Siguiente →';
+  const o=$('opts');o.innerHTML='';
+  it.o.forEach((v,idx)=>{
+    const b=document.createElement('button');
+    b.className='opt';b.textContent=v>0?v:''+v;
+    b.onclick=()=>answer(idx);
+    o.appendChild(b);
+  });
+}
+function answer(idx){
+  if(locked)return;locked=true;
+  const it=Q[i], ok=(idx===it.a);
+  const btns=document.querySelectorAll('.opt');
+  btns.forEach((b,k)=>{b.disabled=true;if(k===it.a)b.classList.add('ok');});
+  if(ok)score++,$('sc').textContent=score;
+  else btns[idx].classList.add('no');
+  $('why').innerHTML=(ok?'<b>¡Correcto!</b> ':'<b>Paso a paso:</b> ')+it.w;
+  $('why').classList.add('show');
+  $('next').classList.add('show');
+}
+$('next').onclick=()=>{i++;if(i>=N)return end(false);render();
+  QuizSync.enviar({quiz:'fracciones-dificil',nombre:ALUM.nombre,correo:ALUM.correo,estado:'en-progreso',pregunta:i+1,aciertos:score,total:N});};
+
+// ---- registro ----
+let ALUM={nombre:'',correo:''};
+function correoValido(c){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c);}
+try{const g=JSON.parse(localStorage.getItem('alumno')||'null');if(g&&g.correo){$('rNombre').value=g.nombre||'';$('rCorreo').value=g.correo||'';}}catch(e){}
+$('go').onclick=()=>{
+  const nombre=$('rNombre').value.trim(), correo=$('rCorreo').value.trim();
+  if(nombre.length<3){$('regErr').textContent='Escribe tu nombre completo.';return;}
+  
+  ALUM={nombre,correo};
+  try{localStorage.setItem('alumno',JSON.stringify(ALUM));}catch(e){}
+  QuizSync.enviar({quiz:'fracciones-dificil',nombre,correo,estado:'registrado',pregunta:0,aciertos:0,total:N});
+  $('intro').classList.add('hidden');$('game').classList.remove('hidden');render();startTimer();
+};
+
+function end(timeout){
+  if(tick)clearInterval(tick);
+  QuizSync.enviar({quiz:'fracciones-dificil',nombre:ALUM.nombre,correo:ALUM.correo,estado:timeout?'tiempo':'terminado',pregunta:N,aciertos:score,total:N});
+  $('game').classList.add('hidden');
+  const f=$('final');f.classList.remove('hidden');
+  $('fScore').textContent=score;$('prog').style.width='100%';
+  const pct=Math.round(score/N*100);
+  $('fPct').textContent=pct+'% de aciertos'+(timeout?' · ⏰ se acabó el tiempo':'');
+  let e='💪',m='';
+  if(score>=14){e='🏆';m='¡Perfecto! Dominas el orden.';}
+  else if(score>=12){e='🎉';m='¡Muy bien! Ya casi al 100%.';}
+  else if(score>=8){e='👍';m='Vas bien, repasa las trampas y repite.';}
+  else{e='🔁';m='Repite fijándote en qué va primero.';}
+  $('fEmoji').textContent=e;$('fMsg').textContent=m;
+}
+</script>
+</body>
+</html>

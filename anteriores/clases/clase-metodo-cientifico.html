@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131F24">
+<title>Método científico</title>
+<meta name="description" content="Clase del método científico: pasos, hipótesis, variables, ejemplos y su relación con la química.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232BAE66'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fff'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(60 32 32)'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(-60 32 32)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --stage:#0E181C; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#2BAE66; --green-d:#1E8A4F; --coral:#E8503A; --gold:#FFC800; --blue:#1CB0F6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.stage{position:fixed;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:5vh 4vw 90px;overflow-y:auto}
+.stage>.slide{margin:auto 0}
+
+/* ---------- PORTADA ---------- */
+#setup{position:fixed;inset:0;background:var(--stage);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;z-index:60;text-align:center}
+#setup .logo{width:96px;height:96px;border-radius:26px;background:var(--green);display:flex;align-items:center;
+  justify-content:center;margin-bottom:18px;box-shadow:0 8px 0 var(--green-d)}
+#setup h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;margin-bottom:6px}
+#setup p{color:var(--muted);font-weight:700;margin-bottom:22px}
+.btn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s}
+.btn:active{transform:translateY(2px)}
+.btn.primary{background:var(--green);color:#fff;font-size:1.25rem;padding:16px 38px;box-shadow:0 5px 0 var(--green-d)}
+
+/* ---------- SLIDES ---------- */
+.slide{width:100%;max-width:1100px;text-align:center;display:none;animation:in .45s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.kicker{font-weight:900;letter-spacing:.15em;font-size:clamp(.75rem,1.6vw,1rem);color:var(--green);margin-bottom:10px}
+.title{font-weight:900;font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin-bottom:18px}
+.lead{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.7rem);color:var(--muted);margin-bottom:20px}
+.lead b{color:var(--ink)}
+.expr{font-weight:900;font-size:clamp(2.2rem,7vw,5rem);letter-spacing:.02em;margin:10px 0}
+.expr.sm{font-size:clamp(1.5rem,4.4vw,3rem)}
+.hi{color:var(--gold)}
+.big{color:var(--green)}
+.chipRow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 20px;
+  font-weight:900;font-size:clamp(1rem,2.2vw,1.5rem)}
+.chip.g{border-color:var(--green);color:var(--green)}
+.chip.y{border-color:var(--gold);color:var(--gold)}
+.chip.r{border-color:var(--coral);color:var(--coral)}
+.chip.b{border-color:var(--blue);color:var(--blue)}
+.link{font-size:clamp(.85rem,2vw,1.2rem);word-break:break-all}
+
+/* notación de núcleo  ᴬ_Z X */
+.nuc{display:inline-flex;align-items:center;white-space:nowrap}
+.za{display:inline-flex;flex-direction:column;font-size:.42em;line-height:1.05;text-align:right;margin-right:.06em}
+.za .a{color:var(--blue)} .za .z{color:var(--gold)}
+.chg{font-size:.45em;align-self:flex-start;margin-left:.04em;color:var(--coral)}
+
+/* pasos revelables */
+.step{opacity:0;transform:translateY(14px) scale(.96);transition:all .4s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;height:0;overflow:hidden}
+.step.show{opacity:1;transform:none;pointer-events:auto;height:auto;overflow:visible}
+.stepline{display:flex;align-items:center;gap:16px;justify-content:center;margin:10px 0}
+.stepnum{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;
+  font-weight:900;font-size:1.4rem;display:flex;align-items:center;justify-content:center}
+.stepnum.y{background:var(--gold);color:#131F24}
+.stepcalc{font-weight:900;font-size:clamp(1.3rem,3.4vw,2.3rem)}
+.stepwhy{color:var(--muted);font-weight:800;font-size:clamp(.9rem,1.8vw,1.15rem)}
+
+.ladder{display:grid;gap:12px;max-width:780px;margin:10px auto 0}
+.rung{display:flex;align-items:center;gap:18px;background:var(--card);border:2px solid var(--line);
+  border-radius:16px;padding:14px 22px;text-align:left}
+.rung .n{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.3rem;color:#fff;flex:0 0 auto}
+.rung .t{font-weight:900;font-size:clamp(1.05rem,2.3vw,1.5rem)}
+.rung .s{color:var(--muted);font-weight:800;font-size:clamp(.85rem,1.7vw,1.05rem)}
+.hint{color:var(--muted);font-weight:800;margin-top:16px;font-size:clamp(.9rem,1.8vw,1.15rem)}
+.hint b{color:var(--gold)}
+
+/* tarjetas de partículas */
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:860px;margin:10px auto}
+.part{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px 10px}
+.part .ico{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.8rem;color:#131F24}
+.part .nm{font-weight:900;font-size:clamp(1.05rem,2.4vw,1.5rem)}
+.part .ds{color:var(--muted);font-weight:800;font-size:clamp(.8rem,1.6vw,1rem);margin-top:4px}
+
+/* fórmulas Z / A */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin:16px auto 0}
+.rule{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px;font-weight:900;
+  font-size:clamp(1.05rem,2.4vw,1.55rem)}
+.rule small{display:block;color:var(--muted);font-size:.6em;margin-top:2px}
+
+/* subniveles */
+.subs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:760px;margin:12px auto}
+.sub{border-radius:18px;padding:16px 8px;border:3px solid;background:var(--card)}
+.sub .l{font-weight:900;font-size:clamp(2rem,5vw,3.2rem);line-height:1}
+.sub .c{font-weight:900;font-size:clamp(.95rem,2vw,1.25rem);margin-top:6px;color:var(--ink)}
+
+.moeller{width:min(440px,72vw,58vh);height:auto;display:block;margin:0 auto}
+.orden{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:900px;margin:10px auto 0;
+  font-weight:900;font-size:clamp(.95rem,2vw,1.25rem)}
+.orden span{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:5px 9px}
+.orden .s{color:var(--green);border-color:var(--green)} .orden .p{color:var(--gold);border-color:var(--gold)}
+.orden .d{color:var(--blue);border-color:var(--blue)} .orden .f{color:var(--coral);border-color:var(--coral)}
+.mrow{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+
+/* ramas */
+.ramas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:900px;margin:10px auto}
+.rama{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 10px}
+.rama .ri{font-size:clamp(1.6rem,3.6vw,2.4rem)}
+.rama .rn{font-weight:900;font-size:clamp(1.05rem,2.4vw,1.5rem)}
+.rama .rd{color:var(--muted);font-weight:800;font-size:clamp(.8rem,1.6vw,1rem);margin-top:2px}
+@media (max-width:640px){.ramas{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
+
+/* ---------- LÁMINAS CON TEXTO ---------- */
+.title.tt{font-size:clamp(1.7rem,4.6vw,3.1rem);margin-bottom:14px}
+.txt{max-width:920px;margin:0 auto;text-align:left}
+.txt p{font-weight:700;font-size:clamp(1.02rem,2.15vw,1.42rem);line-height:1.5;color:#D5E2DB;margin:0 0 12px}
+.txt p b{color:var(--ink);font-weight:900}
+.c-y{color:var(--gold)!important} .c-b{color:var(--blue)!important} .c-g{color:var(--green)!important}
+.key{background:rgba(255,200,0,.1);border:2px solid var(--gold);border-radius:14px;padding:12px 16px;
+  font-weight:800;font-size:clamp(.98rem,2vw,1.3rem);margin-top:6px}
+.box{background:var(--card);border:2px solid var(--green);border-radius:16px;padding:14px 18px;margin-top:10px;
+  font-weight:700;font-size:clamp(1rem,2.1vw,1.38rem);line-height:1.45}
+.box .bl{font-weight:900;letter-spacing:.14em;font-size:.68em;color:var(--green);margin-bottom:4px}
+.quote{font-weight:900;font-size:clamp(1.4rem,4vw,2.6rem);line-height:1.25;max-width:960px;margin:6px auto 18px;
+  background:var(--card);border-left:6px solid var(--gold);border-radius:14px;padding:18px 22px;text-align:left}
+.tab{margin:12px auto 0;border-collapse:separate;border-spacing:0;font-weight:900;font-size:clamp(1rem,2.3vw,1.5rem);
+  background:var(--card);border:2px solid var(--line);border-radius:16px;overflow:hidden}
+.tab.step{display:none}.tab.step.show{display:table}
+.tab th{color:var(--green);padding:10px 26px;border-bottom:2px solid var(--line);font-size:.8em;letter-spacing:.06em}
+.tab td{padding:10px 26px;border-bottom:1px solid var(--line)}
+.tab tr:last-child td{border-bottom:none}
+.ladder.tight{gap:8px}.ladder.tight .rung{padding:9px 20px}
+
+/* ---------- CONTROLES ---------- */
+.controls{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:14px 18px;z-index:40}
+.cbtn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s;
+  background:var(--card);color:var(--ink);border:2px solid var(--line);padding:14px 20px;font-size:1.05rem}
+.cbtn:active{transform:translateY(2px)}
+.cbtn.big{background:var(--green);color:#fff;border-color:var(--green-d);padding:16px 34px;font-size:1.2rem;box-shadow:0 4px 0 var(--green-d)}
+.cbtn:disabled{opacity:.35;cursor:default}
+.dots{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:40;
+  max-width:90vw;flex-wrap:wrap;justify-content:center;row-gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:all .3s}
+.dot.on{background:var(--green);width:22px;border-radius:6px}
+.hidden{display:none!important}
+@media (max-width:640px){
+  .dots{top:auto;bottom:82px}
+  .cbtn{padding:12px 16px;font-size:.98rem}
+  .cbtn.big{padding:14px 24px;font-size:1.08rem}
+  .controls{padding:12px}
+  .parts{grid-template-columns:1fr;gap:8px}
+  .part{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 14px}
+  .part .ico{margin:0;width:48px;height:48px;font-size:1.4rem;flex:0 0 auto}
+  .rules{grid-template-columns:1fr}
+  .subs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div id="setup">
+  <div class="logo"><svg width="60" height="60" viewBox="0 0 64 64"><circle cx="32" cy="32" r="6" fill="#fff"/><g fill="none" stroke="#fff" stroke-width="3"><ellipse cx="32" cy="32" rx="24" ry="9"/><ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(60 32 32)"/><ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(-60 32 32)"/></g></svg></div>
+  <h1>El método científico</h1>
+  <p>Cómo piensa un científico… y qué tiene que ver con la química</p>
+  <button class="btn primary" id="start">Empezar clase →</button>
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="stage" id="stage"><!-- slides inyectadas --></div>
+<div class="controls hidden" id="controls">
+  <button class="cbtn" id="prev">◀ Atrás</button>
+  <button class="cbtn big" id="next">Avanzar ▶</button>
+</div>
+
+<script>
+const BASE='iisavar.github.io/simulador-admision/clases/';
+// ID del Apps Script de los quizzes (quizzes-clases-apps-script.gs). No se escribe aquí porque el repo es público:
+// abre esta presentación con ?api=ID (o desde un dispositivo que ya abrió un quiz con ?api=) y el link de la lámina lo incluye.
+// Sin ID, el quiz funciona pero no registra nada.
+const API_QUIZ=(()=>{const ok=p=>/^[\w-]{20,}$/.test(p||'')?p:'';try{return ok(new URLSearchParams(location.search).get('api'))||ok(localStorage.getItem('quizApi'));}catch(e){return '';}})();
+if(!API_QUIZ)console.warn('Sin ?api=ID en el link de la presentación: el quiz de la lámina no registrará resultados.');
+
+/* ============ AYUDANTES ============ */
+// Núcleo: NUC('23','11','Na','+')
+const NUC=(A,Z,X,c)=>`<span class="nuc"><span class="za"><span class="a">${A}</span><span class="z">${Z}</span></span>${X}${c?`<span class="chg">${c}</span>`:''}</span>`;
+
+// Ejercicio: pregunta primero, luego respuesta y micro-pasos.
+function ej(o){
+  let h=`<div class="kicker">${o.kicker}</div>`;
+  if(o.title)h+=`<div class="title">${o.title}</div>`;
+  h+=`<div class="expr${o.sm?' sm':''}">${o.expr}</div>`;
+  h+=`<div class="lead step">🤔 ${o.q} <span style="opacity:.7;font-size:.75em">· 💬 al chat</span></div>`;
+  if(o.ans)h+=`<div class="chipRow step"><span class="chip g" style="font-size:1.1em">${o.ans}</span></div>`;
+  (o.steps||[]).forEach((p,i,a)=>{
+    const last=i===a.length-1;
+    h+=`<div class="stepline step"><div class="stepnum${last?' y':''}">${i+1}</div><div><div class="stepcalc${last?' big':''}">${p.c}</div>`+
+       (p.w?`<div class="stepwhy">${p.w}</div>`:``)+`</div></div>`;
+  });
+  return {html:h};
+}
+
+// Lámina "abran el quiz"
+function actividad(k,t,file,n,min){
+  return {html:`
+  <div class="kicker">${k}</div>
+  <div class="title">${t}</div>
+  <div class="chipRow"><span class="chip g">📱 ${n} preguntas</span><span class="chip y">⏳ ${min} min</span></div>
+  <div class="chipRow"><span class="chip b link" style="word-break:break-all">${BASE}${file}${API_QUIZ?'?api='+API_QUIZ:''}</span></div>
+  <div class="hint step">Al terminar, escriban su <b>nota en el chat</b> 👇</div>`};
+}
+
+// Diagrama de Moeller (SVG): cuadrícula n × subnivel con flechas diagonales
+function moeller(){
+  const L=['s','p','d','f'], COL=['#2BAE66','#FFC800','#1CB0F6','#E8503A'];
+  const rows=[1,2,3,4,4,3,2]; // subniveles por nivel n=1..7
+  const has=(n,l)=>n>=1&&n<=7&&l<rows[n-1];
+  const X=l=>52+l*96, Y=n=>34+(n-1)*58;
+  let lines='',cells='';
+  for(let s=1;s<=8;s++){
+    const pts=[];for(let l=3;l>=0;l--){const n=s-l;if(has(n,l))pts.push([l,n]);}
+    if(!pts.length)continue;
+    const a=pts[0],b=pts[pts.length-1],dx=-96,dy=58;
+    const x1=X(a[0])-dx*.42,y1=Y(a[1])-dy*.42,x2=X(b[0])+dx*.42,y2=Y(b[1])+dy*.42;
+    lines+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#9BB0A5" stroke-width="3" stroke-linecap="round" marker-end="url(#ar)" opacity=".75"/>`;
+  }
+  for(let n=1;n<=7;n++)for(let l=0;l<rows[n-1];l++){
+    cells+=`<rect x="${X(l)-30}" y="${Y(n)-19}" width="60" height="38" rx="10" fill="#1E2C33" stroke="${COL[l]}" stroke-width="2.5"/>`+
+      `<text x="${X(l)}" y="${Y(n)+8}" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="22" fill="${COL[l]}">${n}${L[l]}</text>`;
+  }
+  return `<svg class="moeller" viewBox="0 0 400 440" role="img" aria-label="Diagrama de Moeller">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9BB0A5"/></marker></defs>
+    ${lines}${cells}</svg>`;
+}
+const ORDEN=['1s','2s','2p','3s','3p','4s','3d','4p','5s','4d','5p','6s','4f','5d','6p','7s','5f','6d','7p'];
+const ordenHTML=()=>`<div class="orden">${ORDEN.map(o=>`<span class="${o.slice(-1)}">${o}</span>`).join('')}</div>`;
+
+/* ============ LÁMINAS ============ */
+// Lámina de texto: título + párrafos que se revelan + caja de ejemplo opcional
+function tx(o){
+  let h=`<div class="kicker">${o.kicker}</div><div class="title tt">${o.title}</div><div class="txt">`;
+  (o.p||[]).forEach((p,i)=>{h+=`<p class="${i===0&&!o.allStep?'':'step'}">${p}</p>`;});
+  if(o.key)h+=`<div class="key step">🔑 ${o.key}</div>`;
+  if(o.ex)h+=`<div class="box step"><div class="bl">📌 EJEMPLO</div>${o.ex}</div>`;
+  return {html:h+`</div>`};
+}
+// Lámina "¿qué paso es?"
+function cual(k,frase,ans,why){
+  return {html:`
+  <div class="kicker">${k}</div>
+  <div class="quote">"${frase}"</div>
+  <div class="lead step">🤔 ¿Qué paso del método es? <span style="opacity:.7;font-size:.75em">· 💬 al chat</span></div>
+  <div class="chipRow step"><span class="chip g" style="font-size:1.2em">${ans}</span></div>
+  <div class="hint step">${why}</div>`};
+}
+
+const SLIDES=[
+// 1 portada
+{html:`
+  <div class="kicker">CIENCIAS · INGRESO · CLASE 1</div>
+  <div class="title">El método científico 🔬</div>
+  <div class="lead">Cómo piensa (y trabaja) un científico… y qué tiene que ver con la química</div>
+  <div class="chipRow">
+    <span class="chip g">Observar</span><span class="chip y">Preguntar</span><span class="chip b">Hipótesis</span><span class="chip r">Experimentar</span><span class="chip g">Concluir</span>
+  </div>
+  <div class="hint">Toca <b>Avanzar ▶</b> para empezar</div>`},
+// 1b por qué empezamos aquí
+tx({kicker:'ANTES DE TODO',title:'¿Por qué empezamos por aquí? 🤔',
+  p:['Quizás se pregunten: <b>"¿por qué no empezamos directo con átomos y fórmulas?"</b>',
+     'Porque la química no es una lista de datos para memorizar: es una <b>forma de pensar</b>. Todo lo que verán (el átomo, la tabla periódica, las reacciones) se descubrió <b>observando, midiendo y comprobando</b>.',
+     'Si entienden cómo se construye el conocimiento, no van a memorizar: van a <b>entender</b>. Y lo que se entiende no se olvida el día del examen.',
+     'Además, el método científico <b>cae en el examen de admisión</b> y abre la puerta a lo que sigue: <b>medir</b> (magnitudes, unidades y conversiones), que es la base de los ejercicios de química.'],
+  key:'Primero aprendemos a <b>pensar como científicos</b>; después, a <b>medir</b>; y con eso la química se vuelve mucho más fácil.'}),
+// 2 gancho
+tx({kicker:'PARA ARRANCAR ☕',title:'Tu celular no carga 🔌📱',
+  p:['Imagina esto: conectas tu celular en la noche y en la mañana sigue en 5 %. <b>¿Qué haces?</b> 💬 Cuéntenme en el chat.',
+     'Seguramente pensaste: <b>"debe ser el cable"</b>. Entonces pruebas con otro cable. Si ahora sí carga, ya sabes que el problema era el cable. Si no carga, piensas en otra causa: el enchufe, el cargador, el puerto del celular…',
+     'Sin darte cuenta, acabas de <b>observar</b> un problema, <b>suponer</b> una causa, <b>probarla</b> y <b>sacar una conclusión</b>. Eso, ordenado y con cuidado, es el <b>método científico</b>.']}),
+// 3 qué es la ciencia
+tx({kicker:'ANTES DE EMPEZAR',title:'¿Qué es la ciencia?',
+  p:['La <b>ciencia</b> es el conocimiento <b>ordenado</b> sobre cómo funciona el mundo, que se obtiene observando y experimentando, y que <b>se puede comprobar</b>.',
+     'Lo importante es esto: en ciencia no basta con creer algo o con que "alguien lo dijo". Hay que <b>demostrarlo con pruebas</b> que cualquier otra persona pueda repetir.',
+     'Por eso el conocimiento científico es <b>provisional</b>: si mañana aparece una prueba mejor, la ciencia cambia de idea. Eso no es una debilidad, ¡es su mayor fortaleza!'],
+  key:'Características de la ciencia: <b>objetiva, verificable, sistemática (ordenada) y provisional</b>.'}),
+// 4 definición método
+tx({kicker:'LA DEFINICIÓN',title:'¿Qué es el método científico?',
+  p:['El <b>método científico</b> es un <b>conjunto ordenado de pasos</b> que usan los científicos para investigar un fenómeno y obtener conocimiento <b>confiable</b>.',
+     '"Método" viene del griego y significa <b>"camino"</b>. Es decir: es el camino que se sigue para llegar a la verdad sin engañarse a uno mismo.',
+     'Sirve para separar lo que <b>creemos</b> de lo que realmente <b>podemos demostrar</b>.'],
+  key:'Método = camino · Científico = basado en pruebas'}),
+// 5 historia
+tx({kicker:'UN POCO DE HISTORIA',title:'¿Quién lo inventó?',
+  p:['Durante siglos, muchas ideas se aceptaban solo porque las decía alguien importante, sin comprobarlas.',
+     '<b>Galileo Galilei</b> (Italia, siglo XVII) cambió eso: en lugar de solo pensar, hacía <b>experimentos y medía</b>. Por eso se le considera el <b>padre del método científico</b> experimental.',
+     'También aportaron <b>Francis Bacon</b>, que insistió en observar y experimentar, y <b>René Descartes</b>, que escribió el famoso <i>"Discurso del método"</i>.'],
+  key:'Para el examen: <b>Galileo Galilei = padre del método científico</b>.'}),
+// 6 los pasos
+{html:`
+  <div class="kicker">EL MAPA DE HOY</div>
+  <div class="title tt">Los pasos del método científico</div>
+  <div class="ladder tight" style="max-width:820px">
+    <div class="rung step"><div class="n" style="background:#2BAE66">1</div><div><div class="t">Observación</div><div class="s">Me doy cuenta de algo</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Planteamiento del problema</div><div class="s">Hago una pregunta</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Hipótesis</div><div class="s">Propongo una respuesta posible</div></div></div>
+    <div class="rung step"><div class="n" style="background:#E8503A">4</div><div><div class="t">Experimentación</div><div class="s">Pongo a prueba la hipótesis</div></div></div>
+    <div class="rung step"><div class="n" style="background:#C58CF0">5</div><div><div class="t">Análisis de resultados</div><div class="s">Ordeno e interpreto los datos</div></div></div>
+    <div class="rung step"><div class="n" style="background:#2BAE66">6</div><div><div class="t">Conclusión</div><div class="s">¿Mi hipótesis era correcta?</div></div></div>
+  </div>`},
+// 7 caso
+tx({kicker:'NUESTRO CASO DE HOY 🍞',title:'El pan con moho',
+  p:['Vamos a recorrer todos los pasos con un solo ejemplo, algo que seguro les ha pasado en casa.',
+     'Compraste pan. Dejaste una parte en la mesa de la cocina y otra parte en la refrigeradora. A los pocos días… 🤢',
+     '💬 En el chat: <b>¿cuál creen que se llenó de moho primero?</b>']}),
+// 8 observación
+tx({kicker:'PASO 1',title:'Observación 👀',
+  p:['Observar es <b>percibir un hecho usando los sentidos</b> (vista, olfato, tacto…) o <b>instrumentos</b> (termómetro, balanza, microscopio).',
+     'Hay observaciones <b>cualitativas</b>, que describen cualidades ("tiene manchas verdes", "huele raro"), y <b>cuantitativas</b>, que usan números ("tiene moho a los 4 días").',
+     'Una buena observación es <b>objetiva</b>: describe lo que pasa, no lo que yo creo que pasa.'],
+  ex:'El pan de la mesa tenía moho verde a los <b>4 días</b>. El de la refrigeradora seguía bien.'}),
+// 9 problema
+tx({kicker:'PASO 2',title:'Planteamiento del problema ❓',
+  p:['A partir de lo que observé, formulo una <b>pregunta clara</b> que se pueda investigar.',
+     'Una buena pregunta científica se puede responder con un <b>experimento</b>. "¿Por qué existe el moho?" es muy general. "¿La temperatura afecta la rapidez con que aparece el moho?" sí se puede investigar.'],
+  ex:'<b>¿La temperatura influye en la rapidez con que le sale moho al pan?</b>'}),
+// 10 hipótesis
+tx({kicker:'PASO 3 · EL MÁS PREGUNTADO ⭐',title:'Hipótesis 💡',
+  p:['La hipótesis es una <b>respuesta tentativa</b> (una suposición) a la pregunta del problema. Todavía <b>no está comprobada</b>: para eso viene el experimento.',
+     'Se suele escribir con la forma <b>"Si… entonces…"</b>, porque así queda claro qué voy a cambiar y qué espero que pase.',
+     'Una hipótesis debe poder <b>comprobarse o rechazarse</b>. "El moho aparece por mala suerte" no sirve, porque no se puede medir.'],
+  ex:'<b>Si</b> el pan está a mayor temperatura, <b>entonces</b> le saldrá moho más rápido.'}),
+// 11 experimentación
+tx({kicker:'PASO 4',title:'Experimentación 🧪',
+  p:['Experimentar es <b>poner a prueba la hipótesis</b> en condiciones <b>controladas</b>: cambio una sola cosa y mantengo todo lo demás igual.',
+     '¿Por qué solo una cosa? Porque si cambio varias a la vez, no sabré cuál causó el resultado.'],
+  ex:'Tomo 3 rebanadas del <b>mismo pan</b>, en bolsas iguales. Una en la refri (5 °C), otra en la mesa (20 °C) y otra cerca del horno (30 °C). Reviso todos los días.'}),
+// 12 variables
+tx({kicker:'DENTRO DEL EXPERIMENTO',title:'Las variables 🎛️',
+  p:['<b class="c-y">Variable independiente:</b> la que <b>yo cambio</b> a propósito. → la temperatura.',
+     '<b class="c-b">Variable dependiente:</b> la que <b>mido</b>, porque depende de la otra. → los días que tarda en salir el moho.',
+     '<b class="c-g">Variables controladas:</b> las que <b>mantengo iguales</b> para que la prueba sea justa. → el tipo de pan, la bolsa, el tamaño de la rebanada.',
+     'El <b>grupo control</b> es el que queda "normal" para comparar: aquí, el pan de la mesa.'],
+  key:'Truco: la independiente la <b>muevo yo</b>; la dependiente <b>responde</b>.',allStep:false}),
+// 13 ej variables
+ej({kicker:'¿CUÁL ES CUÁL?',expr:'🧂 Quiero saber si la cantidad de sal cambia la temperatura a la que hierve el agua',sm:true,
+  q:'¿Cuál es la variable independiente y cuál la dependiente?',ans:'VI: cantidad de sal · VD: temperatura de ebullición',
+  steps:[{c:'Yo cambio → la sal',w:'independiente'},{c:'Yo mido → la temperatura',w:'dependiente'}]}),
+// 14 análisis
+{html:`
+  <div class="kicker">PASO 5</div>
+  <div class="title tt">Análisis de resultados 📊</div>
+  <div class="txt"><p>Organizo los datos en <b>tablas o gráficos</b> y busco un <b>patrón</b>: ¿qué pasa cuando cambia la variable independiente?</p></div>
+  <table class="tab step">
+    <tr><th>Temperatura</th><th>Días hasta el moho</th></tr>
+    <tr><td>❄️ 5 °C</td><td>12 días</td></tr>
+    <tr><td>🏠 20 °C</td><td>5 días</td></tr>
+    <tr><td>🔥 30 °C</td><td>3 días</td></tr>
+  </table>
+  <div class="lead step" style="margin-top:14px">🤔 ¿Qué patrón ven? <span style="opacity:.7;font-size:.75em">· 💬 al chat</span></div>
+  <div class="hint step">A <b>más temperatura, menos días</b>: el moho aparece más rápido.</div>`},
+// 15 conclusión
+tx({kicker:'PASO 6',title:'Conclusión ✅',
+  p:['Comparo los resultados con mi hipótesis y decido: <b>¿se acepta o se rechaza?</b>',
+     'Si se rechaza, ¡no es un fracaso! Aprendí algo y planteo una <b>nueva hipótesis</b>. Así avanza la ciencia.',
+     'Al final, los resultados se <b>comunican</b> (informes, artículos) para que otros científicos los <b>repitan</b> y comprueben.'],
+  ex:'Se <b>acepta</b> la hipótesis: a mayor temperatura, el moho aparece más rápido. Por eso guardamos la comida en la refrigeradora. 🧊'}),
+// 16 teoría y ley
+tx({kicker:'¿Y DESPUÉS?',title:'Hipótesis → Teoría → Ley',
+  p:['Cuando una hipótesis se comprueba <b>muchas veces</b>, por muchos científicos, puede convertirse en una <b>teoría</b>.',
+     'Una <b>teoría</b> <b>explica por qué</b> pasa algo. Ejemplo: la teoría atómica de Dalton explica que la materia está hecha de átomos.',
+     'Una <b>ley</b> <b>describe qué</b> pasa, siempre de la misma forma, y muchas veces con una fórmula. Ejemplo: la ley de conservación de la masa.'],
+  key:'Teoría = <b>explica por qué</b> · Ley = <b>describe qué</b> pasa'}),
+// 17-20 ¿qué paso es?
+cual('¿QUÉ PASO ES? · 1','Noté que el agua hierve más rápido cuando la olla tiene tapa','Observación','Me di cuenta de un hecho con mis sentidos.'),
+cual('¿QUÉ PASO ES? · 2','Si tapo la olla, entonces el agua hervirá más rápido porque no se escapa el calor','Hipótesis','Es una respuesta posible, todavía sin comprobar (y tiene el "si… entonces…").'),
+cual('¿QUÉ PASO ES? · 3','Calenté 1 litro de agua con tapa y 1 litro sin tapa, en la misma hornilla','Experimentación','Puse a prueba la idea cambiando solo una cosa: la tapa.'),
+cual('¿QUÉ PASO ES? · 4','Con tapa hirvió en 6 minutos; sin tapa, en 9 minutos','Análisis de resultados','Son los datos medidos, listos para interpretar.'),
+// 21 Fleming
+tx({kicker:'UNA HISTORIA REAL 🩺',title:'El moho que salvó millones de vidas',
+  p:['En <b>1928</b>, el científico <b>Alexander Fleming</b> volvió de vacaciones y <b>observó</b> que en una de sus placas con bacterias había crecido moho… y alrededor del moho, las bacterias habían muerto.',
+     'Se preguntó: <b>¿el moho produce algo que mata bacterias?</b> Propuso esa hipótesis, hizo experimentos y lo comprobó.',
+     'Así descubrió la <b>penicilina</b>, el primer antibiótico. Todo empezó con una buena observación. 👀'],
+  key:'Fleming siguió el método científico paso a paso, ¡igual que nosotros con el pan!'}),
+// 22 química: puente
+tx({kicker:'Y AHORA… LA QUÍMICA ⚗️',title:'¿Qué tiene que ver con la química?',
+  p:['La química es una <b>ciencia experimental</b>: todo lo que sabemos de química (los átomos, la tabla periódica, las reacciones) se descubrió <b>usando el método científico</b>.',
+     'Antes existía la <b>alquimia</b>: buscaban convertir metales en oro y la "piedra filosofal", pero <b>no medían ni comprobaban</b> nada con orden. Por eso no era ciencia.',
+     'La química se convirtió en ciencia cuando alguien empezó a <b>medir, pesar y comprobar</b>. Ese alguien fue…'],
+  }),
+// 23 Lavoisier
+{html:`
+  <div class="kicker">EL MÉTODO CIENTÍFICO EN LA QUÍMICA</div>
+  <div class="title tt">Lavoisier y su balanza ⚖️</div>
+  <div class="ladder" style="max-width:860px">
+    <div class="rung step"><div class="n" style="background:#2BAE66">1</div><div><div class="t">Observó</div><div class="s">Cuando algo se quema, parece que "desaparece" materia</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Se preguntó</div><div class="s">¿La materia realmente se pierde en una reacción?</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Experimentó</div><div class="s">Hizo reacciones en recipientes cerrados y pesó todo antes y después</div></div></div>
+    <div class="rung step"><div class="n" style="background:#E8503A">4</div><div><div class="t">Concluyó</div><div class="s">La masa total no cambia: "la materia no se crea ni se destruye, solo se transforma"</div></div></div>
+  </div>
+  <div class="hint step">Por eso a Lavoisier se lo llama <b>padre de la química moderna</b>.</div>`},
+// 24 química hoy
+tx({kicker:'LA QUÍMICA HOY',title:'Los químicos usan el método todos los días',
+  p:['💊 Para crear un <b>medicamento</b>: proponen una molécula (hipótesis), la prueban en laboratorio (experimento) y analizan si funciona y es segura.',
+     '💧 Para saber si el <b>agua es potable</b>: toman muestras, miden y comparan con los valores permitidos.',
+     '🩸 Hasta un <b>examen de sangre</b> es química aplicada con método: muestra, medición, análisis y resultado.'],
+  key:'Sin método científico, la química sería otra vez alquimia.'}),
+// 25 resumen
+{html:`
+  <div class="kicker">LO QUE CAE EN EL EXAMEN 📝</div>
+  <div class="title tt">Llévense esto</div>
+  <div class="ladder" style="max-width:860px">
+    <div class="rung step"><div class="n" style="background:#2BAE66">1</div><div><div class="t">Pasos: observación → problema → hipótesis → experimentación → análisis → conclusión</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Hipótesis = respuesta tentativa que se puede comprobar</div><div class="s">"Si… entonces…"</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">VI = la que cambio · VD = la que mido</div></div></div>
+    <div class="rung step"><div class="n" style="background:#E8503A">4</div><div><div class="t">Galileo: padre del método científico · Lavoisier: padre de la química moderna</div></div></div>
+  </div>`},
+// 26 quiz
+actividad('A PRACTICAR 💪','Quiz del método científico','quiz-metodo-cientifico.html',40,25),
+// 27 cierre
+{html:`
+  <div class="kicker">LO QUE VIENE 👀</div>
+  <div class="title">A medir como científicos 📏</div>
+  <div class="lead">Magnitudes, unidades y conversiones: la matemática que usa la química.</div>
+  <div class="hint step">💬 En el chat: <b>¿qué fue lo que más les gustó hoy?</b></div>`},
+];
+
+/* ============ NAVEGACIÓN ============ */
+let cur=0, step=0;
+const STAGE=document.getElementById('stage');
+function buildDots(){
+  const d=document.getElementById('dots');d.innerHTML='';
+  SLIDES.forEach(()=>{const e=document.createElement('div');e.className='dot';d.appendChild(e);});
+}
+function paintDots(){[...document.getElementById('dots').children].forEach((e,i)=>e.classList.toggle('on',i===cur));}
+function render(revealAll){
+  STAGE.innerHTML='<div class="slide on">'+SLIDES[cur].html+'</div>';
+  const steps=STAGE.querySelectorAll('.step');
+  if(revealAll){steps.forEach(e=>e.classList.add('show'));step=steps.length;}
+  else{step=0;}
+  paintDots();updateBtns();
+}
+function updateBtns(){
+  document.getElementById('prev').disabled=(cur===0 && step===0);
+  const last=cur===SLIDES.length-1;
+  const steps=STAGE.querySelectorAll('.step').length;
+  document.getElementById('next').textContent=(last && step>=steps)?'Fin ✓':'Avanzar ▶';
+}
+function advance(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step<steps.length){steps[step].classList.add('show');step++;updateBtns();return;}
+  if(cur<SLIDES.length-1){cur++;render(false);}
+}
+function back(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step>0){step--;steps[step].classList.remove('show');updateBtns();return;}
+  if(cur>0){cur--;render(true);}
+}
+document.getElementById('start').onclick=()=>{
+  document.getElementById('setup').classList.add('hidden');
+  document.getElementById('controls').classList.remove('hidden');
+  buildDots();cur=0;render(false);
+};
+document.getElementById('next').onclick=advance;
+document.getElementById('prev').onclick=back;
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('setup').classList.contains('hidden'))return;
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();advance();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();back();}
+});
+STAGE.addEventListener('click',advance);
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+/* ============ JUEGO «SIGNO A SIGNO» ============
+   Solo tokens de ls.css. Azul/naranja solo en números (.num) y dibujos; nunca en botones, barras ni racha. */
+.jg{ gap:12px; padding-bottom:calc(16px + env(safe-area-inset-bottom)); }
+.jg-top{ display:flex; align-items:center; gap:6px; margin:-4px -6px 0; }
+.jg-top-t{ flex:1; min-width:0; display:flex; flex-direction:column; }
+.jg-top-t b{ font-size:1.125rem; line-height:1.2; }
+.jg-top-t span{ font-size:.9375rem; color:var(--ink-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.jg-kicker{ font-size:.9375rem; font-weight:800; color:var(--ink-2); display:flex; align-items:center; gap:6px; }
+.jg-h3{ font-size:1.0625rem; margin-top:14px; }
+.jg-regla{ margin-top:8px; font-weight:700; }
+.jg-acciones{ display:flex; flex-direction:column; gap:10px; margin-top:4px; }
+.jg-etq{ font-size:.9375rem; font-weight:800; color:var(--ink-2); }
+.jg-q{ font-weight:800; margin:4px 0 2px; }
+.jg-grande{ font-size:2.5rem; font-weight:900; text-align:center; }
+.jg-rayo{ width:22px; height:22px; fill:var(--prize); stroke:var(--ink); stroke-width:2; }
+
+/* ---------- Marcador y mapa ---------- */
+.jg-marcador{ display:flex; gap:8px; flex-wrap:wrap; }
+.jg-pill{ display:inline-flex; align-items:center; gap:6px; min-height:36px; padding:0 12px; border-radius:var(--r-pill); background:var(--surface); border:2px solid var(--line); font-weight:800; font-size:.9375rem; }
+.jg-pill .estrella{ width:20px; height:20px; }
+.jg-vuelta{ display:flex; flex-direction:column; gap:8px; border-color:var(--ink); }
+.jg-nota-test{ font-weight:700; }
+.jg-camino{ list-style:none; position:relative; display:flex; flex-direction:column; gap:14px; padding:4px 0 8px; }
+.jg-camino::before{ content:""; position:absolute; left:31px; top:36px; bottom:36px; border-left:3px dashed var(--line); }
+.jg-paso{ position:relative; }
+.jg-nodo{ display:flex; align-items:center; gap:14px; width:100%; text-align:left; min-height:72px; padding:4px 8px 4px 0; border-radius:var(--r-md); }
+.jg-nodo:active{ transform:translateY(1px); }
+.jg-circ{ position:relative; z-index:1; flex-shrink:0; width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:var(--surface); border:4px solid var(--ink); font-size:1.5rem; font-weight:900; color:var(--ink); }
+.jg-circ svg{ width:28px; height:28px; }
+.jg-nodo-txt{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.jg-nodo-txt b{ font-size:1.125rem; line-height:1.2; }
+.jg-nodo-txt span{ font-size:.9375rem; color:var(--ink-2); }
+.jg-nodo-txt em{ font-style:normal; font-size:.9375rem; font-weight:800; color:var(--ink-2); }
+.jg-nodo-txt .estrellas{ margin-top:2px; }
+.jg-reforzar{ display:inline-block; align-self:flex-start; border:2px dashed var(--miss); border-radius:var(--r-pill); padding:0 10px; color:var(--ink) !important; }
+.est-bloqueado .jg-circ{ background:var(--line); border-color:var(--line); color:var(--ink-3); }
+.est-bloqueado .jg-nodo-txt b{ color:var(--ink-3); }
+.est-superado .jg-circ{ background:var(--primary); border-color:var(--primary-shade); color:#fff; box-shadow:0 4px 0 var(--primary-shade); }
+.est-reforzar .jg-circ{ border-style:dashed; border-color:var(--miss); }
+.jg-paso.actual .jg-circ{ animation:jgPulso .6s ease-out 1; background:var(--primary); border-color:var(--primary-shade); color:#fff; box-shadow:0 5px 0 var(--primary-shade), 0 0 0 6px var(--ok-soft); }
+.est-superado .jg-circ svg{ color:#fff; }
+.jg-paso.actual .jg-nodo-txt b{ text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:4px; }
+@keyframes jgPulso{ 50%{ transform:scale(1.08); } }
+.jg-esp .jg-circ{ width:64px; height:64px; }
+.jg-esp.est-abierto .jg-circ{ background:var(--prize); color:var(--on-prize); }
+.jg-esp.est-abierto .jg-circ svg{ fill:var(--surface); stroke:var(--ink); stroke-width:2; }
+
+/* ---------- Antes de jugar ---------- */
+.jg-antes h2{ margin:2px 0 8px; }
+.jg-criterio{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-top:14px; font-size:1rem; }
+.jg-criterio li{ display:flex; gap:10px; align-items:flex-start; }
+.jg-criterio li > svg,.jg-escudo-ico{ width:24px; height:24px; flex-shrink:0; fill:var(--zero-soft); stroke:var(--ink); stroke-width:2; }
+.jg-criterio .estrellas{ flex-shrink:0; }
+.jg-criterio .estrella{ width:16px; height:16px; }
+.jg-dom-mini{ display:inline-flex; gap:3px; flex-shrink:0; padding-top:6px; }
+.jg-dom-mini i{ width:9px; height:10px; border-radius:3px; background:var(--primary); }
+.jg-tecla-demo{ display:inline-flex; gap:2px; border:2px solid var(--line); border-radius:8px; padding:0 8px; background:var(--surface); font-weight:900; }
+
+/* ---------- Solución en una línea y dibujos ---------- */
+.jg-sol{ margin-top:10px; display:flex; flex-direction:column; gap:6px; }
+.jg-linea{ display:flex; flex-wrap:wrap; align-items:center; gap:4px 6px; font-weight:700; line-height:1.5; }
+.jg-linea .fx{ font-size:1.25rem; }
+.jg-flecha{ color:var(--ink-3); font-weight:900; }
+.jg-filas{ list-style:none; display:flex; flex-direction:column; gap:4px; }
+.jg-filas li{ display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; padding:4px 8px; border-left:3px solid var(--line); }
+.jg-filas li:last-child{ border-left-color:var(--ink); }
+.jg-filas-op{ font-size:.9375rem; color:var(--ink-2); font-weight:700; }
+.jg-dib{ margin-top:8px; }
+.jg-dib svg{ max-height:180px; }
+.jg-esc-mini svg{ max-height:140px; }
+.jg-fusion{ font-size:1.25rem; font-weight:800; margin-top:8px; }
+.jg-contador{ font-weight:800; margin-top:6px; text-align:center; }
+.jg-exp{ margin-top:10px; text-align:center; font-size:1.5rem; font-weight:800; }
+.jg-exp p{ font-size:1rem; margin-top:6px; }
+.jg-exp p .fx{ font-size:1.25rem; }
+.jg-afuera{ color:var(--ink); margin-right:2px; }
+.jg-alc{ display:inline-flex; align-items:flex-start; }
+.jg-arco{ display:inline-block; border-top:3px solid var(--ink); border-radius:50% 50% 0 0 / 14px 14px 0 0; padding:6px 4px 0; }
+.jg-nota{ color:var(--ink-2); font-weight:700; }
+
+/* ---------- Cabecera del ejercicio: barra de dominio, escudo, racha ---------- */
+.jg-estado{ display:flex; align-items:center; gap:10px; min-height:40px; }
+.jg-dom{ display:inline-flex; gap:5px; }
+.jg-dom i{ width:28px; height:12px; border-radius:6px; background:var(--line); transition:background .2s; }
+.jg-dom i.llena{ background:var(--primary); }
+.jg-escudo{ display:inline-flex; position:relative; }
+.jg-escudo svg{ width:26px; height:26px; fill:var(--zero-soft); stroke:var(--ink); stroke-width:2; }
+.jg-escudo.roto svg{ opacity:.45; }
+.jg-escudo.roto::after{ content:""; position:absolute; left:-2px; right:-2px; top:50%; border-top:2.5px solid var(--ink); transform:rotate(-35deg); }
+.jg-racha{ display:inline-flex; align-items:center; gap:2px; min-height:32px; padding:0 10px 0 6px; border-radius:var(--r-pill);
+  background:var(--prize); color:var(--on-prize); border:2px solid var(--ink); font-weight:900; font-size:1rem; }
+.jg-racha svg{ width:20px; height:20px; fill:var(--surface); stroke:var(--ink); stroke-width:2; }
+.jg-racha.pulso{ animation:jgRacha .2s ease-out 1; }
+@keyframes jgRacha{ 50%{ transform:scale(1.25); } }
+.jg-herr{ display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
+.jg-herr .btn-txt{ display:inline-flex; align-items:center; gap:4px; }
+.jg-herr .btn-txt svg{ width:20px; height:20px; }
+.jg-btn-pista{ margin-left:auto; min-height:48px; padding:0 14px; }
+
+/* ---------- Enunciado, pistas, paso previo ---------- */
+.jg-enun{ padding:10px 0 4px; overflow-x:auto; }
+.jg-enun .fx-grande{ font-size:clamp(1.75rem, 8vw, 2.5rem); }
+.jg-pistas:empty,.jg-previo:empty,.jg-aviso:empty{ display:none; }
+.jg-pista{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; background:var(--surface); border:2px solid var(--ink); border-radius:var(--r-md); padding:10px 12px; font-size:1rem; }
+.jg-pista + .jg-pista{ margin-top:8px; }
+.jg-pista .jg-sol{ margin-top:0; width:100%; }
+.jg-reglas{ display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+.jg-regla-btn{ justify-content:flex-start; min-height:56px; font-size:1rem; }
+.jg-regla-btn.ok{ border-color:var(--ok); background:var(--ok-soft); }
+.jg-regla-btn.miss{ border-color:var(--miss); background:var(--miss-soft); }
+.jg-regla-btn[disabled]{ cursor:default; }
+
+/* ---------- Tarjetas de feedback ---------- */
+.jg-resp{ margin-top:auto; }
+.jg-fb{ border-radius:var(--r-lg); padding:14px; display:flex; flex-direction:column; gap:8px; animation:subir var(--t) cubic-bezier(.2,.8,.2,1); }
+.jg-fb.ok{ background:var(--ok-soft); border-top:4px solid var(--ok); }
+.jg-fb.miss{ background:var(--miss-soft); border:2px solid var(--miss); border-top-width:4px; }
+.jg-fb.info{ background:var(--accent-soft); border-top:4px solid var(--accent); }
+.jg-fb-cab{ display:flex; align-items:center; gap:8px; font-size:1.25rem; }
+.jg-fb-cab svg{ width:28px; height:28px; flex-shrink:0; }
+.jg-fb.ok .jg-fb-cab svg{ color:var(--ok); }
+.jg-fb.ok .jg-fb-cab b{ color:var(--ok); }
+.jg-fb.miss .jg-fb-cab svg{ color:var(--ink); }
+.jg-fb-bot{ display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+.jg-tuya{ display:flex; flex-wrap:wrap; gap:6px 18px; font-weight:800; }
+.jg-tuya .num{ font-size:1.4rem; }
+.jg-pista-txt{ font-weight:700; }
+.jg-revela{ list-style:none; display:flex; flex-direction:column; gap:4px; }
+.jg-revela li{ padding:4px 8px; border-left:3px solid var(--ink); animation:entrar var(--t); }
+.jg-revela .fx{ font-size:1.25rem; }
+.jg-escudo-msg{ display:flex; align-items:center; gap:8px; font-weight:800; margin-bottom:8px; }
+.jg-escudo-msg svg{ width:24px; height:24px; fill:var(--zero-soft); stroke:var(--ink); stroke-width:2; }
+.jg-flash:empty{ display:none; }
+
+/* ---------- Jefe final ---------- */
+.jg-vida{ display:flex; align-items:center; gap:4px; }
+.jg-vida-t{ font-size:.875rem; font-weight:900; color:var(--ink-2); margin-right:4px; }
+.jg-vida i{ flex:1; max-width:48px; height:10px; border-radius:5px; background:var(--ink); transition:opacity .2s, background .2s; }
+.jg-vida i.hecha{ background:var(--line); }
+.jg-jefe-cuerpo{ display:grid; grid-template-columns:1fr; gap:8px; }
+.jg-filas-jefe{ list-style:none; display:flex; flex-direction:column; gap:6px; }
+.jg-filas-jefe li{ display:flex; flex-direction:column; align-items:center; background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); padding:6px 8px; }
+.jg-filas-jefe li.hecho{ opacity:.5; }
+.jg-filas-jefe li.actual{ border-color:var(--ink); }
+.jg-filas-jefe li.final{ border-color:var(--ok); }
+.jg-filas-jefe .fx-medio{ font-size:clamp(1.3rem, 6vw, 1.6rem); text-align:center; }
+.jg-filas-jefe .tocable{ display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; background:var(--surface); }
+.jg-filas-jefe .op.tocable{ padding:0 .3em; }
+.jg-filas-jefe .tocable:hover,.jg-filas-jefe .tocable:focus-visible{ outline:3px solid var(--ink); }
+.jg-esc-lado svg{ width:100%; max-height:120px; }
+.jg-ok-ico{ width:20px; height:20px; color:var(--ok); vertical-align:-4px; }
+.jg-casi-txt{ display:block; background:var(--miss-soft); border-left:4px solid var(--miss); padding:6px 10px; border-radius:8px; margin-bottom:4px; }
+.jg-casi-txt svg{ width:18px; height:18px; vertical-align:-3px; }
+@media (min-width:430px){
+  .jg-jefe-cuerpo{ grid-template-columns:1fr 128px; align-items:start; }
+  .jg-esc-lado svg{ max-height:170px; }
+}
+
+/* ---------- Fin de nivel ---------- */
+.jg-fin-t{ display:flex; flex-direction:column; gap:8px; }
+.jg-fin .tarjeta{ display:flex; flex-direction:column; gap:8px; }
+.jg-fin .estrellas .estrella{ width:36px; height:36px; }
+.jg-logro{ display:flex; align-items:center; gap:8px; font-weight:800; }
+.jg-logro svg{ width:24px; height:24px; fill:var(--prize); stroke:var(--ink); stroke-width:2; }
+.jg-ignacio{ border-color:var(--ink); }
+
+/* ---------- Relámpago ---------- */
+.jg-reloj{ display:inline-flex; align-items:center; min-height:36px; padding:0 14px; border-radius:var(--r-pill); background:var(--ink); color:var(--bg); font-weight:900; font-variant-numeric:tabular-nums; }
+
+@media (prefers-reduced-motion: reduce){
+  .jg-paso.actual .jg-circ,.jg-racha.pulso,.jg-fb{ animation:none; }
+}
+:root[data-motion="reduce"] .jg-paso.actual .jg-circ,:root[data-motion="reduce"] .jg-fb{ animation:none; }

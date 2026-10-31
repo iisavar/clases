@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Clases por tema</title>
+<meta name="description" content="Clases de matemática y química ordenadas por tema, con tareas, juegos y simulacro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --panel:#1B2B32; --panel2:#22363F; --line:#2E4652;
+  --text:#F1F5F7; --muted:#A9BCC4; --green:#2BAE66; --green-t:#3BC97A;
+  --gold:#FFC800;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(16px,1.4vw,19px);line-height:1.5}
+.wrap{max-width:1100px;margin:0 auto;padding:clamp(24px,5vw,56px) 16px 48px}
+h1{font-weight:900;font-size:clamp(36px,6vw,64px);line-height:1.05;margin:0 0 10px}
+h1 span{color:var(--green-t)}
+h2{font-weight:900;font-size:clamp(26px,3.4vw,38px);margin:44px 0 4px;color:var(--gold)}
+h3{font-weight:900;font-size:clamp(19px,2vw,24px);margin:26px 0 12px}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+.lista{display:grid;gap:12px}
+a.item{display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:center;background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:14px 18px;color:var(--text);text-decoration:none}
+a.item:hover,a.item:focus-visible{border-color:var(--green);outline:none}
+.num{width:56px;height:56px;border-radius:50%;background:var(--panel2);display:grid;place-items:center;font-weight:900;font-size:1.4em;color:var(--gold)}
+.item b{display:block;font-weight:900;font-size:1.12em}
+.item small{color:var(--muted);font-size:.88em}
+.ir{font-weight:900;color:var(--green-t);white-space:nowrap}
+.tareas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.tareas a{font-weight:800;font-size:.85em;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:9px 14px;text-decoration:none}
+.tareas a:hover,.tareas a:focus-visible{border-color:var(--gold);outline:none}
+@media (max-width:560px){a.item{grid-template-columns:44px 1fr;padding:12px 14px}.num{width:44px;height:44px;font-size:1.15em}.ir{display:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Clases <span>por tema</span></h1>
+  <p class="lead">Sigue los pasos en orden, de arriba hacia abajo. Cada paso se abre en su propia página.</p>
+
+  <h2>Matemática</h2>
+
+  <h3>Tema 1. Ley de signos</h3>
+  <div class="lista">
+    <a class="item" href="../anteriores/ley-de-signos/"><span class="num">1</span><span><b>Ley de signos</b><small>Láminas, juego y test de 25 preguntas</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-entrada.html"><span class="num">2</span><span><b>Quiz de ley de signos</b><small>Para comprobar lo aprendido</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+
+  <h3>Tema 2. Jerarquía de operaciones</h3>
+  <div class="lista">
+    <a class="item" href="../anteriores/clases/clase-jerarquia.html"><span class="num">3</span><span><b>Jerarquía de operaciones</b><small>En qué orden se resuelve cada operación</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-jerarquia.html"><span class="num">4</span><span><b>Quiz de jerarquía</b><small>15 preguntas</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/clase-jerarquia-2.html"><span class="num">5</span><span><b>Jerarquía, nivel 2</b><small>Ejercicios más largos</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-jerarquia-2.html"><span class="num">6</span><span><b>Quiz de jerarquía, nivel 2</b><small>Para practicar el nivel 2</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-jerarquia-3.html"><span class="num">7</span><span><b>Reto de jerarquía, nivel 3</b><small>Los ejercicios más difíciles</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+
+  <h3>Tema 3. Fracciones</h3>
+  <div class="lista">
+    <a class="item" href="../anteriores/clases/laminas-fracciones.html"><span class="num">8</span><span><b>Láminas de fracciones</b><small>Qué es una fracción y cómo se opera</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/fracciones.html"><span class="num">9</span><span><b>Fracciones: láminas, juego y quiz</b><small>Para aprender y practicar a tu ritmo</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../fracciones-combinadas/"><span class="num">10</span><span><b>Operaciones combinadas con fracciones</b><small>Sumar, restar, multiplicar y dividir con ejercicios en pizarra</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/reto-fracciones.html"><span class="num">11</span><span><b>Reto lógico de fracciones</b><small>Para pensar un poco más</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/test-fracciones-dificil.html"><span class="num">12</span><span><b>Test difícil de fracciones</b><small>Para cerrar el tema</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="../fracciones-combinadas/tarea/tarea-fracciones.pdf" download>Tarea de fracciones (PDF)</a>
+  </div>
+
+  <h3>Tema 4. Potencias</h3>
+  <div class="lista">
+    <a class="item" href="../potencias/"><span class="num">13</span><span><b>Potencias con exponentes positivos y negativos</b><small>Signo, propiedades, exponente cero y potencias de fracciones</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="../potencias/tarea/tarea-potencias.pdf" download>Tarea de potencias (PDF)</a>
+  </div>
+
+  <h3>Tema 5. Radicales</h3>
+  <div class="lista">
+    <a class="item" href="../radicales/"><span class="num">14</span><span><b>Radicales</b><small>Propiedades, simplificar, sumar, multiplicar y racionalizar</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../radicales/estudio/"><span class="num">15</span><span><b>Radicales para estudiar solo</b><small>8 videos con preguntas y un test final de 12</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="../radicales/tarea/tarea-radicales.pdf" download>Tarea de radicales (PDF)</a>
+  </div>
+
+  <h2>Química</h2>
+
+  <h3>Tema 1. Método científico</h3>
+  <div class="lista">
+    <a class="item" href="../anteriores/clases/clase-metodo-cientifico.html"><span class="num">1</span><span><b>Método científico</b><small>De la pregunta al experimento</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-metodo-cientifico.html"><span class="num">2</span><span><b>Quiz de método científico</b><small>Con tiempo y nota al final</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+
+  <h3>Tema 2. ¿Qué es la química?</h3>
+  <div class="lista">
+    <a class="item" href="../anteriores/clases/clase-quimica-1.html"><span class="num">3</span><span><b>¿Qué es la Química?</b><small>De qué trata y para qué sirve</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-intro-quimica.html"><span class="num">4</span><span><b>Quiz de introducción a la química</b><small>Con tiempo y nota al final</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+
+  <h3>Tema 3. Mediciones</h3>
+  <div class="lista">
+    <a class="item" href="../medicion-quimica/"><span class="num">5</span><span><b>Mediciones en Química</b><small>Sistema Internacional, prefijos, volumen, densidad y temperatura, con test de 25 preguntas</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../medicion-practica/"><span class="num">6</span><span><b>Mediciones en práctica</b><small>15 ejercicios de fáciles a retos, con pistas</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="../medicion-practica/tarea/practica-mediciones.pdf" download>Práctica de mediciones (PDF)</a>
+  </div>
+
+  <h3>Tema 4. Materia y átomo</h3>
+  <div class="lista">
+    <a class="item" href="../anteriores/clases/quiz-entrada-quimica.html"><span class="num">7</span><span><b>Quiz de entrada</b><small>10 preguntas sobre materia, átomo y tabla periódica</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/quimica-materia/"><span class="num">8</span><span><b>Química desde cero</b><small>Láminas, laboratorio y test sobre materia, átomo y tabla periódica</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../materia-atomo/"><span class="num">9</span><span><b>Materia y átomo</b><small>Mezclas, cambios, modelos atómicos, partículas, iones e isótopos</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../materia-atomo/juegos/"><span class="num">10</span><span><b>Juegos del átomo</b><small>Laboratorio para armar átomos y escape room, en el celular</small></span><span class="ir">Jugar ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-atomo.html"><span class="num">11</span><span><b>Cuenta partículas</b><small>Actividad de protones, neutrones y electrones</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="../materia-atomo/tarea/tarea-materia-atomo.pdf" download>Tarea de materia y átomo (PDF)</a>
+  </div>
+
+  <h3>Tema 5. Configuración electrónica</h3>
+  <div class="lista">
+    <a class="item" href="../anteriores/clases/clase-quimica-2.html"><span class="num">12</span><span><b>El átomo por dentro y la configuración electrónica</b><small>Dónde viven los electrones y cómo se escriben</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/clases/quiz-configuracion.html"><span class="num">13</span><span><b>Actividad de configuración electrónica</b><small>Para practicar lo visto</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+
+  <h3>Tema 6. Nomenclatura inorgánica</h3>
+  <div class="lista">
+    <a class="item" href="../quimica-ingenierias/clase-1-hidruros/"><span class="num">14</span><span><b>Hidruros metálicos y volátiles</b><small>Cruce de valencias y las tres nomenclaturas</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../quimica-ingenierias/clase-2-haluros-oxidos/"><span class="num">15</span><span><b>Haluros de hidrógeno y óxidos</b><small>Ácidos hidrácidos, óxidos básicos y anhídridos</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../quimica-ingenierias/clase-3-peroxidos-hidroxidos/"><span class="num">16</span><span><b>Peróxidos, sales binarias e hidróxidos</b><small>Cómo distinguir un óxido de un peróxido</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../quimica-ingenierias/clase-4-oxiacidos-oxisales/"><span class="num">17</span><span><b>Oxiácidos y oxisales</b><small>Del anhídrido al ácido y del ácido a la sal</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../quimica-ingenierias/clase-5-sales-acidas-basicas/"><span class="num">18</span><span><b>Sales ácidas y sales básicas</b><small>Y el mapa para reconocer cualquier compuesto por su fórmula</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../anteriores/nomenclatura/"><span class="num">19</span><span><b>Práctica libre de nomenclatura</b><small>Para repetir hasta que salga solo</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../quimica-ingenierias/tabla-periodica/"><span class="num">20</span><span><b>Tabla periódica</b><small>Toca un elemento para ver sus valencias y sus nombres</small></span><span class="ir">Abrir ▶</span></a>
+    <a class="item" href="../quimica-ingenierias/simulacro/"><span class="num">21</span><span><b>Simulacro de nomenclatura</b><small>20 preguntas en una hora, con nota y corrección al final</small></span><span class="ir">Abrir ▶</span></a>
+  </div>
+  <div class="tareas">
+    <a href="../quimica-ingenierias/clase-1-hidruros/tarea/tarea-hidruros.pdf" download>Tarea 1 (PDF)</a>
+    <a href="../quimica-ingenierias/clase-2-haluros-oxidos/tarea/tarea-haluros-oxidos.pdf" download>Tarea 2 (PDF)</a>
+    <a href="../quimica-ingenierias/clase-3-peroxidos-hidroxidos/tarea/tarea-peroxidos-hidroxidos.pdf" download>Tarea 3 (PDF)</a>
+    <a href="../quimica-ingenierias/clase-4-oxiacidos-oxisales/tarea/tarea-oxiacidos-oxisales.pdf" download>Tarea 4 (PDF)</a>
+    <a href="../quimica-ingenierias/clase-5-sales-acidas-basicas/tarea/tarea-sales-acidas-basicas.pdf" download>Tarea 5 (PDF)</a>
+  </div>
+</main>
+</body>
+</html>

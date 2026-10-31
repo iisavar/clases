@@ -1,0 +1,104 @@
+/* Estilos propios de las láminas 50–72 (prefijo qmb-). Colores de familia y tipo: variables --qm-* de qm-widgets.css. */
+:root{
+  --qmb-franja-p:color-mix(in srgb, var(--prize) 38%, transparent);
+  --qmb-franja-g:color-mix(in srgb, var(--accent) 30%, transparent);
+  --qmb-borde:var(--ink-3);
+}
+
+/* Mini mapa de la tabla (SVG) */
+.qmb-mapa svg{ width:100%; max-width:420px; height:auto; display:block; margin:0 auto; }
+.qmb-mapa-peq svg{ max-width:300px; }
+.qmb-pie{ text-align:center; font-size:1rem; margin-top:-4px; }
+.qmb-leyenda{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 14px; font-size:.875rem; font-weight:800; }
+.qmb-leyenda span{ display:inline-flex; align-items:center; gap:6px; }
+.qmb-leyenda i{ width:16px; height:16px; border-radius:4px; border:1.5px solid var(--ink-3); display:inline-block; }
+
+/* Dos numeraciones de los grupos */
+.qmb-ab-caja{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.qmb-ab{ border-collapse:separate; border-spacing:3px; margin:0 auto; font-variant-numeric:tabular-nums; }
+.qmb-ab th, .qmb-ab td{ text-align:center; font-size:.8125rem; padding:4px 3px; border-radius:6px; white-space:nowrap; }
+.qmb-ab th{ font-weight:900; color:var(--ink-2); padding-right:6px; }
+.qmb-ab td{ background:var(--surface); border:1.5px solid var(--line); font-weight:800; min-width:30px; }
+.qmb-ab tr:last-child td{ background:var(--accent-soft); color:var(--accent-text); }
+@media (max-width:370px){ .qmb-ab th, .qmb-ab td{ font-size:.72rem; padding:3px 2px; min-width:24px; } }
+
+/* Retos en la tabla */
+.qmb-reto-cab{ display:flex; flex-direction:column; gap:4px; margin-bottom:8px; }
+.qmb-reto-n{ align-self:flex-start; font-size:.8125rem; font-weight:900; text-transform:uppercase; letter-spacing:.04em;
+  background:var(--accent-soft); color:var(--accent-text); border-radius:var(--r-pill); padding:2px 10px; }
+.qmb-reto-n:empty{ display:none; }
+.qmb-tabla{ width:100%; margin:6px 0; }
+.qmb-reto-sig{ margin-top:10px; }
+.qmb-reto-sig:empty{ display:none; }
+.qmb-cuenta{ margin:2px 0 6px; }
+.qmb-modos{ margin-bottom:10px; display:flex; justify-content:center; }
+.qmb-modos .seg-ctrl{ flex-wrap:wrap; }
+.qmb-modos .seg-ctrl button{ font-size:.875rem; }
+
+/* Casillas */
+.qmb-cas-grande svg{ width:100%; max-width:340px; height:auto; display:block; margin:0 auto; }
+.qmb-cas-grande .qm-casilla, .qmb-cas-peq .qm-casilla{ margin:0 auto; }
+.qmb-cas-peq{ display:flex; justify-content:center; }
+.qmb-casilla-resp{ display:inline-flex; flex-direction:column; align-items:center; border:2.5px solid var(--ink); border-radius:12px; padding:6px 12px; background:var(--surface); }
+.qmb-casilla-resp b{ font-size:2rem; }
+.qmb-lista{ padding-left:1.2em; display:flex; flex-direction:column; gap:6px; }
+
+/* Símbolos */
+.qmb-sim{ font-weight:900; font-size:1.5rem; letter-spacing:-.01em; line-height:1; }
+.qmb-sim-nom{ font-weight:800; }
+.qmb-simbolos{ display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; }
+.qmb-sim-caja{ background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); padding:8px 4px; display:flex; flex-direction:column; align-items:center; gap:4px; font-size:.875rem; font-weight:800; }
+.qmb-vs{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+.qmb-vs > div{ background:var(--surface); border:2.5px solid var(--ink); border-radius:var(--r-md); padding:10px 8px; display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center; font-size:.9375rem; }
+.qmb-latin{ display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; }
+.qmb-lat{ background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); }
+.qmb-lat[open]{ grid-column:1 / -1; border-color:var(--ink); }
+.qmb-lat summary{ list-style:none; cursor:pointer; min-height:56px; padding:8px 4px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; font-size:.8125rem; font-weight:800; }
+.qmb-lat summary::-webkit-details-marker{ display:none; }
+.qmb-lat[open] summary{ flex-direction:row; gap:10px; }
+.qmb-lat p{ padding:0 12px 10px; font-size:.9375rem; text-align:center; }
+
+/* Familias */
+.qmb-fams{ list-style:none; display:flex; flex-direction:column; gap:6px; }
+.qmb-fams li{ display:flex; gap:10px; align-items:flex-start; font-size:.9375rem; line-height:1.35; }
+.qmb-fam-color{ width:22px; height:22px; border-radius:6px; border:1.5px solid var(--ink-3); flex-shrink:0; margin-top:1px; }
+
+/* Metales, no metales y metaloides */
+.qmb-tipos{ display:flex; flex-direction:column; gap:6px; }
+.qmb-tipo{ background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); padding:8px 12px; display:flex; flex-direction:column; gap:2px; font-size:.9375rem; line-height:1.35; }
+.qmb-tipo b{ font-size:1rem; }
+
+/* La tabla se usa */
+.qmb-pasos{ padding-left:1.4em; display:flex; flex-direction:column; gap:4px; font-weight:700; }
+
+/* Cierre de capítulo */
+.qmb-cierre{ display:flex; flex-direction:column; gap:12px; text-align:center; }
+.qmb-cierre .caja-nota{ text-align:center; }
+
+/* Lámina 70: antes / ahora */
+.qmb-antes-ahora{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px; }
+.qmb-aa{ display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:800; text-align:center; }
+.qmb-aa-antes{ color:var(--ink-3); }
+.qmb-aa-txt{ font-size:1.1rem; font-weight:900; }
+.qmb-aa-antes .qmb-aa-txt{ text-decoration:line-through; text-decoration-thickness:2px; }
+.qmb-aa-bien{ color:var(--ok); }
+.qmb-aa-bien .qmb-aa-txt{ text-decoration:none; }
+.qmb-aa-ya{ color:var(--ok); font-size:1.3rem; }
+.qmb-aa-sello svg{ width:84px; height:84px; }
+
+/* Lámina 71: resumen compacto */
+.qmb-resumen{ display:flex; flex-direction:column; gap:10px; }
+.qmb-res-sec{ background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); padding:8px 12px 10px; }
+.qmb-res-sec h3{ display:flex; align-items:center; gap:8px; font-size:1.05rem; font-weight:900; margin-bottom:4px; }
+.qmb-res-sec h3 span{ width:26px; height:26px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:.9rem; color:#3C3C3C; }
+.qmb-res-materia h3 span{ background:var(--primary); }
+.qmb-res-atomo h3 span{ background:var(--accent); }
+.qmb-res-tabla h3 span{ background:var(--prize); }
+.qmb-res-sec ul{ padding-left:1.1em; display:flex; flex-direction:column; gap:4px; font-size:.9375rem; line-height:1.4; }
+.qmb-pos{ color:var(--pos-text); }
+.qmb-neg{ color:var(--neg-text); }
+.qmb-neu{ color:var(--ink-3); }
+.qmb-nota{ margin-top:8px; }
+.qmb-foto{ margin-top:12px; text-align:center; }
+.qmb-foto img{ width:100%; height:auto; border:2px solid var(--line); border-radius:var(--r-md); background:#FFFFFF; -webkit-touch-callout:default; }
+.qmb-foto figcaption{ margin-top:6px; }

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F4F7F6">
+<title>Quiz: Método científico</title>
+<meta name="description" content="Quiz interactivo de 40 preguntas sobre el método científico: pasos, hipótesis, variables y su relación con la química.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232BAE66'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fff'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(60 32 32)'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(-60 32 32)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quiz-motor.css">
+</head>
+<body>
+<script>
+window.QUIZ_CFG = {"id": "metodo-cientifico", "nombre": "Método científico", "materia": "Quiz de química", "min": 25};
+// Preguntas — en "mc" la PRIMERA opción es la correcta (el motor baraja todo)
+window.QUIZ_DATA = [
+ {
+  "tipo": "mc",
+  "t": "¿Cuál es el <b>primer paso</b> del método científico?",
+  "o": [
+   "Observación",
+   "Hipótesis",
+   "Experimentación",
+   "Conclusión"
+  ],
+  "w": "Todo empieza cuando <b>observamos</b> algo que nos llama la atención."
+ },
+ {
+  "tipo": "mc",
+  "t": "Una <b>hipótesis</b> es:",
+  "o": [
+   "Una respuesta tentativa que se puede comprobar",
+   "Un hecho ya demostrado",
+   "El resultado del experimento",
+   "Una ley científica"
+  ],
+  "w": "La hipótesis es una <b>suposición</b> que todavía hay que poner a prueba."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Quién es considerado el <b>padre del método científico</b>?",
+  "o": [
+   "Galileo Galilei",
+   "Lavoisier",
+   "Fleming",
+   "Mendeléyev"
+  ],
+  "w": "<b>Galileo</b> empezó a experimentar y medir en lugar de solo opinar."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Cuál está escrita como <b>hipótesis</b>?",
+  "o": [
+   "Si riego más la planta, entonces crecerá más",
+   "La planta mide 20 cm",
+   "¿Por qué crecen las plantas?",
+   "La planta creció 5 cm en una semana"
+  ],
+  "w": "Tiene la forma <b>\"si… entonces…\"</b> y se puede comprobar."
+ },
+ {
+  "tipo": "mc",
+  "t": "Estudio si la cantidad de luz afecta el crecimiento de una planta. La variable <b>independiente</b> es:",
+  "o": [
+   "La cantidad de luz",
+   "El crecimiento de la planta",
+   "El tipo de maceta",
+   "El agua"
+  ],
+  "w": "La independiente es la que <b>yo cambio</b>: la luz."
+ },
+ {
+  "tipo": "mc",
+  "t": "En ese mismo experimento, la variable <b>dependiente</b> es:",
+  "o": [
+   "El crecimiento de la planta",
+   "La cantidad de luz",
+   "El tipo de tierra",
+   "La hora del día"
+  ],
+  "w": "La dependiente es la que <b>mido</b>, porque depende de lo que cambié."
+ },
+ {
+  "tipo": "mc",
+  "t": "Si los resultados <b>no apoyan</b> la hipótesis, el científico:",
+  "o": [
+   "Plantea una nueva hipótesis",
+   "Cambia los datos",
+   "Abandona la investigación",
+   "Dice que sí funcionó"
+  ],
+  "w": "Rechazar una hipótesis no es un fracaso: se aprende y se propone <b>una nueva</b>."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Quién usó la balanza para demostrar que la masa se conserva?",
+  "o": [
+   "Lavoisier",
+   "Galileo",
+   "Fleming",
+   "Descartes"
+  ],
+  "w": "<b>Lavoisier</b> pesó todo antes y después de las reacciones."
+ },
+ {
+  "tipo": "mc",
+  "t": "El <b>grupo control</b> es:",
+  "o": [
+   "El que no recibe el cambio y sirve para comparar",
+   "El que recibe el tratamiento",
+   "El grupo de científicos",
+   "La tabla de datos"
+  ],
+  "w": "El grupo control queda \"normal\" para <b>comparar</b>."
+ },
+ {
+  "tipo": "mc",
+  "t": "La palabra <b>\"método\"</b> significa:",
+  "o": [
+   "Camino",
+   "Ciencia",
+   "Prueba",
+   "Verdad"
+  ],
+  "w": "Viene del griego y significa <b>camino</b>."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Cuál es una pregunta que <b>sí se puede investigar</b> científicamente?",
+  "o": [
+   "¿La temperatura afecta la rapidez con que se disuelve el azúcar?",
+   "¿Cuál es el color más bonito?",
+   "¿Es mejor el verano que el invierno?",
+   "¿Qué comida es más rica?"
+  ],
+  "w": "Se puede responder con un <b>experimento y mediciones</b>. Las demás son opiniones."
+ },
+ {
+  "tipo": "mc",
+  "t": "Alexander Fleming descubrió:",
+  "o": [
+   "La penicilina",
+   "La tabla periódica",
+   "La conservación de la masa",
+   "El átomo"
+  ],
+  "w": "En 1928, Fleming descubrió la <b>penicilina</b>, el primer antibiótico."
+ },
+ {
+  "tipo": "mc",
+  "t": "Prueban un medicamento: un grupo toma la medicina y otro una pastilla de azúcar. El grupo de la pastilla de azúcar es:",
+  "o": [
+   "El grupo control",
+   "La variable independiente",
+   "La hipótesis",
+   "La variable dependiente"
+  ],
+  "w": "No recibe la medicina: sirve para <b>comparar</b>."
+ },
+ {
+  "tipo": "mc",
+  "t": "\"Si aumento la temperatura del agua, el azúcar se disolverá más rápido.\" La variable <b>dependiente</b> es:",
+  "o": [
+   "El tiempo que tarda en disolverse",
+   "La temperatura del agua",
+   "La cantidad de agua",
+   "El tipo de vaso"
+  ],
+  "w": "Lo que se <b>mide</b> es el tiempo de disolución."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Quién escribió el <b>\"Discurso del método\"</b>?",
+  "o": [
+   "René Descartes",
+   "Galileo Galilei",
+   "Francis Bacon",
+   "Lavoisier"
+  ],
+  "w": "<b>René Descartes</b>, filósofo francés, en 1637."
+ },
+ {
+  "tipo": "mc",
+  "t": "La alquimia <b>no era ciencia</b> porque:",
+  "o": [
+   "No medía ni comprobaba sus ideas con orden",
+   "Usaba metales",
+   "Era muy antigua",
+   "No tenía instrumentos"
+  ],
+  "w": "Sin <b>medir ni comprobar</b> no hay método científico."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Por qué en un experimento se cambia <b>solo una variable</b> a la vez?",
+  "o": [
+   "Para saber qué causó el resultado",
+   "Para terminar más rápido",
+   "Porque es más barato",
+   "Porque lo dice una ley"
+  ],
+  "w": "Si cambio varias cosas a la vez, <b>no sé cuál</b> produjo el resultado."
+ },
+ {
+  "tipo": "vf",
+  "t": "Una hipótesis ya está comprobada desde el inicio.",
+  "a": false,
+  "w": "<b>Falso.</b> Es una suposición que todavía hay que comprobar con el experimento."
+ },
+ {
+  "tipo": "vf",
+  "t": "Si se rechaza la hipótesis, el experimento fue un fracaso total.",
+  "a": false,
+  "w": "<b>Falso.</b> Se aprende algo y se propone una nueva hipótesis. Así avanza la ciencia."
+ },
+ {
+  "tipo": "vf",
+  "t": "La observación puede hacerse con los sentidos o con instrumentos.",
+  "a": true,
+  "w": "<b>Verdadero.</b> Vista, olfato, tacto… o termómetro, balanza, microscopio."
+ },
+ {
+  "tipo": "vf",
+  "t": "El conocimiento científico nunca cambia.",
+  "a": false,
+  "w": "<b>Falso.</b> Es <b>provisional</b>: cambia si aparecen mejores pruebas."
+ },
+ {
+  "tipo": "vf",
+  "t": "En un experimento justo, las variables controladas se mantienen iguales.",
+  "a": true,
+  "w": "<b>Verdadero.</b> Así solo cambia la variable independiente."
+ },
+ {
+  "tipo": "vf",
+  "t": "Una teoría científica es lo mismo que una opinión.",
+  "a": false,
+  "w": "<b>Falso.</b> Una teoría está muy comprobada y <b>explica por qué</b> ocurre algo."
+ },
+ {
+  "tipo": "vf",
+  "t": "Galileo Galilei es considerado el padre del método científico.",
+  "a": true,
+  "w": "<b>Verdadero.</b> Fue quien empezó a experimentar y medir."
+ },
+ {
+  "tipo": "vf",
+  "t": "Los resultados se comunican para que otros científicos puedan repetir el experimento.",
+  "a": true,
+  "w": "<b>Verdadero.</b> Si otros lo repiten y obtienen lo mismo, el resultado es confiable."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada paso con su ejemplo del <b>pan con moho</b>",
+  "pares": [
+   [
+    "Observación",
+    "El pan de la mesa tiene moho a los 4 días"
+   ],
+   [
+    "Hipótesis",
+    "Si hay más calor, el moho saldrá más rápido"
+   ],
+   [
+    "Experimentación",
+    "Pongo 3 panes a 5, 20 y 30 °C"
+   ],
+   [
+    "Conclusión",
+    "Se acepta: el calor acelera el moho"
+   ]
+  ],
+  "w": "Es el recorrido completo del método con el ejemplo de clase."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada científico con su aporte",
+  "pares": [
+   [
+    "Galileo",
+    "Padre del método científico"
+   ],
+   [
+    "Descartes",
+    "Escribió el Discurso del método"
+   ],
+   [
+    "Lavoisier",
+    "Conservación de la masa"
+   ],
+   [
+    "Fleming",
+    "Descubrió la penicilina"
+   ]
+  ],
+  "w": "Cuatro nombres que suelen aparecer en el examen."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada variable con su definición",
+  "pares": [
+   [
+    "Independiente",
+    "La que yo cambio"
+   ],
+   [
+    "Dependiente",
+    "La que mido"
+   ],
+   [
+    "Controlada",
+    "La que mantengo igual"
+   ]
+  ],
+  "w": "Truco: la independiente la <b>muevo yo</b>; la dependiente <b>responde</b>."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada concepto con lo que hace",
+  "pares": [
+   [
+    "Hipótesis",
+    "Propone una respuesta posible"
+   ],
+   [
+    "Teoría",
+    "Explica por qué ocurre algo"
+   ],
+   [
+    "Ley",
+    "Describe qué ocurre, a veces con una fórmula"
+   ]
+  ],
+  "w": "Teoría = <b>por qué</b> · Ley = <b>qué</b>."
+ },
+ {
+  "tipo": "ordenar",
+  "t": "Ordena los pasos del método científico",
+  "items": [
+   "Observación",
+   "Planteamiento del problema",
+   "Hipótesis",
+   "Experimentación",
+   "Análisis de resultados",
+   "Conclusión"
+  ],
+  "w": "Observo → pregunto → supongo → pruebo → analizo → concluyo."
+ },
+ {
+  "tipo": "ordenar",
+  "t": "Ordena lo que hizo <b>Fleming</b> en 1928",
+  "items": [
+   "Vio moho en su placa y sin bacterias alrededor",
+   "Se preguntó si el moho mata bacterias",
+   "Supuso que el moho producía una sustancia antibacteriana",
+   "Hizo pruebas con el moho y las bacterias",
+   "Concluyó que había descubierto la penicilina"
+  ],
+  "w": "Fleming siguió el método paso a paso, igual que nosotros con el pan."
+ },
+ {
+  "tipo": "ordenar",
+  "t": "Ordena lo que hizo <b>Lavoisier</b>",
+  "items": [
+   "Observó que al quemar algo parece perderse materia",
+   "Se preguntó si la materia realmente se pierde",
+   "Hizo reacciones en recipientes cerrados y pesó todo",
+   "Concluyó que la masa total no cambia"
+  ],
+  "w": "Así nació la ley de conservación de la masa."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "La ___ es una respuesta tentativa que se puede comprobar.",
+  "r": [
+   "hipótesis"
+  ],
+  "extra": [
+   "conclusión",
+   "observación",
+   "ley"
+  ],
+  "w": "La <b>hipótesis</b> se pone a prueba con el experimento."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "La variable ___ es la que yo cambio y la variable ___ es la que mido.",
+  "r": [
+   "independiente",
+   "dependiente"
+  ],
+  "extra": [
+   "controlada"
+  ],
+  "w": "Independiente = <b>la cambio</b> · Dependiente = <b>la mido</b>."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "Las observaciones ___ usan números y las ___ describen cualidades.",
+  "r": [
+   "cuantitativas",
+   "cualitativas"
+  ],
+  "extra": [
+   "controladas"
+  ],
+  "w": "Cuanti<b>tativa</b> = cantidad (números)."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "El grupo ___ no recibe el cambio y sirve para ___.",
+  "r": [
+   "control",
+   "comparar"
+  ],
+  "extra": [
+   "experimental",
+   "adivinar"
+  ],
+  "w": "El grupo control es la referencia para <b>comparar</b>."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "Una ___ explica por qué ocurre algo; una ___ describe qué ocurre.",
+  "r": [
+   "teoría",
+   "ley"
+  ],
+  "extra": [
+   "hipótesis"
+  ],
+  "w": "Teoría = <b>por qué</b> · Ley = <b>qué</b>."
+ },
+ {
+  "tipo": "clasificar",
+  "t": "¿Cualitativa o cuantitativa?",
+  "cats": [
+   "Cualitativa",
+   "Cuantitativa"
+  ],
+  "items": [
+   [
+    "El agua está a 25 °C",
+    1
+   ],
+   [
+    "La solución es azul",
+    0
+   ],
+   [
+    "La planta mide 30 cm",
+    1
+   ],
+   [
+    "El pan huele a moho",
+    0
+   ],
+   [
+    "Tarda 3 minutos en hervir",
+    1
+   ]
+  ],
+  "w": "Si tiene un <b>número con unidad</b>, es cuantitativa."
+ },
+ {
+  "tipo": "clasificar",
+  "t": "¿Pregunta científica u opinión?",
+  "cats": [
+   "Científica",
+   "Opinión"
+  ],
+  "items": [
+   [
+    "¿La sal hace que el agua hierva más rápido?",
+    0
+   ],
+   [
+    "¿Cuál es el color más bonito?",
+    1
+   ],
+   [
+    "¿La luz afecta el crecimiento de una planta?",
+    0
+   ],
+   [
+    "¿Es mejor la pizza que la hamburguesa?",
+    1
+   ]
+  ],
+  "w": "Una pregunta científica se puede responder <b>midiendo</b>."
+ },
+ {
+  "tipo": "clasificar",
+  "t": "Experimento: <b>¿la cantidad de agua afecta el crecimiento de un frijol?</b> Clasifica cada variable",
+  "cats": [
+   "Independiente",
+   "Dependiente",
+   "Controlada"
+  ],
+  "items": [
+   [
+    "Cantidad de agua",
+    0
+   ],
+   [
+    "Altura de la planta",
+    1
+   ],
+   [
+    "Tipo de tierra",
+    2
+   ],
+   [
+    "Tamaño de la maceta",
+    2
+   ]
+  ],
+  "w": "Cambio el agua, mido la altura y mantengo igual lo demás."
+ }
+];
+</script>
+<script src="../js/cola-envios.js"></script>
+<script src="quiz-motor.js?v=2"></script>
+</body>
+</html>

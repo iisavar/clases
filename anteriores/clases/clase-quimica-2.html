@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131F24">
+<title>Química 2</title>
+<meta name="description" content="Clase 2 de Química: el átomo por dentro (Z, A, iones, isótopos) y configuración electrónica.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232BAE66'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fff'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(60 32 32)'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(-60 32 32)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --stage:#0E181C; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#2BAE66; --green-d:#1E8A4F; --coral:#E8503A; --gold:#FFC800; --blue:#1CB0F6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:5vh 4vw 90px}
+
+/* ---------- PORTADA ---------- */
+#setup{position:fixed;inset:0;background:var(--stage);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;z-index:60;text-align:center}
+#setup .logo{width:96px;height:96px;border-radius:26px;background:var(--green);display:flex;align-items:center;
+  justify-content:center;margin-bottom:18px;box-shadow:0 8px 0 var(--green-d)}
+#setup h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;margin-bottom:6px}
+#setup p{color:var(--muted);font-weight:700;margin-bottom:22px}
+.btn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s}
+.btn:active{transform:translateY(2px)}
+.btn.primary{background:var(--green);color:#fff;font-size:1.25rem;padding:16px 38px;box-shadow:0 5px 0 var(--green-d)}
+
+/* ---------- SLIDES ---------- */
+.slide{width:100%;max-width:1100px;text-align:center;display:none;animation:in .45s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.kicker{font-weight:900;letter-spacing:.15em;font-size:clamp(.75rem,1.6vw,1rem);color:var(--green);margin-bottom:10px}
+.title{font-weight:900;font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin-bottom:18px}
+.lead{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.7rem);color:var(--muted);margin-bottom:20px}
+.lead b{color:var(--ink)}
+.expr{font-weight:900;font-size:clamp(2.2rem,7vw,5rem);letter-spacing:.02em;margin:10px 0}
+.expr.sm{font-size:clamp(1.5rem,4.4vw,3rem)}
+.hi{color:var(--gold)}
+.big{color:var(--green)}
+.chipRow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 20px;
+  font-weight:900;font-size:clamp(1rem,2.2vw,1.5rem)}
+.chip.g{border-color:var(--green);color:var(--green)}
+.chip.y{border-color:var(--gold);color:var(--gold)}
+.chip.r{border-color:var(--coral);color:var(--coral)}
+.chip.b{border-color:var(--blue);color:var(--blue)}
+.link{font-size:clamp(.85rem,2vw,1.2rem);word-break:break-all}
+
+/* notación de núcleo  ᴬ_Z X */
+.nuc{display:inline-flex;align-items:center;white-space:nowrap}
+.za{display:inline-flex;flex-direction:column;font-size:.42em;line-height:1.05;text-align:right;margin-right:.06em}
+.za .a{color:var(--blue)} .za .z{color:var(--gold)}
+.chg{font-size:.45em;align-self:flex-start;margin-left:.04em;color:var(--coral)}
+
+/* pasos revelables */
+.step{opacity:0;transform:translateY(14px) scale(.96);transition:all .4s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;height:0;overflow:hidden}
+.step.show{opacity:1;transform:none;pointer-events:auto;height:auto;overflow:visible}
+.stepline{display:flex;align-items:center;gap:16px;justify-content:center;margin:10px 0}
+.stepnum{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;
+  font-weight:900;font-size:1.4rem;display:flex;align-items:center;justify-content:center}
+.stepnum.y{background:var(--gold);color:#131F24}
+.stepcalc{font-weight:900;font-size:clamp(1.3rem,3.4vw,2.3rem)}
+.stepwhy{color:var(--muted);font-weight:800;font-size:clamp(.9rem,1.8vw,1.15rem)}
+
+.ladder{display:grid;gap:12px;max-width:780px;margin:10px auto 0}
+.rung{display:flex;align-items:center;gap:18px;background:var(--card);border:2px solid var(--line);
+  border-radius:16px;padding:14px 22px;text-align:left}
+.rung .n{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.3rem;color:#fff;flex:0 0 auto}
+.rung .t{font-weight:900;font-size:clamp(1.05rem,2.3vw,1.5rem)}
+.rung .s{color:var(--muted);font-weight:800;font-size:clamp(.85rem,1.7vw,1.05rem)}
+.hint{color:var(--muted);font-weight:800;margin-top:16px;font-size:clamp(.9rem,1.8vw,1.15rem)}
+.hint b{color:var(--gold)}
+
+/* tarjetas de partículas */
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:860px;margin:10px auto}
+.part{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px 10px}
+.part .ico{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.8rem;color:#131F24}
+.part .nm{font-weight:900;font-size:clamp(1.05rem,2.4vw,1.5rem)}
+.part .ds{color:var(--muted);font-weight:800;font-size:clamp(.8rem,1.6vw,1rem);margin-top:4px}
+
+/* fórmulas Z / A */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin:16px auto 0}
+.rule{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px;font-weight:900;
+  font-size:clamp(1.05rem,2.4vw,1.55rem)}
+.rule small{display:block;color:var(--muted);font-size:.6em;margin-top:2px}
+
+/* subniveles */
+.subs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:760px;margin:12px auto}
+.sub{border-radius:18px;padding:16px 8px;border:3px solid;background:var(--card)}
+.sub .l{font-weight:900;font-size:clamp(2rem,5vw,3.2rem);line-height:1}
+.sub .c{font-weight:900;font-size:clamp(.95rem,2vw,1.25rem);margin-top:6px;color:var(--ink)}
+
+.moeller{width:min(440px,72vw,58vh);height:auto;display:block;margin:0 auto}
+.orden{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:900px;margin:10px auto 0;
+  font-weight:900;font-size:clamp(.95rem,2vw,1.25rem)}
+.orden span{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:5px 9px}
+.orden .s{color:var(--green);border-color:var(--green)} .orden .p{color:var(--gold);border-color:var(--gold)}
+.orden .d{color:var(--blue);border-color:var(--blue)} .orden .f{color:var(--coral);border-color:var(--coral)}
+.mrow{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+
+/* ---------- CONTROLES ---------- */
+.controls{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:14px 18px;z-index:40}
+.cbtn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s;
+  background:var(--card);color:var(--ink);border:2px solid var(--line);padding:14px 20px;font-size:1.05rem}
+.cbtn:active{transform:translateY(2px)}
+.cbtn.big{background:var(--green);color:#fff;border-color:var(--green-d);padding:16px 34px;font-size:1.2rem;box-shadow:0 4px 0 var(--green-d)}
+.cbtn:disabled{opacity:.35;cursor:default}
+.dots{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:40;
+  max-width:90vw;flex-wrap:wrap;justify-content:center;row-gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:all .3s}
+.dot.on{background:var(--green);width:22px;border-radius:6px}
+.hidden{display:none!important}
+@media (max-width:640px){
+  .dots{top:auto;bottom:82px}
+  .cbtn{padding:12px 16px;font-size:.98rem}
+  .cbtn.big{padding:14px 24px;font-size:1.08rem}
+  .controls{padding:12px}
+  .parts{grid-template-columns:1fr;gap:8px}
+  .part{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 14px}
+  .part .ico{margin:0;width:48px;height:48px;font-size:1.4rem;flex:0 0 auto}
+  .rules{grid-template-columns:1fr}
+  .subs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div id="setup">
+  <div class="logo"><svg width="60" height="60" viewBox="0 0 64 64"><circle cx="32" cy="32" r="6" fill="#fff"/><g fill="none" stroke="#fff" stroke-width="3"><ellipse cx="32" cy="32" rx="24" ry="9"/><ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(60 32 32)"/><ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(-60 32 32)"/></g></svg></div>
+  <h1>Química · Clase 2</h1>
+  <p>El átomo por dentro y la configuración electrónica</p>
+  <button class="btn primary" id="start">Empezar clase →</button>
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="stage" id="stage"><!-- slides inyectadas --></div>
+<div class="controls hidden" id="controls">
+  <button class="cbtn" id="prev">◀ Atrás</button>
+  <button class="cbtn big" id="next">Avanzar ▶</button>
+</div>
+
+<script>
+const BASE='iisavar.github.io/simulador-admision/clases/';
+
+/* ============ AYUDANTES ============ */
+// Núcleo: NUC('23','11','Na','+')
+const NUC=(A,Z,X,c)=>`<span class="nuc"><span class="za"><span class="a">${A}</span><span class="z">${Z}</span></span>${X}${c?`<span class="chg">${c}</span>`:''}</span>`;
+
+// Ejercicio: pregunta primero, luego respuesta y micro-pasos.
+function ej(o){
+  let h=`<div class="kicker">${o.kicker}</div>`;
+  if(o.title)h+=`<div class="title">${o.title}</div>`;
+  h+=`<div class="expr${o.sm?' sm':''}">${o.expr}</div>`;
+  h+=`<div class="lead step">🤔 ${o.q} <span style="opacity:.7;font-size:.75em">· 💬 al chat</span></div>`;
+  if(o.ans)h+=`<div class="chipRow step"><span class="chip g" style="font-size:1.1em">${o.ans}</span></div>`;
+  (o.steps||[]).forEach((p,i,a)=>{
+    const last=i===a.length-1;
+    h+=`<div class="stepline step"><div class="stepnum${last?' y':''}">${i+1}</div><div><div class="stepcalc${last?' big':''}">${p.c}</div>`+
+       (p.w?`<div class="stepwhy">${p.w}</div>`:``)+`</div></div>`;
+  });
+  return {html:h};
+}
+
+// Lámina "abran el quiz"
+function actividad(k,t,file,n,min){
+  return {html:`
+  <div class="kicker">${k}</div>
+  <div class="title">${t}</div>
+  <div class="chipRow"><span class="chip g">📱 ${n} preguntas</span><span class="chip y">⏳ ${min} min</span></div>
+  <div class="chipRow"><span class="chip b link">${BASE}${file}</span></div>
+  <div class="hint step">Al terminar, escriban su <b>nota en el chat</b> 👇</div>`};
+}
+
+// Diagrama de Moeller (SVG): cuadrícula n × subnivel con flechas diagonales
+function moeller(){
+  const L=['s','p','d','f'], COL=['#2BAE66','#FFC800','#1CB0F6','#E8503A'];
+  const rows=[1,2,3,4,4,3,2]; // subniveles por nivel n=1..7
+  const has=(n,l)=>n>=1&&n<=7&&l<rows[n-1];
+  const X=l=>52+l*96, Y=n=>34+(n-1)*58;
+  let lines='',cells='';
+  for(let s=1;s<=8;s++){
+    const pts=[];for(let l=3;l>=0;l--){const n=s-l;if(has(n,l))pts.push([l,n]);}
+    if(!pts.length)continue;
+    const a=pts[0],b=pts[pts.length-1],dx=-96,dy=58;
+    const x1=X(a[0])-dx*.42,y1=Y(a[1])-dy*.42,x2=X(b[0])+dx*.42,y2=Y(b[1])+dy*.42;
+    lines+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#9BB0A5" stroke-width="3" stroke-linecap="round" marker-end="url(#ar)" opacity=".75"/>`;
+  }
+  for(let n=1;n<=7;n++)for(let l=0;l<rows[n-1];l++){
+    cells+=`<rect x="${X(l)-30}" y="${Y(n)-19}" width="60" height="38" rx="10" fill="#1E2C33" stroke="${COL[l]}" stroke-width="2.5"/>`+
+      `<text x="${X(l)}" y="${Y(n)+8}" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="22" fill="${COL[l]}">${n}${L[l]}</text>`;
+  }
+  return `<svg class="moeller" viewBox="0 0 400 440" role="img" aria-label="Diagrama de Moeller">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9BB0A5"/></marker></defs>
+    ${lines}${cells}</svg>`;
+}
+const ORDEN=['1s','2s','2p','3s','3p','4s','3d','4p','5s','4d','5p','6s','4f','5d','6p','7s','5f','6d','7p'];
+const ordenHTML=()=>`<div class="orden">${ORDEN.map(o=>`<span class="${o.slice(-1)}">${o}</span>`).join('')}</div>`;
+
+/* ============ LÁMINAS ============ */
+const SLIDES=[
+// 1 portada
+{html:`
+  <div class="kicker">QUÍMICA · INGRESO · CLASE 2</div>
+  <div class="title">El átomo por dentro ⚛️</div>
+  <div class="lead">De contar partículas a ubicar cada electrón</div>
+  <div class="chipRow">
+    <span class="chip g">p⁺ n⁰ e⁻</span><span class="chip y">Z y A</span><span class="chip r">Iones</span><span class="chip b">1s² 2s² 2p⁶…</span>
+  </div>
+  <div class="hint">Toca <b>Avanzar ▶</b> para empezar</div>`},
+// 2 gancho
+{html:`
+  <div class="kicker">PARA ARRANCAR</div>
+  <div class="title">Ustedes ya vieron el módulo 👀</div>
+  <div class="lead">Materia, átomo y tabla periódica.<br>Hoy vemos <b>cuánto se quedó</b>… y subimos de nivel.</div>
+  <div class="hint step">Respondan en el chat: <b>del 1 al 5</b>, ¿cuánto entendieron del módulo?</div>`},
+// 3 quiz de entrada
+actividad('QUIZ DE ENTRADA · 10 MIN','¿Qué recuerdan? 🧠','quiz-entrada-quimica.html',10,10),
+// 4 repaso materia
+{html:`
+  <div class="kicker">REPASO EXPRÉS · LA MATERIA</div>
+  <div class="title">Lo que más se olvida</div>
+  <div class="ladder">
+    <div class="rung step"><div class="n" style="background:#2BAE66">1</div><div><div class="t">Cambio químico = sustancia nueva</div><div class="s">Quemar, oxidar, cocinar. Derretir o hervir es FÍSICO.</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Homogénea = no se distinguen las partes</div><div class="s">Agua con sal, aire. Heterogénea: agua con aceite.</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Sublimación: sólido → gas directo</div><div class="s">Hielo seco, naftalina.</div></div></div>
+  </div>`},
+// 5 partículas
+{html:`
+  <div class="kicker">EL ÁTOMO</div>
+  <div class="title">Las 3 partículas</div>
+  <div class="parts">
+    <div class="part step"><div class="ico" style="background:#E8503A;color:#fff">+</div><div><div class="nm">Protón</div><div class="ds">en el núcleo · carga +</div></div></div>
+    <div class="part step"><div class="ico" style="background:#9BB0A5">0</div><div><div class="nm">Neutrón</div><div class="ds">en el núcleo · sin carga</div></div></div>
+    <div class="part step"><div class="ico" style="background:#1CB0F6;color:#fff">−</div><div><div class="nm">Electrón</div><div class="ds">alrededor · carga −</div></div></div>
+  </div>
+  <div class="hint step">Casi toda la masa está en el <b>núcleo</b>.</div>`},
+// 6 Z y A
+{html:`
+  <div class="kicker">CÓMO SE LEE UN ÁTOMO</div>
+  <div class="expr">${NUC('23','11','Na')}</div>
+  <div class="chipRow"><span class="chip b">A = 23 · número másico</span><span class="chip y">Z = 11 · número atómico</span></div>
+  <div class="rules">
+    <div class="rule step">p⁺ = Z<small>los protones definen al elemento</small></div>
+    <div class="rule step">n⁰ = A − Z<small>neutrones: lo que sobra</small></div>
+    <div class="rule step">e⁻ = Z<small>si el átomo es neutro</small></div>
+    <div class="rule step">A = p⁺ + n⁰<small>el electrón casi no pesa</small></div>
+  </div>`},
+// 7
+ej({kicker:'CUENTA PARTÍCULAS',expr:NUC('16','8','O'),q:'¿Cuántos protones, neutrones y electrones?',ans:'8 p⁺ · 8 n⁰ · 8 e⁻',
+  steps:[{c:'p⁺ = Z = 8',w:'el número de abajo'},{c:'n⁰ = 16 − 8 = 8',w:'A − Z'},{c:'e⁻ = 8',w:'neutro: igual que los protones'}]}),
+// 8
+ej({kicker:'OTRO MÁS',expr:NUC('56','26','Fe'),q:'¿Cuántos neutrones tiene el hierro?',ans:'30 neutrones',
+  steps:[{c:'Z = 26 → 26 p⁺',w:''},{c:'n⁰ = 56 − 26',w:'A − Z'},{c:'= 30',w:''}]}),
+// 9 iones
+{html:`
+  <div class="kicker">NUEVO · IONES</div>
+  <div class="title">Ganar o perder electrones</div>
+  <div class="chipRow" style="gap:28px;align-items:stretch">
+    <div class="chip r step" style="display:grid;gap:6px;min-width:250px">
+      <div style="font-size:1.4em">Na⁺</div>
+      <div>CATIÓN</div>
+      <div style="font-size:.7em;opacity:.85">PERDIÓ 1 electrón</div>
+    </div>
+    <div class="chip b step" style="display:grid;gap:6px;min-width:250px">
+      <div style="font-size:1.4em">Cl⁻</div>
+      <div>ANIÓN</div>
+      <div style="font-size:.7em;opacity:.85">GANÓ 1 electrón</div>
+    </div>
+  </div>
+  <div class="lead step" style="margin-top:14px"><b>e⁻ = Z − carga</b></div>
+  <div class="hint step">Los protones <b>nunca cambian</b>. Solo se mueven electrones.</div>`},
+// 10
+ej({kicker:'ION POSITIVO',expr:'Na⁺ <span style="font-size:.45em;color:var(--muted)">(Z = 11)</span>',q:'¿Cuántos electrones tiene?',ans:'10 electrones',
+  steps:[{c:'Neutro tendría 11 e⁻',w:'igual que Z'},{c:'Carga +1 → perdió 1',w:'positivo = le faltan electrones'},{c:'11 − 1 = 10',w:''}]}),
+// 11
+ej({kicker:'ION NEGATIVO',expr:NUC('35','17','Cl','−'),q:'¿Protones, neutrones y electrones?',ans:'17 p⁺ · 18 n⁰ · 18 e⁻',
+  steps:[{c:'p⁺ = 17',w:'Z no cambia'},{c:'n⁰ = 35 − 17 = 18',w:'A − Z'},{c:'e⁻ = 17 + 1 = 18',w:'ganó 1 electrón'}]}),
+// 12
+ej({kicker:'CARGA DOBLE',expr:'O²⁻ <span style="font-size:.45em;color:var(--muted)">(Z = 8)</span>',q:'¿Cuántos electrones?',ans:'10 electrones',
+  steps:[{c:'Neutro: 8 e⁻',w:''},{c:'2− → ganó 2',w:''},{c:'8 + 2 = 10',w:''}]}),
+// 13 isótopos
+{html:`
+  <div class="kicker">NUEVO · ISÓTOPOS</div>
+  <div class="title">Mismo elemento, distinto peso</div>
+  <div class="chipRow" style="font-size:1.6em;gap:22px">
+    <span class="chip g">${NUC('12','6','C')}</span><span class="chip y">${NUC('13','6','C')}</span><span class="chip r">${NUC('14','6','C')}</span>
+  </div>
+  <div class="lead step">🤔 ¿Qué cambia entre ellos? <span style="opacity:.7;font-size:.75em">· 💬 al chat</span></div>
+  <div class="chipRow step"><span class="chip g">Solo los NEUTRONES: 6, 7 y 8</span></div>
+  <div class="hint step">Mismo Z = mismo elemento. Distinto A = isótopo.</div>`},
+// 14 trampas átomo
+{html:`
+  <div class="kicker">NO CAIGAS AQUÍ</div>
+  <div class="title">3 trampas del átomo</div>
+  <div class="ladder">
+    <div class="rung step"><div class="n" style="background:#E8503A">1</div><div><div class="t">A no son los electrones</div><div class="s">A = protones + neutrones</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Ion: solo cambian los electrones</div><div class="s">+ quita electrones · − agrega electrones</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Isótopo: solo cambian los neutrones</div><div class="s">Z siempre igual</div></div></div>
+  </div>`},
+// 15 actividad 1
+actividad('ACTIVIDAD 1 · 10 MIN','Cuenta partículas 🔬','quiz-atomo.html',10,10),
+// 16 config intro
+{html:`
+  <div class="kicker">TEMA NUEVO</div>
+  <div class="title">¿Dónde viven los electrones? 🏢</div>
+  <div class="lead">Piensen en un <b>edificio</b>:</div>
+  <div class="chipRow">
+    <span class="chip g step">Pisos = niveles 1 al 7</span>
+    <span class="chip y step">Departamentos = subniveles s p d f</span>
+    <span class="chip b step">Se llena de abajo hacia arriba</span>
+  </div>`},
+// 17 capacidad
+{html:`
+  <div class="kicker">CUÁNTOS CABEN</div>
+  <div class="title">Capacidad de cada subnivel</div>
+  <div class="subs">
+    <div class="sub step" style="border-color:#2BAE66"><div class="l" style="color:#2BAE66">s</div><div class="c">2 e⁻</div></div>
+    <div class="sub step" style="border-color:#FFC800"><div class="l" style="color:#FFC800">p</div><div class="c">6 e⁻</div></div>
+    <div class="sub step" style="border-color:#1CB0F6"><div class="l" style="color:#1CB0F6">d</div><div class="c">10 e⁻</div></div>
+    <div class="sub step" style="border-color:#E8503A"><div class="l" style="color:#E8503A">f</div><div class="c">14 e⁻</div></div>
+  </div>
+  <div class="hint step">Truco: <b>2 · 6 · 10 · 14</b> (de 4 en 4)</div>`},
+// 18 cómo se escribe
+{html:`
+  <div class="kicker">CÓMO SE ESCRIBE</div>
+  <div class="expr">2p<span class="hi">⁴</span></div>
+  <div class="chipRow">
+    <span class="chip g step">2 = nivel (piso)</span>
+    <span class="chip y step">p = subnivel</span>
+    <span class="chip b step">⁴ = electrones ahí</span>
+  </div>`},
+// 19 moeller
+{html:`
+  <div class="kicker">EL MAPA · DIAGRAMA DE MOELLER</div>
+  <div class="mrow">
+    ${moeller()}
+    <div style="max-width:420px">
+      <div class="lead" style="margin-bottom:8px">Sigue las flechas <b>de arriba a abajo</b>, una por una.</div>
+      <div class="hint step">Se dibuja en 10 segundos: <b>no hay que memorizarlo</b>.</div>
+    </div>
+  </div>`},
+// 20 orden
+{html:`
+  <div class="kicker">EL ORDEN DE LLENADO</div>
+  <div class="title">Leyendo las flechas</div>
+  ${ordenHTML()}
+  <div class="lead step" style="margin-top:20px">⚠️ <b class="hi">4s</b> va <b>antes</b> que <b style="color:var(--blue)">3d</b></div>
+  <div class="hint step">Esa es la trampa favorita del examen.</div>`},
+// 21
+ej({kicker:'EL MÁS FÁCIL',expr:'H <span style="font-size:.45em;color:var(--muted)">(Z = 1)</span>',q:'¿Dónde va su único electrón?',ans:'1s¹',
+  steps:[{c:'1 electrón',w:'Z = 1'},{c:'1s¹',w:'primer departamento del primer piso'}]}),
+// 22
+ej({kicker:'PASO A PASO',expr:'O <span style="font-size:.45em;color:var(--muted)">(Z = 8)</span>',q:'¿Cómo repartimos 8 electrones?',ans:'1s² 2s² 2p⁴',
+  steps:[{c:'1s²',w:'van 2 · faltan 6'},{c:'2s²',w:'van 4 · faltan 4'},{c:'2p⁴',w:'caben 6, pero solo quedan 4'},{c:'2 + 2 + 4 = 8 ✓',w:'siempre comprueba que sume Z'}]}),
+// 23
+ej({kicker:'SODIO',expr:'Na <span style="font-size:.45em;color:var(--muted)">(Z = 11)</span>',q:'¿Configuración del sodio?',ans:'1s² 2s² 2p⁶ 3s¹',
+  steps:[{c:'1s² 2s² 2p⁶',w:'llenamos hasta 10'},{c:'3s¹',w:'sobra 1'},{c:'2+2+6+1 = 11 ✓',w:''}]}),
+// 24
+ej({kicker:'CLORO',expr:'Cl <span style="font-size:.45em;color:var(--muted)">(Z = 17)</span>',q:'¿Configuración del cloro?',ans:'1s² 2s² 2p⁶ 3s² 3p⁵',
+  steps:[{c:'1s² 2s² 2p⁶ 3s²',w:'van 12'},{c:'3p⁵',w:'faltan 5'},{c:'= 17 ✓',w:''}]}),
+// 25
+ej({kicker:'LA TRAMPA ⭐',expr:'K <span style="font-size:.45em;color:var(--muted)">(Z = 19)</span>',q:'Después de 3p, ¿3d o 4s?',ans:'4s',sm:false,
+  steps:[{c:'1s² 2s² 2p⁶ 3s² 3p⁶',w:'van 18'},{c:'4s¹',w:'4s antes que 3d (mira las flechas)'},{c:'= 19 ✓',w:''}]}),
+// 26
+ej({kicker:'NIVEL EXAMEN 🔥',expr:'Fe <span style="font-size:.45em;color:var(--muted)">(Z = 26)</span>',q:'¿En qué subnivel termina?',ans:'3d⁶',
+  steps:[{c:'… 3p⁶ 4s²',w:'van 20'},{c:'3d⁶',w:'faltan 6 · caben 10'},{c:'1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d⁶',w:''}]}),
+// 27 trampas configuración
+{html:`
+  <div class="kicker">NO CAIGAS AQUÍ</div>
+  <div class="title">3 trampas de configuración</div>
+  <div class="ladder">
+    <div class="rung step"><div class="n" style="background:#E8503A">1</div><div><div class="t">4s antes que 3d</div><div class="s">Sigue las flechas, no el número</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Los exponentes suman Z</div><div class="s">Compruébalo siempre al final</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">No pases el límite</div><div class="s">s máx. 2 · p máx. 6 · d máx. 10</div></div></div>
+  </div>`},
+// 28 actividad 2
+actividad('ACTIVIDAD 2 · 12 MIN','Arma la configuración 🧩','quiz-configuracion.html',10,12),
+// 29 cierre / gancho
+{html:`
+  <div class="kicker">PRÓXIMA CLASE 👀</div>
+  <div class="title">Un superpoder</div>
+  <div class="expr sm">Cl: 1s² 2s² 2p⁶ <span class="hi">3</span>s² <span class="hi">3</span>p⁵</div>
+  <div class="lead step">Con esto sabrán su <b>periodo</b> y su <b>grupo</b>…<br>sin mirar la tabla.</div>
+  <div class="hint step">💬 En el chat: <b>¿qué tema les costó más hoy?</b></div>`},
+];
+
+/* ============ NAVEGACIÓN ============ */
+let cur=0, step=0;
+const STAGE=document.getElementById('stage');
+function buildDots(){
+  const d=document.getElementById('dots');d.innerHTML='';
+  SLIDES.forEach(()=>{const e=document.createElement('div');e.className='dot';d.appendChild(e);});
+}
+function paintDots(){[...document.getElementById('dots').children].forEach((e,i)=>e.classList.toggle('on',i===cur));}
+function render(revealAll){
+  STAGE.innerHTML='<div class="slide on">'+SLIDES[cur].html+'</div>';
+  const steps=STAGE.querySelectorAll('.step');
+  if(revealAll){steps.forEach(e=>e.classList.add('show'));step=steps.length;}
+  else{step=0;}
+  paintDots();updateBtns();
+}
+function updateBtns(){
+  document.getElementById('prev').disabled=(cur===0 && step===0);
+  const last=cur===SLIDES.length-1;
+  const steps=STAGE.querySelectorAll('.step').length;
+  document.getElementById('next').textContent=(last && step>=steps)?'Fin ✓':'Avanzar ▶';
+}
+function advance(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step<steps.length){steps[step].classList.add('show');step++;updateBtns();return;}
+  if(cur<SLIDES.length-1){cur++;render(false);}
+}
+function back(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step>0){step--;steps[step].classList.remove('show');updateBtns();return;}
+  if(cur>0){cur--;render(true);}
+}
+document.getElementById('start').onclick=()=>{
+  document.getElementById('setup').classList.add('hidden');
+  document.getElementById('controls').classList.remove('hidden');
+  buildDots();cur=0;render(false);
+};
+document.getElementById('next').onclick=advance;
+document.getElementById('prev').onclick=back;
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('setup').classList.contains('hidden'))return;
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();advance();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();back();}
+});
+STAGE.addEventListener('click',advance);
+</script>
+</body>
+</html>

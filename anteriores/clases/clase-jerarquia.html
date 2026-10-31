@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#131F24">
+<title>Jerarquía de operaciones</title>
+<meta name="description" content="Presentación interactiva para dictar jerarquía de operaciones con sorteo de nombres y respuestas reveladas.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2358CC02'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-weight='900' font-size='34' fill='%23FFFFFF'%3E()%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --stage:#0E181C; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#58CC02; --green-d:#3F9A00; --coral:#E8503A; --gold:#FFC800; --blue:#1CB0F6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:3vh 4vw}
+
+/* ---------- SETUP ---------- */
+#setup{position:fixed;inset:0;background:var(--stage);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;z-index:60;text-align:center;overflow:auto}
+#setup .logo{width:96px;height:96px;border-radius:26px;background:var(--gold);color:#131F24;font-weight:900;
+  font-size:44px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:0 8px 0 #c99e00}
+#setup h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;margin-bottom:6px}
+#setup p{color:var(--muted);font-weight:700;margin-bottom:22px;max-width:520px}
+.names{width:100%;max-width:440px;display:grid;gap:10px;margin-bottom:16px}
+.names input{font-family:inherit;font-weight:800;font-size:1.1rem;padding:14px 16px;border-radius:14px;
+  border:2px solid var(--line);background:var(--card);color:var(--ink);text-align:center}
+.names input:focus{outline:none;border-color:var(--green)}
+.setBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s}
+.btn:active{transform:translateY(2px)}
+.btn.primary{background:var(--green);color:#fff;font-size:1.25rem;padding:16px 38px;box-shadow:0 5px 0 var(--green-d)}
+.btn.ghost{background:var(--card);color:var(--ink);border:2px solid var(--line);font-size:1rem;padding:13px 22px}
+.addName{background:none;border:2px dashed var(--line);color:var(--muted);border-radius:14px;padding:12px;
+  font-family:inherit;font-weight:800;cursor:pointer;font-size:.95rem}
+
+/* ---------- SLIDES ---------- */
+.slide{width:100%;max-width:1100px;text-align:center;display:none;animation:in .45s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.kicker{font-weight:900;letter-spacing:.15em;font-size:clamp(.75rem,1.6vw,1rem);color:var(--green);margin-bottom:10px}
+.title{font-weight:900;font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin-bottom:18px}
+.lead{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.7rem);color:var(--muted);margin-bottom:20px}
+.expr{font-weight:900;font-size:clamp(2.4rem,8vw,5.5rem);letter-spacing:.02em;margin:10px 0}
+.expr .hi{color:var(--gold)}
+.big{color:var(--green)}
+.chipRow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 20px;
+  font-weight:900;font-size:clamp(1rem,2.2vw,1.5rem)}
+.chip.g{border-color:var(--green);color:var(--green)}
+.chip.y{border-color:var(--gold);color:var(--gold)}
+.chip.r{border-color:var(--coral);color:var(--coral)}
+.chip.b{border-color:var(--blue);color:var(--blue)}
+
+/* pasos revelables */
+.step{opacity:0;transform:translateY(14px) scale(.96);transition:all .4s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;height:0;overflow:hidden}
+.step.show{opacity:1;transform:none;pointer-events:auto;height:auto;overflow:visible}
+.stepline{display:flex;align-items:center;gap:16px;justify-content:center;margin:10px 0}
+.stepnum{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;
+  font-weight:900;font-size:1.4rem;display:flex;align-items:center;justify-content:center}
+.stepnum.y{background:var(--gold);color:#131F24}
+.stepcalc{font-weight:900;font-size:clamp(1.4rem,3.6vw,2.4rem)}
+.stepwhy{color:var(--muted);font-weight:800;font-size:clamp(.9rem,1.8vw,1.15rem)}
+
+.answer{display:inline-block;margin-top:10px;background:var(--green);color:#fff;font-weight:900;
+  font-size:clamp(1.6rem,5vw,3rem);padding:12px 40px;border-radius:20px;box-shadow:0 6px 0 var(--green-d);
+  animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+.ladder{display:grid;gap:12px;max-width:760px;margin:10px auto 0}
+.rung{display:flex;align-items:center;gap:18px;background:var(--card);border:2px solid var(--line);
+  border-radius:16px;padding:16px 22px;text-align:left}
+.rung .n{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.3rem;color:#fff;flex:0 0 auto}
+.rung .t{font-weight:900;font-size:clamp(1.1rem,2.4vw,1.55rem)}
+.rung .s{color:var(--muted);font-weight:800;font-size:clamp(.85rem,1.7vw,1.05rem)}
+.hint{color:var(--muted);font-weight:800;margin-top:16px;font-size:clamp(.9rem,1.8vw,1.15rem)}
+.hint b{color:var(--gold)}
+
+/* ---------- CONTROLES ---------- */
+.controls{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:14px 18px;z-index:40}
+.cbtn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s;
+  background:var(--card);color:var(--ink);border:2px solid var(--line);padding:14px 20px;font-size:1.05rem}
+.cbtn:active{transform:translateY(2px)}
+.cbtn.big{background:var(--green);color:#fff;border-color:var(--green-d);padding:16px 34px;font-size:1.2rem;box-shadow:0 4px 0 var(--green-d)}
+.cbtn:disabled{opacity:.35;cursor:default}
+.dots{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:40;
+  max-width:90vw;flex-wrap:wrap;justify-content:center;row-gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:all .3s}
+.dot.on{background:var(--green);width:22px;border-radius:6px}
+.pick{position:fixed;top:12px;right:14px;z-index:45;background:var(--gold);color:#131F24;font-family:inherit;
+  font-weight:900;border:none;border-radius:16px;padding:13px 20px;cursor:pointer;font-size:1.05rem;box-shadow:0 4px 0 #c99e00}
+.pick:active{transform:translateY(2px)}
+
+/* ---------- RULETA NOMBRES ---------- */
+#roulette{position:fixed;inset:0;background:rgba(8,14,17,.92);display:none;flex-direction:column;align-items:center;
+  justify-content:center;z-index:80;padding:24px;text-align:center}
+#roulette.on{display:flex}
+#roulette .lbl{color:var(--muted);font-weight:900;letter-spacing:.15em;margin-bottom:18px;font-size:1.1rem}
+#rouletteName{font-weight:900;font-size:clamp(3rem,14vw,8rem);line-height:1;color:var(--gold);min-height:1.1em}
+#roulette .sub{margin-top:26px;color:var(--muted);font-weight:800}
+#roulette.done #rouletteName{color:var(--green);animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+.closehint{position:absolute;bottom:24px;color:var(--muted);font-weight:800}
+.hidden{display:none!important}
+@media (max-width:640px){
+  .pick{font-size:.92rem;padding:10px 14px;top:10px;right:10px}
+  .dots{top:auto;bottom:82px}
+  .cbtn{padding:12px 16px;font-size:.98rem}
+  .cbtn.big{padding:14px 24px;font-size:1.08rem}
+  .controls{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- SETUP -->
+<div id="setup">
+  <div class="logo">( )</div>
+  <h1>Jerarquía de Operaciones</h1>
+  <p>Escribe los nombres de tus estudiantes. En cada ejercicio podrás sortear a quién le toca responder. (Opcional: puedes empezar sin nombres.)</p>
+  <div class="names" id="names"></div>
+  <button class="addName" id="addName">+ Agregar otro nombre</button>
+  <div class="setBtns" style="margin-top:18px">
+    <button class="btn ghost" id="skip">Sin nombres</button>
+    <button class="btn primary" id="start">Empezar clase →</button>
+  </div>
+</div>
+
+<!-- DOTS -->
+<div class="dots" id="dots"></div>
+<!-- SORTEAR -->
+<button class="pick hidden" id="pick">🎲 Sortear</button>
+
+<!-- STAGE -->
+<div class="stage" id="stage"><!-- slides inyectadas --></div>
+
+<!-- CONTROLES -->
+<div class="controls hidden" id="controls">
+  <button class="cbtn" id="prev">◀ Atrás</button>
+  <button class="cbtn big" id="next">Avanzar ▶</button>
+</div>
+
+<!-- RULETA -->
+<div id="roulette">
+  <div class="lbl">LE TOCA A…</div>
+  <div id="rouletteName">—</div>
+  <div class="sub" id="rouletteSub">Sorteando…</div>
+  <div class="closehint">Toca para cerrar</div>
+</div>
+
+<script>
+/* ============ NOMBRES ============ */
+const namesBox=document.getElementById('names');
+function addRow(v){
+  if(namesBox.children.length>=8)return;
+  const i=document.createElement('input');
+  i.type='text';i.placeholder='Nombre '+(namesBox.children.length+1);i.value=v||'';
+  namesBox.appendChild(i);
+}
+for(let k=0;k<5;k++)addRow();
+document.getElementById('addName').onclick=()=>addRow();
+let PART=[];
+function collectNames(){PART=[...namesBox.querySelectorAll('input')].map(i=>i.value.trim()).filter(Boolean);}
+document.getElementById('start').onclick=()=>{collectNames();begin();};
+document.getElementById('skip').onclick=()=>{PART=[];begin();};
+function begin(){
+  document.getElementById('setup').classList.add('hidden');
+  document.getElementById('controls').classList.remove('hidden');
+  if(PART.length)document.getElementById('pick').classList.remove('hidden');
+  buildDots();showSlide(0);
+}
+
+/* ============ RULETA DE NOMBRES ============ */
+const roul=document.getElementById('roulette'),rName=document.getElementById('rouletteName'),rSub=document.getElementById('rouletteSub');
+let spinning=false;
+document.getElementById('pick').onclick=spin;
+function spin(){
+  if(!PART.length||spinning)return;
+  spinning=true;roul.classList.add('on');roul.classList.remove('done');rSub.textContent='Sorteando…';
+  const winner=PART[Math.floor(Math.random()*PART.length)];
+  let t=0,delay=60;
+  const step=()=>{
+    rName.textContent=PART[Math.floor(Math.random()*PART.length)];
+    t++;delay*=1.12;
+    if(t<22){setTimeout(step,delay);}
+    else{rName.textContent=winner;roul.classList.add('done');rSub.textContent='¡A responder! 🎤';spinning=false;}
+  };
+  step();
+}
+roul.onclick=()=>{if(!spinning)roul.classList.remove('on');};
+
+/* ============ CONSTRUCTOR DE EJERCICIOS ============ */
+// Ejercicio detallado: pregunta primero, luego micro-pasos.
+function ej(o){
+  const tag = o.mode==='sorteo' ? '🎲 Sortea y que explique' : '💬 Todos responden';
+  let h=`<div class="kicker">${o.kicker}</div>`;
+  if(o.title)h+=`<div class="title">${o.title}</div>`;
+  h+=`<div class="expr">${o.expr}</div>`;
+  h+=`<div class="lead step">🤔 ${o.q} <span style="opacity:.7;font-size:.75em">· ${tag}</span></div>`;
+  if(o.ans)h+=`<div class="chipRow step"><span class="chip g" style="font-size:1.1em">${o.ans}</span></div>`;
+  (o.steps||[]).forEach((p,i,a)=>{
+    const last=i===a.length-1;
+    h+=`<div class="stepline step"><div class="stepnum${last?' y':''}">${i+1}</div><div><div class="stepcalc${last?' big':''}">${p.c}</div>`+
+       (p.w?`<div class="stepwhy">${p.w}</div>`:``)+`</div></div>`;
+  });
+  return {html:h};
+}
+const SUP=n=>`<sup style="font-size:.55em">${n}</sup>`;
+
+/* ============ 25 LÁMINAS ============ */
+const SLIDES=[
+// 1
+{html:`
+  <div class="kicker">MATEMÁTICA · INGRESO</div>
+  <div class="title">Jerarquía de<br>Operaciones</div>
+  <div class="lead">El orden correcto para resolver sin equivocarse</div>
+  <div class="chipRow">
+    <span class="chip g">( )</span><span class="chip y">potencias</span>
+    <span class="chip b">× ÷</span><span class="chip r">+ −</span>
+  </div>
+  <div class="hint">Toca <b>Avanzar ▶</b> para empezar</div>`},
+// 2
+{html:`
+  <div class="kicker">CÓMO VA LA CLASE</div>
+  <div class="title">3 momentos</div>
+  <div class="ladder" style="max-width:660px">
+    <div class="rung"><div class="n" style="background:#58CC02">1</div><div><div class="t">Calentamos</div><div class="s">Quiz rápido de ley de signos</div></div></div>
+    <div class="rung"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Aprendemos el orden</div><div class="s">Jerarquía paso a paso (esto)</div></div></div>
+    <div class="rung"><div class="n" style="background:#E8503A">3</div><div><div class="t">Practicamos solos</div><div class="s">Quiz de jerarquía</div></div></div>
+  </div>`},
+// 3
+{html:`
+  <div class="kicker">EL PROBLEMA</div>
+  <div class="title">¿Por dónde empiezo?</div>
+  <div class="expr">6 − 2 <span class="hi">×</span> 3</div>
+  <div class="lead">Si resuelves de izquierda a derecha… te da mal.</div>
+  <div class="hint step">Hay un <b>orden fijo</b> que siempre se respeta. Vamos a aprenderlo.</div>`},
+// 4
+{html:`
+  <div class="kicker">ENGANCHE · TODOS AL CHAT 💬</div>
+  <div class="title">¿Cuánto da?</div>
+  <div class="expr">3 + 4 <span class="hi">×</span> 2</div>
+  <div class="lead step">¿Es 11 o 14? Que respondan todos</div>
+  <div class="step"><div class="answer">= 11</div></div>
+  <div class="step hint">La <b>multiplicación va antes</b> que la suma. 4×2=8, luego 3+8=11.</div>`},
+// 5
+{html:`
+  <div class="kicker">LA REGLA DE ORO</div>
+  <div class="title">El orden manda</div>
+  <div class="ladder">
+    <div class="rung step"><div class="n" style="background:#58CC02">1</div><div><div class="t">Paréntesis y corchetes</div><div class="s">( ) [ ] — primero lo agrupado</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Potencias y raíces</div><div class="s">3² , √9</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Multiplicación y división</div><div class="s">× ÷ — de izquierda a derecha</div></div></div>
+    <div class="rung step"><div class="n" style="background:#E8503A">4</div><div><div class="t">Suma y resta</div><div class="s">+ − — de izquierda a derecha</div></div></div>
+  </div>
+  <div class="hint step"><b>Ojo:</b> × ÷ y + − se leen de izquierda a derecha.</div>`},
+// 6
+{html:`
+  <div class="kicker">DETALLE CLAVE</div>
+  <div class="title">Izquierda a derecha</div>
+  <div class="lead">Cuando quedan solo × y ÷ (o solo + y −),<br>se resuelve en el orden en que aparecen.</div>
+  <div class="chipRow"><span class="chip b">× ÷ juntas → izq. a der.</span><span class="chip r">+ − juntas → izq. a der.</span></div>`},
+// 7
+ej({kicker:'EJEMPLO DETALLADO',expr:'6 + 2 <span class="hi">×</span> 5',q:'¿Qué hacemos primero, la suma o la multiplicación?',ans:'La multiplicación',mode:'todos',
+  steps:[{c:'2 × 5 = 10',w:'resolvemos la multiplicación'},{c:'6 + 10',w:'la ponemos en su lugar'},{c:'= 16',w:'ahora sí la suma'}]}),
+// 8
+ej({kicker:'AHORA CON RESTA',expr:'20 − 3 <span class="hi">×</span> 4',q:'¿Resto primero o multiplico primero?',ans:'Primero la multiplicación',mode:'sorteo',
+  steps:[{c:'3 × 4 = 12',w:'la multiplicación va antes'},{c:'20 − 12',w:'reemplazamos'},{c:'= 8',w:'ahora la resta'}]}),
+// 9
+{html:`
+  <div class="kicker">EL PARÉNTESIS LO CAMBIA TODO</div>
+  <div class="title">Mismos números, otro orden</div>
+  <div class="chipRow" style="gap:28px;align-items:stretch">
+    <div class="chip r step" style="display:grid;gap:6px;min-width:240px">
+      <div style="font-size:.8em;letter-spacing:.1em">SIN PARÉNTESIS</div>
+      <div style="font-size:1.4em">2 + 6 × 3</div>
+      <div style="opacity:.8">= 2 + 18</div>
+      <div style="font-size:1.5em">= 20</div>
+    </div>
+    <div class="chip g step" style="display:grid;gap:6px;min-width:240px">
+      <div style="font-size:.8em;letter-spacing:.1em">CON PARÉNTESIS</div>
+      <div style="font-size:1.4em">(2 + 6) × 3</div>
+      <div style="opacity:.8">= 8 × 3</div>
+      <div style="font-size:1.5em">= 24</div>
+    </div>
+  </div>
+  <div class="hint step">El paréntesis <b>obliga a sumar primero</b>.</div>`},
+// 10
+ej({kicker:'CON PARÉNTESIS',expr:'(8 − 3) <span class="hi">×</span> 2',q:'¿Qué manda aquí?',ans:'El paréntesis',mode:'todos',
+  steps:[{c:'8 − 3 = 5',w:'primero lo agrupado'},{c:'5 × 2',w:'reemplazamos'},{c:'= 10',w:'ahora multiplicamos'}]}),
+// 11
+ej({kicker:'PARÉNTESIS Y DIVISIÓN',expr:'24 <span class="hi">÷</span> (2 + 4)',q:'¿Divido primero o resuelvo el paréntesis?',ans:'El paréntesis primero',mode:'sorteo',
+  steps:[{c:'2 + 4 = 6',w:'lo de adentro primero'},{c:'24 ÷ 6',w:'reemplazamos'},{c:'= 4',w:'ahora dividimos'}]}),
+// 12
+{html:`
+  <div class="kicker">RECORDATORIO</div>
+  <div class="title">¿Qué es 3²?</div>
+  <div class="expr">3${SUP(2)} = 3 <span class="hi">×</span> 3 = 9</div>
+  <div class="lead">El exponente dice cuántas veces se multiplica la base por sí misma.</div>
+  <div class="hint step">Las potencias se resuelven <b>antes</b> que × ÷ y + −.</div>`},
+// 13
+ej({kicker:'CON POTENCIA',expr:`2 + 3${SUP(2)}`,q:'¿Sumo primero o resuelvo la potencia?',ans:'La potencia primero',mode:'todos',
+  steps:[{c:'3² = 9',w:'3 × 3 = 9'},{c:'2 + 9',w:'reemplazamos'},{c:'= 11',w:'ahora la suma'}]}),
+// 14
+ej({kicker:'POTENCIA Y PARÉNTESIS',expr:`(6 − 2)${SUP(2)}`,q:'¿Qué hago primero?',ans:'El paréntesis, luego la potencia',mode:'sorteo',
+  steps:[{c:'6 − 2 = 4',w:'lo agrupado primero'},{c:'4²',w:'ahora la potencia'},{c:'= 16',w:'4 × 4 = 16'}]}),
+// 15
+{html:`
+  <div class="kicker">NO OLVIDES</div>
+  <div class="title">La ley de signos sigue viva</div>
+  <div class="chipRow"><span class="chip g">iguales → +</span><span class="chip r">distintos → −</span></div>
+  <div class="lead" style="margin-top:16px">La jerarquía manda el <b>orden</b>;<br>los signos, el <b>resultado</b> de cada paso.</div>`},
+// 16
+ej({kicker:'CON SIGNOS',expr:'−2 + 3 <span class="hi">×</span> (−4)',q:'¿Qué va primero… y con qué signo queda?',ans:'La multiplicación',mode:'todos',
+  steps:[{c:'3 × (−4) = −12',w:'signos distintos → negativo'},{c:'−2 + (−12)',w:'reemplazamos'},{c:'= −14',w:'mismo signo: se suman'}]}),
+// 17
+ej({kicker:'OTRO CON SIGNOS',expr:'−5 + (−3) <span class="hi">×</span> 2',q:'¿Multiplico o sumo primero?',ans:'La multiplicación',mode:'sorteo',
+  steps:[{c:'(−3) × 2 = −6',w:'signos distintos → negativo'},{c:'−5 + (−6)',w:'reemplazamos'},{c:'= −11',w:'mismo signo: se suman'}]}),
+// 18
+ej({kicker:'TRAMPA 🪤',expr:'8 <span class="hi">÷</span> 2 <span class="hi">×</span> 2',q:'¿Es 8 o es 2?',ans:'Se lee de izquierda a derecha',mode:'todos',
+  steps:[{c:'8 ÷ 2 = 4',w:'primero lo de la izquierda'},{c:'4 × 2',w:'seguimos hacia la derecha'},{c:'= 8',w:'no es 2'}]}),
+// 19
+ej({kicker:'IZQUIERDA A DERECHA',expr:'12 − 4 + 3',q:'¿En qué orden resto y sumo?',ans:'De izquierda a derecha',mode:'sorteo',
+  steps:[{c:'12 − 4 = 8',w:'primero lo de la izquierda'},{c:'8 + 3',w:'seguimos'},{c:'= 11',w:''}]}),
+// 20
+ej({kicker:'MINI RETO',expr:'10 − 2 <span class="hi">×</span> 3',q:'¿Cuánto da?',mode:'todos',
+  steps:[{c:'= 4',w:'2×3 = 6 primero, luego 10 − 6'}]}),
+// 21
+ej({kicker:'MINI RETO',expr:'5 + 6 <span class="hi">÷</span> 3',q:'¿Cuánto da?',mode:'sorteo',
+  steps:[{c:'= 7',w:'6÷3 = 2 primero, luego 5 + 2'}]}),
+// 22
+ej({kicker:'MINI RETO',expr:'(7 − 2) <span class="hi">×</span> 3',q:'¿Cuánto da?',mode:'todos',
+  steps:[{c:'= 15',w:'7 − 2 = 5 primero, luego 5 × 3'}]}),
+// 23
+{html:`
+  <div class="kicker">NO CAIGAS AQUÍ</div>
+  <div class="title">Las 3 trampas</div>
+  <div class="ladder">
+    <div class="rung step"><div class="n" style="background:#E8503A">1</div><div><div class="t">Sumar antes de multiplicar</div><div class="s">3 + 4 × 2 = 11, no 14</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Creer que × va antes que ÷</div><div class="s">8 ÷ 2 × 2 = 8 · mismo nivel, izquierda a derecha</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Olvidar el signo</div><div class="s">Aplica ley de signos en cada paso</div></div></div>
+  </div>`},
+// 24
+{html:`
+  <div class="kicker">RECUERDA SIEMPRE</div>
+  <div class="title">El orden</div>
+  <div class="chipRow" style="font-size:1.2em">
+    <span class="chip g">( )</span>→<span class="chip y">potencias</span>→<span class="chip b">× ÷</span>→<span class="chip r">+ −</span>
+  </div>
+  <div class="lead" style="margin-top:24px">Y dentro del mismo nivel: <b>izquierda a derecha</b>.</div>`},
+// 25
+{html:`
+  <div class="kicker">A PRACTICAR 💪</div>
+  <div class="title">¡Ahora ustedes!</div>
+  <div class="lead">Abran <b>quiz-jerarquia.html</b> en su dispositivo.</div>
+  <div class="hint step">15 ejercicios con corrección paso a paso. Al final, díganme cuál les costó más.</div>`},
+];
+
+let cur=0, step=0;
+function buildDots(){
+  const d=document.getElementById('dots');d.innerHTML='';
+  SLIDES.forEach(()=>{const e=document.createElement('div');e.className='dot';d.appendChild(e);});
+}
+function paintDots(){[...document.getElementById('dots').children].forEach((e,i)=>e.classList.toggle('on',i===cur));}
+function render(revealAll){
+  const s=SLIDES[cur];
+  STAGE.innerHTML='<div class="slide on">'+s.html+'</div>';
+  const steps=STAGE.querySelectorAll('.step');
+  if(revealAll){steps.forEach(e=>e.classList.add('show'));step=steps.length;}
+  else{step=0;}
+  paintDots();updateBtns();
+}
+function showSlide(i){cur=i;render(false);}
+function updateBtns(){
+  document.getElementById('prev').disabled=(cur===0 && step===0);
+  const last=cur===SLIDES.length-1;
+  const steps=STAGE.querySelectorAll('.step').length;
+  document.getElementById('next').textContent=(last && step>=steps)?'Fin ✓':'Avanzar ▶';
+}
+function advance(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step<steps.length){steps[step].classList.add('show');step++;updateBtns();return;}
+  if(cur<SLIDES.length-1){cur++;render(false);}
+}
+function back(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step>0){step--;steps[step].classList.remove('show');updateBtns();return;}
+  if(cur>0){cur--;render(true);}
+}
+const STAGE=document.getElementById('stage');
+document.getElementById('next').onclick=advance;
+document.getElementById('prev').onclick=back;
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('setup').classList.contains('hidden')===false)return;
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();advance();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();back();}
+  else if(e.key.toLowerCase()==='s'){spin();}
+});
+STAGE.addEventListener('click',advance);
+</script>
+</body>
+</html>

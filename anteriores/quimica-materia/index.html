@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" data-color="full">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ECFEFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#06202A" media="(prefers-color-scheme: dark)">
+<title>Química desde cero</title>
+<meta name="description" content="Química desde cero: la materia, el átomo y la tabla periódica con láminas, simuladores, juego y test.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FACC15' stroke='%23083344' stroke-width='4'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial' font-weight='900' font-size='34' fill='%23083344'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&family=Space+Grotesk:wght@500..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/ls.css?v=4">
+<link rel="stylesheet" href="css/qm-widgets.css?v=3">
+<link rel="stylesheet" href="css/qm-laminas-a.css?v=3">
+<link rel="stylesheet" href="css/qm-laminas-b.css?v=3">
+<link rel="stylesheet" href="css/qm-juego.css?v=4">
+<link rel="stylesheet" href="css/qm-test.css?v=3">
+<link rel="stylesheet" href="css/qm-tema.css?v=6">
+<style>.campo:has(#r-correo),.ts-correo,.ts-envio,.ajuste:has([data-a="correo"]){display:none!important}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-atras" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sig" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-candado" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5" fill="none" stroke="currentColor" stroke-width="2.5"/></symbol>
+    <symbol id="i-estrella" viewBox="0 0 24 24"><path d="M12 3.2l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 17l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z" stroke-linejoin="round"/></symbol>
+    <symbol id="i-rayo" viewBox="0 0 24 24"><path d="M13.5 2.5L5 13.5h6l-1 8 8.5-11h-6z" stroke-linejoin="round"/></symbol>
+    <symbol id="i-escudo" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z" stroke-linejoin="round"/></symbol>
+    <symbol id="i-altavoz" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-ajustes" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M12 2.8v2.6M12 18.6v2.6M21.2 12h-2.6M5.4 12H2.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8M18.5 18.5l-1.8-1.8M7.3 7.3L5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-ayuda" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9.6 9.3a2.5 2.5 0 014.8 1c0 1.7-2.4 2-2.4 3.7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="17.2" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M9 4.5l-5 2v13l5-2 6 2 5-2v-13l-5 2z M9 4.5v13 M15 6.5v13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+    <symbol id="i-reintentar" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 102.2-5.3M4.5 4v4h4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-foco" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M15.5 5.5v-.5a1.5 1.5 0 00-1.5-1.5H5A1.5 1.5 0 003.5 5v9A1.5 1.5 0 005 15.5h.5" fill="none" stroke="currentColor" stroke-width="2.5"/></symbol>
+    <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-plata" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="15" cy="12" r="5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-dasharray="3 2.2"/></symbol>
+    <symbol id="i-juntan" viewBox="0 0 24 24"><path d="M4 8h6M4 16h6M14 12h6M10 8l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cancelan" viewBox="0 0 24 24"><circle cx="8" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="16" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-dasharray="3 2"/><path d="M11 12h2" stroke="currentColor" stroke-width="2.2"/></symbol>
+    <symbol id="i-pegados" viewBox="0 0 24 24"><path d="M3.5 12h5M13.5 12h7M17 8.5v7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M11 6.5c-1.6 1.5-1.6 9.5 0 11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-cuenta" viewBox="0 0 24 24"><circle cx="7" cy="12" r="1.8" fill="currentColor"/><path d="M11 8l6 8M17 8l-6 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-potencia" viewBox="0 0 24 24"><path d="M4 19l5-11 5 11M6 15h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 4.5h4l-4 5h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-escalera" viewBox="0 0 24 24"><path d="M3.5 20.5h4.5v-4.5h4.5v-4.5h4.5V7h4.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lectura" viewBox="0 0 24 24"><rect x="2.5" y="7" width="8.5" height="10" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="13" y="7" width="8.5" height="10" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+  </defs>
+</svg>
+<div id="aviso-navegador" class="aviso-nav" hidden></div>
+<main id="app" aria-live="off"></main>
+<div id="capa-hoja"></div>
+<noscript><p style="padding:24px;font-family:sans-serif">Para usar esta página necesitas activar JavaScript en tu navegador.</p></noscript>
+<script defer src="js/ls-estado.js?v=3"></script>
+<script defer src="js/ls-motor.js?v=3"></script>
+<script defer src="js/ls-ui.js?v=3"></script>
+<script defer src="js/ls-svg.js?v=2"></script>
+<script defer src="js/ls-envio.js?v=6"></script>
+<script defer src="js/ls-seguimiento.js?v=4"></script>
+<script defer src="js/qm-tabla-data.js?v=3"></script>
+<script defer src="js/qm-widgets.js?v=5"></script>
+<script defer src="js/qm-laminas-data-a.js?v=3"></script>
+<script defer src="js/qm-laminas-data-b.js?v=3"></script>
+<script defer src="js/qm-herramientas.js?v=1"></script>
+<script defer src="js/ls-carrusel.js?v=3"></script>
+<script defer src="js/qm-juego.js?v=6"></script>
+<script defer src="js/qm-test.js?v=3"></script>
+<script defer src="js/ls-app.js?v=3"></script>
+</body>
+</html>

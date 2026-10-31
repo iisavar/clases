@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131F24">
+<title>Fracciones: Láminas, Juego y Quiz</title>
+<meta name="description" content="Módulo completo de fracciones: aprende con láminas, juega y haz el quiz. Con registro y seguimiento.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2358CC02'/%3E%3Ctext x='32' y='30' text-anchor='middle' font-family='Arial' font-weight='900' font-size='26' fill='%23fff'%3E1%3C/text%3E%3Crect x='20' y='34' width='24' height='4' fill='%23fff'/%3E%3Ctext x='32' y='58' text-anchor='middle' font-family='Arial' font-weight='900' font-size='26' fill='%23fff'%3E2%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#58CC02; --green-d:#3F9A00; --coral:#E8503A; --gold:#FFC800; --blue:#1CB0F6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:16px 14px 40px;-webkit-tap-highlight-color:transparent}
+.wrap{width:100%;max-width:560px}
+header{text-align:center;margin-bottom:12px}
+.badge{display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:.72rem;letter-spacing:.12em;padding:6px 12px;border-radius:999px;margin-bottom:8px}
+h1{font-size:1.6rem;font-weight:900}
+.fases{display:flex;gap:6px;justify-content:center;margin:12px 0}
+.fase{flex:1;max-width:150px;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center;font-weight:800;font-size:.8rem;color:var(--muted)}
+.fase.on{border-color:var(--green);color:var(--green)}
+.fase.ok{border-color:var(--green-d);color:var(--green-d)}
+.card{background:var(--card);border-radius:22px;padding:22px 20px;border:2px solid var(--line);box-shadow:0 4px 0 #101a1e}
+.bar{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:12px 0}
+.bar>i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+.meta{display:flex;justify-content:space-between;font-weight:800;color:var(--muted);font-size:.85rem;margin-bottom:10px}
+.meta b{color:var(--ink)}
+.kicker{font-weight:900;letter-spacing:.12em;font-size:.75rem;color:var(--green);text-align:center;margin-bottom:6px}
+.title2{font-weight:900;font-size:1.5rem;text-align:center;line-height:1.15;margin-bottom:10px}
+.lead{font-weight:800;color:var(--muted);text-align:center;line-height:1.45;margin:8px 0;font-size:1rem}
+.lead b{color:var(--ink)}
+.viz{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;margin:14px 0}
+.vcap{color:var(--muted);font-weight:800;font-size:.9rem;text-align:center;margin-top:4px}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1;margin:0 4px;font-weight:900}
+.frac .n{border-bottom:3px solid currentColor;padding:0 7px 3px}
+.frac .d{padding:3px 7px 0}
+.expr{font-weight:900;font-size:1.7rem;text-align:center;margin:8px 0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px}
+.expr .hi{color:var(--gold)}
+.big{color:var(--green)}
+.chipRow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:10px 0}
+.chip{background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:900;font-size:1rem}
+.chip.g{border-color:var(--green);color:var(--green)} .chip.y{border-color:var(--gold);color:var(--gold)}
+.chip.r{border-color:var(--coral);color:var(--coral)} .chip.b{border-color:var(--blue);color:var(--blue)}
+.stepline{display:flex;align-items:center;gap:12px;justify-content:center;margin:8px 0}
+.stepnum{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center}
+.stepnum.y{background:var(--gold);color:#131F24}
+.stepcalc{font-weight:900;font-size:1.25rem}
+.stepwhy{color:var(--muted);font-weight:800;font-size:.85rem}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.opt{background:var(--bg);border:2px solid var(--line);border-radius:16px;padding:16px 8px;font-family:inherit;font-weight:900;color:var(--ink);cursor:pointer;transition:transform .08s;font-size:1.3rem;display:flex;align-items:center;justify-content:center;min-height:64px}
+.opt:active{transform:scale(.97)} .opt:hover{border-color:var(--green)}
+.opt.ok{background:var(--green);border-color:var(--green-d);color:#fff} .opt.no{background:var(--coral);border-color:#b83a27;color:#fff}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;text-align:center;font-weight:800;min-height:1.3em}
+.fb.ok{color:var(--green)} .fb.no{color:var(--coral)}
+.btn{margin-top:14px;width:100%;background:var(--green);color:#fff;border:none;border-radius:16px;padding:15px;font-family:inherit;font-size:1.05rem;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--green-d)}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-d)}
+.btn.sec{background:var(--card);color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.btn.gold{background:var(--gold);color:#131F24;box-shadow:0 4px 0 #c99e00}
+.next{opacity:0;pointer-events:none;transition:opacity .2s}
+.next.show{opacity:1;pointer-events:auto}
+.row{display:flex;gap:10px}
+.reg{display:grid;gap:10px;margin:14px 0 4px}
+.reg input{font-family:inherit;font-weight:800;font-size:1.05rem;padding:14px 16px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);text-align:center}
+.reg input:focus{outline:none;border-color:var(--green)}
+.regErr{color:var(--coral);font-weight:800;font-size:.9rem;min-height:1.1em;text-align:center}
+.score{font-size:3.4rem;font-weight:900;color:var(--green);text-align:center;line-height:1}
+.score small{font-size:1.2rem;color:var(--muted)}
+.emoji{font-size:3rem;text-align:center;margin:6px 0}
+.hidden{display:none}
+.center{text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="badge" id="badge">➗ FRACCIONES</span>
+    <h1 id="h1">Fracciones</h1>
+  </header>
+
+  <div class="fases">
+    <div class="fase" id="fase-l">1 · Láminas</div>
+    <div class="fase" id="fase-j">2 · Juego</div>
+    <div class="fase" id="fase-q">3 · Quiz</div>
+  </div>
+
+  <!-- REGISTRO -->
+  <div id="registro" class="card center">
+    <div class="emoji">➗</div>
+    <div class="title2">¡Vamos a dominar las fracciones!</div>
+    <div class="lead">Primero aprendes con láminas, luego juegas y al final un quiz. Escribe tus datos para empezar:</div>
+    <div class="reg">
+      <input id="rNombre" type="text" placeholder="Tu nombre y apellido" autocomplete="name">
+      <input id="rCorreo" type="hidden" value="">
+      <div class="regErr" id="regErr"></div>
+    </div>
+    <button class="btn" id="empezar">Empezar →</button>
+  </div>
+
+  <!-- LÁMINAS -->
+  <div id="laminas" class="hidden">
+    <div class="meta"><span>Lámina <b id="lnum">1</b>/<span id="ltot">14</span></span><span>📖 Aprendiendo</span></div>
+    <div class="bar"><i id="lprog"></i></div>
+    <div class="card" id="lcard"></div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn sec" id="lprev" style="flex:1">◀ Atrás</button>
+      <button class="btn" id="lnext" style="flex:2">Siguiente ▶</button>
+    </div>
+  </div>
+
+  <!-- JUEGO -->
+  <div id="juego" class="hidden">
+    <div class="meta"><span>Ronda <b id="jnum">1</b>/<span id="jtot">8</span></span><span>Aciertos: <b id="jsc">0</b></span></div>
+    <div class="bar"><i id="jprog"></i></div>
+    <div class="card center">
+      <div class="kicker">¿QUÉ FRACCIÓN ESTÁ PINTADA?</div>
+      <div class="viz" id="jviz"></div>
+      <div class="opts" id="jopts"></div>
+      <div class="fb" id="jfb"></div>
+      <button class="btn next" id="jnext">Siguiente ▶</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div id="quiz" class="hidden">
+    <div class="meta"><span>Pregunta <b id="qnum">1</b>/<span id="qtot">10</span></span><span>Aciertos: <b id="qsc">0</b></span></div>
+    <div class="bar"><i id="qprog"></i></div>
+    <div class="card center">
+      <div class="expr" id="qexpr"></div>
+      <div class="opts" id="qopts"></div>
+      <div class="fb" id="qfb"></div>
+      <button class="btn next" id="qnext">Siguiente ▶</button>
+    </div>
+  </div>
+
+  <!-- FIN -->
+  <div id="fin" class="card center hidden">
+    <div class="emoji" id="fEmoji">🎉</div>
+    <div class="title2">¡Completaste el módulo!</div>
+    <div class="lead" id="fResumen"></div>
+    <div class="score"><span id="fScore">0</span><small>/10</small> <span style="font-size:1rem;color:var(--muted)">en el quiz</span></div>
+    <div class="lead" id="fMsg" style="margin-top:14px"></div>
+    <button class="btn" onclick="location.reload()">↻ Repetir</button>
+  </div>
+</div>
+
+<script src="../js/cola-envios.js"></script>
+<script src="quiz-sync.js?v=2"></script>
+<script>
+/* ---------- dibujos ---------- */
+function barra(n,k){const W=300,H=48,pw=W/n;let r='';for(let j=0;j<n;j++)r+=`<rect x="${(j*pw).toFixed(1)}" y="0" width="${pw.toFixed(1)}" height="${H}" fill="${j<k?'#58CC02':'#131F24'}" stroke="#0E181C" stroke-width="3"/>`;return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:300px;border-radius:8px;display:block;margin:0 auto">${r}</svg>`;}
+function pizza(n,k){const cx=58,cy=58,r=52;let p='';for(let j=0;j<n;j++){const a0=(-90+j*360/n)*Math.PI/180,a1=(-90+(j+1)*360/n)*Math.PI/180;const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);const big=(360/n>180)?1:0;p+=`<path d="M${cx} ${cy} L${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 ${big} 1 ${x1.toFixed(1)} ${y1.toFixed(1)} Z" fill="${j<k?'#58CC02':'#131F24'}" stroke="#0E181C" stroke-width="3"/>`;}return `<svg viewBox="0 0 116 116" width="110" height="110">${p}</svg>`;}
+const fr=(a,b)=>`<span class="frac"><span class="n">${a}</span><span class="d">${b}</span></span>`;
+const viz=(inner,cap)=>`<div class="viz">${inner}</div>${cap?`<div class="vcap">${cap}</div>`:''}`;
+
+/* ---------- LÁMINAS ---------- */
+const LAMINAS=[
+`<div class="kicker">LO BÁSICO</div><div class="title2">¿Qué es una fracción?</div>${viz(pizza(4,1),'Tomamos 1 de 4 partes')}<div class="expr">${fr('1','4')}</div><div class="lead"><b>Arriba (numerador):</b> las partes que tomas.<br><b>Abajo (denominador):</b> en cuántas se divide el entero.</div>`,
+`<div class="kicker">CÓMO SE LEEN</div><div class="title2">Leer fracciones</div>${viz(barra(2,1))}${viz(barra(4,3))}<div class="chipRow"><span class="chip g">${fr('1','2')} = un medio</span><span class="chip g">${fr('3','4')} = tres cuartos</span></div>`,
+`<div class="kicker">EL TAMAÑO</div><div class="title2">Más partes = trozos más chicos</div>${viz(barra(2,1))}${viz(barra(4,1))}${viz(barra(8,1))}<div class="chipRow"><span class="chip g">${fr('1','2')}</span><span class="chip y">${fr('1','4')}</span><span class="chip r">${fr('1','8')}</span></div><div class="lead">Mientras <b>más grande el denominador</b>, más pequeño cada trozo.</div>`,
+`<div class="kicker">EQUIVALENTES</div><div class="title2">El mismo pedazo, otro nombre</div>${viz(barra(2,1))}${viz(barra(4,2))}${viz(barra(8,4))}<div class="expr">${fr('1','2')} = ${fr('2','4')} = ${fr('4','8')}</div><div class="lead">Se escriben distinto pero <b>valen lo mismo</b>.</div>`,
+`<div class="kicker">CREAR EQUIVALENTES</div><div class="title2">Multiplica arriba y abajo por lo mismo</div><div class="expr">${fr('1','2')} <span class="hi">× ${fr('2','2')}</span> = ${fr('2','4')}</div><div class="expr">${fr('1','2')} <span class="hi">× ${fr('3','3')}</span> = ${fr('3','6')}</div><div class="lead">Multiplicar por ${fr('2','2')} es multiplicar por <b>1</b>: no cambia el valor.</div>`,
+`<div class="kicker">SIMPLIFICAR</div><div class="title2">Dejarla más simple</div>${viz(barra(8,6))}${viz(barra(4,3))}<div class="expr">${fr('6','8')} <span class="hi">÷ ${fr('2','2')}</span> = ${fr('3','4')}</div><div class="lead"><b>Divide</b> arriba y abajo por el mismo número.</div>`,
+`<div class="kicker">TIPOS</div><div class="title2">Propia, impropia y mixta</div><div class="chipRow"><span class="chip g">${fr('3','4')}<br><span style="font-size:.6em;font-weight:700">propia</span></span><span class="chip y">${fr('5','4')}<br><span style="font-size:.6em;font-weight:700">impropia</span></span><span class="chip b">1${fr('1','4')}<br><span style="font-size:.6em;font-weight:700">mixta</span></span></div><div class="lead">${fr('5','4')} y 1${fr('1','4')} valen lo mismo.</div>`,
+`<div class="kicker">SUMAR · IGUAL DENOMINADOR</div><div class="title2">El más fácil</div>${viz(barra(5,3),'1/5 + 2/5 = 3/5')}<div class="expr">${fr('1','5')} + ${fr('2','5')} = ${fr('3','5')}</div><div class="lead">Sumas solo los de <b>arriba</b>. El de abajo <b>no se toca</b>.</div>`,
+`<div class="kicker">SUMAR · DISTINTO DENOMINADOR</div><div class="title2">Primero igualamos abajo</div><div class="expr">${fr('1','2')} + ${fr('1','4')}</div><div class="stepline"><div class="stepnum">1</div><div class="center"><div class="stepcalc">${fr('1','2')} = ${fr('2','4')}</div><div class="stepwhy">común: 4</div></div></div><div class="stepline"><div class="stepnum y">2</div><div class="center"><div class="stepcalc big">${fr('2','4')} + ${fr('1','4')} = ${fr('3','4')}</div></div></div>`,
+`<div class="kicker">MULTIPLICAR</div><div class="title2">La más sencilla</div><div class="expr">${fr('2','3')} <span class="hi">×</span> ${fr('1','2')}</div><div class="stepline"><div class="stepnum">1</div><div class="center"><div class="stepcalc">= ${fr('2','6')}</div><div class="stepwhy">recto: arriba×arriba, abajo×abajo</div></div></div><div class="stepline"><div class="stepnum y">2</div><div class="center"><div class="stepcalc big">= ${fr('1','3')}</div><div class="stepwhy">simplificado</div></div></div><div class="lead">Aquí <b>no</b> hace falta denominador común.</div>`,
+`<div class="kicker">DIVIDIR</div><div class="title2">Voltea la 2ª y multiplica</div><div class="expr">${fr('1','2')} <span class="hi">÷</span> ${fr('1','4')}</div><div class="stepline"><div class="stepnum">1</div><div class="center"><div class="stepcalc">${fr('1','2')} × ${fr('4','1')}</div><div class="stepwhy">volteamos la segunda</div></div></div><div class="stepline"><div class="stepnum y">2</div><div class="center"><div class="stepcalc big">= ${fr('4','2')} = 2</div></div></div>`,
+`<div class="kicker">RESUMEN</div><div class="title2">Recuerda</div><div class="chipRow"><span class="chip g">Sumar/restar → mismo abajo</span></div><div class="chipRow"><span class="chip y">Multiplicar → recto</span><span class="chip b">Dividir → voltea la 2ª</span></div><div class="lead">Y siempre que puedas, <b>simplifica</b>.</div>`,
+`<div class="kicker">MINI EJEMPLO</div><div class="title2">¿Lo captas?</div>${viz(barra(3,2),'2 de 3 partes')}<div class="expr">= ${fr('2','3')}</div><div class="lead">2 partes pintadas de 3 totales.</div>`,
+`<div class="kicker">¡LISTO! 💪</div><div class="title2">Ahora a jugar</div><div class="lead">Ya sabes lo básico. En el juego vas a reconocer fracciones en dibujos, y luego el quiz.</div><div class="emoji">🎮</div>`,
+];
+
+/* ---------- JUEGO (¿qué fracción está pintada?) ---------- */
+const JUEGO=[
+ {sh:barra(4,3), o:[[3,4],[4,3],[1,4],[3,3]], a:0},
+ {sh:pizza(2,1), o:[[2,1],[1,2],[1,4],[1,1]], a:1},
+ {sh:barra(5,2), o:[[2,5],[5,2],[3,5],[2,3]], a:0},
+ {sh:pizza(4,1), o:[[1,2],[1,4],[4,1],[2,4]], a:1},
+ {sh:barra(3,2), o:[[2,3],[3,2],[1,3],[2,2]], a:0},
+ {sh:pizza(8,3), o:[[3,8],[8,3],[5,8],[3,5]], a:0},
+ {sh:barra(6,4), o:[[4,6],[6,4],[2,6],[4,4]], a:0},
+ {sh:pizza(3,1), o:[[1,3],[3,1],[1,2],[2,3]], a:0},
+];
+
+/* ---------- QUIZ (10) ---------- */
+const QUIZ=[
+ {t:`¿Cuál es igual a ${fr('1','2')}?`, o:[[2,4],[1,3],[3,4],[1,4]], a:0},
+ {t:`Simplifica ${fr('6','8')}`, o:[[3,4],[2,4],[6,4],[3,8]], a:0},
+ {t:`${fr('1','5')} + ${fr('2','5')}`, o:[[3,5],[3,10],[2,5],[3,25]], a:0},
+ {t:`${fr('3','4')} − ${fr('1','4')}`, o:[[1,2],[2,8],[1,4],[4,4]], a:0},
+ {t:`${fr('1','2')} + ${fr('1','4')}`, o:[[3,4],[2,6],[1,6],[2,4]], a:0},
+ {t:`${fr('2','3')} × ${fr('1','2')}`, o:[[1,3],[3,6],[2,5],[3,2]], a:0},
+ {t:`${fr('1','2')} ÷ ${fr('1','4')}`, o:[[2],[8],[1,8],[1,2]], a:0},
+ {t:`Simplifica ${fr('4','8')}`, o:[[1,2],[2,8],[4,4],[1,4]], a:0},
+ {t:`${fr('2','7')} + ${fr('3','7')}`, o:[[5,7],[5,14],[6,7],[5,49]], a:0},
+ {t:`${fr('3','5')} × ${fr('2','3')} (simplifica)`, o:[[2,5],[6,8],[5,8],[1,5]], a:0},
+];
+const opTxt=o=>o.length===2?fr(o[0],o[1]):(''+o[0]);
+
+/* ---------- estado + seguimiento ---------- */
+let AL={nombre:'',correo:''};
+const $=id=>document.getElementById(id);
+function correoValido(c){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c);}
+let track={sec:null,item:null,start:0};
+function startItem(sec,item){track={sec,item,start:Date.now()};}
+function flushItem(acierto){
+  if(!track.item)return;
+  const seg=Math.round((Date.now()-track.start)/1000);
+  QuizSync.detalle({modulo:'fracciones',nombre:AL.nombre,correo:AL.correo,seccion:track.sec,item:track.item,segundos:seg,acierto:(acierto===0||acierto===1)?acierto:''});
+  track.item=null;
+}
+function resumen(estado,pregunta,aciertos,total){
+  QuizSync.enviar({quiz:'fracciones',nombre:AL.nombre,correo:AL.correo,estado,pregunta:pregunta||0,aciertos:aciertos||0,total:total||10});
+}
+function mostrar(id){['registro','laminas','juego','quiz','fin'].forEach(s=>$(s).classList.toggle('hidden',s!==id));}
+function faseUI(a){['l','j','q'].forEach(f=>{$('fase-'+f).classList.remove('on','ok');});
+  if(a==='l')$('fase-l').classList.add('on');
+  if(a==='j'){$('fase-l').classList.add('ok');$('fase-j').classList.add('on');}
+  if(a==='q'){$('fase-l').classList.add('ok');$('fase-j').classList.add('ok');$('fase-q').classList.add('on');}
+  if(a==='fin'){['l','j','q'].forEach(f=>$('fase-'+f).classList.add('ok'));}
+}
+
+/* registro */
+try{const g=JSON.parse(localStorage.getItem('alumno')||'null');if(g&&g.correo){$('rNombre').value=g.nombre||'';$('rCorreo').value=g.correo||'';}}catch(e){}
+$('empezar').onclick=()=>{
+  const nombre=$('rNombre').value.trim(), correo=$('rCorreo').value.trim();
+  if(nombre.length<3){$('regErr').textContent='Escribe tu nombre completo.';return;}
+  
+  AL={nombre,correo};try{localStorage.setItem('alumno',JSON.stringify(AL));}catch(e){}
+  resumen('registrado');
+  iniciarLaminas();
+};
+
+/* LÁMINAS */
+let li=0;
+$('ltot').textContent=LAMINAS.length;
+function iniciarLaminas(){mostrar('laminas');faseUI('l');resumen('láminas');li=0;renderLamina();}
+function renderLamina(){
+  flushItem();
+  startItem('Láminas','Lámina '+(li+1));
+  $('lcard').innerHTML=LAMINAS[li];
+  $('lnum').textContent=li+1;
+  $('lprog').style.width=((li+1)/LAMINAS.length*100)+'%';
+  $('lprev').disabled=li===0;
+  $('lnext').textContent=li===LAMINAS.length-1?'Ir al juego 🎮':'Siguiente ▶';
+}
+$('lnext').onclick=()=>{if(li<LAMINAS.length-1){li++;renderLamina();}else{flushItem();iniciarJuego();}};
+$('lprev').onclick=()=>{if(li>0){li--;renderLamina();}};
+
+/* JUEGO */
+let ji=0,jsc=0,jlock=false;
+$('jtot').textContent=JUEGO.length;
+function iniciarJuego(){mostrar('juego');faseUI('j');resumen('juego');ji=0;jsc=0;$('jsc').textContent=0;renderJuego();}
+function renderJuego(){
+  flushItem();startItem('Juego','Ronda '+(ji+1));
+  jlock=false;
+  const r=JUEGO[ji];
+  $('jnum').textContent=ji+1;$('jprog').style.width=(ji/JUEGO.length*100)+'%';
+  $('jviz').innerHTML=r.sh;$('jfb').textContent='';$('jfb').className='fb';$('jnext').classList.remove('show');
+  const o=$('jopts');o.innerHTML='';
+  r.o.forEach((op,idx)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=opTxt(op);b.onclick=()=>respJuego(idx,b);o.appendChild(b);});
+}
+function respJuego(idx,btn){
+  if(jlock)return;jlock=true;
+  const r=JUEGO[ji],ok=idx===r.a;
+  [...document.querySelectorAll('#jopts .opt')].forEach((b,k)=>{b.disabled=true;if(k===r.a)b.classList.add('ok');});
+  if(ok){jsc++;$('jsc').textContent=jsc;$('jfb').textContent='¡Correcto! ✔';$('jfb').className='fb ok';}
+  else{btn.classList.add('no');$('jfb').textContent='¡Casi!';$('jfb').className='fb no';}
+  flushItem(ok?1:0);
+  $('jnext').classList.add('show');
+}
+$('jnext').onclick=()=>{ji++;if(ji>=JUEGO.length){flushItem();iniciarQuiz();}else renderJuego();};
+
+/* QUIZ */
+let qi=0,qsc=0,qlock=false,QQ=[];
+$('qtot').textContent=QUIZ.length;
+function iniciarQuiz(){mostrar('quiz');faseUI('q');resumen('quiz',0,0,QUIZ.length);QQ=QUIZ.slice();qi=0;qsc=0;$('qsc').textContent=0;renderQuiz();}
+function renderQuiz(){
+  flushItem();startItem('Quiz','Pregunta '+(qi+1));
+  qlock=false;
+  const it=QQ[qi];
+  $('qnum').textContent=qi+1;$('qprog').style.width=(qi/QQ.length*100)+'%';
+  $('qexpr').innerHTML=it.t;$('qfb').textContent='';$('qfb').className='fb';$('qnext').classList.remove('show');
+  $('qnext').textContent=qi===QQ.length-1?'Ver resultado ▶':'Siguiente ▶';
+  const o=$('qopts');o.innerHTML='';
+  it.o.forEach((op,idx)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=opTxt(op);b.onclick=()=>respQuiz(idx,b);o.appendChild(b);});
+}
+function respQuiz(idx,btn){
+  if(qlock)return;qlock=true;
+  const it=QQ[qi],ok=idx===it.a;
+  [...document.querySelectorAll('#qopts .opt')].forEach((b,k)=>{b.disabled=true;if(k===it.a)b.classList.add('ok');});
+  if(ok){qsc++;$('qsc').textContent=qsc;$('qfb').textContent='¡Correcto! ✔';$('qfb').className='fb ok';}
+  else{btn.classList.add('no');$('qfb').textContent='La correcta está en verde';$('qfb').className='fb no';}
+  flushItem(ok?1:0);
+  resumen('quiz',qi+1,qsc,QQ.length);
+  $('qnext').classList.add('show');
+}
+$('qnext').onclick=()=>{qi++;if(qi>=QQ.length){flushItem();finalizar();}else renderQuiz();};
+
+/* FIN */
+function finalizar(){
+  mostrar('fin');faseUI('fin');
+  resumen('terminado',QUIZ.length,qsc,QUIZ.length);
+  $('fScore').textContent=qsc;
+  $('fResumen').innerHTML='Terminaste las <b>'+LAMINAS.length+' láminas</b>, el juego (<b>'+jsc+'/'+JUEGO.length+'</b>) y el quiz.';
+  let e='💪',m='';const p=qsc/QUIZ.length;
+  if(p>=.9){e='🏆';m='¡Dominaste las fracciones!';}
+  else if(p>=.7){e='🎉';m='¡Muy bien! Vas por excelente camino.';}
+  else if(p>=.5){e='👍';m='Buen trabajo. Repasa las láminas y repite.';}
+  else{e='🔁';m='Repasa las láminas con calma y vuelve a intentar.';}
+  $('fEmoji').textContent=e;$('fMsg').textContent=m;
+}
+// guardar lo que quede pendiente si cierran la página
+window.addEventListener('pagehide',()=>flushItem());
+</script>
+</body>
+</html>

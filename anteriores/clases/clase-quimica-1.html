@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131F24">
+<title>¿Qué es la Química?</title>
+<meta name="description" content="Clase de introducción a la Química: definición, historia, ramas, materia, energía y propiedades.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232BAE66'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fff'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(60 32 32)'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(-60 32 32)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --stage:#0E181C; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#2BAE66; --green-d:#1E8A4F; --coral:#E8503A; --gold:#FFC800; --blue:#1CB0F6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.stage{position:fixed;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:5vh 4vw 90px;overflow-y:auto}
+.stage>.slide{margin:auto 0}
+
+/* ---------- PORTADA ---------- */
+#setup{position:fixed;inset:0;background:var(--stage);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;z-index:60;text-align:center}
+#setup .logo{width:96px;height:96px;border-radius:26px;background:var(--green);display:flex;align-items:center;
+  justify-content:center;margin-bottom:18px;box-shadow:0 8px 0 var(--green-d)}
+#setup h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;margin-bottom:6px}
+#setup p{color:var(--muted);font-weight:700;margin-bottom:22px}
+.btn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s}
+.btn:active{transform:translateY(2px)}
+.btn.primary{background:var(--green);color:#fff;font-size:1.25rem;padding:16px 38px;box-shadow:0 5px 0 var(--green-d)}
+
+/* ---------- SLIDES ---------- */
+.slide{width:100%;max-width:1100px;text-align:center;display:none;animation:in .45s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.kicker{font-weight:900;letter-spacing:.15em;font-size:clamp(.75rem,1.6vw,1rem);color:var(--green);margin-bottom:10px}
+.title{font-weight:900;font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin-bottom:18px}
+.lead{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.7rem);color:var(--muted);margin-bottom:20px}
+.lead b{color:var(--ink)}
+.expr{font-weight:900;font-size:clamp(2.2rem,7vw,5rem);letter-spacing:.02em;margin:10px 0}
+.expr.sm{font-size:clamp(1.5rem,4.4vw,3rem)}
+.hi{color:var(--gold)}
+.big{color:var(--green)}
+.chipRow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 20px;
+  font-weight:900;font-size:clamp(1rem,2.2vw,1.5rem)}
+.chip.g{border-color:var(--green);color:var(--green)}
+.chip.y{border-color:var(--gold);color:var(--gold)}
+.chip.r{border-color:var(--coral);color:var(--coral)}
+.chip.b{border-color:var(--blue);color:var(--blue)}
+.link{font-size:clamp(.85rem,2vw,1.2rem);word-break:break-all}
+
+/* notación de núcleo  ᴬ_Z X */
+.nuc{display:inline-flex;align-items:center;white-space:nowrap}
+.za{display:inline-flex;flex-direction:column;font-size:.42em;line-height:1.05;text-align:right;margin-right:.06em}
+.za .a{color:var(--blue)} .za .z{color:var(--gold)}
+.chg{font-size:.45em;align-self:flex-start;margin-left:.04em;color:var(--coral)}
+
+/* pasos revelables */
+.step{opacity:0;transform:translateY(14px) scale(.96);transition:all .4s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;height:0;overflow:hidden}
+.step.show{opacity:1;transform:none;pointer-events:auto;height:auto;overflow:visible}
+.stepline{display:flex;align-items:center;gap:16px;justify-content:center;margin:10px 0}
+.stepnum{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;
+  font-weight:900;font-size:1.4rem;display:flex;align-items:center;justify-content:center}
+.stepnum.y{background:var(--gold);color:#131F24}
+.stepcalc{font-weight:900;font-size:clamp(1.3rem,3.4vw,2.3rem)}
+.stepwhy{color:var(--muted);font-weight:800;font-size:clamp(.9rem,1.8vw,1.15rem)}
+
+.ladder{display:grid;gap:12px;max-width:780px;margin:10px auto 0}
+.rung{display:flex;align-items:center;gap:18px;background:var(--card);border:2px solid var(--line);
+  border-radius:16px;padding:14px 22px;text-align:left}
+.rung .n{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.3rem;color:#fff;flex:0 0 auto}
+.rung .t{font-weight:900;font-size:clamp(1.05rem,2.3vw,1.5rem)}
+.rung .s{color:var(--muted);font-weight:800;font-size:clamp(.85rem,1.7vw,1.05rem)}
+.hint{color:var(--muted);font-weight:800;margin-top:16px;font-size:clamp(.9rem,1.8vw,1.15rem)}
+.hint b{color:var(--gold)}
+
+/* tarjetas de partículas */
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:860px;margin:10px auto}
+.part{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px 10px}
+.part .ico{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.8rem;color:#131F24}
+.part .nm{font-weight:900;font-size:clamp(1.05rem,2.4vw,1.5rem)}
+.part .ds{color:var(--muted);font-weight:800;font-size:clamp(.8rem,1.6vw,1rem);margin-top:4px}
+
+/* fórmulas Z / A */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:760px;margin:16px auto 0}
+.rule{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px;font-weight:900;
+  font-size:clamp(1.05rem,2.4vw,1.55rem)}
+.rule small{display:block;color:var(--muted);font-size:.6em;margin-top:2px}
+
+/* subniveles */
+.subs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:760px;margin:12px auto}
+.sub{border-radius:18px;padding:16px 8px;border:3px solid;background:var(--card)}
+.sub .l{font-weight:900;font-size:clamp(2rem,5vw,3.2rem);line-height:1}
+.sub .c{font-weight:900;font-size:clamp(.95rem,2vw,1.25rem);margin-top:6px;color:var(--ink)}
+
+.moeller{width:min(440px,72vw,58vh);height:auto;display:block;margin:0 auto}
+.orden{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:900px;margin:10px auto 0;
+  font-weight:900;font-size:clamp(.95rem,2vw,1.25rem)}
+.orden span{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:5px 9px}
+.orden .s{color:var(--green);border-color:var(--green)} .orden .p{color:var(--gold);border-color:var(--gold)}
+.orden .d{color:var(--blue);border-color:var(--blue)} .orden .f{color:var(--coral);border-color:var(--coral)}
+.mrow{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+
+/* ramas */
+.ramas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:900px;margin:10px auto}
+.rama{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 10px}
+.rama .ri{font-size:clamp(1.6rem,3.6vw,2.4rem)}
+.rama .rn{font-weight:900;font-size:clamp(1.05rem,2.4vw,1.5rem)}
+.rama .rd{color:var(--muted);font-weight:800;font-size:clamp(.8rem,1.6vw,1rem);margin-top:2px}
+@media (max-width:640px){.ramas{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
+
+/* ---------- LÁMINAS CON TEXTO ---------- */
+.title.tt{font-size:clamp(1.7rem,4.6vw,3.1rem);margin-bottom:14px}
+.txt{max-width:920px;margin:0 auto;text-align:left}
+.txt p{font-weight:700;font-size:clamp(1.02rem,2.15vw,1.42rem);line-height:1.5;color:#D5E2DB;margin:0 0 12px}
+.txt p b{color:var(--ink);font-weight:900}
+.c-y{color:var(--gold)!important} .c-b{color:var(--blue)!important} .c-g{color:var(--green)!important}
+.key{background:rgba(255,200,0,.1);border:2px solid var(--gold);border-radius:14px;padding:12px 16px;
+  font-weight:800;font-size:clamp(.98rem,2vw,1.3rem);margin-top:6px}
+.box{background:var(--card);border:2px solid var(--green);border-radius:16px;padding:14px 18px;margin-top:10px;
+  font-weight:700;font-size:clamp(1rem,2.1vw,1.38rem);line-height:1.45}
+.box .bl{font-weight:900;letter-spacing:.14em;font-size:.68em;color:var(--green);margin-bottom:4px}
+.quote{font-weight:900;font-size:clamp(1.4rem,4vw,2.6rem);line-height:1.25;max-width:960px;margin:6px auto 18px;
+  background:var(--card);border-left:6px solid var(--gold);border-radius:14px;padding:18px 22px;text-align:left}
+.tab{margin:12px auto 0;border-collapse:separate;border-spacing:0;font-weight:900;font-size:clamp(1rem,2.3vw,1.5rem);
+  background:var(--card);border:2px solid var(--line);border-radius:16px;overflow:hidden}
+.tab.step{display:none}.tab.step.show{display:table}
+.tab th{color:var(--green);padding:10px 26px;border-bottom:2px solid var(--line);font-size:.8em;letter-spacing:.06em}
+.tab td{padding:10px 26px;border-bottom:1px solid var(--line)}
+.tab tr:last-child td{border-bottom:none}
+.ladder.tight{gap:8px}.ladder.tight .rung{padding:9px 20px}
+
+/* ---------- CONTROLES ---------- */
+.controls{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:14px 18px;z-index:40}
+.cbtn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s;
+  background:var(--card);color:var(--ink);border:2px solid var(--line);padding:14px 20px;font-size:1.05rem}
+.cbtn:active{transform:translateY(2px)}
+.cbtn.big{background:var(--green);color:#fff;border-color:var(--green-d);padding:16px 34px;font-size:1.2rem;box-shadow:0 4px 0 var(--green-d)}
+.cbtn:disabled{opacity:.35;cursor:default}
+.dots{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:40;
+  max-width:90vw;flex-wrap:wrap;justify-content:center;row-gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:all .3s}
+.dot.on{background:var(--green);width:22px;border-radius:6px}
+.hidden{display:none!important}
+@media (max-width:640px){
+  .dots{top:auto;bottom:82px}
+  .cbtn{padding:12px 16px;font-size:.98rem}
+  .cbtn.big{padding:14px 24px;font-size:1.08rem}
+  .controls{padding:12px}
+  .parts{grid-template-columns:1fr;gap:8px}
+  .part{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 14px}
+  .part .ico{margin:0;width:48px;height:48px;font-size:1.4rem;flex:0 0 auto}
+  .rules{grid-template-columns:1fr}
+  .subs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div id="setup">
+  <div class="logo"><svg width="60" height="60" viewBox="0 0 64 64"><circle cx="32" cy="32" r="6" fill="#fff"/><g fill="none" stroke="#fff" stroke-width="3"><ellipse cx="32" cy="32" rx="24" ry="9"/><ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(60 32 32)"/><ellipse cx="32" cy="32" rx="24" ry="9" transform="rotate(-60 32 32)"/></g></svg></div>
+  <h1>¿Qué es la Química?</h1>
+  <p>La ciencia que está en todo lo que tocas, comes y respiras</p>
+  <button class="btn primary" id="start">Empezar clase →</button>
+</div>
+
+<div class="dots" id="dots"></div>
+<div class="stage" id="stage"><!-- slides inyectadas --></div>
+<div class="controls hidden" id="controls">
+  <button class="cbtn" id="prev">◀ Atrás</button>
+  <button class="cbtn big" id="next">Avanzar ▶</button>
+</div>
+
+<script>
+const BASE='iisavar.github.io/simulador-admision/clases/';
+// ID del Apps Script de los quizzes (quizzes-clases-apps-script.gs). No se escribe aquí porque el repo es público:
+// abre esta presentación con ?api=ID (o desde un dispositivo que ya abrió un quiz con ?api=) y el link de la lámina lo incluye.
+// Sin ID, el quiz funciona pero no registra nada.
+const API_QUIZ=(()=>{const ok=p=>/^[\w-]{20,}$/.test(p||'')?p:'';try{return ok(new URLSearchParams(location.search).get('api'))||ok(localStorage.getItem('quizApi'));}catch(e){return '';}})();
+if(!API_QUIZ)console.warn('Sin ?api=ID en el link de la presentación: el quiz de la lámina no registrará resultados.');
+
+/* ============ AYUDANTES ============ */
+// Núcleo: NUC('23','11','Na','+')
+const NUC=(A,Z,X,c)=>`<span class="nuc"><span class="za"><span class="a">${A}</span><span class="z">${Z}</span></span>${X}${c?`<span class="chg">${c}</span>`:''}</span>`;
+
+// Ejercicio: pregunta primero, luego respuesta y micro-pasos.
+function ej(o){
+  let h=`<div class="kicker">${o.kicker}</div>`;
+  if(o.title)h+=`<div class="title">${o.title}</div>`;
+  h+=`<div class="expr${o.sm?' sm':''}">${o.expr}</div>`;
+  h+=`<div class="lead step">🤔 ${o.q} <span style="opacity:.7;font-size:.75em">· 💬 al chat</span></div>`;
+  if(o.ans)h+=`<div class="chipRow step"><span class="chip g" style="font-size:1.1em">${o.ans}</span></div>`;
+  (o.steps||[]).forEach((p,i,a)=>{
+    const last=i===a.length-1;
+    h+=`<div class="stepline step"><div class="stepnum${last?' y':''}">${i+1}</div><div><div class="stepcalc${last?' big':''}">${p.c}</div>`+
+       (p.w?`<div class="stepwhy">${p.w}</div>`:``)+`</div></div>`;
+  });
+  return {html:h};
+}
+
+// Lámina "abran el quiz"
+function actividad(k,t,file,n,min){
+  return {html:`
+  <div class="kicker">${k}</div>
+  <div class="title">${t}</div>
+  <div class="chipRow"><span class="chip g">📱 ${n} preguntas</span><span class="chip y">⏳ ${min} min</span></div>
+  <div class="chipRow"><span class="chip b link" style="word-break:break-all">${BASE}${file}${API_QUIZ?'?api='+API_QUIZ:''}</span></div>
+  <div class="hint step">Al terminar, escriban su <b>nota en el chat</b> 👇</div>`};
+}
+
+// Diagrama de Moeller (SVG): cuadrícula n × subnivel con flechas diagonales
+function moeller(){
+  const L=['s','p','d','f'], COL=['#2BAE66','#FFC800','#1CB0F6','#E8503A'];
+  const rows=[1,2,3,4,4,3,2]; // subniveles por nivel n=1..7
+  const has=(n,l)=>n>=1&&n<=7&&l<rows[n-1];
+  const X=l=>52+l*96, Y=n=>34+(n-1)*58;
+  let lines='',cells='';
+  for(let s=1;s<=8;s++){
+    const pts=[];for(let l=3;l>=0;l--){const n=s-l;if(has(n,l))pts.push([l,n]);}
+    if(!pts.length)continue;
+    const a=pts[0],b=pts[pts.length-1],dx=-96,dy=58;
+    const x1=X(a[0])-dx*.42,y1=Y(a[1])-dy*.42,x2=X(b[0])+dx*.42,y2=Y(b[1])+dy*.42;
+    lines+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#9BB0A5" stroke-width="3" stroke-linecap="round" marker-end="url(#ar)" opacity=".75"/>`;
+  }
+  for(let n=1;n<=7;n++)for(let l=0;l<rows[n-1];l++){
+    cells+=`<rect x="${X(l)-30}" y="${Y(n)-19}" width="60" height="38" rx="10" fill="#1E2C33" stroke="${COL[l]}" stroke-width="2.5"/>`+
+      `<text x="${X(l)}" y="${Y(n)+8}" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="22" fill="${COL[l]}">${n}${L[l]}</text>`;
+  }
+  return `<svg class="moeller" viewBox="0 0 400 440" role="img" aria-label="Diagrama de Moeller">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9BB0A5"/></marker></defs>
+    ${lines}${cells}</svg>`;
+}
+const ORDEN=['1s','2s','2p','3s','3p','4s','3d','4p','5s','4d','5p','6s','4f','5d','6p','7s','5f','6d','7p'];
+const ordenHTML=()=>`<div class="orden">${ORDEN.map(o=>`<span class="${o.slice(-1)}">${o}</span>`).join('')}</div>`;
+
+/* ============ LÁMINAS ============ */
+// Lámina de texto: título + párrafos que se revelan + caja de ejemplo opcional
+function tx(o){
+  let h=`<div class="kicker">${o.kicker}</div><div class="title tt">${o.title}</div><div class="txt">`;
+  (o.p||[]).forEach((p,i)=>{h+=`<p class="${i===0?'':'step'}">${p}</p>`;});
+  if(o.key)h+=`<div class="key step">🔑 ${o.key}</div>`;
+  if(o.ex)h+=`<div class="box step"><div class="bl">📌 EJEMPLO</div>${o.ex}</div>`;
+  return {html:h+`</div>`};
+}
+
+const SLIDES=[
+// 1 portada
+{html:`
+  <div class="kicker">QUÍMICA · INGRESO</div>
+  <div class="title">¿Qué es la Química? 🧪</div>
+  <div class="lead">La ciencia que está en todo lo que tocas, comes y respiras</div>
+  <div class="chipRow">
+    <span class="chip g">Definición</span><span class="chip y">Historia</span><span class="chip b">Ramas</span><span class="chip r">Materia y energía</span>
+  </div>
+  <div class="hint">Toca <b>Avanzar ▶</b> para empezar</div>`},
+// 2 gancho
+tx({kicker:'PARA ARRANCAR ☕',title:'¿Hoy hicieron química?',
+  p:['💬 Escriban en el chat <b>tres cosas que hicieron hoy</b> desde que se levantaron.',
+     '🍳 Si cocinaron un huevo, la clara pasó de transparente a blanca: eso es un <b>cambio químico</b>. 🪥 La pasta dental tiene flúor, que reacciona con el esmalte de sus dientes para protegerlo.',
+     '📱 La batería del celular funciona gracias a una <b>reacción química</b> que produce electricidad. 🫁 Y respirar: sus células usan el oxígeno para "quemar" la glucosa y obtener energía.',
+     'Conclusión: aunque nunca hayan pisado un laboratorio, <b>viven haciendo química todo el día</b>.']}),
+// 3 definición
+tx({kicker:'LA DEFINICIÓN',title:'Entonces, ¿qué es la química?',
+  p:['La <b>química</b> es la ciencia que estudia la <b>materia</b>: su <b>composición</b> (de qué está hecha), su <b>estructura</b> (cómo está organizada), sus <b>propiedades</b> (cómo es) y los <b>cambios</b> que experimenta.',
+     'También estudia la <b>energía</b> que se libera o se absorbe en esos cambios. Por ejemplo, cuando se quema gas en la cocina se libera calor.',
+     'Y como vimos en la clase del método científico, es una <b>ciencia experimental</b>: todo lo que afirma se puede comprobar en el laboratorio.'],
+  key:'Química = la ciencia de la <b>materia</b>, sus <b>cambios</b> y la <b>energía</b> de esos cambios.'}),
+// 4 salud
+tx({kicker:'¿Y PARA QUÉ ME SIRVE?',title:'Química en la salud 🩺',
+  p:['Si van a estudiar una carrera de salud, la química los va a acompañar siempre. Algunos ejemplos:',
+     '💊 <b>Medicamentos:</b> un analgésico funciona porque sus moléculas reaccionan con sustancias de tu cuerpo que producen el dolor. Saber la <b>dosis</b> correcta también es química (y matemática).',
+     '🩸 <b>Exámenes de laboratorio:</b> cuando miden la glucosa, el colesterol o el hierro en la sangre, están haciendo química analítica.',
+     '🍎 <b>Digestión y metabolismo:</b> todo lo que comes se transforma en tu cuerpo mediante miles de reacciones químicas.'],
+  key:'Enfermería, Medicina, Nutrición, Laboratorio clínico, Odontología… <b>todas usan química</b>.'}),
+// 5 historia: alquimia
+tx({kicker:'UN POCO DE HISTORIA',title:'Antes de la química: la alquimia 🧙',
+  p:['Hace siglos existían los <b>alquimistas</b>. Buscaban convertir metales comunes (como el plomo) en <b>oro</b>, y encontrar la <b>"piedra filosofal"</b> y el <b>"elixir de la vida eterna"</b>.',
+     'Nunca lo lograron, pero sí inventaron instrumentos de laboratorio y descubrieron sustancias nuevas.',
+     'El problema: <b>no medían ni comprobaban</b> sus ideas con orden. Por eso la alquimia <b>no era ciencia</b>.']}),
+// 6 Lavoisier
+tx({kicker:'EL NACIMIENTO DE LA QUÍMICA',title:'Lavoisier: padre de la química moderna ⚖️',
+  p:['En el siglo XVIII, el francés <b>Antoine Lavoisier</b> hizo algo que parecía simple: <b>pesó todo</b>, antes y después de cada reacción, en recipientes cerrados.',
+     'Descubrió que la masa total <b>no cambia</b>. De ahí su famosa ley: <b>"la materia no se crea ni se destruye, solo se transforma"</b> (ley de conservación de la masa).',
+     'Gracias a él, la química pasó de ser magia a ser una <b>ciencia de medición</b>.'],
+  ex:'Si quemas un papel, parece que "desaparece". Pero si atrapas y pesas la ceniza, el humo y los gases, la masa total es <b>la misma</b>.'}),
+// 7 Mendeléyev
+tx({kicker:'OTRO GRANDE',title:'Mendeléyev y la tabla periódica 📋',
+  p:['En <b>1869</b>, el ruso <b>Dmitri Mendeléyev</b> ordenó los elementos conocidos según sus propiedades y su masa.',
+     'Lo increíble: dejó <b>espacios vacíos</b> para elementos que todavía no se conocían, ¡y predijo cómo serían! Años después los descubrieron y tenían justo esas propiedades.',
+     'Hoy la tabla tiene <b>118 elementos</b> y es la herramienta más usada en química.'],
+  key:'Lavoisier = <b>padre de la química moderna</b> · Mendeléyev = <b>tabla periódica</b>'}),
+// 8 ramas (tarjetas)
+{html:`
+  <div class="kicker">LAS RAMAS DE LA QUÍMICA</div>
+  <div class="title tt">Una ciencia, varias especialidades</div>
+  <div class="txt"><p>La química es tan grande que se divide en ramas, según lo que estudia:</p></div>
+  <div class="ramas">
+    <div class="rama step"><div class="ri">🌿</div><div class="rn" style="color:#2BAE66">Orgánica</div><div class="rd">compuestos del carbono</div></div>
+    <div class="rama step"><div class="ri">🪨</div><div class="rn" style="color:#FFC800">Inorgánica</div><div class="rd">minerales, sales, metales</div></div>
+    <div class="rama step"><div class="ri">🧬</div><div class="rn" style="color:#E8503A">Bioquímica</div><div class="rd">la química de los seres vivos</div></div>
+    <div class="rama step"><div class="ri">🔎</div><div class="rn" style="color:#1CB0F6">Analítica</div><div class="rd">qué hay y cuánto hay</div></div>
+    <div class="rama step"><div class="ri">⚡</div><div class="rn" style="color:#C58CF0">Fisicoquímica</div><div class="rd">energía y velocidad de las reacciones</div></div>
+    <div class="rama step"><div class="ri">📘</div><div class="rn" style="color:#9BB0A5">General</div><div class="rd">las bases de todo</div></div>
+  </div>`},
+// 9 orgánica vs inorgánica
+tx({kicker:'LAS RAMAS · 1',title:'Orgánica, inorgánica y bioquímica',
+  p:['🌿 La <b>química orgánica</b> estudia los compuestos del <b>carbono</b>: el petróleo, los plásticos, el azúcar, el alcohol, muchos medicamentos. Se llama así porque antes se creía que solo los seres vivos podían fabricarlos.',
+     '🪨 La <b>química inorgánica</b> estudia casi todo lo demás: los <b>minerales, las sales, los metales, el agua</b>, los ácidos como el del estómago.',
+     '🧬 La <b>bioquímica</b> estudia las reacciones que ocurren <b>dentro de los seres vivos</b>: la digestión, la respiración celular, las proteínas, el ADN.'],
+  key:'Orgánica = <b>carbono</b> · Bioquímica = <b>vida</b>'}),
+// 10 analítica y fisicoquímica
+tx({kicker:'LAS RAMAS · 2',title:'Analítica y fisicoquímica',
+  p:['🔎 La <b>química analítica</b> identifica y mide las sustancias. Tiene dos tipos:',
+     '• <b>Cualitativa:</b> responde <b>¿QUÉ hay?</b> → "Esta agua contiene plomo".<br>• <b>Cuantitativa:</b> responde <b>¿CUÁNTO hay?</b> → "Esta agua contiene 5 mg de plomo por litro".',
+     '⚡ La <b>fisicoquímica</b> une la física con la química: estudia la <b>energía</b> de las reacciones y su <b>velocidad</b> (por ejemplo, por qué la comida se daña más rápido con el calor).'],
+  key:'Truco: cuanti<b>tativa</b> = <b>cantidad</b> → números'}),
+// 11-14 ¿qué rama?
+ej({kicker:'¿QUÉ RAMA ES?',expr:'🩸 Medir la glucosa en la sangre',sm:true,q:'¿Qué rama estudia esto?',ans:'Bioquímica (y analítica)',
+  steps:[{c:'Ser vivo + química',w:'la glucosa es parte de tu cuerpo'}]}),
+ej({kicker:'¿QUÉ RAMA ES?',expr:'⛽ Estudiar el petróleo y los plásticos',sm:true,q:'¿Qué rama?',ans:'Orgánica',
+  steps:[{c:'Están hechos de carbono',w:'carbono = orgánica'}]}),
+ej({kicker:'¿QUÉ RAMA ES?',expr:'🧂 Estudiar la sal y los metales',sm:true,q:'¿Qué rama?',ans:'Inorgánica',
+  steps:[{c:'Minerales, sales, metales',w:'casi todo lo que no es del carbono'}]}),
+ej({kicker:'¿QUÉ RAMA ES?',expr:'💧 ¿Cuánto cloro tiene esta agua?',sm:true,q:'¿Qué rama… y de qué tipo?',ans:'Analítica cuantitativa',
+  steps:[{c:'"¿Cuánto?" = cantidad',w:'cuantitativa'}]}),
+// 15 materia y energía
+tx({kicker:'LO QUE ESTUDIA',title:'Materia y energía',
+  p:['🧱 <b>Materia</b> es todo lo que tiene <b>masa</b> y <b>ocupa un lugar en el espacio</b> (tiene volumen). Tu cuerpo, el agua, el aire, una piedra: todo es materia.',
+     '⚡ <b>Energía</b> es la <b>capacidad de producir un trabajo o un cambio</b>. Puede ser calor, luz, electricidad, movimiento…',
+     '💬 Pregunta para el chat: <b>¿el aire es materia?</b> … ¡Sí! Tiene masa y ocupa espacio: por eso un globo se infla. 🎈 En cambio, la luz o el calor <b>no</b> son materia, son energía.']}),
+// 16 propiedades
+tx({kicker:'PROPIEDADES DE LA MATERIA',title:'Generales vs. específicas',
+  p:['Las <b>propiedades generales</b> (o extensivas) las tiene <b>toda la materia</b> y dependen de la cantidad: <b>masa, volumen, peso</b>. Un litro de agua y un litro de aceite tienen volumen, así que eso no sirve para distinguirlos.',
+     'Las <b>propiedades específicas</b> (o intensivas) sirven para <b>identificar</b> una sustancia y no dependen de la cantidad: <b>densidad, color, olor, punto de ebullición, punto de fusión</b>.',
+     'Una gota o un balde de agua pura hierven igual a <b>100 °C</b> (a nivel del mar): esa propiedad identifica al agua.'],
+  key:'Generales = <b>todos las tienen</b> · Específicas = <b>identifican</b>'}),
+// 17 resumen
+{html:`
+  <div class="kicker">LO QUE CAE EN EL EXAMEN 📝</div>
+  <div class="title tt">Llévense esto</div>
+  <div class="ladder" style="max-width:860px">
+    <div class="rung step"><div class="n" style="background:#2BAE66">1</div><div><div class="t">Química = materia, sus cambios y la energía</div><div class="s">Es una ciencia experimental</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Lavoisier = padre de la química moderna</div><div class="s">"Nada se crea ni se destruye, todo se transforma"</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Orgánica = carbono · Bioquímica = seres vivos</div><div class="s">Analítica: cualitativa (qué) · cuantitativa (cuánto)</div></div></div>
+    <div class="rung step"><div class="n" style="background:#E8503A">4</div><div><div class="t">Propiedades específicas = identifican</div><div class="s">densidad, punto de ebullición, color…</div></div></div>
+  </div>`},
+// 18 quiz
+actividad('A PRACTICAR 💪','Quiz de química','quiz-intro-quimica.html',30,20),
+// 19 cierre
+{html:`
+  <div class="kicker">PRÓXIMA CLASE 👀</div>
+  <div class="title">A medir como científicos 📏</div>
+  <div class="lead">Magnitudes, unidades y conversiones: la matemática de la química.</div>
+  <div class="hint step">💬 En el chat: <b>¿qué fue lo que más les gustó hoy?</b></div>`},
+];
+
+/* ============ NAVEGACIÓN ============ */
+let cur=0, step=0;
+const STAGE=document.getElementById('stage');
+function buildDots(){
+  const d=document.getElementById('dots');d.innerHTML='';
+  SLIDES.forEach(()=>{const e=document.createElement('div');e.className='dot';d.appendChild(e);});
+}
+function paintDots(){[...document.getElementById('dots').children].forEach((e,i)=>e.classList.toggle('on',i===cur));}
+function render(revealAll){
+  STAGE.innerHTML='<div class="slide on">'+SLIDES[cur].html+'</div>';
+  const steps=STAGE.querySelectorAll('.step');
+  if(revealAll){steps.forEach(e=>e.classList.add('show'));step=steps.length;}
+  else{step=0;}
+  paintDots();updateBtns();
+}
+function updateBtns(){
+  document.getElementById('prev').disabled=(cur===0 && step===0);
+  const last=cur===SLIDES.length-1;
+  const steps=STAGE.querySelectorAll('.step').length;
+  document.getElementById('next').textContent=(last && step>=steps)?'Fin ✓':'Avanzar ▶';
+}
+function advance(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step<steps.length){steps[step].classList.add('show');step++;updateBtns();return;}
+  if(cur<SLIDES.length-1){cur++;render(false);}
+}
+function back(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step>0){step--;steps[step].classList.remove('show');updateBtns();return;}
+  if(cur>0){cur--;render(true);}
+}
+document.getElementById('start').onclick=()=>{
+  document.getElementById('setup').classList.add('hidden');
+  document.getElementById('controls').classList.remove('hidden');
+  buildDots();cur=0;render(false);
+};
+document.getElementById('next').onclick=advance;
+document.getElementById('prev').onclick=back;
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('setup').classList.contains('hidden'))return;
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();advance();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();back();}
+});
+STAGE.addEventListener('click',advance);
+</script>
+</body>
+</html>

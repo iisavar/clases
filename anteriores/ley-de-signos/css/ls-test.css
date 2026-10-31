@@ -1,0 +1,110 @@
+/* ============ TEST FINAL (ls-test.js) ============ */
+.ts{ gap:14px; }
+.ts-cab{ min-height:48px; }
+.ts-cab-t{ font-weight:800; color:var(--ink-2); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.ts-h1{ font-size:1.625rem; }
+.ts-insignia{
+  display:inline-flex; align-items:center; height:24px; padding:0 10px; border-radius:var(--r-pill);
+  border:2px solid var(--ink); color:var(--ink); background:var(--surface);
+  font-size:.8125rem; font-weight:900; letter-spacing:.06em;
+}
+
+/* intro */
+.ts-calma p + p{ margin-top:6px; }
+.ts-reglas{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+.ts-reglas li{ display:flex; gap:10px; align-items:flex-start; }
+.ts-reglas svg{ width:22px; height:22px; flex-shrink:0; margin-top:2px; color:var(--ink); }
+.ts-correo .ts-correo-v{ font-weight:800; font-size:1.125rem; word-break:break-all; margin:2px 0 4px; }
+.ts-correo .btn-txt{ padding:0; }
+
+/* pregunta */
+.ts-top{ position:sticky; top:0; z-index:5; background:var(--bg); margin:-16px -16px 0; padding:10px 16px 8px; }
+.ts-prog{ font-weight:800; color:var(--ink-2); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.ts-barra{ height:5px; background:var(--line); border-radius:3px; overflow:hidden; margin-top:6px; }
+.ts-barra > i{ display:block; height:100%; background:var(--primary); border-radius:3px; transition:width .3s; }
+.ts-card{ padding:18px 16px; }
+.ts-enun{ font-weight:800; font-size:1.125rem; }
+.ts-expr{ text-align:center; margin:10px 0 6px; }
+.ts-expr .fx{ font-size:2.25rem; line-height:1.3; }
+@media (max-width:360px){ .ts-expr .fx{ font-size:2rem; } }
+.ts-opciones{ gap:12px; }
+.ts-opt{ min-height:56px; gap:12px; }
+.ts-opt .ts-opt-v{ font-size:1.5rem; }
+.ts-opt .ts-opt-v .fx{ font-size:1.375rem; line-height:1.3; }
+.ts-opt .ts-letra{ font-weight:900; color:var(--ink-2); min-width:2em; }
+:root[data-color="off"] .ts .fx .num{ padding:0 .04em; }
+.ts-radio{
+  width:22px; height:22px; border-radius:50%; border:2.5px solid var(--ink-3); flex-shrink:0; position:relative;
+}
+.ts-opt[aria-checked="true"]{ border-color:var(--ink); border-width:3px; background:var(--zero-soft); }
+.ts-opt[aria-checked="true"] .ts-radio{ border-color:var(--ink); }
+.ts-opt[aria-checked="true"] .ts-radio::after{ content:""; position:absolute; inset:3px; border-radius:50%; background:var(--ink); }
+.ts-guardada{ text-align:center; font-size:.9375rem; color:var(--ink-2); min-height:1.4em; }
+.ts-tec .teclado{ margin-top:4px; }
+.ts-nav{
+  position:sticky; bottom:0; z-index:5; background:var(--bg); border-top:2px solid var(--line);
+  margin:0 -16px -16px; padding:10px 16px calc(12px + env(safe-area-inset-bottom));
+  display:grid; grid-template-columns:auto 1fr; gap:10px;
+}
+.ts-nav .btn-sec{ padding:0 14px; }
+
+/* revisión */
+.ts-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+.ts-celda{
+  min-height:52px; border-radius:var(--r-sm); font-weight:900; font-size:1.125rem;
+  background:var(--ink); color:var(--bg); border:2px solid var(--ink);
+}
+.ts-celda.falta{ background:var(--surface); color:var(--ink); border-style:dashed; border-color:var(--ink-3); }
+.ts-faltan{ font-size:1rem; }
+.ts-rev-bot{ gap:10px; }
+
+/* resultados */
+.ts-res .tarjeta{ display:flex; flex-direction:column; gap:10px; }
+.ts-sec-t{ font-size:.875rem; font-weight:900; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-2); }
+.ts-gancho p{ font-size:1.0625rem; }
+.ts-gancho .fx{ font-size:1.1rem; }
+.ts-tema + .ts-tema{ border-top:2px solid var(--line); padding-top:10px; }
+.ts-tema-n{ font-weight:900; }
+.ts-bar{ height:12px; background:var(--line); border-radius:6px; overflow:hidden; margin:6px 0 4px; }
+.ts-bar > i{ display:block; height:100%; background:var(--primary); border-radius:6px; }
+.ts-estado{ display:inline-flex; align-items:center; gap:4px; font-size:.9375rem; font-weight:800; }
+.ts-estado svg{ width:18px; height:18px; color:var(--ok); }
+.ts-estado.dom{ color:var(--ok); }
+.ts-estado.casi{ color:var(--ink); }
+.ts-estado.rep{ color:var(--ink-2); }
+.ts-tema-bot{ flex-wrap:wrap; margin-top:6px; }
+.ts-tema-bot .btn{ min-height:44px; font-size:.9375rem; padding:0 12px; flex:1 1 auto; }
+.ts-nota{ font-size:1.5rem; }
+.ts-nota b{ font-size:2.25rem; font-weight:900; }
+.ts-errs{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+.ts-err{ display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+.ts-err .btn-txt{ padding:0; min-height:40px; }
+.ts-revs{ display:flex; flex-direction:column; gap:8px; }
+.ts-rev{ background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); }
+.ts-rev > summary{
+  list-style:none; cursor:pointer; min-height:56px; display:flex; align-items:center; gap:10px; padding:8px 12px;
+}
+.ts-rev > summary::-webkit-details-marker{ display:none; }
+.ts-rev[open] > summary{ border-bottom:2px dashed var(--line); }
+.ts-rev-n{ font-weight:900; min-width:1.6em; color:var(--ink-2); }
+.ts-rev-e{ flex:1; min-width:0; font-weight:800; }
+.ts-rev-e .fx{ font-size:1.25rem; }
+.ts-marca{ display:inline-flex; align-items:center; flex-shrink:0; }
+.ts-marca svg{ width:24px; height:24px; }
+.ts-marca.ok svg{ color:var(--ok); }
+.ts-marca.miss svg{ color:var(--ink); }
+.ts-marca.sr{ font-size:.8125rem; font-weight:800; color:var(--ink-3); }
+.ts-rev-c{ padding:10px 12px 14px; display:flex; flex-direction:column; gap:8px; font-size:1.0625rem; }
+.ts-rev-c .fx{ font-size:1.1rem; }
+.ts-casi{ display:flex; gap:8px; align-items:flex-start; background:var(--miss-soft); border-top:3px solid var(--miss); border-radius:var(--r-sm); padding:8px 10px; }
+.ts-casi > svg{ width:20px; height:20px; flex-shrink:0; margin-top:3px; color:var(--ink); }
+.ts-exp{ display:flex; flex-direction:column; align-items:flex-start; gap:6px; background:var(--zero-soft); border-radius:var(--r-sm); padding:10px; }
+.ts-q15{ list-style:none; display:flex; flex-direction:column; gap:4px; }
+.ts-ico-ok{ width:20px; height:20px; color:var(--ok); vertical-align:middle; }
+.ts-envio .ts-pill{ margin:0; }
+.ts-envio .estado-envio{ line-height:1.3; }
+.ts-envio .estado-envio svg{ width:18px; height:18px; flex-shrink:0; }
+.ts-envio-bot{ flex-wrap:wrap; }
+.ts-envio-bot .btn{ min-height:48px; flex:1 1 auto; font-size:1rem; }
+.ts-fin{ gap:10px; padding-bottom:calc(8px + env(safe-area-inset-bottom)); }
+.ts-fin .btn svg{ width:22px; height:22px; }

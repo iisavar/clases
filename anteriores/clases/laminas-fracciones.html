@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131F24">
+<title>Láminas: Fracciones</title>
+<meta name="description" content="Aprende fracciones paso a paso con dibujos: qué son, equivalentes, simplificar y operar.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2358CC02'/%3E%3Ctext x='32' y='30' text-anchor='middle' font-family='Arial' font-weight='900' font-size='26' fill='%23fff'%3E1%3C/text%3E%3Crect x='20' y='34' width='24' height='4' fill='%23fff'/%3E%3Ctext x='32' y='58' text-anchor='middle' font-family='Arial' font-weight='900' font-size='26' fill='%23fff'%3E2%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --stage:#0E181C; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#58CC02; --green-d:#3F9A00; --coral:#E8503A; --gold:#FFC800; --blue:#1CB0F6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:4vh 4vw 90px}
+.slide{width:100%;max-width:960px;text-align:center;display:none;animation:in .4s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.kicker{font-weight:900;letter-spacing:.14em;font-size:clamp(.72rem,1.6vw,1rem);color:var(--green);margin-bottom:8px}
+.title{font-weight:900;font-size:clamp(1.7rem,5.2vw,3.2rem);line-height:1.08;margin-bottom:14px}
+.lead{font-weight:800;font-size:clamp(1.05rem,2.4vw,1.5rem);color:var(--muted);margin:10px auto 6px;max-width:760px;line-height:1.4}
+.lead b{color:var(--ink)}
+.viz{display:flex;gap:22px;align-items:center;justify-content:center;flex-wrap:wrap;margin:18px 0}
+.vcap{color:var(--muted);font-weight:800;font-size:clamp(.85rem,1.8vw,1.1rem);margin-top:6px}
+.big{color:var(--green)}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1;margin:0 5px;font-weight:900}
+.frac .n{border-bottom:3px solid currentColor;padding:0 8px 4px}
+.frac .d{padding:4px 8px 0}
+.expr{font-weight:900;font-size:clamp(1.8rem,5vw,3.2rem);margin:8px 0;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px}
+.expr .hi{color:var(--gold)}
+.chipRow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 18px;font-weight:900;font-size:clamp(.95rem,2vw,1.3rem)}
+.chip.g{border-color:var(--green);color:var(--green)} .chip.y{border-color:var(--gold);color:var(--gold)}
+.chip.r{border-color:var(--coral);color:var(--coral)} .chip.b{border-color:var(--blue);color:var(--blue)}
+.step{opacity:0;transform:translateY(12px);transition:all .38s cubic-bezier(.2,.8,.2,1);pointer-events:none;height:0;overflow:hidden}
+.step.show{opacity:1;transform:none;pointer-events:auto;height:auto;overflow:visible}
+.stepline{display:flex;align-items:center;gap:14px;justify-content:center;margin:10px 0}
+.stepnum{flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:var(--green);color:#fff;font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
+.stepnum.y{background:var(--gold);color:#131F24}
+.stepcalc{font-weight:900;font-size:clamp(1.2rem,3vw,2rem)}
+.stepwhy{color:var(--muted);font-weight:800;font-size:clamp(.85rem,1.7vw,1.1rem)}
+.hint{color:var(--muted);font-weight:800;margin-top:14px;font-size:clamp(.9rem,1.8vw,1.15rem)}
+.hint b{color:var(--gold)}
+.controls{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;z-index:40}
+.cbtn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s;background:var(--card);color:var(--ink);border:2px solid var(--line);padding:14px 20px;font-size:1.05rem}
+.cbtn:active{transform:translateY(2px)}
+.cbtn.big{background:var(--green);color:#fff;border-color:var(--green-d);padding:16px 30px;font-size:1.15rem;box-shadow:0 4px 0 var(--green-d)}
+.cbtn:disabled{opacity:.35;cursor:default}
+.dots{position:fixed;top:12px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:40;max-width:90vw;flex-wrap:wrap;justify-content:center;row-gap:5px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line);transition:all .3s}
+.dot.on{background:var(--green);width:20px;border-radius:6px}
+@media (max-width:640px){.cbtn{padding:12px 15px;font-size:.98rem}.cbtn.big{padding:14px 22px}.dots{top:auto;bottom:80px}}
+</style>
+</head>
+<body>
+<div class="dots" id="dots"></div>
+<div class="stage" id="stage"></div>
+<div class="controls" id="controls">
+  <button class="cbtn" id="prev">◀ Atrás</button>
+  <button class="cbtn big" id="next">Siguiente ▶</button>
+</div>
+
+<script>
+/* ---------- dibujos ---------- */
+function barra(n,k){
+  const W=340,H=52,pw=W/n;let r='';
+  for(let j=0;j<n;j++) r+=`<rect x="${(j*pw).toFixed(1)}" y="0" width="${pw.toFixed(1)}" height="${H}" fill="${j<k?'#58CC02':'#1E2C33'}" stroke="#0E181C" stroke-width="3"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:340px;border-radius:10px;display:block;margin:0 auto">${r}</svg>`;
+}
+function pizza(n,k){
+  const cx=62,cy=62,r=56;let p='';
+  for(let j=0;j<n;j++){
+    const a0=(-90+j*360/n)*Math.PI/180, a1=(-90+(j+1)*360/n)*Math.PI/180;
+    const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const big=(360/n>180)?1:0;
+    p+=`<path d="M${cx} ${cy} L${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 ${big} 1 ${x1.toFixed(1)} ${y1.toFixed(1)} Z" fill="${j<k?'#58CC02':'#1E2C33'}" stroke="#0E181C" stroke-width="3"/>`;
+  }
+  return `<svg viewBox="0 0 124 124" width="118" height="118">${p}</svg>`;
+}
+const fr=(a,b)=>`<span class="frac"><span class="n">${a}</span><span class="d">${b}</span></span>`;
+const viz=(inner,cap)=>`<div><div class="viz">${inner}</div>${cap?`<div class="vcap">${cap}</div>`:''}</div>`;
+
+/* ---------- láminas ---------- */
+const SLIDES=[
+// 1
+{html:`
+  <div class="kicker">MATEMÁTICA · INGRESO</div>
+  <div class="title">Fracciones</div>
+  <div class="lead">Entiende qué son y cómo operarlas, paso a paso y con dibujos.</div>
+  ${viz(pizza(4,1)+pizza(2,1)+pizza(8,3),'')}
+  <div class="hint">Toca <b>Siguiente ▶</b> para empezar</div>`},
+// 2
+{html:`
+  <div class="kicker">LO BÁSICO</div>
+  <div class="title">¿Qué es una fracción?</div>
+  ${viz(pizza(4,1),'Tomamos 1 de 4 partes')}
+  <div class="expr">${fr('1','4')}</div>
+  <div class="lead"><b>Arriba (numerador):</b> las partes que tomas.<br><b>Abajo (denominador):</b> en cuántas partes se divide el entero.</div>`},
+// 3
+{html:`
+  <div class="kicker">CÓMO SE LEEN</div>
+  <div class="title">Leer fracciones</div>
+  ${viz(barra(2,1)+barra(4,3),'')}
+  <div class="chipRow">
+    <span class="chip g">${fr('1','2')} = un medio</span>
+    <span class="chip g">${fr('3','4')} = tres cuartos</span>
+  </div>
+  <div class="lead">El de abajo le da el "apellido": /2 medios, /3 tercios, /4 cuartos, /5 quintos…</div>`},
+// 4
+{html:`
+  <div class="kicker">EL DENOMINADOR MANDA EL TAMAÑO</div>
+  <div class="title">Más partes = trozos más chicos</div>
+  ${viz(barra(2,1)+barra(4,1)+barra(8,1),'')}
+  <div class="chipRow">
+    <span class="chip g">${fr('1','2')}</span><span class="chip y">${fr('1','4')}</span><span class="chip r">${fr('1','8')}</span>
+  </div>
+  <div class="lead">Mientras <b>más grande el denominador</b>, más pequeño es cada trozo.</div>`},
+// 5
+{html:`
+  <div class="kicker">FRACCIONES EQUIVALENTES</div>
+  <div class="title">El mismo pedazo, otro nombre</div>
+  ${viz(barra(2,1)+barra(4,2)+barra(8,4),'')}
+  <div class="expr">${fr('1','2')} = ${fr('2','4')} = ${fr('4','8')}</div>
+  <div class="lead">Aunque se escriben distinto, <b>valen lo mismo</b> (mira las barras: pintan igual).</div>`},
+// 6
+{html:`
+  <div class="kicker">CÓMO CREAR EQUIVALENTES</div>
+  <div class="title">Multiplica arriba y abajo por lo mismo</div>
+  <div class="expr step">${fr('1','2')} <span class="hi">× ${fr('2','2')}</span> = ${fr('2','4')}</div>
+  <div class="expr step">${fr('1','2')} <span class="hi">× ${fr('3','3')}</span> = ${fr('3','6')}</div>
+  <div class="hint step">La clave: multiplicar por ${fr('2','2')} o ${fr('3','3')} es multiplicar por <b>1</b>, no cambia el valor.</div>`},
+// 7
+{html:`
+  <div class="kicker">SIMPLIFICAR</div>
+  <div class="title">Dejar la fracción más simple</div>
+  ${viz(barra(8,6)+barra(4,3),'')}
+  <div class="expr step">${fr('6','8')} <span class="hi">÷ ${fr('2','2')}</span> = ${fr('3','4')}</div>
+  <div class="lead step">Se <b>divide</b> arriba y abajo por el mismo número hasta que ya no se pueda.</div>`},
+// 8
+{html:`
+  <div class="kicker">TIPOS DE FRACCIÓN</div>
+  <div class="title">Propia, impropia y mixta</div>
+  <div class="chipRow">
+    <span class="chip g">${fr('3','4')}<br><span style="font-size:.55em;font-weight:700">propia (menor que 1)</span></span>
+    <span class="chip y">${fr('5','4')}<br><span style="font-size:.55em;font-weight:700">impropia (mayor que 1)</span></span>
+    <span class="chip b">1${fr('1','4')}<br><span style="font-size:.55em;font-weight:700">mixta (entero + fracción)</span></span>
+  </div>
+  <div class="lead">${fr('5','4')} y 1${fr('1','4')} valen lo mismo: 4 cuartos hacen 1 entero, y sobra ${fr('1','4')}.</div>`},
+// 9
+{html:`
+  <div class="kicker">SUMAR Y RESTAR · IGUAL DENOMINADOR</div>
+  <div class="title">El más fácil</div>
+  ${viz(barra(5,1)+barra(5,2)+barra(5,3),'1/5 + 2/5 = 3/5')}
+  <div class="expr">${fr('1','5')} + ${fr('2','5')} = ${fr('3','5')}</div>
+  <div class="lead">Si el denominador es <b>igual</b>: sumas (o restas) solo los de <b>arriba</b>. El de abajo <b>no se toca</b>.</div>`},
+// 10
+{html:`
+  <div class="kicker">SUMAR · DISTINTO DENOMINADOR</div>
+  <div class="title">Primero igualamos abajo</div>
+  <div class="expr">${fr('1','2')} + ${fr('1','4')}</div>
+  <div class="stepline step"><div class="stepnum">1</div><div><div class="stepcalc">${fr('1','2')} = ${fr('2','4')}</div><div class="stepwhy">buscamos denominador común: 4</div></div></div>
+  <div class="stepline step"><div class="stepnum">2</div><div><div class="stepcalc">${fr('2','4')} + ${fr('1','4')}</div><div class="stepwhy">ya son iguales abajo</div></div></div>
+  <div class="stepline step"><div class="stepnum y">3</div><div><div class="stepcalc big">= ${fr('3','4')}</div><div class="stepwhy">sumamos los de arriba</div></div></div>`},
+// 11
+{html:`
+  <div class="kicker">MULTIPLICAR</div>
+  <div class="title">La más sencilla de todas</div>
+  <div class="expr">${fr('2','3')} <span class="hi">×</span> ${fr('1','2')}</div>
+  <div class="stepline step"><div class="stepnum">1</div><div><div class="stepcalc">${fr('2×1','3×2')} = ${fr('2','6')}</div><div class="stepwhy">multiplicas recto: arriba×arriba, abajo×abajo</div></div></div>
+  <div class="stepline step"><div class="stepnum y">2</div><div><div class="stepcalc big">= ${fr('1','3')}</div><div class="stepwhy">simplificamos 2/6</div></div></div>
+  <div class="hint step">Aquí <b>no</b> hace falta denominador común.</div>`},
+// 12
+{html:`
+  <div class="kicker">DIVIDIR</div>
+  <div class="title">Voltea la segunda y multiplica</div>
+  <div class="expr">${fr('1','2')} <span class="hi">÷</span> ${fr('1','4')}</div>
+  <div class="stepline step"><div class="stepnum">1</div><div><div class="stepcalc">${fr('1','2')} × ${fr('4','1')}</div><div class="stepwhy">volteamos la segunda (su recíproco)</div></div></div>
+  <div class="stepline step"><div class="stepnum">2</div><div><div class="stepcalc">${fr('4','2')}</div><div class="stepwhy">multiplicamos recto</div></div></div>
+  <div class="stepline step"><div class="stepnum y">3</div><div><div class="stepcalc big">= 2</div><div class="stepwhy">4 entre 2 = 2</div></div></div>`},
+// 13
+{html:`
+  <div class="kicker">RECUERDA</div>
+  <div class="title">Resumen</div>
+  <div class="chipRow">
+    <span class="chip g">Sumar/restar → mismo denominador, sumo arriba</span>
+    <span class="chip y">Multiplicar → recto</span>
+    <span class="chip b">Dividir → volteo la 2ª y multiplico</span>
+  </div>
+  <div class="lead" style="margin-top:16px">Y siempre que puedas, <b>simplifica</b> el resultado.</div>`},
+// 14
+{html:`
+  <div class="kicker">¡A PROBAR! 💪</div>
+  <div class="title">Mini reto</div>
+  <div class="expr">${fr('1','3')} + ${fr('1','3')} = ?</div>
+  <div class="step"><div class="chip g" style="font-size:1.4em;display:inline-block;margin-top:8px">${fr('2','3')}</div></div>
+  <div class="hint step">Mismo denominador: 1+1 = 2 arriba, el 3 no se toca. ¡Lo dominas! 🎉</div>`},
+];
+
+/* ---------- motor ---------- */
+const STAGE=document.getElementById('stage');
+let cur=0, step=0;
+function buildDots(){const d=document.getElementById('dots');d.innerHTML='';SLIDES.forEach(()=>{const e=document.createElement('div');e.className='dot';d.appendChild(e);});}
+function paintDots(){[...document.getElementById('dots').children].forEach((e,i)=>e.classList.toggle('on',i===cur));}
+function render(revealAll){
+  STAGE.innerHTML='<div class="slide on">'+SLIDES[cur].html+'</div>';
+  const steps=STAGE.querySelectorAll('.step');
+  if(revealAll){steps.forEach(e=>e.classList.add('show'));step=steps.length;}else{step=0;}
+  paintDots();updateBtns();
+}
+function showSlide(i){cur=i;render(false);}
+function updateBtns(){
+  document.getElementById('prev').disabled=(cur===0&&step===0);
+  const last=cur===SLIDES.length-1, steps=STAGE.querySelectorAll('.step').length;
+  document.getElementById('next').textContent=(last&&step>=steps)?'Fin ✓':'Siguiente ▶';
+}
+function advance(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step<steps.length){steps[step].classList.add('show');step++;updateBtns();return;}
+  if(cur<SLIDES.length-1){cur++;render(false);}
+}
+function back(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step>0){step--;steps[step].classList.remove('show');updateBtns();return;}
+  if(cur>0){cur--;render(true);}
+}
+document.getElementById('next').onclick=advance;
+document.getElementById('prev').onclick=back;
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();advance();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();back();}
+});
+STAGE.addEventListener('click',advance);
+buildDots();showSlide(0);
+</script>
+</body>
+</html>

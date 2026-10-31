@@ -1,0 +1,187 @@
+/* ============ JUEGO «LABORATORIO» ============
+   Solo tokens de ls.css. Mismas clases jg-* que el juego de Ley de signos (mapa, barra, escudo, racha, feedback)
+   y piezas propias qmj-* (tarjetas, opciones, p/n/e, constructor, tabla).
+   Convención de química: protón/catión en var(--pos), electrón/anión en var(--neg), neutrón en var(--ink-3). */
+.jg{ gap:12px; padding-bottom:calc(16px + env(safe-area-inset-bottom)); }
+.jg-top{ display:flex; align-items:center; gap:6px; margin:-4px -6px 0; }
+.jg-top-t{ flex:1; min-width:0; display:flex; flex-direction:column; }
+.jg-top-t b{ font-size:1.125rem; line-height:1.2; }
+.jg-top-t span{ font-size:.9375rem; color:var(--ink-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.jg-kicker{ font-size:.9375rem; font-weight:800; color:var(--ink-2); display:flex; align-items:center; gap:6px; }
+.jg-h3{ font-size:1.0625rem; margin-top:14px; }
+.jg-regla{ margin-top:8px; font-weight:700; }
+.jg-acciones{ display:flex; flex-direction:column; gap:10px; margin-top:4px; }
+.jg-etq{ font-size:.9375rem; font-weight:800; color:var(--ink-2); }
+.jg-grande{ font-size:2.5rem; font-weight:900; text-align:center; }
+.jg-rayo{ width:22px; height:22px; fill:var(--prize); stroke:var(--ink); stroke-width:2; }
+
+/* ---------- Marcador y mapa ---------- */
+.jg-marcador{ display:flex; gap:8px; flex-wrap:wrap; }
+.jg-pill{ display:inline-flex; align-items:center; gap:6px; min-height:36px; padding:0 12px; border-radius:var(--r-pill); background:var(--surface); border:2px solid var(--line); font-weight:800; font-size:.9375rem; }
+.jg-pill .estrella{ width:20px; height:20px; }
+.jg-vuelta{ display:flex; flex-direction:column; gap:8px; border-color:var(--ink); }
+.jg-nota-test{ font-weight:700; }
+.jg-camino{ list-style:none; position:relative; display:flex; flex-direction:column; gap:14px; padding:4px 0 8px; }
+.jg-camino::before{ content:""; position:absolute; left:31px; top:36px; bottom:36px; border-left:3px dashed var(--line); }
+.jg-paso{ position:relative; }
+.jg-nodo{ display:flex; align-items:center; gap:14px; width:100%; text-align:left; min-height:72px; padding:4px 8px 4px 0; border-radius:var(--r-md); }
+.jg-nodo:active{ transform:translateY(1px); }
+.jg-circ{ position:relative; z-index:1; flex-shrink:0; width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:var(--surface); border:4px solid var(--ink); font-size:1.5rem; font-weight:900; color:var(--ink); }
+.jg-circ svg{ width:28px; height:28px; }
+.jg-nodo-txt{ flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.jg-nodo-txt b{ font-size:1.125rem; line-height:1.2; }
+.jg-nodo-txt span{ font-size:.9375rem; color:var(--ink-2); }
+.jg-nodo-txt em{ font-style:normal; font-size:.9375rem; font-weight:800; color:var(--ink-2); }
+.jg-nodo-txt .estrellas{ margin-top:2px; }
+.jg-reforzar{ display:inline-block; align-self:flex-start; border:2px dashed var(--miss); border-radius:var(--r-pill); padding:0 10px; color:var(--ink) !important; }
+.est-bloqueado .jg-circ{ background:var(--line); border-color:var(--line); color:var(--ink-3); }
+.est-bloqueado .jg-nodo-txt b{ color:var(--ink-3); }
+.est-superado .jg-circ{ background:var(--primary); border-color:var(--primary-shade); color:#fff; box-shadow:0 4px 0 var(--primary-shade); }
+.est-reforzar .jg-circ{ border-style:dashed; border-color:var(--miss); }
+.jg-paso.actual .jg-circ{ animation:jgPulso .6s ease-out 1; background:var(--primary); border-color:var(--primary-shade); color:#fff; box-shadow:0 5px 0 var(--primary-shade), 0 0 0 6px var(--ok-soft); }
+.est-superado .jg-circ svg{ color:#fff; }
+.jg-paso.actual .jg-nodo-txt b{ text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:4px; }
+@keyframes jgPulso{ 50%{ transform:scale(1.08); } }
+.qmj-jefe .jg-circ{ border-radius:18px; }
+.jg-esp.est-abierto .jg-circ{ background:var(--prize); color:var(--on-prize); }
+.jg-esp.est-abierto .jg-circ svg{ fill:var(--surface); stroke:var(--ink); stroke-width:2; }
+
+/* ---------- Antes de jugar ---------- */
+.jg-antes h2{ margin:2px 0 8px; }
+.jg-criterio{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-top:14px; font-size:1rem; }
+.jg-criterio li{ display:flex; gap:10px; align-items:flex-start; }
+.jg-criterio li > svg,.jg-escudo-ico{ width:24px; height:24px; flex-shrink:0; fill:var(--zero-soft); stroke:var(--ink); stroke-width:2; }
+.jg-criterio .estrellas{ flex-shrink:0; }
+.jg-criterio .estrella{ width:16px; height:16px; }
+.jg-dom-mini{ display:inline-flex; gap:3px; flex-shrink:0; padding-top:6px; }
+.jg-dom-mini i{ width:9px; height:10px; border-radius:3px; background:var(--primary); }
+.qmj-ej{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
+.qmj-ej .qmj-par{ justify-content:flex-start; }
+.qmj-dib{ margin-top:6px; }
+.qmj-dib svg{ width:100%; max-height:260px; }
+
+/* ---------- Cabecera del ejercicio: barra de dominio, escudo, racha ---------- */
+.jg-estado{ display:flex; align-items:center; gap:10px; min-height:40px; }
+.jg-dom{ display:inline-flex; gap:5px; }
+.jg-dom i{ width:28px; height:12px; border-radius:6px; background:var(--line); transition:background .2s; }
+.jg-dom i.llena{ background:var(--primary); }
+.jg-escudo{ display:inline-flex; position:relative; }
+.jg-escudo svg{ width:26px; height:26px; fill:var(--zero-soft); stroke:var(--ink); stroke-width:2; }
+.jg-escudo.roto svg{ opacity:.45; }
+.jg-escudo.roto::after{ content:""; position:absolute; left:-2px; right:-2px; top:50%; border-top:2.5px solid var(--ink); transform:rotate(-35deg); }
+.jg-racha{ display:inline-flex; align-items:center; gap:2px; min-height:32px; padding:0 10px 0 6px; border-radius:var(--r-pill);
+  background:var(--prize); color:var(--on-prize); border:2px solid var(--ink); font-weight:900; font-size:1rem; }
+.jg-racha svg{ width:20px; height:20px; fill:var(--surface); stroke:var(--ink); stroke-width:2; }
+.jg-racha.pulso{ animation:jgRacha .2s ease-out 1; }
+@keyframes jgRacha{ 50%{ transform:scale(1.25); } }
+.jg-herr{ display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
+.jg-herr .btn-txt{ display:inline-flex; align-items:center; gap:4px; }
+.jg-herr .btn-txt svg{ width:20px; height:20px; }
+.jg-btn-pista{ margin-left:auto; min-height:48px; padding:0 14px; }
+.jg-vida{ display:flex; align-items:center; gap:4px; }
+.jg-vida-t{ font-size:.875rem; font-weight:900; color:var(--ink-2); margin-right:4px; }
+.jg-vida i{ flex:1; max-width:48px; height:10px; border-radius:5px; background:var(--ink); transition:background .2s; }
+.jg-vida i.hecha{ background:var(--line); }
+
+/* ---------- Enunciado ---------- */
+.jg-enun{ padding:10px 0 4px; }
+.jg-pistas:empty,.jg-aviso:empty,.qmj-obra:empty,.qmj-fbz:empty,.qmj-ctrl:empty{ display:none; }
+.jg-pista{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; background:var(--surface); border:2px solid var(--ink); border-radius:var(--r-md); padding:10px 12px; font-size:1rem; }
+.jg-pista + .jg-pista{ margin-top:8px; }
+.qmj-enun{ display:flex; flex-direction:column; gap:10px; }
+.qmj-q{ font-size:1.1875rem; font-weight:800; line-height:1.35; }
+.qmj-tarjeta{ background:var(--surface); border:2px solid var(--line); border-bottom-width:5px; border-radius:var(--r-lg);
+  padding:18px 16px; font-size:1.375rem; font-weight:800; line-height:1.3; text-align:center; overflow-wrap:anywhere; }
+.qmj-par{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px 24px; }
+.qmj-nota{ font-size:2.25rem; padding:6px 10px; }
+.qmj-nota .qm-not{ font-size:1em; }
+.qmj-cas .qm-casilla{ min-width:112px; }
+.qmj-sub{ font-size:.9375rem; color:var(--ink-2); font-weight:700; text-align:center; }
+.qmj-flecha{ width:100%; max-width:320px; height:auto; }
+.qmj-obra{ min-width:0; }
+
+/* ---------- Opciones ---------- */
+.qmj-ops{ display:flex; flex-direction:column; gap:8px; }
+.qmj-op{ justify-content:center; min-height:56px; font-size:1.0625rem; text-align:center; white-space:normal; line-height:1.25; }
+.qmj-op[disabled]{ cursor:default; opacity:1; }
+.qmj-op.ok{ border-color:var(--ok); background:var(--ok-soft); color:var(--ink); }
+.qmj-op.miss{ border-color:var(--miss); background:var(--miss-soft); border-style:dashed; }
+@media (min-width:360px){ .qmj-ops-6{ display:grid; grid-template-columns:1fr 1fr; } }
+
+/* ---------- Teclado y las tres respuestas p/n/e ---------- */
+.qmj-sinsigno .tecla-signo{ visibility:hidden; }
+.qmj-pne{ display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px; margin-bottom:10px; }
+.qmj-campo{ display:flex; flex-direction:column; align-items:center; gap:2px; min-height:76px; padding:8px 4px; border-radius:var(--r-md);
+  background:var(--surface); border:2px solid var(--line); border-bottom-width:4px; }
+.qmj-campo-et{ font-size:.8125rem; font-weight:800; color:var(--ink-2); line-height:1.15; text-align:center; }
+.qmj-campo-v{ font-size:1.75rem; font-weight:900; line-height:1.1; font-variant-numeric:tabular-nums; }
+.qmj-c-p .qmj-campo-v{ color:var(--pos-text); }
+.qmj-c-n .qmj-campo-v{ color:var(--ink-3); }
+.qmj-c-e .qmj-campo-v{ color:var(--neg-text); }
+.qmj-campo.activo{ border-color:var(--ink); box-shadow:0 0 0 3px var(--ok-soft); }
+.qmj-campo.dado{ background:var(--zero-soft); }
+.qmj-campo.ok{ border-color:var(--ok); background:var(--ok-soft); }
+.qmj-campo.miss{ border-color:var(--miss); border-style:dashed; background:var(--miss-soft); }
+.qmj-campo[disabled]{ cursor:default; }
+
+/* ---------- Constructor y tabla ---------- */
+.qmj-cons-ctrl{ display:flex; flex-direction:column; gap:6px; }
+.qmj-toca{ display:flex; align-items:center; gap:8px; font-weight:800; color:var(--ink-2); }
+.qmj-toca svg{ width:22px; height:22px; flex-shrink:0; }
+.qmj-ancho .qmj-obra{ margin:0 -8px; }
+
+/* ---------- Respaldos si un widget no cargó ---------- */
+.qmj-not-r{ display:inline-flex; align-items:center; font-weight:900; }
+.qmj-not-iz{ display:inline-flex; flex-direction:column; align-items:flex-end; font-size:.5em; line-height:1.1; margin-right:2px; }
+.qmj-not-iz sup,.qmj-not-iz sub{ font-size:1em; vertical-align:baseline; line-height:1.1; }
+.qmj-pos{ color:var(--pos-text); } .qmj-neg{ color:var(--neg-text); }
+.qmj-casilla-r{ display:inline-flex; flex-direction:column; align-items:center; min-width:112px; padding:8px 12px; border:2.5px solid var(--ink); border-radius:14px; background:var(--surface); font-weight:800; }
+.qmj-casilla-r b{ font-size:2.25rem; line-height:1.1; }
+.qmj-cons-r{ display:flex; flex-direction:column; gap:8px; }
+.qmj-cons-f{ display:grid; grid-template-columns:1fr 48px 48px 48px; align-items:center; gap:6px; font-weight:800; }
+.qmj-cons-f output{ text-align:center; font-size:1.5rem; font-weight:900; }
+.qmj-cons-f.qmj-c-p output{ color:var(--pos-text); } .qmj-cons-f.qmj-c-n output{ color:var(--ink-3); } .qmj-cons-f.qmj-c-e output{ color:var(--neg-text); }
+
+/* ---------- Tarjetas de feedback ---------- */
+.jg-resp{ margin-top:12px; display:flex; flex-direction:column; gap:12px; }
+.jg-fb{ border-radius:var(--r-lg); padding:14px; display:flex; flex-direction:column; gap:8px; animation:subir var(--t) cubic-bezier(.2,.8,.2,1); }
+.jg-fb.ok{ background:var(--ok-soft); border-top:4px solid var(--ok); }
+.jg-fb.miss{ background:var(--miss-soft); border:2px solid var(--miss); border-top-width:4px; }
+.jg-fb.info{ background:var(--accent-soft); border-top:4px solid var(--accent); }
+.jg-fb-cab{ display:flex; align-items:center; gap:8px; font-size:1.25rem; }
+.jg-fb-cab svg{ width:28px; height:28px; flex-shrink:0; }
+.jg-fb.ok .jg-fb-cab svg,.jg-fb.ok .jg-fb-cab b{ color:var(--ok); }
+.jg-fb.miss .jg-fb-cab svg{ color:var(--ink); }
+.jg-fb-bot{ display:flex; flex-direction:column; gap:8px; margin-top:6px; }
+.jg-tuya{ display:flex; flex-wrap:wrap; gap:4px 18px; font-weight:800; font-size:1rem; }
+.jg-pista-txt{ font-weight:700; }
+.jg-sol{ margin-top:6px; display:flex; flex-direction:column; gap:6px; }
+.qmj-sol{ list-style:none; display:flex; flex-direction:column; gap:4px; }
+.qmj-sol li{ padding:4px 10px; border-left:3px solid var(--ink); font-weight:700; font-variant-numeric:tabular-nums; }
+.jg-escudo-msg{ display:flex; align-items:center; gap:8px; font-weight:800; }
+.jg-escudo-msg svg{ width:24px; height:24px; fill:var(--zero-soft); stroke:var(--ink); stroke-width:2; }
+.jg-flash:empty{ display:none; }
+
+/* ---------- Fin de parada y relámpago ---------- */
+.jg-fin-t{ display:flex; flex-direction:column; gap:8px; }
+.jg-fin .tarjeta{ display:flex; flex-direction:column; gap:8px; }
+.jg-fin .estrellas .estrella{ width:36px; height:36px; }
+.jg-logro{ display:flex; align-items:center; gap:8px; font-weight:800; }
+.jg-logro svg{ width:24px; height:24px; fill:var(--prize); stroke:var(--ink); stroke-width:2; }
+.jg-ignacio{ border-color:var(--ink); }
+.jg-rescate{ display:flex; flex-direction:column; gap:10px; }
+.jg-reloj{ display:inline-flex; align-items:center; min-height:36px; padding:0 14px; border-radius:var(--r-pill); background:var(--ink); color:var(--bg); font-weight:900; font-variant-numeric:tabular-nums; }
+
+/* ---------- Computadora: la tabla necesita más ancho ---------- */
+@media (min-width:1024px){
+  #app .jg-ej.qmj-ancho{ grid-template-columns:minmax(0,1fr) 320px; column-gap:32px; }
+  .qmj-ancho .qmj-obra{ margin:0; }
+  .qmj-q{ font-size:1.3125rem; }
+  .qmj-nota{ font-size:2.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .jg-paso.actual .jg-circ,.jg-racha.pulso,.jg-fb{ animation:none; }
+}
+:root[data-motion="reduce"] .jg-paso.actual .jg-circ,:root[data-motion="reduce"] .jg-fb,:root[data-motion="reduce"] .jg-racha.pulso{ animation:none; }

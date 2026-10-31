@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#131F24">
+<title>Cuenta partículas</title>
+<meta name="description" content="Actividad de 10 preguntas: protones, neutrones, electrones, iones e isótopos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232BAE66'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fff'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(60 32 32)'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(-60 32 32)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#2BAE66; --green-d:#1E8A4F; --coral:#E8503A; --gold:#FFC800; --shadow:0 4px 0 #101a1e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 16px 40px}
+.wrap{width:100%;max-width:560px}
+header{text-align:center;margin-bottom:14px}
+.badge{display:inline-block;background:var(--green);color:#fff;font-weight:800;font-size:.72rem;
+  letter-spacing:.12em;padding:6px 12px;border-radius:999px;margin-bottom:10px}
+h1{font-size:1.7rem;font-weight:900;line-height:1.1}
+.sub{color:var(--muted);font-weight:700;margin-top:6px;font-size:.92rem}
+.timer{display:inline-flex;align-items:center;gap:7px;background:var(--card);border:2px solid var(--line);
+  border-radius:999px;padding:8px 16px;font-weight:900;font-size:1.15rem;margin-top:12px;box-shadow:var(--shadow)}
+.timer.warn{color:var(--coral);border-color:var(--coral)}
+.bar{height:12px;background:var(--line);border-radius:999px;overflow:hidden;margin:14px 0}
+.bar>i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+.meta{display:flex;justify-content:space-between;font-weight:800;color:var(--muted);font-size:.9rem;margin-bottom:12px}
+.meta b{color:var(--ink)}
+.card{background:var(--card);border-radius:22px;padding:24px 20px;box-shadow:var(--shadow);border:2px solid var(--line)}
+.q{text-align:center;font-size:1.35rem;font-weight:900;margin:6px 0 20px;line-height:1.3}
+.q .big{display:block;font-size:2rem;margin-bottom:8px;color:var(--gold)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opts.one{grid-template-columns:1fr}
+.opt{background:var(--bg);border:2px solid var(--line);border-radius:16px;padding:16px 10px;
+  font-family:inherit;font-size:1.5rem;font-weight:900;color:var(--ink);cursor:pointer;transition:transform .08s}
+.opts.txt .opt{font-size:1.08rem;padding:15px 12px}
+.opt:active{transform:scale(.97)}
+.opt:hover{border-color:var(--green)}
+.opt.ok{background:var(--green);border-color:var(--green-d);color:#fff}
+.opt.no{background:var(--coral);border-color:#b83a27;color:#fff}
+.opt:disabled{cursor:default}
+.why{margin-top:16px;background:var(--bg);border:2px dashed var(--line);border-radius:14px;padding:13px 16px;
+  font-weight:700;font-size:.98rem;line-height:1.45;color:var(--ink);opacity:0;max-height:0;overflow:hidden;transition:opacity .25s}
+.why.show{opacity:1;max-height:400px}
+.why b{color:var(--green)}
+.next{margin-top:14px;width:100%;background:var(--green);color:#fff;border:none;border-radius:16px;
+  padding:16px;font-family:inherit;font-size:1.1rem;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--green-d);
+  opacity:0;pointer-events:none;transition:opacity .2s}
+.next.show{opacity:1;pointer-events:auto}
+.next:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-d)}
+.end{text-align:center;padding:10px 4px}
+.score{font-size:4rem;font-weight:900;line-height:1;color:var(--green)}
+.score small{font-size:1.4rem;color:var(--muted)}
+.emoji{font-size:3.4rem;margin:6px 0}
+.msg{font-weight:800;font-size:1.2rem;margin:8px 0 4px}
+.pct{color:var(--muted);font-weight:800;margin-top:2px}
+.tip{color:var(--muted);font-weight:700;margin-top:12px}
+.again{margin-top:18px;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 22px;
+  font-family:inherit;font-weight:900;font-size:1rem;color:var(--ink);cursor:pointer}
+.hidden{display:none}
+.start{text-align:center}
+.reg{max-width:340px;margin:14px auto 4px;display:grid;gap:10px}
+.reg input{font-family:inherit;font-weight:800;font-size:1.05rem;padding:14px 16px;border-radius:14px;
+  border:2px solid var(--line);background:var(--bg);color:var(--ink);text-align:center}
+.reg input:focus{outline:none;border-color:var(--green)}
+.regErr{color:var(--coral);font-weight:800;font-size:.9rem;min-height:1.1em}
+.start ul{list-style:none;text-align:left;max-width:340px;margin:16px auto;display:grid;gap:10px}
+.start li{font-weight:700;background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:12px 14px}
+.go{margin-top:8px;background:var(--green);color:#fff;border:none;border-radius:16px;padding:16px 34px;
+  font-family:inherit;font-size:1.15rem;font-weight:900;cursor:pointer;box-shadow:0 4px 0 var(--green-d)}
+.go:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-d)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="badge">🔬 ACTIVIDAD 1</span>
+    <h1>Cuenta partículas</h1>
+    <div class="sub">10 preguntas · 10 minutos</div>
+  </header>
+
+  <!-- INICIO -->
+  <div id="intro" class="card start">
+    <div class="emoji">⚛️</div>
+    <div class="msg">Antes de empezar…</div>
+    <div class="reg">
+      <input id="rNombre" type="text" placeholder="Tu nombre y apellido" autocomplete="name">
+      <input id="rCorreo" type="hidden" value="">
+      <div class="regErr" id="regErr"></div>
+    </div>
+    <ul>
+      <li>✔ Protones, neutrones y electrones.</li>
+      <li>⏳ Tienes 10 minutos.</li>
+      <li>🎯 Ojo con los iones y los isótopos.</li>
+    </ul>
+    <button class="go" id="go">Empezar quiz →</button>
+  </div>
+
+  <!-- JUEGO -->
+  <div id="game" class="hidden">
+    <div style="text-align:center"><span class="timer" id="timer">⏱ 10:00</span></div>
+    <div class="bar"><i id="prog"></i></div>
+    <div class="meta"><span>Pregunta <b id="qn">1</b>/10</span><span>Aciertos: <b id="sc">0</b></span></div>
+    <div class="card">
+      <div class="q" id="q">—</div>
+      <div class="opts" id="opts"></div>
+      <div class="why" id="why"></div>
+      <button class="next" id="next">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div id="final" class="card end hidden">
+    <div class="emoji" id="fEmoji">🎉</div>
+    <div class="score"><span id="fScore">0</span><small>/10</small></div>
+    <div class="pct" id="fPct"></div>
+    <div class="msg" id="fMsg"></div>
+    <div class="tip">Escribe tu nota en el chat 👇</div>
+    <button class="again" onclick="location.reload()">↻ Repetir</button>
+  </div>
+</div>
+
+<script src="../js/cola-envios.js"></script>
+<script src="quiz-sync.js?v=2"></script>
+<script>
+const QUIZ='atomo', N=10, MINUTES=10;
+// t: pregunta · b: dato grande (opcional) · o: opciones, la PRIMERA es la correcta (se barajan) · w: explicación
+const DATA=[
+ {
+  "t": "¿Cuántos <b>neutrones</b> tiene el oxígeno?",
+  "o": [
+   "8",
+   "16",
+   "24",
+   "6"
+  ],
+  "w": "n = A − Z = 16 − 8 = <b>8</b>.",
+  "b": "O · A = 16 · Z = 8"
+ },
+ {
+  "t": "¿Cuántos <b>neutrones</b> tiene el sodio?",
+  "o": [
+   "12",
+   "11",
+   "23",
+   "34"
+  ],
+  "w": "n = A − Z = 23 − 11 = <b>12</b>.",
+  "b": "Na · A = 23 · Z = 11"
+ },
+ {
+  "t": "¿Cuántos <b>protones</b> tiene el hierro?",
+  "o": [
+   "26",
+   "56",
+   "30",
+   "82"
+  ],
+  "w": "Los protones siempre son Z: <b>26</b>.",
+  "b": "Fe · A = 56 · Z = 26"
+ },
+ {
+  "t": "¿Cuántos <b>electrones</b> tiene el calcio neutro?",
+  "o": [
+   "20",
+   "40",
+   "22",
+   "60"
+  ],
+  "w": "Neutro: electrones = Z = <b>20</b>. A (40) no tiene nada que ver con los electrones.",
+  "b": "Ca · A = 40 · Z = 20"
+ },
+ {
+  "t": "¿Cuántos <b>electrones</b> tiene este ion?",
+  "o": [
+   "10",
+   "11",
+   "12",
+   "23"
+  ],
+  "w": "Carga +1 → perdió 1 electrón: 11 − 1 = <b>10</b>.",
+  "b": "Na⁺ · Z = 11"
+ },
+ {
+  "t": "¿Cuántos <b>electrones</b> tiene este ion?",
+  "o": [
+   "18",
+   "17",
+   "16",
+   "35"
+  ],
+  "w": "Carga −1 → ganó 1 electrón: 17 + 1 = <b>18</b>.",
+  "b": "Cl⁻ · Z = 17"
+ },
+ {
+  "t": "¿Cuántos <b>electrones</b> tiene este ion?",
+  "o": [
+   "10",
+   "8",
+   "6",
+   "16"
+  ],
+  "w": "Carga 2− → ganó 2 electrones: 8 + 2 = <b>10</b>.",
+  "b": "O²⁻ · Z = 8"
+ },
+ {
+  "t": "¿Cuántos <b>electrones</b> tiene este ion?",
+  "o": [
+   "18",
+   "20",
+   "22",
+   "40"
+  ],
+  "w": "Carga 2+ → perdió 2 electrones: 20 − 2 = <b>18</b>.",
+  "b": "Ca²⁺ · Z = 20"
+ },
+ {
+  "t": "Un átomo tiene 13 protones y 14 neutrones. ¿Cuál es su <b>A</b>?",
+  "o": [
+   "27",
+   "13",
+   "14",
+   "1"
+  ],
+  "w": "A = protones + neutrones = 13 + 14 = <b>27</b> (es el aluminio)."
+ },
+ {
+  "t": "Cl-35 y Cl-37 son isótopos. ¿En qué se diferencian?",
+  "o": [
+   "En los neutrones",
+   "En los protones",
+   "En los electrones",
+   "En el símbolo"
+  ],
+  "w": "Mismo Z (17 protones), distinto A: solo cambian los <b>neutrones</b> (18 y 20)."
+ }
+];
+const shuffle=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(p=>p[1]);
+const Q=shuffle(DATA).map(it=>{
+  const o=shuffle(it.o.map((v,k)=>({v,ok:k===0})));
+  return Object.assign({},it,{o:o.map(x=>x.v),a:o.findIndex(x=>x.ok)});
+});
+let i=0, score=0, locked=false, timeLeft=MINUTES*60, tick=null;
+const $=id=>document.getElementById(id);
+
+function startTimer(){
+  updateTimer();
+  tick=setInterval(()=>{timeLeft--;updateTimer();if(timeLeft<=0){clearInterval(tick);end(true);}},1000);
+}
+function updateTimer(){
+  const m=Math.floor(timeLeft/60), s=timeLeft%60;
+  const t=$('timer');t.textContent='⏱ '+m+':'+String(s).padStart(2,'0');
+  t.classList.toggle('warn',timeLeft<=90);
+}
+function render(){
+  locked=false;
+  const it=Q[i];
+  $('q').innerHTML=(it.b?'<span class="big">'+it.b+'</span>':'')+it.t;
+  $('qn').textContent=i+1;
+  $('prog').style.width=(i/N*100)+'%';
+  $('why').innerHTML='';$('why').className='why';
+  $('next').classList.remove('show');
+  $('next').textContent=i===N-1?'Ver resultado →':'Siguiente →';
+  const o=$('opts');o.innerHTML='';
+  const maxLen=Math.max(...it.o.map(v=>String(v).length));
+  o.className='opts'+(maxLen>4?' txt':'')+(maxLen>13?' one':'');
+  it.o.forEach((v,idx)=>{
+    const b=document.createElement('button');
+    b.className='opt';b.textContent=v;
+    b.onclick=()=>answer(idx);
+    o.appendChild(b);
+  });
+}
+function answer(idx){
+  if(locked)return;locked=true;
+  const it=Q[i], ok=(idx===it.a);
+  const btns=document.querySelectorAll('.opt');
+  btns.forEach((b,k)=>{b.disabled=true;if(k===it.a)b.classList.add('ok');});
+  if(ok)score++,$('sc').textContent=score;
+  else btns[idx].classList.add('no');
+  $('why').innerHTML=(ok?'<b>¡Correcto!</b> ':'<b>Mira:</b> ')+it.w;
+  $('why').classList.add('show');
+  $('next').classList.add('show');
+}
+$('next').onclick=()=>{i++;if(i>=N)return end(false);render();
+  QuizSync.enviar({quiz:QUIZ,nombre:ALUM.nombre,correo:ALUM.correo,estado:'en-progreso',pregunta:i+1,aciertos:score,total:N});};
+
+// ---- registro ----
+let ALUM={nombre:'',correo:''};
+function correoValido(c){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c);}
+try{const g=JSON.parse(localStorage.getItem('alumno')||'null');if(g&&g.correo){$('rNombre').value=g.nombre||'';$('rCorreo').value=g.correo||'';}}catch(e){}
+$('go').onclick=()=>{
+  const nombre=$('rNombre').value.trim(), correo=$('rCorreo').value.trim();
+  if(nombre.length<3){$('regErr').textContent='Escribe tu nombre completo.';return;}
+  
+  ALUM={nombre,correo};
+  try{localStorage.setItem('alumno',JSON.stringify(ALUM));}catch(e){}
+  QuizSync.enviar({quiz:QUIZ,nombre,correo,estado:'registrado',pregunta:0,aciertos:0,total:N});
+  $('intro').classList.add('hidden');$('game').classList.remove('hidden');render();startTimer();
+};
+
+function end(timeout){
+  if(tick)clearInterval(tick);
+  QuizSync.enviar({quiz:QUIZ,nombre:ALUM.nombre,correo:ALUM.correo,estado:timeout?'tiempo':'terminado',pregunta:N,aciertos:score,total:N});
+  $('game').classList.add('hidden');
+  $('final').classList.remove('hidden');
+  $('fScore').textContent=score;
+  const pct=Math.round(score/N*100);
+  $('fPct').textContent=pct+'% de aciertos'+(timeout?' · ⏰ se acabó el tiempo':'');
+  let e,m;
+  if(pct>=90){e='🏆';m='¡Perfecto! Cuentas átomos como pro.';}
+  else if(pct>=70){e='🎉';m='¡Muy bien! Ya casi al 100%.';}
+  else if(pct>=50){e='👍';m='Vas bien, repasa lo que fallaste y repite.';}
+  else{e='🔁';m='Repasa: p = Z · n = A − Z · e = Z − carga.';}
+  $('fEmoji').textContent=e;$('fMsg').textContent=m;
+}
+</script>
+</body>
+</html>

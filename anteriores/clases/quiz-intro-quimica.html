@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F4F7F6">
+<title>Quiz: ¿Qué es la Química?</title>
+<meta name="description" content="Quiz interactivo de 30 preguntas: definición, historia, ramas de la química, materia, energía y propiedades.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232BAE66'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fff'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(60 32 32)'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='9' fill='none' stroke='%23fff' stroke-width='3' transform='rotate(-60 32 32)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quiz-motor.css">
+</head>
+<body>
+<script>
+window.QUIZ_CFG = {"id": "que-es-quimica", "nombre": "¿Qué es la Química?", "materia": "Quiz de química", "min": 20};
+// Preguntas — en "mc" la PRIMERA opción es la correcta (el motor baraja todo)
+window.QUIZ_DATA = [
+ {
+  "tipo": "mc",
+  "t": "La química es la ciencia que estudia:",
+  "o": [
+   "La materia y sus cambios",
+   "Solo los seres vivos",
+   "Los astros y planetas",
+   "Solo los medicamentos"
+  ],
+  "w": "La química estudia la <b>materia</b>: de qué está hecha, cómo es y cómo cambia."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Quién es considerado el <b>padre de la química moderna</b>?",
+  "o": [
+   "Lavoisier",
+   "Mendeléyev",
+   "Newton",
+   "Darwin"
+  ],
+  "w": "<b>Antoine Lavoisier</b>: empezó a medir y pesar todo."
+ },
+ {
+  "tipo": "mc",
+  "t": "\"La materia no se crea ni se destruye, solo se transforma\" es la ley de:",
+  "o": [
+   "Conservación de la masa",
+   "Gravedad",
+   "Periodicidad",
+   "Evolución"
+  ],
+  "w": "Es la <b>ley de conservación de la masa</b>, de Lavoisier."
+ },
+ {
+  "tipo": "mc",
+  "t": "La química <b>orgánica</b> estudia los compuestos del:",
+  "o": [
+   "Carbono",
+   "Hierro",
+   "Oxígeno",
+   "Sodio"
+  ],
+  "w": "Orgánica = compuestos del <b>carbono</b>."
+ },
+ {
+  "tipo": "mc",
+  "t": "La rama que estudia la química de los <b>seres vivos</b> es la:",
+  "o": [
+   "Bioquímica",
+   "Inorgánica",
+   "Analítica",
+   "Fisicoquímica"
+  ],
+  "w": "<b>Bio</b> = vida → <b>bioquímica</b>."
+ },
+ {
+  "tipo": "mc",
+  "t": "Determinar <b>cuánto</b> hierro tiene un alimento es química analítica:",
+  "o": [
+   "Cuantitativa",
+   "Cualitativa",
+   "Orgánica",
+   "General"
+  ],
+  "w": "\"¿Cuánto?\" = cantidad → <b>cuantitativa</b>."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Cuál es una propiedad <b>específica</b> de la materia?",
+  "o": [
+   "La densidad",
+   "La masa",
+   "El volumen",
+   "El peso"
+  ],
+  "w": "La <b>densidad</b> sirve para identificar una sustancia."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Quién ordenó los elementos en la <b>tabla periódica</b> en 1869?",
+  "o": [
+   "Mendeléyev",
+   "Lavoisier",
+   "Galileo",
+   "Fleming"
+  ],
+  "w": "<b>Dmitri Mendeléyev</b>, que incluso dejó espacios para elementos no descubiertos."
+ },
+ {
+  "tipo": "mc",
+  "t": "La <b>materia</b> es todo lo que:",
+  "o": [
+   "Tiene masa y ocupa un lugar en el espacio",
+   "Se puede ver",
+   "Produce energía",
+   "Está vivo"
+  ],
+  "w": "Materia = <b>masa + volumen</b>. El aire es materia aunque no lo veas."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Qué buscaban los <b>alquimistas</b>?",
+  "o": [
+   "Convertir metales en oro",
+   "Ordenar los elementos",
+   "Medir la masa",
+   "Curar con antibióticos"
+  ],
+  "w": "Buscaban el oro, la piedra filosofal y el elixir de la vida."
+ },
+ {
+  "tipo": "mc",
+  "t": "La <b>fisicoquímica</b> estudia:",
+  "o": [
+   "La energía y la velocidad de las reacciones",
+   "Los compuestos del carbono",
+   "Los seres vivos",
+   "Los minerales"
+  ],
+  "w": "Une física y química: <b>energía y velocidad</b> de las reacciones."
+ },
+ {
+  "tipo": "mc",
+  "t": "¿Cuál de estos <b>NO</b> es materia?",
+  "o": [
+   "La luz",
+   "El aire",
+   "El agua",
+   "Una piedra"
+  ],
+  "w": "La luz <b>no tiene masa</b>: es energía."
+ },
+ {
+  "tipo": "vf",
+  "t": "El aire es materia.",
+  "a": true,
+  "w": "<b>Verdadero.</b> Tiene masa y ocupa espacio: por eso infla un globo."
+ },
+ {
+  "tipo": "vf",
+  "t": "La química solo se usa en los laboratorios.",
+  "a": false,
+  "w": "<b>Falso.</b> Está al cocinar, al respirar, en la batería del celular…"
+ },
+ {
+  "tipo": "vf",
+  "t": "El punto de ebullición sirve para identificar una sustancia.",
+  "a": true,
+  "w": "<b>Verdadero.</b> Es una propiedad específica: el agua pura hierve a 100 °C."
+ },
+ {
+  "tipo": "vf",
+  "t": "La masa es una propiedad específica.",
+  "a": false,
+  "w": "<b>Falso.</b> La masa la tiene toda la materia: es una propiedad <b>general</b>."
+ },
+ {
+  "tipo": "vf",
+  "t": "Mendeléyev dejó espacios en su tabla para elementos que aún no se conocían.",
+  "a": true,
+  "w": "<b>Verdadero.</b> Y predijo cómo serían."
+ },
+ {
+  "tipo": "vf",
+  "t": "La alquimia era una ciencia porque medía todo con precisión.",
+  "a": false,
+  "w": "<b>Falso.</b> No medía ni comprobaba con orden: por eso no era ciencia."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada rama con lo que estudia",
+  "pares": [
+   [
+    "Orgánica",
+    "Compuestos del carbono"
+   ],
+   [
+    "Inorgánica",
+    "Minerales, sales y metales"
+   ],
+   [
+    "Bioquímica",
+    "La química de los seres vivos"
+   ],
+   [
+    "Analítica",
+    "Qué hay y cuánto hay"
+   ]
+  ],
+  "w": "Las cuatro ramas que más preguntan."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada personaje con su aporte",
+  "pares": [
+   [
+    "Lavoisier",
+    "Conservación de la masa"
+   ],
+   [
+    "Mendeléyev",
+    "Tabla periódica"
+   ],
+   [
+    "Alquimistas",
+    "La piedra filosofal"
+   ]
+  ],
+  "w": "De la magia (alquimia) a la ciencia (Lavoisier y Mendeléyev)."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada ejemplo con su rama",
+  "pares": [
+   [
+    "Medir la glucosa en la sangre",
+    "Bioquímica"
+   ],
+   [
+    "Estudiar los plásticos",
+    "Orgánica"
+   ],
+   [
+    "Estudiar la sal de mesa",
+    "Inorgánica"
+   ],
+   [
+    "La velocidad de una reacción",
+    "Fisicoquímica"
+   ]
+  ],
+  "w": "Piensa en <b>qué</b> se estudia en cada caso."
+ },
+ {
+  "tipo": "unir",
+  "t": "Une cada concepto con su definición",
+  "pares": [
+   [
+    "Materia",
+    "Tiene masa y ocupa espacio"
+   ],
+   [
+    "Energía",
+    "Capacidad de producir un cambio"
+   ],
+   [
+    "Química",
+    "Ciencia de la materia y sus cambios"
+   ]
+  ],
+  "w": "Las tres definiciones base."
+ },
+ {
+  "tipo": "ordenar",
+  "t": "Ordena de lo más antiguo a lo más reciente",
+  "items": [
+   "La alquimia",
+   "Lavoisier (siglo XVIII)",
+   "Mendeléyev (1869)",
+   "Hoy: 118 elementos"
+  ],
+  "w": "Primero la alquimia, luego Lavoisier, luego Mendeléyev y hoy."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "La química estudia la ___, sus ___ y la energía.",
+  "r": [
+   "materia",
+   "cambios"
+  ],
+  "extra": [
+   "estrellas",
+   "células"
+  ],
+  "w": "Química = <b>materia</b>, sus <b>cambios</b> y la energía."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "La química ___ estudia los compuestos del carbono.",
+  "r": [
+   "orgánica"
+  ],
+  "extra": [
+   "inorgánica",
+   "analítica",
+   "general"
+  ],
+  "w": "Carbono = <b>orgánica</b>."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "La analítica ___ responde ¿qué hay? y la ___ responde ¿cuánto hay?",
+  "r": [
+   "cualitativa",
+   "cuantitativa"
+  ],
+  "extra": [
+   "orgánica"
+  ],
+  "w": "Cuanti<b>tativa</b> = cantidad."
+ },
+ {
+  "tipo": "completar",
+  "enunciado": "Completa la frase",
+  "t": "Las propiedades ___ las tiene toda la materia; las ___ sirven para identificar.",
+  "r": [
+   "generales",
+   "específicas"
+  ],
+  "extra": [
+   "químicas"
+  ],
+  "w": "Generales = <b>todos</b> · Específicas = <b>identifican</b>."
+ },
+ {
+  "tipo": "clasificar",
+  "t": "¿Propiedad general o específica?",
+  "cats": [
+   "General",
+   "Específica"
+  ],
+  "items": [
+   [
+    "Masa",
+    0
+   ],
+   [
+    "Densidad",
+    1
+   ],
+   [
+    "Volumen",
+    0
+   ],
+   [
+    "Punto de ebullición",
+    1
+   ],
+   [
+    "Color",
+    1
+   ],
+   [
+    "Peso",
+    0
+   ]
+  ],
+  "w": "Generales: masa, volumen, peso. Específicas: las que identifican."
+ },
+ {
+  "tipo": "clasificar",
+  "t": "¿Materia o energía?",
+  "cats": [
+   "Materia",
+   "Energía"
+  ],
+  "items": [
+   [
+    "Aire",
+    0
+   ],
+   [
+    "Luz",
+    1
+   ],
+   [
+    "Agua",
+    0
+   ],
+   [
+    "Calor",
+    1
+   ],
+   [
+    "Una piedra",
+    0
+   ],
+   [
+    "Electricidad",
+    1
+   ]
+  ],
+  "w": "Si tiene masa y ocupa espacio, es <b>materia</b>."
+ },
+ {
+  "tipo": "clasificar",
+  "t": "¿Química orgánica o inorgánica?",
+  "cats": [
+   "Orgánica",
+   "Inorgánica"
+  ],
+  "items": [
+   [
+    "Petróleo",
+    0
+   ],
+   [
+    "Sal de mesa",
+    1
+   ],
+   [
+    "Azúcar",
+    0
+   ],
+   [
+    "Hierro",
+    1
+   ],
+   [
+    "Plástico",
+    0
+   ],
+   [
+    "Agua",
+    1
+   ]
+  ],
+  "w": "Orgánica = <b>carbono</b> (petróleo, azúcar, plásticos)."
+ }
+];
+</script>
+<script src="../js/cola-envios.js"></script>
+<script src="quiz-motor.js?v=2"></script>
+</body>
+</html>

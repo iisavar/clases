@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#131F24">
+<title>Jerarquía Nivel 2</title>
+<meta name="description" content="Presentación interactiva para dictar jerarquía de operaciones con sorteo de nombres y respuestas reveladas.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2358CC02'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='Arial' font-weight='900' font-size='34' fill='%23FFFFFF'%3E()%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131F24; --stage:#0E181C; --card:#1E2C33; --ink:#F1F6F3; --muted:#9BB0A5; --line:#2C3B42;
+  --green:#58CC02; --green-d:#3F9A00; --coral:#E8503A; --gold:#FFC800; --blue:#1CB0F6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Nunito,system-ui,sans-serif;background:var(--stage);color:var(--ink);overflow:hidden;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:3vh 4vw}
+
+/* ---------- SETUP ---------- */
+#setup{position:fixed;inset:0;background:var(--stage);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px;z-index:60;text-align:center;overflow:auto}
+#setup .logo{width:96px;height:96px;border-radius:26px;background:var(--gold);color:#131F24;font-weight:900;
+  font-size:44px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:0 8px 0 #c99e00}
+#setup h1{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;margin-bottom:6px}
+#setup p{color:var(--muted);font-weight:700;margin-bottom:22px;max-width:520px}
+.names{width:100%;max-width:440px;display:grid;gap:10px;margin-bottom:16px}
+.names input{font-family:inherit;font-weight:800;font-size:1.1rem;padding:14px 16px;border-radius:14px;
+  border:2px solid var(--line);background:var(--card);color:var(--ink);text-align:center}
+.names input:focus{outline:none;border-color:var(--green)}
+.setBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s}
+.btn:active{transform:translateY(2px)}
+.btn.primary{background:var(--green);color:#fff;font-size:1.25rem;padding:16px 38px;box-shadow:0 5px 0 var(--green-d)}
+.btn.ghost{background:var(--card);color:var(--ink);border:2px solid var(--line);font-size:1rem;padding:13px 22px}
+.addName{background:none;border:2px dashed var(--line);color:var(--muted);border-radius:14px;padding:12px;
+  font-family:inherit;font-weight:800;cursor:pointer;font-size:.95rem}
+
+/* ---------- SLIDES ---------- */
+.slide{width:100%;max-width:1100px;text-align:center;display:none;animation:in .45s ease}
+.slide.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.kicker{font-weight:900;letter-spacing:.15em;font-size:clamp(.75rem,1.6vw,1rem);color:var(--green);margin-bottom:10px}
+.title{font-weight:900;font-size:clamp(2rem,6vw,4rem);line-height:1.05;margin-bottom:18px}
+.lead{font-weight:800;font-size:clamp(1.1rem,2.6vw,1.7rem);color:var(--muted);margin-bottom:20px}
+.expr{font-weight:900;font-size:clamp(2.4rem,8vw,5.5rem);letter-spacing:.02em;margin:10px 0}
+.expr .hi{color:var(--gold)}
+.big{color:var(--green)}
+.chipRow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.chip{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:12px 20px;
+  font-weight:900;font-size:clamp(1rem,2.2vw,1.5rem)}
+.chip.g{border-color:var(--green);color:var(--green)}
+.chip.y{border-color:var(--gold);color:var(--gold)}
+.chip.r{border-color:var(--coral);color:var(--coral)}
+.chip.b{border-color:var(--blue);color:var(--blue)}
+
+/* pasos revelables */
+.step{opacity:0;transform:translateY(14px) scale(.96);transition:all .4s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;height:0;overflow:hidden}
+.step.show{opacity:1;transform:none;pointer-events:auto;height:auto;overflow:visible}
+.stepline{display:flex;align-items:center;gap:16px;justify-content:center;margin:10px 0}
+.stepnum{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;
+  font-weight:900;font-size:1.4rem;display:flex;align-items:center;justify-content:center}
+.stepnum.y{background:var(--gold);color:#131F24}
+.stepcalc{font-weight:900;font-size:clamp(1.4rem,3.6vw,2.4rem)}
+.stepwhy{color:var(--muted);font-weight:800;font-size:clamp(.9rem,1.8vw,1.15rem)}
+
+.answer{display:inline-block;margin-top:10px;background:var(--green);color:#fff;font-weight:900;
+  font-size:clamp(1.6rem,5vw,3rem);padding:12px 40px;border-radius:20px;box-shadow:0 6px 0 var(--green-d);
+  animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+.ladder{display:grid;gap:12px;max-width:760px;margin:10px auto 0}
+.rung{display:flex;align-items:center;gap:18px;background:var(--card);border:2px solid var(--line);
+  border-radius:16px;padding:16px 22px;text-align:left}
+.rung .n{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.3rem;color:#fff;flex:0 0 auto}
+.rung .t{font-weight:900;font-size:clamp(1.1rem,2.4vw,1.55rem)}
+.rung .s{color:var(--muted);font-weight:800;font-size:clamp(.85rem,1.7vw,1.05rem)}
+.hint{color:var(--muted);font-weight:800;margin-top:16px;font-size:clamp(.9rem,1.8vw,1.15rem)}
+.hint b{color:var(--gold)}
+
+/* ---------- CONTROLES ---------- */
+.controls{position:fixed;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;
+  gap:12px;padding:14px 18px;z-index:40}
+.cbtn{font-family:inherit;font-weight:900;border:none;border-radius:16px;cursor:pointer;transition:transform .08s;
+  background:var(--card);color:var(--ink);border:2px solid var(--line);padding:14px 20px;font-size:1.05rem}
+.cbtn:active{transform:translateY(2px)}
+.cbtn.big{background:var(--green);color:#fff;border-color:var(--green-d);padding:16px 34px;font-size:1.2rem;box-shadow:0 4px 0 var(--green-d)}
+.cbtn:disabled{opacity:.35;cursor:default}
+.dots{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:40;
+  max-width:90vw;flex-wrap:wrap;justify-content:center;row-gap:6px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);transition:all .3s}
+.dot.on{background:var(--green);width:22px;border-radius:6px}
+.pick{position:fixed;top:12px;right:14px;z-index:45;background:var(--gold);color:#131F24;font-family:inherit;
+  font-weight:900;border:none;border-radius:16px;padding:13px 20px;cursor:pointer;font-size:1.05rem;box-shadow:0 4px 0 #c99e00}
+.pick:active{transform:translateY(2px)}
+
+/* ---------- RULETA NOMBRES ---------- */
+#roulette{position:fixed;inset:0;background:rgba(8,14,17,.92);display:none;flex-direction:column;align-items:center;
+  justify-content:center;z-index:80;padding:24px;text-align:center}
+#roulette.on{display:flex}
+#roulette .lbl{color:var(--muted);font-weight:900;letter-spacing:.15em;margin-bottom:18px;font-size:1.1rem}
+#rouletteName{font-weight:900;font-size:clamp(3rem,14vw,8rem);line-height:1;color:var(--gold);min-height:1.1em}
+#roulette .sub{margin-top:26px;color:var(--muted);font-weight:800}
+#roulette.done #rouletteName{color:var(--green);animation:pop .5s cubic-bezier(.2,1.4,.4,1)}
+.closehint{position:absolute;bottom:24px;color:var(--muted);font-weight:800}
+.hidden{display:none!important}
+@media (max-width:640px){
+  .pick{font-size:.92rem;padding:10px 14px;top:10px;right:10px}
+  .dots{top:auto;bottom:82px}
+  .cbtn{padding:12px 16px;font-size:.98rem}
+  .cbtn.big{padding:14px 24px;font-size:1.08rem}
+  .controls{padding:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- SETUP -->
+<div id="setup">
+  <div class="logo">( )</div>
+  <h1>Jerarquía · Nivel 2</h1>
+  <p>Escribe los nombres de tus estudiantes. En cada ejercicio podrás sortear a quién le toca responder. (Opcional: puedes empezar sin nombres.)</p>
+  <div class="names" id="names"></div>
+  <button class="addName" id="addName">+ Agregar otro nombre</button>
+  <div class="setBtns" style="margin-top:18px">
+    <button class="btn ghost" id="skip">Sin nombres</button>
+    <button class="btn primary" id="start">Empezar clase →</button>
+  </div>
+</div>
+
+<!-- DOTS -->
+<div class="dots" id="dots"></div>
+<!-- SORTEAR -->
+<button class="pick hidden" id="pick">🎲 Sortear</button>
+
+<!-- STAGE -->
+<div class="stage" id="stage"><!-- slides inyectadas --></div>
+
+<!-- CONTROLES -->
+<div class="controls hidden" id="controls">
+  <button class="cbtn" id="prev">◀ Atrás</button>
+  <button class="cbtn big" id="next">Avanzar ▶</button>
+</div>
+
+<!-- RULETA -->
+<div id="roulette">
+  <div class="lbl">LE TOCA A…</div>
+  <div id="rouletteName">—</div>
+  <div class="sub" id="rouletteSub">Sorteando…</div>
+  <div class="closehint">Toca para cerrar</div>
+</div>
+
+<script>
+/* ============ NOMBRES ============ */
+const namesBox=document.getElementById('names');
+function addRow(v){
+  if(namesBox.children.length>=8)return;
+  const i=document.createElement('input');
+  i.type='text';i.placeholder='Nombre '+(namesBox.children.length+1);i.value=v||'';
+  namesBox.appendChild(i);
+}
+for(let k=0;k<5;k++)addRow();
+document.getElementById('addName').onclick=()=>addRow();
+let PART=[];
+function collectNames(){PART=[...namesBox.querySelectorAll('input')].map(i=>i.value.trim()).filter(Boolean);}
+document.getElementById('start').onclick=()=>{collectNames();begin();};
+document.getElementById('skip').onclick=()=>{PART=[];begin();};
+function begin(){
+  document.getElementById('setup').classList.add('hidden');
+  document.getElementById('controls').classList.remove('hidden');
+  if(PART.length)document.getElementById('pick').classList.remove('hidden');
+  buildDots();showSlide(0);
+}
+
+/* ============ RULETA DE NOMBRES ============ */
+const roul=document.getElementById('roulette'),rName=document.getElementById('rouletteName'),rSub=document.getElementById('rouletteSub');
+let spinning=false;
+document.getElementById('pick').onclick=spin;
+function spin(){
+  if(!PART.length||spinning)return;
+  spinning=true;roul.classList.add('on');roul.classList.remove('done');rSub.textContent='Sorteando…';
+  const winner=PART[Math.floor(Math.random()*PART.length)];
+  let t=0,delay=60;
+  const step=()=>{
+    rName.textContent=PART[Math.floor(Math.random()*PART.length)];
+    t++;delay*=1.12;
+    if(t<22){setTimeout(step,delay);}
+    else{rName.textContent=winner;roul.classList.add('done');rSub.textContent='¡A responder! 🎤';spinning=false;}
+  };
+  step();
+}
+roul.onclick=()=>{if(!spinning)roul.classList.remove('on');};
+
+/* ============ CONSTRUCTOR DE EJERCICIOS ============ */
+// Ejercicio detallado: pregunta primero, luego micro-pasos.
+function ej(o){
+  const tag = o.mode==='sorteo' ? '🎲 Sortea y que explique' : '💬 Todos responden';
+  let h=`<div class="kicker">${o.kicker}</div>`;
+  if(o.title)h+=`<div class="title">${o.title}</div>`;
+  h+=`<div class="expr">${o.expr}</div>`;
+  h+=`<div class="lead step">🤔 ${o.q} <span style="opacity:.7;font-size:.75em">· ${tag}</span></div>`;
+  if(o.ans)h+=`<div class="chipRow step"><span class="chip g" style="font-size:1.1em">${o.ans}</span></div>`;
+  (o.steps||[]).forEach((p,i,a)=>{
+    const last=i===a.length-1;
+    h+=`<div class="stepline step"><div class="stepnum${last?' y':''}">${i+1}</div><div><div class="stepcalc${last?' big':''}">${p.c}</div>`+
+       (p.w?`<div class="stepwhy">${p.w}</div>`:``)+`</div></div>`;
+  });
+  return {html:h};
+}
+const SUP=n=>`<sup style="font-size:.55em">${n}</sup>`;
+
+/* ============ 25 LÁMINAS ============ */
+const SLIDES=[
+// 1 portada
+{html:`
+  <div class="kicker">MATEMÁTICA · INGRESO</div>
+  <div class="title">Jerarquía · Nivel 2</div>
+  <div class="lead">Corchetes anidados, potencias con signo y raíces</div>
+  <div class="chipRow">
+    <span class="chip g">[ ( ) ]</span><span class="chip y">−3² vs (−3)²</span><span class="chip b">√</span>
+  </div>
+  <div class="hint">Toca <b>Avanzar ▶</b> para empezar</div>`},
+// 2
+{html:`
+  <div class="kicker">JERARQUÍA · NIVEL 2</div>
+  <div class="title">Subimos de nivel 🔥</div>
+  <div class="lead">Ya dominan lo básico. Ahora, lo que cae en las preguntas difíciles:</div>
+  <div class="chipRow">
+    <span class="chip g">Corchetes anidados [ ( ) ]</span>
+    <span class="chip y">Potencias con signo</span>
+    <span class="chip b">Raíces √</span>
+  </div>`},
+// 3
+{html:`
+  <div class="kicker">RECORDATORIO EXPRÉS</div>
+  <div class="title">El orden de siempre</div>
+  <div class="chipRow" style="font-size:1.05em">
+    <span class="chip g">( ) [ ]</span>→<span class="chip y">potencias y √</span>→<span class="chip b">× ÷</span>→<span class="chip r">+ −</span>
+  </div>
+  <div class="lead" style="margin-top:20px">Mismo nivel: <b>izquierda a derecha</b>.<br>Corchetes: <b>de adentro hacia afuera</b>.</div>`},
+// 4 concepto corchetes
+{html:`
+  <div class="kicker">NUEVO</div>
+  <div class="title">Corchetes anidados</div>
+  <div class="expr">[ ( ) ]</div>
+  <div class="lead">Cuando hay un signo de agrupación dentro de otro,<br>se resuelven <b>de adentro hacia afuera</b>.</div>
+  <div class="hint step">Primero el paréntesis interno, luego el corchete, luego el resto.</div>`},
+// 5
+ej({kicker:'CORCHETES ANIDADOS',expr:'20 − [3 + 2 <span class="hi">×</span> 4]',q:'¿Qué resolvemos primero, dentro del corchete?',ans:'Primero la × de adentro',mode:'todos',
+  steps:[{c:'2 × 4 = 8',w:'lo más interno primero'},{c:'20 − [3 + 8]',w:'reemplazamos'},{c:'20 − 11',w:'cerramos el corchete: 3+8=11'},{c:'= 9',w:'la resta final'}]}),
+// 6
+ej({kicker:'CORCHETE Y PARÉNTESIS',expr:'[ (8 − 3) <span class="hi">×</span> 2 ] + 5',q:'¿Por dónde empiezo?',ans:'Por el paréntesis interno',mode:'sorteo',
+  steps:[{c:'8 − 3 = 5',w:'lo de adentro'},{c:'5 × 2 = 10',w:'dentro del corchete'},{c:'10 + 5',w:'ya fuera'},{c:'= 15',w:''}]}),
+// 7
+ej({kicker:'MÁS DIFÍCIL',expr:'30 − [4 + (6 − 2) <span class="hi">×</span> 3]',q:'¿Cuál es el primer paso?',ans:'El paréntesis interno (6 − 2)',mode:'sorteo',
+  steps:[{c:'6 − 2 = 4',w:'lo más interno'},{c:'4 × 3 = 12',w:'dentro del corchete'},{c:'4 + 12 = 16',w:'cerramos corchete'},{c:'30 − 16 = 14',w:'resultado'}]}),
+// 8 concepto -3² vs (-3)²
+{html:`
+  <div class="kicker">LA TRAMPA ESTRELLA ⭐</div>
+  <div class="title">−3² no es (−3)²</div>
+  <div class="chipRow" style="gap:28px;align-items:stretch">
+    <div class="chip r step" style="display:grid;gap:6px;min-width:240px">
+      <div style="font-size:1.3em">−3²</div>
+      <div style="opacity:.8">= −(3 × 3)</div>
+      <div style="font-size:1.4em">= −9</div>
+      <div style="font-size:.65em;opacity:.85">el − queda afuera</div>
+    </div>
+    <div class="chip g step" style="display:grid;gap:6px;min-width:240px">
+      <div style="font-size:1.3em">(−3)²</div>
+      <div style="opacity:.8">= (−3)(−3)</div>
+      <div style="font-size:1.4em">= +9</div>
+      <div style="font-size:.65em;opacity:.85">el signo SÍ entra</div>
+    </div>
+  </div>
+  <div class="hint step">El paréntesis decide si el signo se eleva o no.</div>`},
+// 9
+ej({kicker:'POTENCIA CON SIGNO',expr:'−4²',q:'¿Es −16 o +16?',ans:'−16',mode:'todos',
+  steps:[{c:'−4² = −(4 × 4)',w:'el − NO está dentro de la potencia'},{c:'= −16',w:'solo el 4 se eleva'}]}),
+// 10
+ej({kicker:'AHORA CON PARÉNTESIS',expr:'(−4)²',q:'¿Y ahora cambia?',ans:'+16',mode:'todos',
+  steps:[{c:'(−4) × (−4)',w:'el signo SÍ entra'},{c:'= +16',w:'negativo por negativo = positivo'}]}),
+// 11
+ej({kicker:'COMBINADO',expr:'2 <span class="hi">×</span> (−3)²',q:'¿Qué va primero?',ans:'La potencia',mode:'sorteo',
+  steps:[{c:'(−3)² = 9',w:'(−3)(−3) = +9'},{c:'2 × 9',w:'reemplazamos'},{c:'= 18',w:''}]}),
+// 12 concepto raíz
+{html:`
+  <div class="kicker">NUEVO</div>
+  <div class="title">Raíz cuadrada √</div>
+  <div class="expr">√9 = 3</div>
+  <div class="lead">Porque 3 × 3 = 9. La raíz es lo contrario de elevar al cuadrado.</div>
+  <div class="hint step">Va al <b>mismo nivel que las potencias</b> (paso 2 del orden).</div>`},
+// 13
+ej({kicker:'CON RAÍZ',expr:'√9 + 2 <span class="hi">×</span> 3',q:'¿Qué resuelvo primero?',ans:'La raíz y la multiplicación',mode:'todos',
+  steps:[{c:'√9 = 3',w:'la raíz va al nivel de potencias'},{c:'2 × 3 = 6',w:'la multiplicación'},{c:'3 + 6 = 9',w:'la suma al final'}]}),
+// 14
+ej({kicker:'RAÍZ Y POTENCIA',expr:'√16 − 2²',q:'¿Cuánto da?',ans:'0',mode:'sorteo',
+  steps:[{c:'√16 = 4',w:'porque 4 × 4 = 16'},{c:'2² = 4',w:'la potencia'},{c:'4 − 4 = 0',w:''}]}),
+// 15
+ej({kicker:'COMBINADA LARGA',expr:'24 <span class="hi">÷</span> [2 + (5 − 3)²]',q:'Vamos de adentro hacia afuera…',ans:'Primero (5 − 3)',mode:'sorteo',
+  steps:[{c:'5 − 3 = 2',w:'paréntesis interno'},{c:'2² = 4',w:'la potencia'},{c:'2 + 4 = 6',w:'cerramos corchete'},{c:'24 ÷ 6 = 4',w:'la división'}]}),
+// 16
+ej({kicker:'OTRA LARGA',expr:'5 <span class="hi">×</span> [2 + (6 ÷ 2)] − 4',q:'¿Primer paso?',ans:'La división interna',mode:'todos',
+  steps:[{c:'6 ÷ 2 = 3',w:'lo más interno'},{c:'2 + 3 = 5',w:'dentro del corchete'},{c:'5 × 5 = 25',w:'la multiplicación'},{c:'25 − 4 = 21',w:'la resta'}]}),
+// 17
+ej({kicker:'CON NEGATIVOS',expr:'−2 <span class="hi">×</span> [3 − (−4)]',q:'Ojo el doble signo…',ans:'3 − (−4) = 7',mode:'sorteo',
+  steps:[{c:'3 − (−4) = 7',w:'menos por menos suma: 3 + 4'},{c:'−2 × 7',w:'reemplazamos'},{c:'= −14',w:'signos distintos → negativo'}]}),
+// 18 trampas
+{html:`
+  <div class="kicker">NO CAIGAS AQUÍ · NIVEL 2</div>
+  <div class="title">Las 3 trampas duras</div>
+  <div class="ladder">
+    <div class="rung step"><div class="n" style="background:#E8503A">1</div><div><div class="t">−3² vs (−3)²</div><div class="s">Sin paréntesis el signo NO se eleva: −3² = −9</div></div></div>
+    <div class="rung step"><div class="n" style="background:#FFC800;color:#131F24">2</div><div><div class="t">Corchetes: de adentro hacia afuera</div><div class="s">Nunca de izquierda a derecha sin más</div></div></div>
+    <div class="rung step"><div class="n" style="background:#1CB0F6">3</div><div><div class="t">Doble signo</div><div class="s">3 − (−4) = 3 + 4 = 7</div></div></div>
+  </div>`},
+// 19 cierre
+{html:`
+  <div class="kicker">A PRACTICAR · NIVEL 2 💪</div>
+  <div class="title">¡Ahora el reto!</div>
+  <div class="lead">Abran <b>quiz-jerarquia-2.html</b> en su dispositivo.</div>
+  <div class="hint step">Es más difícil que el anterior. ¡A ver quién lo domina! 🔥</div>`},
+];
+
+let cur=0, step=0;
+function buildDots(){
+  const d=document.getElementById('dots');d.innerHTML='';
+  SLIDES.forEach(()=>{const e=document.createElement('div');e.className='dot';d.appendChild(e);});
+}
+function paintDots(){[...document.getElementById('dots').children].forEach((e,i)=>e.classList.toggle('on',i===cur));}
+function render(revealAll){
+  const s=SLIDES[cur];
+  STAGE.innerHTML='<div class="slide on">'+s.html+'</div>';
+  const steps=STAGE.querySelectorAll('.step');
+  if(revealAll){steps.forEach(e=>e.classList.add('show'));step=steps.length;}
+  else{step=0;}
+  paintDots();updateBtns();
+}
+function showSlide(i){cur=i;render(false);}
+function updateBtns(){
+  document.getElementById('prev').disabled=(cur===0 && step===0);
+  const last=cur===SLIDES.length-1;
+  const steps=STAGE.querySelectorAll('.step').length;
+  document.getElementById('next').textContent=(last && step>=steps)?'Fin ✓':'Avanzar ▶';
+}
+function advance(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step<steps.length){steps[step].classList.add('show');step++;updateBtns();return;}
+  if(cur<SLIDES.length-1){cur++;render(false);}
+}
+function back(){
+  const steps=STAGE.querySelectorAll('.step');
+  if(step>0){step--;steps[step].classList.remove('show');updateBtns();return;}
+  if(cur>0){cur--;render(true);}
+}
+const STAGE=document.getElementById('stage');
+document.getElementById('next').onclick=advance;
+document.getElementById('prev').onclick=back;
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('setup').classList.contains('hidden')===false)return;
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();advance();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();back();}
+  else if(e.key.toLowerCase()==='s'){spin();}
+});
+STAGE.addEventListener('click',advance);
+</script>
+</body>
+</html>

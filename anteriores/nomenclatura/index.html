@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nomenclatura de Química</title>
+<meta name="description" content="Simulador de nomenclatura inorgánica: valencias, hidruros metálicos, hidruros volátiles y haluros de hidrógeno.">
+<meta name="theme-color" content="#8B5CF6">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%238B5CF6'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial' font-weight='900' font-size='32' fill='white'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/nom.css?v=2">
+</head>
+<body>
+<header class="barra">
+  <div class="barra-in">
+    <span class="marca-logo" aria-hidden="true">N</span>
+    <div class="marca-txt">
+      <b>Nomenclatura</b>
+      <span>Práctica libre</span>
+    </div>
+    <div class="barra-acc">
+      <button type="button" class="btn-ico" id="btn-tema" aria-label="Cambiar tema" title="Tema">☀</button>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"><!-- todo se pinta con JS --></main>
+
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script src="js/nom-datos.js?v=2"></script>
+<script src="js/nom-motor.js?v=2"></script>
+<script src="js/nom-app.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* Estilos propios de las láminas 21–41 (prefijo lsb-). Azul y naranja solo llegan por las fichas .num y los dibujos. */
+
+/* Revelado por toques: dentro de la lámina se oculta hasta tocar; en la hoja de repaso se ve todo. */
+.lam-body .lsb-oc{ display:none !important; }
+.lsb-solo-lam{ display:none; }
+.lam-body .lsb-solo-lam{ display:inline; }
+
+/* Dibujos compactos: que la pregunta se vea pronto en el celular */
+.lsb-dib-peq svg{ max-height:120px; }
+.ejemplo .dibujo{ margin-top:6px; }
+.ejemplo .dibujo svg{ max-height:110px; }
+
+/* Líneas de expresión */
+.lsb-linea{ text-align:center; font-size:1.3rem; line-height:1.5; }
+.lsb-lista-fx{ line-height:2; }
+.lsb-expr{ font-size:1.3rem; font-weight:800; }
+.lsb-marco{ display:inline-block; outline:2.5px solid var(--ink); outline-offset:2px; border-radius:8px; background:var(--zero-soft); padding:0 2px; }
+.lsb-sub{ margin-top:4px; font-size:1rem; }
+.lsb-queda{ margin-top:4px; font-size:1.1rem; font-weight:800; }
+.lsb-visto{ color:var(--ok); font-weight:900; }
+.lsb-frase{ text-align:center; font-size:1.2rem; font-weight:900; padding:8px 12px; border:2.5px solid var(--ink); border-radius:var(--r-md); background:var(--surface); }
+
+/* L21: los 4 casos de signos pegados (rejilla compacta) */
+.lsb-grid2{ display:grid; grid-template-columns:1fr 1fr; gap:6px; width:100%; }
+.lsb-celda{ background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); padding:6px; text-align:center; display:flex; flex-direction:column; gap:0; }
+.lsb-celda-expr .fx{ font-size:1.15rem; }
+.lsb-celda-sig{ font-weight:800; font-size:.875rem; color:var(--ink-2); }
+.lsb-celda-res .fx{ font-size:1rem; }
+@media (min-width:560px){ .lsb-casos{ grid-template-columns:repeat(4,1fr); } }
+
+/* L25: patrón */
+.lsb-patron{ display:grid; grid-template-columns:1fr 104px; gap:8px; align-items:center; }
+.lsb-filas{ display:flex; flex-direction:column; gap:4px; }
+.lsb-fila{ font-size:1.2rem; font-weight:800; }
+.lsb-preg{ font-weight:900; font-size:1.4rem; padding:0 .3em; border:2px dashed var(--ink-3); border-radius:8px; }
+.lsb-patron-svg svg{ max-height:180px; }
+
+/* L26: tabla «cuenta los negativos» compacta */
+.lsb-cuenta .tabla-cuenta{ margin:0 auto; font-size:.9375rem; }
+.lsb-cuenta .tabla-cuenta td{ padding:4px 8px; }
+
+/* L28: las 3 columnas con lupa */
+.lsb-trampa{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; width:100%; }
+.lsb-col{ background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); padding:8px 4px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:4px; min-width:0; }
+.lsb-lupa svg{ width:64px; height:auto; }
+.lsb-etq{ font-size:.8rem; font-weight:900; background:var(--zero-soft); border-radius:var(--r-pill); padding:1px 8px; }
+.lsb-col-expr .fx{ font-size:.95rem; white-space:nowrap; }
+.lsb-col-res{ font-size:1.4rem; font-weight:900; }
+.lsb-col-por{ font-size:.8rem; line-height:1.3; color:var(--ink-2); }
+.lsb-col-por .fx{ font-size:.85rem; }
+@media (max-width:370px){ .lsb-col-expr .fx{ font-size:.82rem; } .lsb-lupa svg{ width:54px; } }
+
+/* L29: «¿qué regla uso?» */
+.lsb-arbol{ list-style:none; counter-reset:arb; display:flex; flex-direction:column; gap:8px; }
+.lsb-arbol li{ counter-increment:arb; background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md); padding:8px 10px 8px 40px; position:relative; display:flex; flex-direction:column; gap:4px; font-size:1rem; }
+.lsb-arbol li::before{ content:counter(arb); position:absolute; left:10px; top:9px; width:22px; height:22px; border-radius:50%; background:var(--ink); color:var(--bg); font-weight:900; font-size:.85rem; display:flex; align-items:center; justify-content:center; }
+.lsb-arbol-r{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-weight:800; }
+
+/* L31: tabla de potencias de −2 */
+.lsb-tabla-pot{ margin:0 auto; border-spacing:10px 2px; }
+.lsb-tabla-pot td{ font-size:1.1rem; padding:2px 4px; }
+
+/* L34/L35: escalera */
+.lsb-esc svg{ max-width:300px; max-height:150px; }
+.lsb-paso{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+.lsb-paso-txt{ flex:1 1 200px; min-width:0; }
+.lsb-esc-mini{ width:96px; flex-shrink:0; }
+.lsb-esc-mini svg{ width:100%; height:auto; display:block; }
+.paso:not(.actual) .lsb-paso, .paso:not(.actual) .lsb-expr{ opacity:.55; }
+
+/* L39: antes / ahora */
+.lsb-antes-ahora{ display:flex; align-items:center; justify-content:center; gap:10px; }
+.lsb-aa{ display:flex; flex-direction:column; align-items:center; gap:4px; font-weight:800; }
+.lsb-aa-antes{ color:var(--ink-3); }
+.lsb-antes .num{ color:var(--ink-3) !important; background:transparent !important; border-color:var(--line) !important; font-size:1.8rem; }
+.lsb-antes-txt{ font-size:1rem; color:var(--ink-3); }
+.lsb-ahora .num{ font-size:2.2rem; }
+.lsb-aa-sello svg{ width:84px; height:84px; }
+
+/* L40: resumen compacto */
+.lsb-resumen{ padding-left:1.3em; display:flex; flex-direction:column; gap:6px; font-size:.9375rem; line-height:1.4; }
+.lsb-resumen .chip{ vertical-align:middle; margin-right:2px; }
+.lsb-resumen .fx{ font-size:1rem; }
+.lsb-res-ojo{ list-style:none; margin-left:-1.3em; background:color-mix(in srgb, var(--prize) 22%, var(--surface)); border:2px solid var(--prize); border-radius:var(--r-md); padding:8px 12px; }
+.lsb-nota{ margin-top:8px; }
+.lsb-foto{ margin-top:12px; text-align:center; }
+.lsb-foto img{ width:100%; height:auto; border:2px solid var(--line); border-radius:var(--r-md); background:#FFFFFF; -webkit-touch-callout:default; }
+.lsb-foto figcaption{ margin-top:6px; }
+
+/* Cierre de capítulo */
+.lsb-cierre{ display:flex; flex-direction:column; gap:12px; text-align:center; }
+.lsb-cierre .caja-nota{ text-align:center; }
