@@ -9,6 +9,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../motor/motor.css">
+<style>
+.reto-q{font-size:1.25em;font-weight:800;background:var(--panel);border:2px solid var(--green);border-radius:16px;padding:14px 18px;margin:8px 0 12px}
+.cuenta{color:var(--gold);font-weight:800;margin:6px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.chip{background:var(--panel2);border:2px solid var(--blue);border-radius:14px;padding:8px 14px;text-align:center;min-width:92px}
+.chip b{display:block;font-size:1.5em;font-weight:900;color:var(--text)}
+.chip small{color:var(--muted);font-size:.8em}
+.chip.medio{border-color:var(--gold)} .chip.medio b{color:var(--gold)}
+.step.vis.chip,.step.vis.ejemplo{animation:pop .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
+@keyframes entra{0%{transform:translateX(-14px);opacity:0}100%{transform:none;opacity:1}}
+</style>
 </head>
 <body>
 <div class="deck" id="deck"></div>
@@ -19,7 +32,7 @@
     <h2>1. Los electrones viven en niveles</h2>
     <p>Bohr propuso que los electrones no están en cualquier lado. Imagina un edificio: cada piso es un <b>nivel de energía</b>. Abajo, cerca del núcleo, tienen poca energía. Mientras más arriba, más energía tienen.</p>
     <div class="grid2" style="align-items:center">
-      <svg class="dib" viewBox="0 0 300 300" role="img" aria-label="Átomo de sodio: núcleo y tres niveles con 2, 8 y 1 electrones" style="max-width:300px;margin:0 auto">
+      <svg class="dib step" viewBox="0 0 300 300" role="img" aria-label="Átomo de sodio: núcleo y tres niveles con 2, 8 y 1 electrones" style="max-width:300px;margin:0 auto">
         <g fill="none" stroke="#2E4652" stroke-width="3"><circle cx="150" cy="150" r="56"/><circle cx="150" cy="150" r="96"/><circle cx="150" cy="150" r="136"/></g>
         <circle cx="150" cy="150" r="26" fill="#FF6B6B"/>
         <text x="150" y="157" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="20" fill="#0E1A1F">11+</text>
@@ -32,10 +45,10 @@
       <div>
         <table class="t">
           <tr><th>Nivel</th><th>Electrones que caben</th></tr>
-          <tr><td>1</td><td>2</td></tr>
-          <tr><td>2</td><td>8</td></tr>
-          <tr><td>3</td><td>18</td></tr>
-          <tr><td>4</td><td>32</td></tr>
+          <tr class="step"><td>1</td><td>2</td></tr>
+          <tr class="step"><td>2</td><td>8</td></tr>
+          <tr class="step"><td>3</td><td>18</td></tr>
+          <tr class="step"><td>4</td><td>32</td></tr>
         </table>
         <div class="clave step"><b>El sodio</b> tiene 11 electrones: 2 en el nivel 1, 8 en el nivel 2 y 1 en el nivel 3, el de color dorado.</div>
       </div>
@@ -50,12 +63,12 @@
     <div class="grid2" style="align-items:center">
       <table class="t">
         <tr><th>Nivel</th><th>Subniveles</th><th>Total</th></tr>
-        <tr><td>1</td><td>1s</td><td>2</td></tr>
-        <tr><td>2</td><td>2s, 2p</td><td>2 + 6 = 8</td></tr>
-        <tr><td>3</td><td>3s, 3p, 3d</td><td>2 + 6 + 10 = 18</td></tr>
-        <tr><td>4</td><td>4s, 4p, 4d, 4f</td><td>2 + 6 + 10 + 14 = 32</td></tr>
+        <tr class="step"><td>1</td><td>1s</td><td>2</td></tr>
+        <tr class="step"><td>2</td><td>2s, 2p</td><td>2 + 6 = 8</td></tr>
+        <tr class="step"><td>3</td><td>3s, 3p, 3d</td><td>2 + 6 + 10 = 18</td></tr>
+        <tr class="step"><td>4</td><td>4s, 4p, 4d, 4f</td><td>2 + 6 + 10 + 14 = 32</td></tr>
       </table>
-      <svg class="dib" viewBox="60 0 400 200" role="img" aria-label="Lectura de 3p5: 3 es el nivel, p es el subnivel y 5 es la cantidad de electrones">
+      <svg class="dib step" viewBox="60 0 400 200" role="img" aria-label="Lectura de 3p5: 3 es el nivel, p es el subnivel y 5 es la cantidad de electrones">
         <g font-family="Nunito,sans-serif" font-weight="900" text-anchor="middle">
           <text x="150" y="118" font-size="90" fill="#FFC800">3</text>
           <text x="208" y="118" font-size="90" fill="#3BC97A">p</text>
@@ -81,12 +94,12 @@
     <h2>3. ¿En qué orden se llenan?</h2>
     <div class="grid2" style="align-items:center">
       <div>
-        <p>Los electrones ocupan primero los lugares de menor energía, y solo cuando se llenan pasan a los siguientes. Se llama <b>principio de Aufbau</b>, una palabra alemana que significa «construcción».</p>
-        <p>Para no memorizar el orden, se dibuja este cuadro y se siguen las flechas, de arriba hacia abajo.</p>
+        <p class="step">Los electrones ocupan primero los lugares de menor energía, y solo cuando se llenan pasan a los siguientes. Se llama <b>principio de Aufbau</b>, una palabra alemana que significa «construcción».</p>
+        <p class="step">Para no memorizar el orden, se dibuja este cuadro y se siguen las flechas, de arriba hacia abajo.</p>
         <div class="clave step"><b>Orden:</b> 1s, 2s, 2p, 3s, 3p, 4s, 3d, 4p, 5s…</div>
         <div class="clave step"><b>Fíjate:</b> después de 3p no viene 3d, viene 4s.</div>
       </div>
-      <svg class="dib" viewBox="0 0 340 290" role="img" aria-label="Cuadro de los subniveles del 1s al 7p con flechas diagonales que marcan el orden de llenado" style="max-width:500px;margin:0 auto">
+      <svg class="dib step" viewBox="0 0 340 290" role="img" aria-label="Cuadro de los subniveles del 1s al 7p con flechas diagonales que marcan el orden de llenado" style="max-width:500px;margin:0 auto">
         <defs><marker id="pz8" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><path d="M0 0l7 3.5L0 7z" fill="#FFC800"/></marker></defs>
         <g stroke="#FFC800" stroke-width="2" marker-end="url(#pz8)" fill="none">
           <path d="M86 6L14 42" marker-end="url(#pz8)"/><path d="M86 46L14 82" marker-end="url(#pz8)"/><path d="M166 46L14 122" marker-end="url(#pz8)"/><path d="M166 86L14 162" marker-end="url(#pz8)"/>
@@ -118,10 +131,10 @@
 <section data-titulo="4. Escribir una configuración">
   <div class="inner">
     <h2>4. Escribir la configuración, paso a paso</h2>
-    <p>La <b>configuración electrónica</b> dice cómo se reparten los electrones de un átomo. Hagamos la del sodio, Z = 11. Tenemos 11 electrones para acomodar.</p>
+    <p class="step">La <b>configuración electrónica</b> dice cómo se reparten los electrones de un átomo. Hagamos la del sodio, Z = 11. Tenemos 11 electrones para acomodar.</p>
     <table class="t">
       <tr><th>Paso</th><th>Subnivel</th><th>Lleva</th><th>Ya van</th><th>Quedan</th></tr>
-      <tr><td>1</td><td>1s</td><td>2</td><td>2</td><td>9</td></tr>
+      <tr class="step"><td>1</td><td>1s</td><td>2</td><td>2</td><td>9</td></tr>
       <tr class="step"><td>2</td><td>2s</td><td>2</td><td>4</td><td>7</td></tr>
       <tr class="step"><td>3</td><td>2p</td><td>6</td><td>10</td><td>1</td></tr>
       <tr class="step"><td>4</td><td>3s</td><td>1, el que queda</td><td>11</td><td>0</td></tr>
@@ -135,10 +148,10 @@
 <section data-titulo="5. La trampa del 4s y el 3d">
   <div class="inner">
     <h2>5. La trampa del 4s y el 3d</h2>
-    <p>Aquí está el error más común. Al llegar al potasio, el electrón que sigue no va al 3d, sino al 4s, porque en ese momento el 4s tiene menos energía. El 3d se empieza a llenar después.</p>
+    <p class="step">Aquí está el error más común. Al llegar al potasio, el electrón que sigue no va al 3d, sino al 4s, porque en ese momento el 4s tiene menos energía. El 3d se empieza a llenar después.</p>
     <table class="t">
       <tr><th>Átomo</th><th>Z</th><th>Configuración</th></tr>
-      <tr><td>Potasio</td><td>19</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>1</sup></span></td></tr>
+      <tr class="step"><td>Potasio</td><td>19</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>1</sup></span></td></tr>
       <tr class="step"><td>Calcio</td><td>20</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup></span></td></tr>
       <tr class="step"><td>Hierro</td><td>26</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup> 3d<sup>6</sup></span></td></tr>
     </table>
@@ -150,11 +163,11 @@
 <section data-titulo="6. Electrones de valencia">
   <div class="inner">
     <h2>6. Los electrones de valencia</h2>
-    <p>No todos los electrones trabajan igual. Los de los pisos bajos quedan adentro. Los del <b>último nivel</b> son los que tocan a otros átomos, y por eso son los que deciden cómo reacciona cada elemento.</p>
+    <p class="step">No todos los electrones trabajan igual. Los de los pisos bajos quedan adentro. Los del <b>último nivel</b> son los que tocan a otros átomos, y por eso son los que deciden cómo reacciona cada elemento.</p>
     <div class="clave"><b>Electrones de valencia:</b> son los del nivel más alto. Se suman todos los subniveles de ese nivel.</div>
     <table class="t">
       <tr><th>Átomo</th><th>Configuración</th><th>Último nivel</th><th>De valencia</th></tr>
-      <tr><td>Sodio</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>1</sup></span></td><td>3</td><td>1</td></tr>
+      <tr class="step"><td>Sodio</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>1</sup></span></td><td>3</td><td>1</td></tr>
       <tr class="step"><td>Oxígeno</td><td>1s<sup>2</sup> <span class="f">2s<sup>2</sup> 2p<sup>4</sup></span></td><td>2</td><td>2 + 4 = 6</td></tr>
       <tr class="step"><td>Cloro</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>2</sup> 3p<sup>5</sup></span></td><td>3</td><td>2 + 5 = 7</td></tr>
     </table>
@@ -166,7 +179,7 @@
   <div class="inner">
     <h2>7. Un atajo, y la configuración de los iones</h2>
     <div class="grid2">
-      <div class="card"><h3>El atajo</h3>
+      <div class="card step"><h3>El atajo</h3>
         <p>Algunos gases, como el neón y el argón, tienen 8 electrones en su último nivel: s y p completos. Su configuración se usa como abreviatura, entre corchetes.</p>
         <p style="margin:0">Neón: 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup><br>Sodio: <span class="f">[Ne] 3s<sup>1</sup></span></p></div>
       <div class="card step"><h3>Los iones</h3>
@@ -174,6 +187,54 @@
         <p style="margin:0">Na<sup>+</sup> tiene 10: 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup><br>Cl<sup>−</sup> tiene 18: 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup></p></div>
     </div>
     <div class="clave step"><b>Mira esto:</b> Na<sup>+</sup> quedó igual que el neón, y Cl<sup>−</sup> igual que el argón. No es casualidad, y lo vamos a retomar cuando veamos por qué se unen los átomos.</div>
+  </div>
+</section>
+
+<section data-titulo="8. Resuelto: el hierro">
+  <div class="inner">
+    <div class="kicker">Resolvamos juntos</div>
+    <h2>8. el hierro</h2>
+    <div class="reto-q">¿Cómo queda la configuración del <b>hierro</b>, Z = 26?</div>
+    <div class="step cuenta">Piensen 20 segundos y escriban en el chat el último subnivel.</div>
+    <p class="step">Tenemos <b>26 electrones</b>. Vamos llenando en orden: 1s, 2s, 2p, 3s, 3p, <b>4s</b>, 3d.</p>
+    <div class="chips"><div class="step chip"><b>1s<sup>2</sup></b><small>van 2 · quedan 24</small></div><div class="step chip"><b>2s<sup>2</sup></b><small>van 4 · quedan 22</small></div><div class="step chip"><b>2p<sup>6</sup></b><small>van 10 · quedan 16</small></div><div class="step chip"><b>3s<sup>2</sup></b><small>van 12 · quedan 14</small></div><div class="step chip"><b>3p<sup>6</sup></b><small>van 18 · quedan 8</small></div><div class="step chip"><b>4s<sup>2</sup></b><small>van 20 · quedan 6</small></div><div class="step chip medio"><b>3d<sup>6</sup></b><small>van 26 · quedan 0</small></div></div>
+    <div class="ejemplo step">Resultado: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> 4s<sup>2</sup> 3d<sup>6</sup></span><span class="paso">2 + 2 + 6 + 2 + 6 + 2 + 6 = 26</span></div>
+    <div class="clave step"><b>La trampa:</b> después de 3p<sup>6</sup> no va 3d, va 4s<sup>2</sup>. Los 6 que faltan para 26 van al 3d.</div>
+  </div>
+</section>
+<section data-titulo="9. Resuelto: el ion cloruro">
+  <div class="inner">
+    <div class="kicker">Resolvamos juntos</div>
+    <h2>9. el ion cloruro</h2>
+    <div class="reto-q">¿Cómo queda la configuración del ion <b>Cl<sup>−</sup></b>? El cloro tiene Z = 17.</div>
+    <div class="step cuenta">Piensen 20 segundos y escriban en el chat el último subnivel.</div>
+    <p class="step">Primero contamos electrones: el signo menos dice que <b>ganó 1</b>. Entonces 17 + 1 = <b>18 electrones</b>. Repartimos 18, no 17.</p>
+    <div class="chips"><div class="step chip"><b>1s<sup>2</sup></b><small>van 2 · quedan 16</small></div><div class="step chip"><b>2s<sup>2</sup></b><small>van 4 · quedan 14</small></div><div class="step chip"><b>2p<sup>6</sup></b><small>van 10 · quedan 8</small></div><div class="step chip"><b>3s<sup>2</sup></b><small>van 12 · quedan 6</small></div><div class="step chip"><b>3p<sup>6</sup></b><small>van 18 · quedan 0</small></div></div>
+    <div class="ejemplo step">Resultado: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup></span><span class="paso">2 + 2 + 6 + 2 + 6 = 18</span></div>
+    <div class="clave step"><b>Fíjate:</b> quedó igual que el argón, con el nivel 3 cerrado en 3s<sup>2</sup> 3p<sup>6</sup>.</div>
+  </div>
+</section>
+<section data-titulo="10. Resuelto: el azufre y su valencia">
+  <div class="inner">
+    <div class="kicker">Resolvamos juntos</div>
+    <h2>10. el azufre y su valencia</h2>
+    <div class="reto-q">¿Cuántos electrones de valencia tiene el <b>azufre</b>, Z = 16?</div>
+    <div class="step cuenta">Piensen 20 segundos y escriban en el chat el último subnivel.</div>
+    <p class="step">Primero escribimos la configuración con <b>16 electrones</b>; después miramos el último nivel.</p>
+    <div class="chips"><div class="step chip"><b>1s<sup>2</sup></b><small>van 2 · quedan 14</small></div><div class="step chip"><b>2s<sup>2</sup></b><small>van 4 · quedan 12</small></div><div class="step chip"><b>2p<sup>6</sup></b><small>van 10 · quedan 6</small></div><div class="step chip"><b>3s<sup>2</sup></b><small>van 12 · quedan 4</small></div><div class="step chip medio"><b>3p<sup>4</sup></b><small>van 16 · quedan 0</small></div></div>
+    <div class="ejemplo step">Resultado: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>4</sup></span><span class="paso">2 + 2 + 6 + 2 + 4 = 16</span></div>
+    <div class="clave step"><b>Último nivel: el 3.</b> Sumamos 3s<sup>2</sup> y 3p<sup>4</sup>: 2 + 4 = <b>6 electrones de valencia</b>.</div>
+  </div>
+</section>
+<section data-titulo="11. Reto en vivo">
+  <div class="inner">
+    <div class="kicker">Todos con el celular</div>
+    <h2>11. Reto en vivo</h2>
+    <p class="step">Abre la pantalla del reto y compártela en el Meet. Los chicos entran con el código de 4 números o con el enlace que pegas en el chat. Diez preguntas, 20 segundos cada una: gana más el que responde bien y rápido, y hay bono por racha.</p>
+    <div class="fila step" style="display:flex;gap:12px;flex-wrap:wrap;margin:14px 0">
+      <a class="btn" href="vivo/?anfitrion" target="_blank" rel="noopener">Abrir la pantalla del reto</a>
+    </div>
+    <div class="clave step"><b>Si se cae el internet de alguien:</b> que vuelva a abrir el enlace con el mismo nombre; recupera sus puntos.</div>
   </div>
 </section>
 </template>
@@ -214,5 +275,6 @@ const CLASE={
 };
 </script>
 <script src="../motor/motor.js"></script>
+<script src="ruleta.js"></script>
 </body>
 </html>

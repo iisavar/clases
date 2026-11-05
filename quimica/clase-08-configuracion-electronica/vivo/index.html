@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reto en vivo: configuración electrónica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#131F24;--panel:#1B2B32;--panel2:#22363F;--line:#2E4652;--text:#F1F5F7;--muted:#A9BCC4;--green:#2BAE66;--green-d:#1F8A4F;--gold:#FFC800;--red:#FF6B6B;--blue:#4FB3E8;--ink:#0E1A1F}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Nunito,sans-serif;display:flex;flex-direction:column}
+body.bien{background:#163A28} body.mal{background:#3A1B1F}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1100px;width:100%;margin:0 auto;padding:22px}
+h1{font-weight:900;margin:.2em 0;font-size:clamp(28px,4vw,44px)}
+.marca{color:var(--green);font-weight:900;letter-spacing:.02em;margin:0}
+.tarjeta{background:var(--panel);border:2px solid var(--line);border-radius:20px;padding:20px}
+button{font-family:inherit;font-weight:900;font-size:18px;border:0;border-radius:16px;padding:14px 22px;cursor:pointer}
+.principal{background:var(--green);color:#fff;box-shadow:0 5px 0 var(--green-d)}
+.principal:disabled{opacity:.5;cursor:default}
+.sec{background:var(--panel2);color:var(--text)}
+.pin{font-size:clamp(48px,9vw,96px);font-weight:900;color:var(--gold);letter-spacing:.08em;line-height:1}
+.jug{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:18px 0}
+.jug li{background:var(--panel2);border-radius:999px;padding:8px 16px;font-weight:800;animation:pop .4s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{0%{transform:scale(.5);opacity:0}100%{transform:none;opacity:1}}
+.fila{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cab{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.cuenta{font-weight:900;color:var(--muted)}
+.barra{flex:1;height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}.barra i{display:block;height:100%;background:var(--green)}
+.seg{font-size:34px;font-weight:900;min-width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--panel2);border:4px solid var(--blue)}
+.seg.poco{border-color:var(--red);color:var(--red)}
+.preg{font-size:clamp(24px,3.4vw,40px);font-weight:900;background:var(--panel);border-radius:20px;padding:22px;margin:0 0 16px;text-align:center}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.op{display:flex;align-items:center;gap:14px;border-radius:18px;padding:18px;font-size:clamp(20px,2.6vw,30px);font-weight:900;color:#fff;text-align:left;min-height:86px;border:0;width:100%}
+.op .l{background:rgba(0,0,0,.25);border-radius:12px;min-width:44px;height:44px;display:grid;place-items:center}
+.o0{background:#E0475A;box-shadow:0 5px 0 #A8303F}.o1{background:#2F7FD8;box-shadow:0 5px 0 #1F5CA0}
+.o2{background:#D9A400;box-shadow:0 5px 0 #A07900}.o3{background:#2BAE66;box-shadow:0 5px 0 #1F8A4F}
+.op.apagada{opacity:.35}.op.buena{outline:5px solid #fff}
+.op .v{margin-left:auto;background:rgba(0,0,0,.3);border-radius:10px;padding:2px 12px}
+.explica{background:var(--panel2);border-left:6px solid var(--gold);border-radius:12px;padding:14px 18px;font-size:20px;margin-top:16px}
+.rank{list-style:none;padding:0;margin:16px 0;display:grid;gap:10px}
+.rank li{display:flex;align-items:center;gap:14px;background:var(--panel);border-radius:14px;padding:12px 18px;font-size:22px;font-weight:900;animation:pop .4s}
+.rank .n{color:var(--gold);min-width:30px}.rank .p{margin-left:auto;color:var(--green)}
+.grande{font-size:clamp(34px,6vw,64px);font-weight:900;text-align:center;margin:10px 0}
+.centro{text-align:center}
+label{display:block;font-weight:800;margin:12px 0 6px;color:var(--muted)}
+input{width:100%;font:900 24px Nunito,sans-serif;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--text)}
+.aviso{background:#3A1B1F;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.estado{color:var(--muted);text-align:center;font-weight:800;margin-top:12px}
+.podio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;align-items:end;margin:20px 0}
+.podio div{background:var(--panel);border-radius:18px 18px 0 0;text-align:center;padding:16px 8px;font-weight:900;font-size:22px}
+.podio .p1{min-height:230px;border-top:6px solid var(--gold)}.podio .p2{min-height:180px;border-top:6px solid #C0C8CC}.podio .p3{min-height:140px;border-top:6px solid #C77B30}
+.podio b{display:block;font-size:44px}
+.confeti{position:fixed;top:-20px;width:12px;height:18px;z-index:9;animation:cae linear forwards}
+@keyframes cae{to{transform:translateY(110vh) rotate(720deg)}}
+@media (max-width:640px){.ops{grid-template-columns:1fr}.op{min-height:64px}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js" integrity="sha384-nlUQ8ZqCbvStErob+biJNzSgltf6urV3VGqhfIfzhmg9RXmpeRm76ELw0pYnKlTR" crossorigin="anonymous"></script>
+<script>
+/* Reto en vivo de la clase 8. La primera opción de cada pregunta es la correcta; la página baraja. */
+const PREGUNTAS=[
+ {p:'¿Cuántos electrones caben como máximo en un subnivel d?',o:['10','6','14','2'],j:'s admite 2, p admite 6, d admite 10 y f admite 14.'},
+ {p:'¿Cuál de estos subniveles NO existe?',o:['2d','3d','2p','4f'],j:'El subnivel d aparece desde el nivel 3. El nivel 2 solo tiene s y p.'},
+ {p:'Después de llenar el 3p, ¿qué subnivel sigue?',o:['4s','3d','4p','3f'],j:'El 4s tiene menos energía que el 3d al llenarse, así que va primero.'},
+ {p:'¿Cuál es la configuración del carbono, Z = 6?',o:['1s² 2s² 2p²','1s² 2s⁴','1s² 2s² 2p⁴','1s² 2p⁴'],j:'Los exponentes deben sumar 6: 2 + 2 + 2.'},
+ {p:'¿En qué termina la configuración del sodio, Z = 11?',o:['3s¹','3p¹','2p⁷','3s²'],j:'1s² 2s² 2p⁶ llevan 10; el electrón 11 va al 3s.'},
+ {p:'¿Cuántos electrones de valencia tiene el cloro, Z = 17?',o:['7','5','17','2'],j:'Termina en 3s² 3p⁵: en el nivel 3 hay 2 + 5 = 7.'},
+ {p:'¿En qué termina la configuración del potasio, Z = 19?',o:['4s¹','3d¹','3p⁷','4p¹'],j:'Después de 3p⁶ (18 electrones) el que sigue va al 4s, no al 3d.'},
+ {p:'¿Cuántos electrones tiene el ion Mg²⁺? El magnesio tiene Z = 12.',o:['10','12','14','2'],j:'Perdió 2 electrones: 12 − 2 = 10.'},
+ {p:'En el hierro, Z = 26, ¿cuál es el último subnivel que se escribe?',o:['3d⁶','4s²','3d⁸','4p⁶'],j:'Hasta 4s² van 20 electrones; los 6 que faltan van al 3d.'},
+ {p:'¿Cuántos electrones caben en todo el nivel 2?',o:['8','2','18','6'],j:'2s admite 2 y 2p admite 6: en total 8.'},
+ {p:'¿Cuántos electrones de valencia tiene el oxígeno, Z = 8?',o:['6','8','4','2'],j:'1s² 2s² 2p⁴: en el último nivel hay 2 + 4 = 6.'},
+ {p:'El ion Na⁺ queda con la misma configuración que…',o:['el neón','el argón','el helio','el sodio neutro'],j:'Na⁺ tiene 10 electrones, igual que el neón: 1s² 2s² 2p⁶.'},
+ {p:'En 3p⁵, ¿qué indica el número 5?',o:['Los electrones','El nivel','El subnivel','Los protones'],j:'El 3 es el nivel, la p es el subnivel y el 5 son los electrones.'}
+];
+const SEG=20, CUANTAS=10, PREF='cidea-quimica8-';
+const app=document.getElementById('app'), L='ABCD';
+const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const barajar=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const puntos=ms=>Math.round(1000*(1-0.5*Math.min(ms,SEG*1000)/(SEG*1000)));
+function fondo(c){document.body.className=c||''}
+function confeti(n){const C=['#FFC800','#2BAE66','#4FB3E8','#FF6B6B','#fff'];for(let i=0;i<n;i++){const d=document.createElement('i');d.className='confeti';
+ d.style.left=Math.random()*100+'vw';d.style.background=C[i%C.length];d.style.animationDuration=(1.6+Math.random()*1.8)+'s';d.style.animationDelay=Math.random()*.5+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),4200)}}
+function tono(f,d){try{const a=window.__a||(window.__a=new (window.AudioContext||window.webkitAudioContext)());const o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(.15,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+d);o.start();o.stop(a.currentTime+d)}catch(e){}}
+function cabeza(n,total){return `<div class="cab"><span class="cuenta">${n} / ${total}</span><div class="barra"><i style="width:${n/total*100}%"></i></div><div class="seg" id="seg">${SEG}</div></div>`}
+function opciones(textos,botones,extra){return '<div class="ops">'+textos.map((t,i)=>{const x=extra?extra(i):{c:'',v:''};
+ return botones?`<button class="op o${i}" data-o="${i}"><span class="l">${L[i]}</span>${esc(t)}</button>`:`<div class="op o${i} ${x.c}"><span class="l">${L[i]}</span>${esc(t)}${x.v}</div>`}).join('')+'</div>'}
+function reloj(fin,alFin){const id=setInterval(()=>{const q=fin-Date.now(),s=document.getElementById('seg');if(!s){clearInterval(id);return}
+ s.textContent=Math.max(0,Math.ceil(q/1000));s.classList.toggle('poco',q<5000);if(q<=0){clearInterval(id);alFin&&alFin()}},100);return id}
+
+/* ---------- Pantalla del docente (se comparte en el Meet) ---------- */
+function anfitrion(){
+ let jug={},pregs=[],r=null,t=null,peer,pin=String(Math.floor(1000+Math.random()*9000));
+ const lista=()=>Object.values(jug), orden=()=>lista().sort((a,b)=>b.pts-a.pts);
+ const env=(j,d)=>{if(j.c&&j.c.open)j.c.send(d)}, todos=d=>lista().forEach(j=>env(j,d));
+ function abrir(){peer=new Peer(PREF+pin);
+  peer.on('open',sala);
+  peer.on('disconnected',()=>{if(!peer.destroyed)peer.reconnect()});
+  peer.on('connection',c=>c.on('data',d=>recibir(c,d)));
+  peer.on('error',e=>{if(e.type==='unavailable-id'){pin=String(Math.floor(1000+Math.random()*9000));abrir();return}
+   if(!pregs.length)app.innerHTML='<div class="aviso">No se pudo abrir la sala. Revisa el internet y recarga la página.</div>'})}
+ function recibir(c,d){
+  if(d.t==='hola'){let n=String(d.nombre||'').trim().slice(0,24);if(!n)return;let k=n.toLowerCase(),b=n,i=1;
+   while(jug[k]&&jug[k].c&&jug[k].c.open&&jug[k].c!==c){i++;n=b+' '+i;k=n.toLowerCase()}
+   if(!jug[k])jug[k]={n,pts:0,racha:0};jug[k].c=c;c.k=k;c.send({t:'ok',nombre:n});tono(660,.12);
+   if(r&&!r.cerrada)c.send(msg());if(!pregs.length)sala();}
+  else if(d.t==='r'&&r&&!r.cerrada&&c.k&&!(c.k in r.resp)&&typeof d.o==='number'&&d.o>=0&&d.o<4){
+   r.resp[c.k]={o:d.o,ms:Date.now()-r.ini};const n=Object.keys(r.resp).length,el=document.getElementById('conteo');
+   if(el)el.textContent=n+' de '+lista().length+' respondieron';if(n>=lista().length)cerrar()}}
+ function sala(){fondo('');const enlace=location.origin+location.pathname+'?aula='+pin;
+  app.innerHTML=`<p class="marca">Reto en vivo · Configuración electrónica</p><h1>Entren desde el celular</h1>
+   <div class="tarjeta fila" style="justify-content:space-between"><div><div class="cuenta">Código del aula</div><div class="pin">${pin}</div></div>
+   <div style="max-width:420px"><div class="cuenta">Enlace para el chat</div><div style="word-break:break-all;font-weight:800;margin:6px 0 10px">${esc(enlace)}</div>
+   <button class="sec" id="copiar">Copiar enlace</button></div></div>
+   <ul class="jug">${lista().map(j=>`<li>${esc(j.n)}</li>`).join('')}</ul>
+   <div class="fila" style="justify-content:space-between"><span class="cuenta">${lista().length} conectados</span>
+   <button class="principal" id="ini" ${lista().length?'':'disabled'}>Empezar el reto ▶</button></div>`;
+  document.getElementById('copiar').onclick=function(){const b=this;(navigator.clipboard?navigator.clipboard.writeText(enlace):Promise.reject()).then(()=>b.textContent='Enlace copiado',()=>prompt('Copia este enlace:',enlace))};
+  document.getElementById('ini').onclick=()=>{pregs=barajar(PREGUNTAS).slice(0,CUANTAS);lanzar(0)}}
+ const msg=()=>({t:'q',n:r.i+1,total:pregs.length,p:pregs[r.i].p,o:r.txt,resta:r.fin-Date.now()});
+ function lanzar(i){fondo('');const ord=barajar([0,1,2,3]);
+  r={i,ord,txt:ord.map(x=>pregs[i].o[x]),ini:Date.now(),fin:Date.now()+SEG*1000,resp:{},cerrada:false};
+  todos(msg());tono(520,.15);
+  app.innerHTML=cabeza(i+1,pregs.length)+`<p class="preg">${esc(pregs[i].p)}</p>`+opciones(r.txt,false)+`<p class="estado" id="conteo">0 de ${lista().length} respondieron</p>`;
+  t=reloj(r.fin,cerrar)}
+ function cerrar(){if(r.cerrada)return;r.cerrada=true;clearInterval(t);
+  const q=pregs[r.i],buena=r.ord.indexOf(0),votos=[0,0,0,0];
+  lista().forEach(j=>{const x=r.resp[j.n.toLowerCase()],ok=!!x&&x.o===buena,g=ok?puntos(x.ms)+(j.racha>=2?100:0):0;
+   if(x)votos[x.o]++;j.racha=ok?j.racha+1:0;j.pts+=g;j.g=g;j.ok=ok;j.resp=!!x});
+  const o=orden();o.forEach((j,n)=>env(j,{t:'res',ok:j.ok,resp:j.resp,g:j.g,pts:j.pts,puesto:n+1,de:o.length,racha:j.racha,buena:q.o[0],j:q.j}));
+  tono(880,.2);const ult=r.i===pregs.length-1;
+  app.innerHTML=`<p class="preg">${esc(q.p)}</p>`+opciones(r.txt,false,i=>({c:i===buena?'buena':'apagada',v:`<span class="v">${i===buena?'✔ ':''}${votos[i]}</span>`}))+
+   `<div class="explica">${esc(q.j)}</div><div class="fila" style="justify-content:flex-end;margin-top:16px"><button class="principal" id="rk">Ver posiciones ▶</button></div>`;
+  document.getElementById('rk').onclick=()=>ranking(o,ult)}
+ function ranking(o,ult){app.innerHTML=`<p class="marca">Posiciones</p><ol class="rank">${o.slice(0,5).map((j,n)=>`<li><span class="n">${n+1}</span>${esc(j.n)}${j.racha>=2?' 🔥':''}<span class="p">${j.pts}</span></li>`).join('')}</ol>
+   <div class="fila" style="justify-content:flex-end"><button class="principal" id="sg">${ult?'Ver el podio 🏆':'Siguiente pregunta ▶'}</button></div>`;
+  document.getElementById('sg').onclick=()=>ult?fin():lanzar(r.i+1)}
+ function fin(){const o=orden();o.forEach((j,n)=>env(j,{t:'fin',pts:j.pts,puesto:n+1,de:o.length}));confeti(90);tono(784,.2);setTimeout(()=>tono(1046,.4),200);
+  const c=(j,k)=>j?`<div class="p${k}"><b>${k}.º</b>${esc(j.n)}<br><span style="color:var(--green)">${j.pts}</span></div>`:'<div></div>';
+  app.innerHTML=`<p class="marca centro">Podio del reto</p><div class="podio">${c(o[1],2)}${c(o[0],1)}${c(o[2],3)}</div>
+   ${o.length>3?`<ol class="rank" start="4">${o.slice(3).map((j,n)=>`<li><span class="n">${n+4}</span>${esc(j.n)}<span class="p">${j.pts}</span></li>`).join('')}</ol>`:''}
+   <div class="fila" style="justify-content:center"><button class="sec" id="otra">Jugar otra ronda</button></div>`;
+  document.getElementById('otra').onclick=()=>{lista().forEach(j=>{j.pts=0;j.racha=0});pregs=[];r=null;todos({t:'ok'});sala()}}
+ app.innerHTML='<p class="estado">Abriendo la sala…</p>';abrir();
+}
+
+/* ---------- Pantalla del estudiante (celular) ---------- */
+function entrada(error){fondo('');const aula=new URLSearchParams(location.search).get('aula')||'';let nom='';try{nom=localStorage.getItem('q8-nombre')||''}catch(e){}
+ app.innerHTML=`<p class="marca centro">Reto en vivo</p><h1 class="centro">Configuración electrónica</h1><div class="tarjeta" style="max-width:460px;width:100%;margin:10px auto">
+  ${error?`<div class="aviso">${esc(error)}</div>`:''}
+  <label for="pin">Código del aula</label><input id="pin" inputmode="numeric" maxlength="4" value="${esc(aula)}">
+  <label for="nom">Tu nombre</label><input id="nom" maxlength="24" value="${esc(nom)}">
+  <div style="margin-top:16px"><button class="principal" id="entrar" style="width:100%">Entrar</button></div></div>`;
+ document.getElementById('entrar').onclick=()=>{const p=document.getElementById('pin').value.trim(),n=document.getElementById('nom').value.trim();
+  if(!/^\d{4}$/.test(p)||!n){entrada('Escribe el código de 4 números y tu nombre.');return}
+  try{localStorage.setItem('q8-nombre',n)}catch(e){}jugador(p,n)}}
+function espera(a,b){fondo('');app.innerHTML=`<div class="centro"><div class="grande">${esc(a)}</div><p class="estado">${esc(b)}</p></div>`}
+function jugador(pin,nombre){let t=null,dentro=false;espera('Conectando…','Un momento');const peer=new Peer();
+ const lim=setTimeout(()=>{if(!dentro){peer.destroy();entrada('No se encontró esa aula. Revisa el código.')}},12000);
+ peer.on('error',e=>{if(dentro)return;clearTimeout(lim);peer.destroy();entrada(e.type==='peer-unavailable'?'No se encontró esa aula. Revisa el código.':'No se pudo conectar. Prueba otra vez.')});
+ peer.on('open',()=>{const c=peer.connect(PREF+pin,{reliable:true});
+  c.on('open',()=>c.send({t:'hola',nombre}));
+  c.on('close',()=>{clearInterval(t);if(dentro){app.innerHTML='<div class="aviso">Se cortó la conexión.</div><button class="principal" onclick="location.reload()">Volver a entrar</button>'}});
+  c.on('data',d=>{
+   if(d.t==='ok'){dentro=true;clearTimeout(lim);espera('¡Ya estás dentro!','Busca tu nombre en la pantalla compartida, '+(d.nombre||nombre))}
+   else if(d.t==='q'){clearInterval(t);fondo('');app.innerHTML=cabeza(d.n,d.total)+`<p class="preg" style="font-size:22px">${esc(d.p)}</p>`+opciones(d.o,true);
+    t=reloj(Date.now()+d.resta);app.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{c.send({t:'r',o:+b.dataset.o});clearInterval(t);espera('Respuesta enviada','Espera al resto del grupo')})}
+   else if(d.t==='res'){clearInterval(t);fondo(d.ok?'bien':'mal');if(d.ok){confeti(30);tono(880,.2)}else tono(220,.3);
+    app.innerHTML=`<div class="centro"><div class="grande">${d.ok?'¡Correcta! +'+d.g:(d.resp?'Incorrecta':'Se acabó el tiempo')}</div>
+     ${d.racha>=2?`<p style="font-size:22px;font-weight:900">🔥 Racha de ${d.racha}</p>`:''}
+     <p style="font-size:22px;font-weight:900">${d.pts} puntos · puesto ${d.puesto} de ${d.de}</p>
+     <div class="explica" style="text-align:left"><b>Correcta: ${esc(d.buena)}.</b> ${esc(d.j)}</div></div>`}
+   else if(d.t==='fin'){fondo('');if(d.puesto<=3)confeti(70);app.innerHTML=`<div class="centro"><div class="grande">Puesto ${d.puesto} de ${d.de}</div><p style="font-size:26px;font-weight:900;color:var(--gold)">${d.pts} puntos</p></div>`}
+  })})}
+
+if(typeof Peer==='undefined'){app.innerHTML='<div class="aviso">No cargó el juego. Revisa el internet y recarga la página.</div>'}
+else if(new URLSearchParams(location.search).has('anfitrion'))anfitrion(); else entrada();
+document.addEventListener('keydown',e=>{const i='abcd'.indexOf(e.key.toLowerCase());if(i<0||/INPUT/.test(e.target.tagName))return;const b=app.querySelector('[data-o="'+i+'"]');if(b)b.click()});
+</script>
+</body>
+</html>
