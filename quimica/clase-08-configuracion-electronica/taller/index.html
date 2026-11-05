@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taller de configuraciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#131F24;--panel:#1B2B32;--panel2:#22363F;--line:#2E4652;--text:#F1F5F7;--muted:#A9BCC4;--green:#2BAE66;--green-d:#1F8A4F;--gold:#FFC800;--red:#FF6B6B;--blue:#4FB3E8}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:Nunito,sans-serif}
+main{max-width:620px;margin:0 auto;padding:16px 14px 40px}
+h1{font-weight:900;font-size:28px;margin:6px 0}
+.marca{color:var(--green);font-weight:900;margin:0}
+.muted{color:var(--muted)}
+button{font-family:inherit;font-weight:900;border:0;border-radius:14px;cursor:pointer;touch-action:manipulation}
+.principal{background:var(--green);color:#fff;box-shadow:0 4px 0 var(--green-d);font-size:19px;padding:14px 20px;width:100%}
+.sec{background:var(--panel2);color:var(--text);font-size:16px;padding:12px 14px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.nivel{background:var(--panel2);border-radius:99px;padding:4px 12px;font-weight:900;font-size:14px;color:var(--gold)}
+.barra{flex:1;height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}.barra i{display:block;height:100%;background:var(--green);transition:width .3s}
+.reloj{font-weight:900;color:var(--muted);min-width:52px;text-align:right}
+.q{background:var(--panel);border:2px solid var(--line);border-radius:18px;padding:14px 16px;font-size:20px;font-weight:900}
+.q small{display:block;color:var(--muted);font-size:15px;font-weight:700;margin-top:4px}
+.linea{min-height:64px;margin:12px 0 6px;background:#0E171B;border:2px dashed var(--line);border-radius:16px;padding:12px 14px;font-size:28px;font-weight:900;letter-spacing:.02em;word-break:break-word}
+.linea .vacio{color:var(--muted);font-size:17px;font-weight:700}
+.linea span{display:inline-block;margin-right:8px;animation:pop .25s}
+.linea span.lleno{color:var(--text)} .linea span.abierto{color:var(--gold)}
+@keyframes pop{0%{transform:scale(.6)}100%{transform:none}}
+.cuenta{display:flex;justify-content:space-between;font-weight:800;color:var(--muted);margin:2px 2px 10px}
+.cuenta b{color:var(--text)}
+.e-barra{height:14px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-bottom:12px}.e-barra i{display:block;height:100%;background:var(--blue);transition:width .2s}
+.e-barra i.pasado{background:var(--red)}
+.teclas{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.tecla{background:var(--panel2);color:var(--text);font-size:24px;padding:12px 4px 8px;box-shadow:0 4px 0 #0E171B;border:2px solid var(--line)}
+.tecla small{display:block;font-size:12px;color:var(--muted);font-weight:800}
+.tecla:active{transform:translateY(3px);box-shadow:0 1px 0 #0E171B}
+.tecla.s{border-color:#4FB3E8}.tecla.p{border-color:#2BAE66}.tecla.d{border-color:#FFC800}
+.acciones{display:grid;grid-template-columns:1fr 1fr 2fr;gap:9px;margin-top:12px}
+.msg{min-height:26px;margin:12px 2px 0;font-weight:800;font-size:17px}
+.msg.mal{color:var(--red)} .msg.bien{color:#3BC97A} .msg.info{color:var(--gold)}
+.sacude{animation:sac .35s}
+@keyframes sac{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px}
+.nums button{font-size:26px;padding:14px 0;background:var(--panel2);color:var(--text);border:2px solid var(--line)}
+.elems{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.elems button{font-size:24px;padding:12px 4px;background:var(--panel2);color:var(--text);border:2px solid var(--line)}
+.elems small{display:block;font-size:13px;color:var(--muted);font-weight:700}
+.ok-card{background:#163A28;border-radius:18px;padding:16px;margin-top:12px;font-weight:800;font-size:17px;animation:pop .3s}
+.fin{text-align:center}
+.palabra{font-size:46px;font-weight:900;color:var(--gold);letter-spacing:.08em;margin:8px 0}
+.res{background:var(--panel);border-radius:16px;padding:14px;font-weight:800;margin:14px 0;word-break:break-word}
+.inicio .card{background:var(--panel);border-radius:18px;padding:16px;margin:14px 0}
+.inicio ol{padding-left:20px;margin:8px 0}.inicio li{margin:6px 0}
+.ayuda{background:var(--panel);border-radius:14px;padding:10px 12px;margin-top:12px;font-size:15px;color:var(--muted)}
+.ayuda b{color:var(--text)}
+.confeti{position:fixed;top:-20px;width:10px;height:16px;z-index:9;animation:cae linear forwards;pointer-events:none}
+@keyframes cae{to{transform:translateY(110vh) rotate(720deg)}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+/* Taller de la clase 8: el estudiante arma configuraciones tocando subniveles (cada toque = 1 electrón). */
+const ORDEN=['1s','2s','2p','3s','3p','4s','3d','4p'];
+const CAP={s:2,p:6,d:10};
+const EL=['','H hidrógeno','He helio','Li litio','Be berilio','B boro','C carbono','N nitrógeno','O oxígeno','F flúor','Ne neón','Na sodio','Mg magnesio','Al aluminio','Si silicio','P fósforo','S azufre','Cl cloro','Ar argón','K potasio','Ca calcio','Sc escandio','Ti titanio','V vanadio','Cr cromo','Mn manganeso','Fe hierro'];
+const sim=z=>EL[z].split(' ')[0], nom=z=>EL[z].split(' ')[1];
+function conf(e){const r=[];for(const s of ORDEN){if(e<=0)break;const n=Math.min(e,CAP[s[1]]);r.push([s,n]);e-=n}return r}
+function valencia(e){const c=conf(e),top=Math.max(...c.map(x=>+x[0][0]));return c.filter(x=>+x[0][0]===top).reduce((a,x)=>a+x[1],0)}
+const sup=n=>String(n).split('').map(d=>'⁰¹²³⁴⁵⁶⁷⁸⁹'[d]).join('');
+const txt=c=>c.map(([s,n])=>s+sup(n)).join(' ');
+const carga=q=>q===0?'':(Math.abs(q)===1?'':sup(Math.abs(q)))+(q>0?'⁺':'⁻');
+
+/* Retos: tipo 'armar' (z, q, val = pedir valencia después) o 'quien' (adivinar el elemento por su configuración). */
+const NIVELES=[
+ {t:'Nivel 1 · Calentamiento',r:[{z:3},{z:5},{z:7},{z:9},{z:10}]},
+ {t:'Nivel 2 · Nivel 3 y valencia',r:[{z:11,val:1},{z:12,val:1},{z:13,val:1},{z:15,val:1},{z:16,val:1},{z:17,val:1}]},
+ {t:'Nivel 3 · La trampa del 4s',r:[{z:19,val:1},{z:20,val:1},{z:21},{z:23},{z:26}]},
+ {t:'Nivel 4 · Iones',r:[{z:11,q:1},{z:8,q:-2},{z:12,q:2},{z:17,q:-1},{z:16,q:-2},{z:20,q:2}]},
+ {t:'Nivel 5 · ¿Quién soy?',r:[{quien:6},{quien:14},{quien:18},{quien:19},{quien:25}]}
+];
+const RETOS=[];NIVELES.forEach((n,i)=>n.r.forEach(r=>RETOS.push({...r,nivel:n.t,ni:i})));
+const PALABRA='GUAYABA', CLAVE='q8-taller-v1';
+const app=document.getElementById('app');
+let st={i:0,err:0,ini:0,fin:0};try{st=JSON.parse(localStorage.getItem(CLAVE))||st}catch(e){}
+const guardar=()=>{try{localStorage.setItem(CLAVE,JSON.stringify(st))}catch(e){}};
+function tono(f,d){try{const a=window.__a||(window.__a=new (window.AudioContext||window.webkitAudioContext)());const o=a.createOscillator(),g=a.createGain();o.frequency.value=f;o.connect(g);g.connect(a.destination);g.gain.setValueAtTime(.12,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+d);o.start();o.stop(a.currentTime+d)}catch(e){}}
+function confeti(n){const C=['#FFC800','#2BAE66','#4FB3E8','#FF6B6B','#fff'];for(let i=0;i<n;i++){const d=document.createElement('i');d.className='confeti';d.style.left=Math.random()*100+'vw';d.style.background=C[i%5];d.style.animationDuration=(1.4+Math.random()*1.6)+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),3500)}}
+const mmss=ms=>{const s=Math.floor(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+let tick=null;
+function arriba(r){return `<div class="top"><span class="nivel">${r.nivel}</span><div class="barra"><i style="width:${st.i/RETOS.length*100}%"></i></div><span class="reloj" id="reloj"></span></div>
+ <p class="muted" style="margin:0 0 8px;font-weight:800">Reto ${st.i+1} de ${RETOS.length} · errores: ${st.err}</p>`}
+function correrReloj(){clearInterval(tick);const f=()=>{const el=document.getElementById('reloj');if(el)el.textContent=mmss(Date.now()-st.ini)};f();tick=setInterval(f,1000)}
+
+function inicio(){
+ app.innerHTML=`<div class="inicio"><p class="marca">Clase 8 · en tu celular</p><h1>Taller de configuraciones</h1>
+ <div class="card"><b>Cómo se juega</b><ol>
+ <li>Cada vez que tocas un subnivel, metes <b>un electrón</b> ahí. Toca «1s» dos veces y tienes 1s².</li>
+ <li>Llena en orden: <b>1s, 2s, 2p, 3s, 3p, 4s, 3d</b>. Cada subnivel tiene su tope: s 2, p 6, d 10.</li>
+ <li>Cuando tengas todos los electrones, toca <b>Revisar</b>. Si te equivocas, te da una pista y suma un error.</li>
+ <li>Son ${RETOS.length} retos en 5 niveles. Al final aparece la <b>palabra secreta</b>: pégala en el chat con tu tiempo.</li></ol></div>
+ <button class="principal" id="go">${st.i>0&&st.i<RETOS.length?'Seguir donde me quedé':'Empezar'}</button>
+ ${st.i>0?'<p style="text-align:center"><button class="sec" id="reset">Empezar de cero</button></p>':''}</div>`;
+ document.getElementById('go').onclick=()=>{if(!st.ini)st.ini=Date.now();guardar();siguiente()};
+ const r=document.getElementById('reset');if(r)r.onclick=()=>{if(confirm('¿Borrar tu avance y empezar de cero?')){st={i:0,err:0,ini:0,fin:0};guardar();inicio()}};
+}
+function siguiente(){if(st.i>=RETOS.length){final();return}const r=RETOS[st.i];r.quien?quien(r):armar(r)}
+function avanzar(){st.i++;guardar();setTimeout(siguiente,250)}
+
+function armar(r){
+ const e=r.z-(r.q||0), meta=conf(e);let hecho=[];
+ const titulo=r.q?`Arma el ion <b>${sim(r.z)}${carga(r.q)}</b>`:`Arma el <b>${nom(r.z)}</b> (${sim(r.z)})`;
+ const sub=r.q?`El ${nom(r.z)} tiene Z = ${r.z}. Primero piensa cuántos electrones tiene el ion.`:`Z = ${r.z}`;
+ app.innerHTML=arriba(r)+`<div class="q">${titulo}<small>${sub}</small></div>
+  <div class="linea" id="linea"></div>
+  <div class="cuenta"><span>Electrones puestos: <b id="van">0</b></span><span id="meta">${r.q?'¿Cuántos van?':'Meta: <b>'+e+'</b>'}</span></div>
+  <div class="e-barra"><i id="eb" style="width:0"></i></div>
+  <div class="teclas">${ORDEN.map(s=>`<button class="tecla ${s[1]}" data-s="${s}">${s}<small>tope ${CAP[s[1]]}</small></button>`).join('')}</div>
+  <div class="acciones"><button class="sec" id="undo">↶ Uno</button><button class="sec" id="borrar">Borrar</button><button class="principal" id="rev" style="width:auto">Revisar</button></div>
+  <div class="msg" id="msg"></div><div id="extra"></div>`;
+ correrReloj();
+ const $=id=>document.getElementById(id), total=()=>hecho.reduce((a,x)=>a+x[1],0);
+ function pintar(){$('linea').innerHTML=hecho.length?hecho.map(([s,n])=>`<span class="${n===CAP[s[1]]?'lleno':'abierto'}">${s}${sup(n)}</span>`).join(''):'<span class="vacio">Toca los subniveles para meter electrones…</span>';
+  const t=total();$('van').textContent=t;const tope=r.q?Math.max(e,t,1):e;const b=$('eb');b.style.width=Math.min(100,t/tope*100)+'%';b.classList.toggle('pasado',!r.q&&t>e)}
+ function aviso(t,c){const m=$('msg');m.className='msg '+(c||'');m.textContent=t;if(c==='mal'){m.classList.remove('sacude');void m.offsetWidth;m.classList.add('sacude')}}
+ pintar();
+ app.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{
+  const s=b.dataset.s, ult=hecho[hecho.length-1];
+  if(total()>=30){aviso('Ya son demasiados electrones.','mal');return}
+  if(ult&&ult[0]===s){if(ult[1]>=CAP[s[1]]){aviso(`El subnivel ${s} ya está lleno: admite ${CAP[s[1]]}.`,'mal');tono(200,.15);return}ult[1]++}
+  else if(hecho.some(x=>x[0]===s)){aviso(`Ya usaste el ${s}. Sigue con el que viene.`,'mal');tono(200,.15);return}
+  else hecho.push([s,1]);
+  tono(420+total()*12,.05);aviso('');pintar()});
+ $('undo').onclick=()=>{const u=hecho[hecho.length-1];if(!u)return;u[1]--;if(!u[1])hecho.pop();aviso('');pintar()};
+ $('borrar').onclick=()=>{hecho=[];aviso('');pintar()};
+ $('rev').onclick=()=>{
+  const t=total();
+  if(!t){aviso('Primero mete electrones tocando los subniveles.','info');return}
+  if(txt(hecho)===txt(meta)){tono(660,.12);setTimeout(()=>tono(990,.2),120);confeti(18);
+   $('rev').disabled=true;app.querySelectorAll('.tecla,#undo,#borrar').forEach(x=>x.disabled=true);
+   aviso('¡Correcto! '+txt(meta),'bien');
+   if(r.val)pedirValencia(e);else $('extra').innerHTML=`<div class="ok-card">${r.q?`El ${sim(r.z)}${carga(r.q)} tiene ${e} electrones: ${r.z} ${r.q>0?'−':'+'} ${Math.abs(r.q)} = ${e}.`:'Los exponentes suman '+e+'.'}<br><br><button class="principal" id="sig">Siguiente reto ▶</button></div>`,$('sig')&&($('sig').onclick=avanzar);
+   return}
+  st.err++;guardar();tono(180,.25);
+  let pista;
+  if(t!==e) pista=r.q?`Pusiste ${t} electrones. Un ion ${r.q>0?'positivo perdió':'negativo ganó'} ${Math.abs(r.q)}: son ${r.z} ${r.q>0?'−':'+'} ${Math.abs(r.q)}.`:`Pusiste ${t} electrones y el ${nom(r.z)} tiene ${e}.`;
+  else{const k=hecho.findIndex((x,i)=>!meta[i]||x[0]!==meta[i][0]||x[1]!==meta[i][1]);const x=hecho[k],m=meta[k];
+   if(!m||x[0]!==m[0])pista=k===0?'Siempre se empieza por el 1s.':`Después de ${meta[k-1][0]} no va ${x[0]}: revisa el orden de llenado.`;
+   else pista=`El ${m[0]} quedó con ${x[1]}. Llénalo hasta su tope (${CAP[m[0][1]]}) antes de pasar al siguiente, si te alcanzan los electrones.`}
+  aviso('Todavía no. '+pista,'mal');
+  const errEl=document.querySelector('.top+p');if(errEl)errEl.innerHTML=`Reto ${st.i+1} de ${RETOS.length} · errores: ${st.err}`};
+}
+function pedirValencia(e){
+ const v=valencia(e),x=document.getElementById('extra');
+ x.innerHTML=`<div class="q" style="margin-top:12px;font-size:18px">¿Cuántos electrones de valencia tiene?<small>Suma los del último nivel.</small></div>
+  <div class="nums">${[1,2,3,4,5,6,7,8].map(n=>`<button data-n="${n}">${n}</button>`).join('')}</div><div class="msg" id="msg2"></div>`;
+ x.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{const m=document.getElementById('msg2');
+  if(+b.dataset.n===v){tono(990,.2);x.innerHTML=`<div class="ok-card">¡Sí! Tiene ${v} de valencia.<br><br><button class="principal" id="sig">Siguiente reto ▶</button></div>`;document.getElementById('sig').onclick=avanzar}
+  else{st.err++;guardar();tono(180,.25);b.disabled=true;b.style.opacity=.35;m.className='msg mal';m.textContent='No. Mira solo el nivel más alto (el número más grande) y suma sus exponentes.'}})
+}
+function quien(r){
+ const z=r.quien, ops=new Set([z]);const cand=[z-2,z-1,z+1,z+2,z-3,z+3,z+8,z-8].filter(x=>x>=1&&x<=26&&x!==24);
+ while(ops.size<6&&cand.length)ops.add(cand.splice(Math.floor(Math.random()*cand.length),1)[0]);
+ const lista=[...ops].sort(()=>Math.random()-.5);
+ app.innerHTML=arriba(r)+`<div class="q">¿Quién soy?<small>Cuenta los electrones y busca el elemento.</small></div>
+  <div class="linea">${conf(z).map(([s,n])=>`<span class="lleno">${s}${sup(n)}</span>`).join('')}</div>
+  <div class="elems">${lista.map(x=>`<button data-z="${x}">${sim(x)}<small>${nom(x)}</small></button>`).join('')}</div><div class="msg" id="msg"></div><div id="extra"></div>`;
+ correrReloj();
+ app.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{const m=document.getElementById('msg');
+  if(+b.dataset.z===z){tono(990,.2);confeti(14);app.querySelectorAll('[data-z]').forEach(x=>x.disabled=true);
+   document.getElementById('extra').innerHTML=`<div class="ok-card">¡Sí! Los exponentes suman ${z}: es el ${nom(z)}, Z = ${z}.<br><br><button class="principal" id="sig">${st.i===RETOS.length-1?'Ver mi resultado 🏆':'Siguiente reto ▶'}</button></div>`;document.getElementById('sig').onclick=avanzar}
+  else{st.err++;guardar();tono(180,.25);b.disabled=true;b.style.opacity=.35;m.className='msg mal';m.textContent='No. Suma todos los exponentes: ese número es Z.'}})
+}
+function final(){
+ clearInterval(tick);if(!st.fin){st.fin=Date.now();guardar()}
+ const t=mmss(st.fin-st.ini), res=`Taller clase 8: ${PALABRA} · ${RETOS.length}/${RETOS.length} retos · ${st.err} ${st.err===1?"error":"errores"} · ${t}`;
+ confeti(80);
+ app.innerHTML=`<div class="fin"><p class="marca">¡Terminaste!</p><h1>Palabra secreta</h1><div class="palabra">${PALABRA}</div>
+  <div class="res" id="res">${res}</div><button class="principal" id="copiar">Copiar mi resultado</button>
+  <p class="muted">Pégalo en el chat de la clase.</p><p><button class="sec" id="otra">Jugar de nuevo</button></p></div>`;
+ document.getElementById('copiar').onclick=function(){const b=this;(navigator.clipboard?navigator.clipboard.writeText(res):Promise.reject()).then(()=>b.textContent='Copiado ✔',()=>prompt('Copia tu resultado:',res))};
+ document.getElementById('otra').onclick=()=>{st={i:0,err:0,ini:0,fin:0};guardar();inicio()};
+}
+inicio();
+</script>
+</body>
+</html>
