@@ -193,7 +193,7 @@ function puntos(res,ms,T){if(!res||!res.ok)return 0;return Math.max(60,100-10*re
 const PREF='cidea-q8-taller-';
 function anfitrion(){
  document.body.classList.add('host');
- let jug={},peer,ronda=null,t=null,pin=String(Math.floor(1000+Math.random()*9000));
+ let jug=Object.create(null),peer,ronda=null,t=null,pin=String(Math.floor(1000+Math.random()*9000));
  const lista=()=>Object.values(jug), orden=()=>lista().sort((a,b)=>b.pts-a.pts);
  const env=(j,d)=>{if(j.c&&j.c.open)j.c.send(d)}, todos=d=>lista().forEach(j=>env(j,d));
  function abrir(){peer=new Peer(PREF+pin);
@@ -226,7 +226,7 @@ function anfitrion(){
   ul.innerHTML=lista().map(j=>`<li class="${ronda.resp[j.n.toLowerCase()]?'listo':''}">${esc(j.n)}</li>`).join('');
   document.getElementById('conteo').textContent=Object.keys(ronda.resp).length+' de '+lista().length+' terminaron'}
  function lanzar(i){fondo('');const r=RONDAS[i],T=TIEMPO(r);
-  ronda={i,ini:Date.now(),fin:Date.now()+T*1000,resp:{},cerrada:false};todos(msg());tono(520,.15);
+  ronda={i,ini:Date.now(),fin:Date.now()+T*1000,resp:Object.create(null),cerrada:false};todos(msg());tono(520,.15);
   app.innerHTML=`<div class="top"><span class="nivel">Ronda ${i+1} de ${RONDAS.length}</span><div class="barra"><i style="width:${i/RONDAS.length*100}%"></i></div></div>
    <div class="retohost">${titulo(r)}<small>${subtitulo(r)}</small>${r.quien?`<div class="sol" style="margin-top:16px">${txt(conf(r.quien))}</div>`:''}</div>
    <div class="relojg" id="rg">${T}</div><p class="centro muted" style="font-weight:900;font-size:20px" id="conteo"></p><ul class="jug" id="listos" style="justify-content:center"></ul>
@@ -254,6 +254,12 @@ function anfitrion(){
  app.innerHTML='<p class="muted">Abriendo la sala…</p>';abrir();
 }
 
+/* Lo que llega por la red se pasa a números y textos antes de pintarlo. */
+const N=x=>Number.isFinite(+x)?+x:0;
+function limpiar(d){if(!d||typeof d!=='object')return null;const o={t:String(d.t||'')};
+ ['i','total','resta','g','pts','puesto','de','aciertos'].forEach(k=>o[k]=N(d[k]));o.ok=d.ok===true;o.nombre=String(d.nombre||'');o.sol=String(d.sol||'');
+ if(d.r){const r=d.r,z=N(r.z),qn=N(r.quien);o.r=qn?{quien:Math.min(26,Math.max(1,Math.round(qn)))}:{z:Math.min(26,Math.max(1,Math.round(z))),q:Math.max(-3,Math.min(3,Math.round(N(r.q)))),val:r.val?1:0}}
+ return o}
 /* ---------- Celular del estudiante en vivo ---------- */
 function espera(a,b){fondo('');app.innerHTML=`<div class="centro" style="margin-top:20vh"><div class="grande">${esc(a)}</div><p class="muted" style="font-weight:800">${esc(b)}</p></div>`}
 function jugador(pin,nombre){let dentro=false,t=null,juego=null,enviado=false;espera('Conectando…','Un momento');const peer=new Peer();
@@ -262,7 +268,7 @@ function jugador(pin,nombre){let dentro=false,t=null,juego=null,enviado=false;es
  peer.on('open',()=>{const c=peer.connect(PREF+pin,{reliable:true});
   c.on('open',()=>c.send({t:'hola',nombre}));
   c.on('close',()=>{clearInterval(t);if(dentro){app.innerHTML='<div class="aviso">Se cortó la conexión.</div><button class="principal" onclick="location.reload()">Volver a entrar (con el mismo nombre)</button>'}});
-  c.on('data',d=>{
+  c.on('data',raw=>{const d=limpiar(raw);if(!d)return;
    if(d.t==='ok'){dentro=true;clearTimeout(lim);espera('¡Ya estás dentro!','Espera a que empiece la ronda, '+(d.nombre||nombre))}
    else if(d.t==='q'){clearInterval(t);enviado=false;const fin=Date.now()+d.resta;
     const cab=`<div class="top"><span class="nivel">Ronda ${d.i+1} de ${d.total}</span><div class="barra"><i style="width:${d.i/d.total*100}%"></i></div><span class="reloj" id="reloj"></span></div>`;
