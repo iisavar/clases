@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Configuración electrónica</title>
-<meta name="description" content="Niveles, subniveles y orden de llenado de los electrones, con un duelo y juegos para el celular.">
+<meta name="description" content="Niveles, subniveles y orden de llenado de los electrones, con test de entrada, taller en vivo y juegos para el celular.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -27,6 +27,17 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
 <div class="deck" id="deck"></div>
 
 <template id="laminas">
+<section data-titulo="Test de entrada">
+  <div class="inner">
+    <div class="kicker">Para empezar, cada uno en su celular</div>
+    <h2>Test de entrada: lo de la clase pasada</h2>
+    <p class="step">Abre la pantalla del test y compártela en el Meet. Cada uno entra desde su celular con el código de 4 números o con el enlace del chat, y escribe su nombre. Son 8 preguntas de 20 segundos sobre protones, electrones, iones, Z y A.</p>
+    <div class="step" style="display:flex;gap:12px;flex-wrap:wrap;margin:14px 0">
+      <a class="btn" href="vivo/?anfitrion&amp;test=entrada" target="_blank" rel="noopener">Abrir el test de entrada</a>
+    </div>
+    <div class="clave step"><b>Todos con las mismas oportunidades:</b> cada uno responde en su celular y gana más el que responde bien y rápido. Al final sale el podio.</div>
+  </div>
+</section>
 <section data-titulo="1. Los niveles de energía">
   <div class="inner">
     <h2>1. Los electrones viven en niveles</h2>
@@ -267,6 +278,7 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
 <script>
 const CLASE={
   num:8,
+  sinDuelo:true,
   titulo:'Configuración electrónica',
   subtitulo:'dónde están los electrones',
   lead:'Niveles, subniveles y el orden en que los electrones ocupan su lugar.',
@@ -286,7 +298,6 @@ const CLASE={
   pdf:'tarea/tarea-08.pdf'
 };
 </script>
-<script src="../motor/motor.js"></script>
-<script src="ruleta.js"></script>
+<script src="../motor/motor.js?v=20261105"></script>
 </body>
 </html>

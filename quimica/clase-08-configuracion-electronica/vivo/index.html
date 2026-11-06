@@ -76,7 +76,20 @@ const PREGUNTAS=[
  {p:'El ion Na⁺ queda con la misma configuración que…',o:['el neón','el argón','el helio','el sodio neutro'],j:'Na⁺ tiene 10 electrones, igual que el neón: 1s² 2s² 2p⁶.'},
  {p:'En 3p⁵, ¿qué indica el número 5?',o:['Los electrones','El nivel','El subnivel','Los protones'],j:'El 3 es el nivel, la p es el subnivel y el 5 son los electrones.'}
 ];
-const SEG=20, CUANTAS=10, PREF='cidea-quimica8-';
+/* Test de entrada: repasa la clase pasada (materia y átomo). Se abre con ?anfitrion&test=entrada */
+const ENTRADA=[
+ {p:'Un átomo neutro de sodio tiene Z = 11. ¿Cuántos electrones tiene?',o:['11','23','12','1'],j:'En un átomo neutro, los electrones son iguales a los protones.'},
+ {p:'¿Cuántos electrones tiene el ion Na⁺? El sodio tiene Z = 11.',o:['10','11','12','1'],j:'Perdió 1 electrón: 11 − 1 = 10.'},
+ {p:'Cuando un átomo se convierte en ion, ¿qué partícula cambia?',o:['Los electrones','Los protones','Los neutrones','El núcleo completo'],j:'Solo cambian los electrones. Si cambiaran los protones, sería otro elemento.'},
+ {p:'¿Qué indica el número atómico Z?',o:['El número de protones','El número de neutrones','La masa del átomo','Los electrones ganados'],j:'Z es la cantidad de protones, y decide qué elemento es.'},
+ {p:'El sodio-23 tiene Z = 11. ¿Cuántos neutrones tiene?',o:['12','11','23','34'],j:'Neutrones = A − Z = 23 − 11 = 12.'},
+ {p:'¿Cuántos electrones tiene el ion Cl⁻? El cloro tiene Z = 17.',o:['18','17','16','35'],j:'Ganó 1 electrón: 17 + 1 = 18.'},
+ {p:'¿Cómo se calcula el número másico A?',o:['Protones + neutrones','Protones − neutrones','Protones + electrones','Solo los neutrones'],j:'A = Z + N: los protones y los neutrones son los que tienen casi toda la masa.'},
+ {p:'Según el modelo de Bohr, los electrones se mueven…',o:['en niveles de energía definidos','dentro del núcleo','pegados a los protones','sin ningún orden'],j:'Bohr propuso niveles fijos. Hoy partimos de esa idea para ubicar los electrones.'}
+];
+const ES_ENTRADA=new URLSearchParams(location.search).get('test')==='entrada';
+const BANCO=ES_ENTRADA?ENTRADA:PREGUNTAS, NOMBRE_JUEGO=ES_ENTRADA?'Test de entrada · Repaso de la clase pasada':'Reto en vivo · Configuración electrónica';
+const SEG=20, CUANTAS=ES_ENTRADA?ENTRADA.length:10, PREF='cidea-quimica8-';
 const app=document.getElementById('app'), L='ABCD';
 const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const barajar=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -111,7 +124,7 @@ function anfitrion(){
    r.resp[c.k]={o:d.o,ms:Date.now()-r.ini};const n=Object.keys(r.resp).length,el=document.getElementById('conteo');
    if(el)el.textContent=n+' de '+lista().length+' respondieron';if(n>=lista().length)cerrar()}}
  function sala(){fondo('');const enlace=location.origin+location.pathname+'?aula='+pin;
-  app.innerHTML=`<p class="marca">Reto en vivo · Configuración electrónica</p><h1>Entren desde el celular</h1>
+  app.innerHTML=`<p class="marca">${NOMBRE_JUEGO}</p><h1>Entren desde el celular</h1>
    <div class="tarjeta fila" style="justify-content:space-between"><div><div class="cuenta">Código del aula</div><div class="pin">${pin}</div></div>
    <div style="max-width:420px"><div class="cuenta">Enlace para el chat</div><div style="word-break:break-all;font-weight:800;margin:6px 0 10px">${esc(enlace)}</div>
    <button class="sec" id="copiar">Copiar enlace</button></div></div>
@@ -119,7 +132,7 @@ function anfitrion(){
    <div class="fila" style="justify-content:space-between"><span class="cuenta">${lista().length} conectados</span>
    <button class="principal" id="ini" ${lista().length?'':'disabled'}>Empezar el reto ▶</button></div>`;
   document.getElementById('copiar').onclick=function(){const b=this;(navigator.clipboard?navigator.clipboard.writeText(enlace):Promise.reject()).then(()=>b.textContent='Enlace copiado',()=>prompt('Copia este enlace:',enlace))};
-  document.getElementById('ini').onclick=()=>{pregs=barajar(PREGUNTAS).slice(0,CUANTAS);lanzar(0)}}
+  document.getElementById('ini').onclick=()=>{pregs=barajar(BANCO).slice(0,CUANTAS);lanzar(0)}}
  const msg=()=>({t:'q',n:r.i+1,total:pregs.length,p:pregs[r.i].p,o:r.txt,resta:r.fin-Date.now()});
  function lanzar(i){fondo('');const ord=barajar([0,1,2,3]);
   r={i,ord,txt:ord.map(x=>pregs[i].o[x]),ini:Date.now(),fin:Date.now()+SEG*1000,resp:Object.create(null),cerrada:false};

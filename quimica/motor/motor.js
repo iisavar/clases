@@ -105,7 +105,9 @@ function tarea(){
     <div class="tarea">${TAREA.map((t,i)=>`<div class="t"><div class="q"><span class="n">${i+1}.</span>${t.enun}</div>
       <div class="o">${t.ops.map((o,k)=>`<span><b>${'abcd'[k]})</b>${o}</span>`).join('')}</div></div>`).join('')}</div></div>`);
 }
-portada(); retoma(); reglasDuelo(); ronda(1); laminas(); juego(); ronda(2); casos(); podio(); sigue(); tarea();
+portada(); retoma();
+if(CLASE.sinDuelo){laminas(); juego(); casos(); sigue(); tarea();}
+else{reglasDuelo(); ronda(1); laminas(); juego(); ronda(2); casos(); podio(); sigue(); tarea();}
 
 /* ---------- Marcador del duelo (solo en este navegador) ---------- */
 const CLAVE_M='quimica-'+CLASE.num+'-marcador';
@@ -121,10 +123,10 @@ function marcadorHTML(){
 }
 function pintarMarcador(){
   document.querySelectorAll('.marcador-host').forEach(h=>h.innerHTML=marcadorHTML());
-  $('listaAlta').innerHTML=jugadores.length?jugadores.map((j,i)=>`<span>${esc(j.n)}<button type="button" data-q="${i}" aria-label="Quitar a ${esc(j.n)}">✕</button></span>`).join(''):'<p class="vacio" style="margin:0">Todavía no hay jugadores.</p>';
+  if($('listaAlta'))$('listaAlta').innerHTML=jugadores.length?jugadores.map((j,i)=>`<span>${esc(j.n)}<button type="button" data-q="${i}" aria-label="Quitar a ${esc(j.n)}">✕</button></span>`).join(''):'<p class="vacio" style="margin:0">Todavía no hay jugadores.</p>';
   const orden=[...jugadores].sort((a,b)=>b.p-a.p);
   const puesto=[[1,'#C0C9CE',110],[0,'#FFC800',150],[2,'#D08C55',80]];
-  $('podio').innerHTML=orden.length?puesto.filter(([k])=>orden[k]).map(([k,c,h])=>
+  if($('podio'))$('podio').innerHTML=orden.length?puesto.filter(([k])=>orden[k]).map(([k,c,h])=>
     `<div><div class="nom">${esc(orden[k].n)}</div><div class="p">${orden[k].p} ${orden[k].p===1?'punto':'puntos'}</div><div class="bloque" style="background:${c};height:${h}px">${k+1}</div></div>`).join(''):'';
   ultimo=-1;
 }
@@ -135,9 +137,9 @@ document.addEventListener('click',e=>{
   else if(q){jugadores.splice(+q.dataset.q,1);guardar();pintarMarcador();}
 });
 function agregar(){const v=$('nuevo').value.trim(); if(!v)return; jugadores.push({n:v,p:0}); $('nuevo').value=''; guardar(); pintarMarcador(); $('nuevo').focus();}
-$('bAgregar').onclick=agregar;
-$('nuevo').addEventListener('keydown',e=>{if(e.key==='Enter')agregar();});
-$('bReiniciar').onclick=()=>{if(confirm('¿Poner todos los puntos en cero?')){jugadores.forEach(j=>j.p=0);guardar();pintarMarcador();}};
+if($('bAgregar'))$('bAgregar').onclick=agregar;
+if($('nuevo'))$('nuevo').addEventListener('keydown',e=>{if(e.key==='Enter')agregar();});
+if($('bReiniciar'))$('bReiniciar').onclick=()=>{if(confirm('¿Poner todos los puntos en cero?')){jugadores.forEach(j=>j.p=0);guardar();pintarMarcador();}};
 
 /* Sonido corto (solo se oye si se comparte el audio de la pestaña) */
 let actx=null;
