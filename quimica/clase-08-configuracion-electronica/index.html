@@ -143,13 +143,16 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
   <div class="inner">
     <h2>4. Escribir la configuración, paso a paso</h2>
     <p class="step">La <b>configuración electrónica</b> dice cómo se reparten los electrones de un átomo. Hagamos la del sodio, Z = 11. Tenemos 11 electrones para acomodar.</p>
+    <div class="grid2" style="align-items:start">
+    <div><div class="tablita"></div><div class="tablita-pie">Se sigue cada flecha dorada, de arriba hacia abajo: así sale el orden 1s, 2s, 2p, 3s, 3p, 4s, 3d…</div></div>
     <table class="t">
       <tr><th>Paso</th><th>Subnivel</th><th>Lleva</th><th>Ya van</th><th>Quedan</th></tr>
-      <tr class="step"><td>1</td><td>1s</td><td>2</td><td>2</td><td>9</td></tr>
-      <tr class="step"><td>2</td><td>2s</td><td>2</td><td>4</td><td>7</td></tr>
-      <tr class="step"><td>3</td><td>2p</td><td>6</td><td>10</td><td>1</td></tr>
-      <tr class="step"><td>4</td><td>3s</td><td>1, el que queda</td><td>11</td><td>0</td></tr>
+      <tr class="step" data-sub="1s" data-n="2"><td>1</td><td>1s</td><td>2</td><td>2</td><td>9</td></tr>
+      <tr class="step" data-sub="2s" data-n="2"><td>2</td><td>2s</td><td>2</td><td>4</td><td>7</td></tr>
+      <tr class="step" data-sub="2p" data-n="6"><td>3</td><td>2p</td><td>6</td><td>10</td><td>1</td></tr>
+      <tr class="step" data-sub="3s" data-n="1"><td>4</td><td>3s</td><td>1, el que queda</td><td>11</td><td>0</td></tr>
     </table>
+    </div>
     <div class="ejemplo step">Sodio: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>1</sup></span><span class="paso">2 + 2 + 6 + 1 = 11</span></div>
     <div class="clave step"><b>Revisa siempre:</b> la suma de los exponentes debe dar el número de electrones.</div>
     <div class="clave step"><b>Pregunta para el chat:</b> ¿cómo queda el oxígeno, Z = 8? 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>4</sup>. El 2p no se llena porque ya no quedan electrones.</div>
@@ -208,7 +211,8 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
     <div class="reto-q">¿Cómo queda la configuración del <b>hierro</b>, Z = 26?</div>
     <div class="step cuenta">Piensen 20 segundos y escriban en el chat el último subnivel.</div>
     <p class="step">Tenemos <b>26 electrones</b>. Vamos llenando en orden: 1s, 2s, 2p, 3s, 3p, <b>4s</b>, 3d.</p>
-    <div class="chips"><div class="step chip"><b>1s<sup>2</sup></b><small>van 2 · quedan 24</small></div><div class="step chip"><b>2s<sup>2</sup></b><small>van 4 · quedan 22</small></div><div class="step chip"><b>2p<sup>6</sup></b><small>van 10 · quedan 16</small></div><div class="step chip"><b>3s<sup>2</sup></b><small>van 12 · quedan 14</small></div><div class="step chip"><b>3p<sup>6</sup></b><small>van 18 · quedan 8</small></div><div class="step chip"><b>4s<sup>2</sup></b><small>van 20 · quedan 6</small></div><div class="step chip medio"><b>3d<sup>6</sup></b><small>van 26 · quedan 0</small></div></div>
+    <div class="grid2" style="align-items:start"><div class="chips" style="align-content:flex-start"><div class="step chip" data-sub="1s" data-n="2"><b>1s<sup>2</sup></b><small>van 2 · quedan 24</small></div><div class="step chip" data-sub="2s" data-n="2"><b>2s<sup>2</sup></b><small>van 4 · quedan 22</small></div><div class="step chip" data-sub="2p" data-n="6"><b>2p<sup>6</sup></b><small>van 10 · quedan 16</small></div><div class="step chip" data-sub="3s" data-n="2"><b>3s<sup>2</sup></b><small>van 12 · quedan 14</small></div><div class="step chip" data-sub="3p" data-n="6"><b>3p<sup>6</sup></b><small>van 18 · quedan 8</small></div><div class="step chip" data-sub="4s" data-n="2"><b>4s<sup>2</sup></b><small>van 20 · quedan 6</small></div><div class="step chip medio" data-sub="3d" data-n="6"><b>3d<sup>6</sup></b><small>van 26 · quedan 0</small></div></div>
+    <div><div class="tablita"></div></div></div>
     <div class="ejemplo step">Resultado: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> 4s<sup>2</sup> 3d<sup>6</sup></span><span class="paso">2 + 2 + 6 + 2 + 6 + 2 + 6 = 26</span></div>
     <div class="clave step"><b>La trampa:</b> después de 3p<sup>6</sup> no va 3d, va 4s<sup>2</sup>. Los 6 que faltan para 26 van al 3d.</div>
   </div>
@@ -299,5 +303,6 @@ const CLASE={
 };
 </script>
 <script src="../motor/motor.js?v=20261105"></script>
+<script src="tablita.js"></script>
 </body>
 </html>
