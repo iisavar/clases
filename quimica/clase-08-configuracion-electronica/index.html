@@ -153,9 +153,9 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
       <tr class="step" data-sub="3s" data-n="1"><td>4</td><td>3s</td><td>1, el que queda</td><td>11</td><td>0</td></tr>
     </table>
     </div>
-    <div class="ejemplo step">Sodio: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>1</sup></span><span class="paso">2 + 2 + 6 + 1 = 11</span></div>
+    <div class="ejemplo step" data-conf="1s2 2s2 2p6 3s1" data-nom="Sodio">Sodio: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>1</sup></span><span class="paso">2 + 2 + 6 + 1 = 11</span></div>
     <div class="clave step"><b>Revisa siempre:</b> la suma de los exponentes debe dar el número de electrones.</div>
-    <div class="clave step"><b>Pregunta para el chat:</b> ¿cómo queda el oxígeno, Z = 8? 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>4</sup>. El 2p no se llena porque ya no quedan electrones.</div>
+    <div class="clave step" data-conf="1s2 2s2 2p4" data-nom="Oxígeno"><b>Pregunta para el chat:</b> ¿cómo queda el oxígeno, Z = 8? 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>4</sup>. El 2p no se llena porque ya no quedan electrones.</div>
   </div>
 </section>
 
@@ -163,12 +163,15 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
   <div class="inner">
     <h2>5. La trampa del 4s y el 3d</h2>
     <p class="step">Aquí está el error más común. Al llegar al potasio, el electrón que sigue no va al 3d, sino al 4s, porque en ese momento el 4s tiene menos energía. El 3d se empieza a llenar después.</p>
+    <div class="grid2" style="align-items:start">
     <table class="t">
       <tr><th>Átomo</th><th>Z</th><th>Configuración</th></tr>
-      <tr class="step"><td>Potasio</td><td>19</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>1</sup></span></td></tr>
-      <tr class="step"><td>Calcio</td><td>20</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup></span></td></tr>
-      <tr class="step"><td>Hierro</td><td>26</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup> 3d<sup>6</sup></span></td></tr>
+      <tr class="step" data-conf="1s2 2s2 2p6 3s2 3p6 4s1" data-nom="Potasio"><td>Potasio</td><td>19</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>1</sup></span></td></tr>
+      <tr class="step" data-conf="1s2 2s2 2p6 3s2 3p6 4s2" data-nom="Calcio"><td>Calcio</td><td>20</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup></span></td></tr>
+      <tr class="step" data-conf="1s2 2s2 2p6 3s2 3p6 4s2 3d6" data-nom="Hierro"><td>Hierro</td><td>26</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup> <span class="f">4s<sup>2</sup> 3d<sup>6</sup></span></td></tr>
     </table>
+    <div><div class="tablita"></div><div class="tablita-pie tablita-nom"></div></div>
+    </div>
     <p class="step" style="margin-top:12px">En el hierro: hasta 3p<sup>6</sup> van 18 electrones. El 4s lleva 2 y suman 20. Los 6 que faltan para 26 van al 3d.</p>
     <div class="clave step"><b>Dos rebeldes conocidos:</b> el cromo (Z = 24) y el cobre (Z = 29) pasan un electrón del 4s al 3d, porque un subnivel d lleno a la mitad o completo es más estable. En este curso no se piden.</div>
   </div>
@@ -179,13 +182,16 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
     <h2>6. Los electrones de valencia</h2>
     <p class="step">No todos los electrones trabajan igual. Los de los pisos bajos quedan adentro. Los del <b>último nivel</b> son los que tocan a otros átomos, y por eso son los que deciden cómo reacciona cada elemento.</p>
     <div class="clave"><b>Electrones de valencia:</b> son los del nivel más alto. Se suman todos los subniveles de ese nivel.</div>
+    <div class="grid2" style="align-items:start">
     <table class="t">
       <tr><th>Átomo</th><th>Configuración</th><th>Último nivel</th><th>De valencia</th></tr>
-      <tr class="step"><td>Sodio</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>1</sup></span></td><td>3</td><td>1</td></tr>
-      <tr class="step"><td>Oxígeno</td><td>1s<sup>2</sup> <span class="f">2s<sup>2</sup> 2p<sup>4</sup></span></td><td>2</td><td>2 + 4 = 6</td></tr>
-      <tr class="step"><td>Cloro</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>2</sup> 3p<sup>5</sup></span></td><td>3</td><td>2 + 5 = 7</td></tr>
+      <tr class="step" data-conf="1s2 2s2 2p6 3s1" data-nom="Sodio"><td>Sodio</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>1</sup></span></td><td>3</td><td>1</td></tr>
+      <tr class="step" data-conf="1s2 2s2 2p4" data-nom="Oxígeno"><td>Oxígeno</td><td>1s<sup>2</sup> <span class="f">2s<sup>2</sup> 2p<sup>4</sup></span></td><td>2</td><td>2 + 4 = 6</td></tr>
+      <tr class="step" data-conf="1s2 2s2 2p6 3s2 3p5" data-nom="Cloro"><td>Cloro</td><td>1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> <span class="f">3s<sup>2</sup> 3p<sup>5</sup></span></td><td>3</td><td>2 + 5 = 7</td></tr>
     </table>
-    <div class="clave step"><b>Pregunta para el chat:</b> ¿cuántos electrones de valencia tiene el nitrógeno, 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>3</sup>? Tiene 5: 2 de 2s y 3 de 2p.</div>
+    <div><div class="tablita"></div><div class="tablita-pie tablita-nom"></div></div>
+    </div>
+    <div class="clave step" data-conf="1s2 2s2 2p3" data-nom="Nitrógeno"><b>Pregunta para el chat:</b> ¿cuántos electrones de valencia tiene el nitrógeno, 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>3</sup>? Tiene 5: 2 de 2s y 3 de 2p.</div>
   </div>
 </section>
 
@@ -224,7 +230,8 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
     <div class="reto-q">¿Cómo queda la configuración del ion <b>Cl<sup>−</sup></b>? El cloro tiene Z = 17.</div>
     <div class="step cuenta">Piensen 20 segundos y escriban en el chat el último subnivel.</div>
     <p class="step">Primero contamos electrones: el signo menos dice que <b>ganó 1</b>. Entonces 17 + 1 = <b>18 electrones</b>. Repartimos 18, no 17.</p>
-    <div class="chips"><div class="step chip"><b>1s<sup>2</sup></b><small>van 2 · quedan 16</small></div><div class="step chip"><b>2s<sup>2</sup></b><small>van 4 · quedan 14</small></div><div class="step chip"><b>2p<sup>6</sup></b><small>van 10 · quedan 8</small></div><div class="step chip"><b>3s<sup>2</sup></b><small>van 12 · quedan 6</small></div><div class="step chip"><b>3p<sup>6</sup></b><small>van 18 · quedan 0</small></div></div>
+    <div class="grid2" style="align-items:start"><div class="chips" style="align-content:flex-start"><div class="step chip" data-sub="1s" data-n="2"><b>1s<sup>2</sup></b><small>van 2 · quedan 16</small></div><div class="step chip" data-sub="2s" data-n="2"><b>2s<sup>2</sup></b><small>van 4 · quedan 14</small></div><div class="step chip" data-sub="2p" data-n="6"><b>2p<sup>6</sup></b><small>van 10 · quedan 8</small></div><div class="step chip" data-sub="3s" data-n="2"><b>3s<sup>2</sup></b><small>van 12 · quedan 6</small></div><div class="step chip" data-sub="3p" data-n="6"><b>3p<sup>6</sup></b><small>van 18 · quedan 0</small></div></div>
+    <div><div class="tablita"></div></div></div>
     <div class="ejemplo step">Resultado: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup></span><span class="paso">2 + 2 + 6 + 2 + 6 = 18</span></div>
     <div class="clave step"><b>Fíjate:</b> quedó igual que el argón, con el nivel 3 cerrado en 3s<sup>2</sup> 3p<sup>6</sup>.</div>
   </div>
@@ -236,7 +243,8 @@ p.step.vis,.clave.step.vis,tr.step.vis{animation:entra .4s ease-out}
     <div class="reto-q">¿Cuántos electrones de valencia tiene el <b>azufre</b>, Z = 16?</div>
     <div class="step cuenta">Piensen 20 segundos y escriban en el chat el último subnivel.</div>
     <p class="step">Primero escribimos la configuración con <b>16 electrones</b>; después miramos el último nivel.</p>
-    <div class="chips"><div class="step chip"><b>1s<sup>2</sup></b><small>van 2 · quedan 14</small></div><div class="step chip"><b>2s<sup>2</sup></b><small>van 4 · quedan 12</small></div><div class="step chip"><b>2p<sup>6</sup></b><small>van 10 · quedan 6</small></div><div class="step chip"><b>3s<sup>2</sup></b><small>van 12 · quedan 4</small></div><div class="step chip medio"><b>3p<sup>4</sup></b><small>van 16 · quedan 0</small></div></div>
+    <div class="grid2" style="align-items:start"><div class="chips" style="align-content:flex-start"><div class="step chip" data-sub="1s" data-n="2"><b>1s<sup>2</sup></b><small>van 2 · quedan 14</small></div><div class="step chip" data-sub="2s" data-n="2"><b>2s<sup>2</sup></b><small>van 4 · quedan 12</small></div><div class="step chip" data-sub="2p" data-n="6"><b>2p<sup>6</sup></b><small>van 10 · quedan 6</small></div><div class="step chip" data-sub="3s" data-n="2"><b>3s<sup>2</sup></b><small>van 12 · quedan 4</small></div><div class="step chip medio" data-sub="3p" data-n="4"><b>3p<sup>4</sup></b><small>van 16 · quedan 0</small></div></div>
+    <div><div class="tablita"></div></div></div>
     <div class="ejemplo step">Resultado: <span class="f">1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>4</sup></span><span class="paso">2 + 2 + 6 + 2 + 4 = 16</span></div>
     <div class="clave step"><b>Último nivel: el 3.</b> Sumamos 3s<sup>2</sup> y 3p<sup>4</sup>: 2 + 4 = <b>6 electrones de valencia</b>.</div>
   </div>

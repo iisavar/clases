@@ -28,13 +28,17 @@
     }
     t.innerHTML=svg+'</svg>'+ORDEN.map(s=>{const [x,y]=pos(s);return `<div class="c" data-c="${s}" style="left:${x}px;top:${y}px">${s}<i></i></div>`}).join('');
     const lam=t.closest('section'); if(!lam)return;
-    const pasos=[...lam.querySelectorAll('[data-sub]')];
+    const pasos=[...lam.querySelectorAll('[data-sub],[data-conf]')];
     function pintar(){
       t.querySelectorAll('.c').forEach(c=>{c.classList.remove('on','medio');c.innerHTML=c.dataset.c+'<i></i>';});
       let k=0;
-      pasos.forEach(p=>{if(!p.classList.contains('vis'))return;const c=t.querySelector(`[data-c="${p.dataset.sub}"]`);if(!c)return;
-        const n=+p.dataset.n,tope={s:2,p:6,d:10,f:14}[p.dataset.sub[1]];k++;
-        c.classList.add(n===tope?'on':'medio');c.innerHTML=p.dataset.sub+'<sup>'+n+'</sup><i>'+k+'</i>';});
+      const poner=(sub,n)=>{const c=t.querySelector(`[data-c="${sub}"]`);if(!c)return;const tope={s:2,p:6,d:10,f:14}[sub[1]];k++;
+        c.classList.remove('on','medio');c.classList.add(n===tope?'on':'medio');c.innerHTML=sub+'<sup>'+n+'</sup><i>'+k+'</i>';};
+      const limpiar=()=>{k=0;t.querySelectorAll('.c').forEach(c=>{c.classList.remove('on','medio');c.innerHTML=c.dataset.c+'<i></i>';});};
+      pasos.forEach(p=>{if(!p.classList.contains('vis')&&!p.classList.contains('fijo'))return;
+        if(p.dataset.conf){limpiar();p.dataset.conf.split(' ').forEach(x=>poner(x.slice(0,2),+x.slice(2)));}
+        else poner(p.dataset.sub,+p.dataset.n);});
+      const nom=t.parentElement.querySelector('.tablita-nom'); if(nom){const ult=pasos.filter(p=>p.classList.contains('vis')&&p.dataset.nom).pop();nom.textContent=ult?ult.dataset.nom:'';}
     }
     const ob=new MutationObserver(pintar); pasos.forEach(p=>ob.observe(p,{attributes:true,attributeFilter:['class']}));
     pintar();
